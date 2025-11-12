@@ -1,0 +1,84 @@
+@tailwind base;
+
+@layer base {
+  html {
+    @apply text-slate-900 font-inter;
+  }
+
+  .yellow_headline {
+    @apply text-ap-yellow font-medium font-oswald tracking-[.18em] uppercase;
+  }
+
+  .white_headline {
+    @apply text-white font-medium font-oswald tracking-[.18em] uppercase;
+  }
+
+  .blue_headline {
+    @apply text-ap-darkblue font-medium font-oswald tracking-[.18em] uppercase;
+  }
+
+  .white_subheadline {
+    @apply uppercase font-bold text-white tracking-[.18em];
+  }
+
+  .blue_subheadline {
+    @apply uppercase font-bold text-ap-darkblue tracking-[.18em];
+  }
+
+  .yellow_subheadline {
+    @apply uppercase font-bold text-ap-yellow tracking-[.18em];
+  }
+}
+
+.default_wrapper {
+  @apply mx-auto max-w-7xl py-16 md:py-20 lg:py-24 px-8 lg:px-16;
+}
+
+.smaller_wrapper {
+  @apply mx-auto max-w-7xl pt-16 pb-16 md:pb-20 lg:pb-24 px-8 lg:px-16;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#scrollers::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.next,
+.prev {
+  top: calc(50% - 20px);
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.next {
+  right: 10px;
+}
+
+.prev {
+  left: 10px;
+  transform: scale(-1);
+}
