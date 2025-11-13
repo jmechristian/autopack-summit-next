@@ -130,7 +130,7 @@ const Travel = () => {
                       }}
                       onClick={() =>
                         window.open(
-                          'https://www.hyatt.com/en-US/group-booking/GSPRG/G-APSU',
+                          'https://www.hyatt.com/events/en-US/group-booking/GSPRG/G-APSM',
                           '_blank'
                         )
                       }
