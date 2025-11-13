@@ -23,10 +23,10 @@ export const navMenu = [
     name: 'Board',
     link: '/advisory-board',
   },
-  {
-    name: 'Register',
-    link: '/register',
-  },
+  // {
+  //   name: 'Register',
+  //   link: '/register',
+  // },
   // {
   //   name: 'Add-Ons',
   //   link: '/add-ons',
