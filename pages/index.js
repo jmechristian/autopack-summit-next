@@ -105,9 +105,9 @@ const Page = ({ homepageData, speakers, testimonials }) => {
         >
           <div className='flex flex-col gap-1 w-full p-6 z-20 max-w-lg'>
             <div className='text-white text-2xl font-medium font-oswald uppercase tracking-tight'>
-              Todd Chesna
+              Todd Chesna,{' '}
               <span className='text-ap-yellow font-medium font-oswald uppercase tracking-tight'>
-                , Ford
+                Ford
               </span>
             </div>
             <div className='text-white text-sm font-medium'>
@@ -157,14 +157,14 @@ const Page = ({ homepageData, speakers, testimonials }) => {
           <div
             className='w-full rounded-2xl border-2 border-black md:aspect-video lg:aspect-auto bg-neutral-200 bg-cover bg-center flex items-center justify-center relative overflow-hidden'
             style={{
-              backgroundImage: `url('https://packschool.s3.amazonaws.com/recap.png')`,
+              backgroundImage: `url('https://packmedia54032-staging.s3.us-east-1.amazonaws.com/public/recap-25.png')`,
             }}
           >
             {isPlaying ? (
               <div className='w-full h-full bg-black'>
                 <VideoPlayer
                   videoEmbedLink={
-                    'https://www.youtube.com/embed/6xNwXZt3Wa8?si=ibW3QcLncKjXbp9x'
+                    'https://youtu.be/QZF8kcmJbcA?si=NPE_8tWlKDwXgCDd'
                   }
                   playing={true}
                 />
@@ -179,7 +179,7 @@ const Page = ({ homepageData, speakers, testimonials }) => {
             )}
             {!isPlaying && (
               <div className='absolute bottom-4 left-4 w-fit px-4 py-2 rounded-2xl shadow-xl bg-black/40 backdrop-blur text-white font-oswald font-medium uppercase'>
-                2023 Highlights
+                2025 Highlights
               </div>
             )}
           </div>
