@@ -130,9 +130,25 @@ const LogoItemsBottom = () => (
       link={'https://www.volvocars.com/us/'}
     />
     <LogoItem
-      image={'https://packschool.s3.amazonaws.com/Lear_Corporation_logo.png'}
-      name='Lear Corp.'
-      link={'https://www.lear.com/'}
+      image={
+        'https://packmedia54032-staging.s3.us-east-1.amazonaws.com/public/ford.png'
+      }
+      name='Ford'
+      link={'https://www.ford.com/'}
+    />
+    <LogoItem
+      image={
+        'https://packmedia54032-staging.s3.us-east-1.amazonaws.com/public/tesla.png'
+      }
+      name='Tesla'
+      link={'https://www.tesla.com/'}
+    />
+    <LogoItem
+      image={
+        'https://packmedia54032-staging.s3.us-east-1.amazonaws.com/public/honda.png'
+      }
+      name='Honda'
+      link={'https://www.honda.com/'}
     />
   </>
 );
