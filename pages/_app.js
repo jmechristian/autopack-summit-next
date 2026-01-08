@@ -8,6 +8,7 @@ import { DefaultSeo } from 'next-seo';
 import { CookiesProvider } from 'react-cookie';
 
 import awsExports from '../src/aws-exports';
+// Gen 2 config is loaded separately in gen2-api.js when needed
 Amplify.configure(awsExports);
 
 function MyApp({ Component, pageProps }) {

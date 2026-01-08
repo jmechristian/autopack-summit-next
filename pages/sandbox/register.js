@@ -18,8 +18,11 @@ import {
   InformationCircleIcon,
 } from '@heroicons/react/24/solid';
 import {
-  getAPSCompanies,
-  createCompany,
+  getAPSCompaniesNewGen1 as getAPSCompanies,
+  createCompanyNewGen1 as createCompany,
+  checkForExistingCompanyNewGen1 as checkForExistingCompany,
+} from '../../util/new-gen1-api';
+import {
   getAPS25AddOns,
   createNewAPS25Registrant,
   createAdditionalAPS25Registrant,
@@ -33,7 +36,6 @@ import {
   getSolutionProviderRegistrants,
   checkCodeUsage,
   sendAdditionalRegistrationConfirmation,
-  checkForExistingCompany,
 } from '../../util/api';
 import AddOnCard from '../../components/registration/AddOnCard';
 // Initialize Stripe (put this outside the component)
@@ -694,33 +696,33 @@ const RegistrationForm = () => {
     setIsLoading(true);
     const res = await createNewAPS25Registrant(formData);
     console.log('res', res, formData);
-    setFormDataId(res.createAPSRegistrant2025.id);
-    await createAPS25Notification({
-      type: 'REGISTRATION_SENT',
-      activity:
-        formData.attendeeType +
-        ' Registration sent from ' +
-        formData.firstName +
-        ' ' +
-        formData.lastName,
-    });
-    await sendRegistrationConfirmation({
-      formData,
-      totalAmount,
-      formDataId: res.createAPSRegistrant2025.id,
-      addOnsSelected,
-    });
-    await sendStaffRegistrationConfirmation({
-      formData,
-      totalAmount,
-      formDataId: res.createAPSRegistrant2025.id,
-      addOnsSelected,
-    });
-    await createAPS25Notification({
-      type: 'REGISTRATION_EMAIL_SENT',
-      activity:
-        formData.attendeeType + ' Registration email sent to ' + formData.email,
-    });
+    // setFormDataId(res.createAPSRegistrant2025.id);
+    // await createAPS25Notification({
+    //   type: 'REGISTRATION_SENT',
+    //   activity:
+    //     formData.attendeeType +
+    //     ' Registration sent from ' +
+    //     formData.firstName +
+    //     ' ' +
+    //     formData.lastName,
+    // });
+    // await sendRegistrationConfirmation({
+    //   formData,
+    //   totalAmount,
+    //   formDataId: res.createAPSRegistrant2025.id,
+    //   addOnsSelected,
+    // });
+    // await sendStaffRegistrationConfirmation({
+    //   formData,
+    //   totalAmount,
+    //   formDataId: res.createAPSRegistrant2025.id,
+    //   addOnsSelected,
+    // });
+    // await createAPS25Notification({
+    //   type: 'REGISTRATION_EMAIL_SENT',
+    //   activity:
+    //     formData.attendeeType + ' Registration email sent to ' + formData.email,
+    // });
     setStep(4);
     setIsLoading(false);
     setIsRegistrationSubmitting(false);
@@ -792,11 +794,13 @@ const RegistrationForm = () => {
         { id: response.id, name: response.name, email: response.email },
       ]);
 
-      // Select the new company
+      // Select the new company (matching handleCompanySelect pattern)
       setFormData((prev) => ({
         ...prev,
-        companyName: newCompany.id,
+        companyName: response.name,
+        aPSRegistrant2025CompanyNameId: response.id,
       }));
+      setCompanySearch(response.name);
 
       // Close modal and reset form
       setShowAddCompanyModal(false);
@@ -1022,7 +1026,7 @@ const RegistrationForm = () => {
                         setFormData((prev) => ({
                           ...prev,
                           companyName: '',
-                          aPSCompanyApsRegistrantsId: '',
+                          aPSRegistrant2025CompanyNameId: '',
                         }));
                       }
                     }}
@@ -1043,7 +1047,7 @@ const RegistrationForm = () => {
                         setFormData((prev) => ({
                           ...prev,
                           companyName: '',
-                          aPSCompanyApsRegistrantsId: '',
+                          aPSRegistrant2025CompanyNameId: '',
                         }));
                         setIsDropdownOpen(false);
                       }}
@@ -1060,7 +1064,8 @@ const RegistrationForm = () => {
                         <div
                           key={company.id}
                           className={`p-2 cursor-pointer hover:bg-gray-100 ${
-                            formData.companyName === company.id
+                            formData.aPSRegistrant2025CompanyNameId ===
+                            company.id
                               ? 'bg-blue-50'
                               : ''
                           }`}
