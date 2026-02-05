@@ -4,6 +4,7 @@ import { classNames } from '../../util/helpers';
 
 const NewAgendaItem = ({
   title,
+  description,
   startTime,
   endTime,
   speakers,
@@ -18,8 +19,14 @@ const NewAgendaItem = ({
     hour12: true,
   });
 
-  const start = startTime && formatter.format(new Date(startTime));
-  const end = endTime && formatter.format(new Date(endTime));
+  const startDate = startTime ? new Date(startTime) : null;
+  const endDate = endTime ? new Date(endTime) : null;
+  const start =
+    startDate && !Number.isNaN(startDate.getTime())
+      ? formatter.format(startDate)
+      : null;
+  const end =
+    endDate && !Number.isNaN(endDate.getTime()) ? formatter.format(endDate) : null;
 
   return (
     <div
@@ -30,12 +37,11 @@ const NewAgendaItem = ({
     >
       <div className='w-3xl py-3 px-6 flex flex-col gap-2 lg:grid lg:gap-6 lg:grid-cols-[7rem,_1fr,_1fr] lg:items-center'>
         <div className='font-bold tracking-tight text-sm lg:text-base'>
-          {startTime ? `${start} - ${end}` : 'TBD'}
+          {start && end ? `${start} - ${end}` : 'TBD'}
         </div>
         <div className='font-bold text-lg leading-tight'>{title}</div>
-        <div className='font-medium text-neutral-600 leading-tight'>
-          {location}
-        </div>
+        <div className='font-medium text-neutral-600 leading-tight' dangerouslySetInnerHTML={{ __html: description }} />
+        <div className='font-medium text-neutral-600 leading-tight'>{location}</div>
       </div>
     </div>
   );

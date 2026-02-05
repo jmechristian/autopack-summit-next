@@ -21,8 +21,14 @@ const FullAgendaItem = ({
     hour12: true,
   });
 
-  const start = startTime && formatter.format(new Date(startTime));
-  const end = endTime && formatter.format(new Date(endTime));
+  const startDate = startTime ? new Date(startTime) : null;
+  const endDate = endTime ? new Date(endTime) : null;
+  const start =
+    startDate && !Number.isNaN(startDate.getTime())
+      ? formatter.format(startDate)
+      : null;
+  const end =
+    endDate && !Number.isNaN(endDate.getTime()) ? formatter.format(endDate) : null;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +52,7 @@ const FullAgendaItem = ({
                 type === 'session' ? 'text-white' : 'text-neutral-900'
               }`}
             >
-              {startTime ? `${start} - ${end}` : 'TBD'}
+              {start && end ? `${start} - ${end}` : 'TBD'}
             </div>
           </div>
           <div
@@ -76,7 +82,7 @@ const FullAgendaItem = ({
                   type === 'session' ? 'text-white' : 'text-black'
                 }`}
               >
-                {!isOpen && description}
+                {!isOpen && <div dangerouslySetInnerHTML={{ __html: description }} />}
               </div>
               {details ? (
                 <div className='flex flex-col gap-2'>
