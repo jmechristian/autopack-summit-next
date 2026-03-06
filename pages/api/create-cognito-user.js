@@ -1,9 +1,5 @@
 import AWS from 'aws-sdk';
-// IMPORTANT: Using New Gen 1 Cognito User Pool
-// New Gen 1 Pool ID: us-east-1_roxwEvlnG
-// Old Gen 1 Pool ID: us-east-1_2JouwovYC (NOT USED HERE)
-// Gen 2 Pool ID: us-east-1_dgbsmfKuI (NOT USED HERE)
-import newGen1Config from '../../src/new-gen1-aws-exports';
+import awsExports from '../../src/aws-exports';
 
 /**
  * Generate a secure temporary password that meets Cognito requirements:
@@ -48,10 +44,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Email is required' });
     }
 
-    // Configure AWS SDK with New Gen 1 region
-    // Use environment variables if available, otherwise use IAM role (for deployed environments)
     const cognitoConfig = {
-      region: newGen1Config.aws_cognito_region || 'us-east-1',
+      region: awsExports.aws_cognito_region || 'us-east-1',
     };
 
     // If AWS credentials are in environment variables (for local dev), use them
@@ -68,9 +62,8 @@ export default async function handler(req, res) {
     // Generate temporary password
     const temporaryPassword = generateTemporaryPassword();
 
-    // Create user in New Gen 1 Cognito User Pool with email verified
     const params = {
-      UserPoolId: newGen1Config.aws_user_pools_id,
+      UserPoolId: awsExports.aws_user_pools_id,
       Username: email, // Using email as username (New Gen 1 is configured for email as username)
       UserAttributes: [
         {
@@ -113,11 +106,11 @@ export default async function handler(req, res) {
 
     // Log the password for app use (this will appear in server logs)
     console.log('========================================');
-    console.log('COGNITO USER CREATED (NEW GEN 1)');
+    console.log('COGNITO USER CREATED');
     console.log('Email:', email);
     console.log('Email Verified:', isEmailVerified ? 'YES ✓' : 'NO ✗');
     console.log('Temporary Password:', temporaryPassword);
-    console.log('New Gen 1 User Pool ID:', newGen1Config.aws_user_pools_id);
+    console.log('User Pool ID:', awsExports.aws_user_pools_id);
     console.log('========================================');
 
     res.status(200).json({

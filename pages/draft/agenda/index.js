@@ -6,7 +6,7 @@ import { Switch } from '@headlessui/react';
 import FullAgendaItem from '../../../components/agenda/FullAgendaItem';
 import NewAgendaItem from '../../../components/agenda/NewAgendaItem';
 import Logo from '../../../shared/Logo';
-import newGen1Config from '../../../src/new-gen1-aws-exports';
+import awsExports from '../../../src/aws-exports';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -46,11 +46,23 @@ const APS_AGENDA_QUERY = `
             items {
               aPSSpeaker {
                 id
-                headshot
-                firstName
-                linkedin
-                company
-                title
+                profile {
+                  id
+                  firstName
+                  lastName
+                  profilePicture
+                  linkedin
+                  company
+                  jobTitle
+                  user {
+                    registrant {
+                      company {
+                        logo
+                        name
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -126,31 +138,43 @@ const matchesAgendaDate = (value, targetDate) => {
 };
 
 const mapAgendaItems = (items) =>
-  items.map((item) => ({
-    _id: item.id,
-    date: normalizeAgendaDate(item.date),
-    location: item.location,
-    title: item.title || item.description,
-    description: item.description || 'No Description',
-    type: 'session',
-    startTime: combineDateTime(item.date, item.startTime),
-    endTime: combineDateTime(item.date, item.endTime),
-    speakers:
-      item.speakers?.items?.map((speakerItem) => ({
-        id: speakerItem.aPSSpeaker?.id,
-        name: speakerItem.aPSSpeaker?.firstName,
-        company: speakerItem.aPSSpeaker?.company,
-        title: speakerItem.aPSSpeaker?.title,
-        headshot: speakerItem.aPSSpeaker?.headshot,
-        linkedin: speakerItem.aPSSpeaker?.linkedin,
-      })) || [],
-    sponsors:
-      item.sponsors?.items?.map((sponsorItem) => ({
-        id: sponsorItem.apsSponsor?.id,
-        name: sponsorItem.apsSponsor?.company?.name,
-        logo: sponsorItem.apsSponsor?.company?.logo,
-      })) || [],
-  }));
+  items.map((item) => {
+    const mapSpeaker = (speakerItem) => {
+      const sp = speakerItem?.aPSSpeaker;
+      const profile = sp?.profile;
+      const registrantCompany = profile?.user?.registrant?.company;
+      const companyName = registrantCompany?.name || profile?.company || '';
+      const companyLogo = registrantCompany?.logo || null;
+      const name =
+        [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') || 'Speaker';
+      return {
+        id: sp?.id,
+        name,
+        company: companyName,
+        title: profile?.jobTitle || '',
+        profilePicture: profile?.profilePicture,
+        companyLogo,
+        linkedin: profile?.linkedin,
+      };
+    };
+    return {
+      _id: item.id,
+      date: normalizeAgendaDate(item.date),
+      location: item.location,
+      title: item.title || item.description,
+      description: item.description || 'No Description',
+      type: 'session',
+      startTime: combineDateTime(item.date, item.startTime),
+      endTime: combineDateTime(item.date, item.endTime),
+      speakers: item.speakers?.items?.map(mapSpeaker) || [],
+      sponsors:
+        item.sponsors?.items?.map((sponsorItem) => ({
+          id: sponsorItem.apsSponsor?.id,
+          name: sponsorItem.apsSponsor?.company?.name,
+          logo: sponsorItem.apsSponsor?.company?.logo,
+        })) || [],
+    };
+  });
 
 const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
   return (
@@ -489,18 +513,16 @@ export async function getServerSideProps() {
 
   try {
     const endpoint =
-      process.env.NEXT_PUBLIC_NEW_GEN1_APPSYNC_ENDPOINT ||
-      process.env.NEW_GEN1_APPSYNC_ENDPOINT ||
-      newGen1Config.aws_appsync_graphqlEndpoint;
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_GRAPHQL_ENDPOINT ||
+      awsExports.aws_appsync_graphqlEndpoint;
 
     if (!endpoint) {
-      throw new Error('New Gen 1 AppSync endpoint is missing.');
+      throw new Error('AppSync endpoint is missing.');
     }
 
     const apiKey =
-      process.env.NEXT_PUBLIC_NEW_GEN1_APPSYNC_API_KEY ||
-      process.env.NEW_GEN1_APPSYNC_API_KEY ||
-      newGen1Config.aws_appsync_apiKey;
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_API_KEY ||
+      awsExports.aws_appsync_apiKey;
 
     const headers = {
       'Content-Type': 'application/json',

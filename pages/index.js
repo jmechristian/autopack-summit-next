@@ -34,7 +34,7 @@ import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
 import LatestEventSignupForm from '../components/home/LatestEventSignupForm';
 
-const Page = ({ homepageData, speakers, testimonials }) => {
+const Page = ({ homepageData, speakers }) => {
   const dispatch = useDispatch();
   const { powerOpen } = useSelector((state) => state.layout);
   const router = useRouter();
@@ -234,9 +234,9 @@ const Page = ({ homepageData, speakers, testimonials }) => {
           </div>
         </div>
       </div>
-      <ScrollingTestimonials
+      {/* <ScrollingTestimonials
         testimonials={testimonials.listTestimonials.items}
-      />
+      /> */}
       <div className='max-w-7xl mx-auto w-full'>
         <NewSpeakersMain
           headline={homepageData[0].speakersHeadline}
@@ -272,17 +272,16 @@ export async function getStaticProps() {
     ..., companyLogo { asset-> {url}}, profilePic { asset-> {url}}, speakerSessions[]->{ name, location, session_start, session_end, date, linkedin}
   }`);
 
-  const testimonialsData = await API.graphql({
-    query: listTestimonials,
-    variables: { filter: { tags: { contains: 'APS' } } },
-  });
-  const testimonials = testimonialsData.data;
+  // const testimonialsData = await API.graphql({
+  //   query: listTestimonials,
+  //   variables: { filter: { tags: { contains: 'APS' } } },
+  // });
+  // const testimonials = testimonialsData.data;
 
   return {
     props: {
       homepageData,
       speakers,
-      testimonials,
     },
     revalidate: 10,
   };

@@ -1,242 +1,127 @@
 {
-    "api": {
-        "packbrain": {
-            "dependsOn": [],
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [
-                        {
-                            "authenticationType": "AWS_IAM"
-                        }
-                    ],
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY",
-                        "apiKeyConfig": {
-                            "apiKeyExpirationDays": 365,
-                            "apiKeyExpirationDate": "2025-08-16T13:57:24.415Z",
-                            "description": "newish one"
-                        }
-                    }
-                }
-            },
-            "providerPlugin": "awscloudformation",
-            "service": "AppSync"
+  "api": {
+    "autopacksummitapp": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "autopacksummitappfefbe6f1"
         }
-    },
-    "auth": {
-        "packbrain": {
-            "customAuth": false,
-            "dependsOn": [],
-            "frontendAuthConfig": {
-                "mfaConfiguration": "OFF",
-                "mfaTypes": [
-                    "SMS"
-                ],
-                "passwordProtectionSettings": {
-                    "passwordPolicyCharacters": [
-                        "REQUIRES_LOWERCASE",
-                        "REQUIRES_NUMBERS",
-                        "REQUIRES_SYMBOLS",
-                        "REQUIRES_UPPERCASE"
-                    ],
-                    "passwordPolicyMinLength": 8
-                },
-                "signupAttributes": [
-                    "EMAIL"
-                ],
-                "socialProviders": [],
-                "usernameAttributes": [
-                    "EMAIL"
-                ],
-                "verificationMechanisms": [
-                    "EMAIL"
-                ]
-            },
-            "providerPlugin": "awscloudformation",
-            "service": "Cognito"
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7
+              },
+              "authenticationType": "API_KEY"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS"
+          }
         }
-    },
-    "function": {
-        "sendEmailFn": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "autopacksummitappfefbe6f1": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
         },
-        "sendRegCode": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda"
-        },
-        "sendSponsorForm": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda"
-        },
-        "sendWelcomeEmail": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda"
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "apsPushFanout": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "autopacksummitapp"
         }
-    },
-    "hosting": {},
-    "notifications": {
-        "unileverAnalytics": {
-            "service": "Pinpoint",
-            "channels": []
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_apsPushFanout_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "apsPushFanout"
         }
+      ]
     },
-    "parameters": {
-        "AMPLIFY_analytics_Pinpoint_Id": {
-            "usedBy": [
-                {
-                    "category": "analytics",
-                    "resourceName": "Pinpoint"
-                }
-            ]
-        },
-        "AMPLIFY_analytics_Pinpoint_Name": {
-            "usedBy": [
-                {
-                    "category": "analytics",
-                    "resourceName": "Pinpoint"
-                }
-            ]
-        },
-        "AMPLIFY_analytics_Pinpoint_Region": {
-            "usedBy": [
-                {
-                    "category": "analytics",
-                    "resourceName": "Pinpoint"
-                }
-            ]
-        },
-        "AMPLIFY_function_addAPSToUser_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "addAPSToUser"
-                }
-            ]
-        },
-        "AMPLIFY_function_addAPSToUser_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "addAPSToUser"
-                }
-            ]
-        },
-        "AMPLIFY_function_addNewUser_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "addNewUser"
-                }
-            ]
-        },
-        "AMPLIFY_function_addNewUser_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "addNewUser"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendEmailFn_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendEmailFn"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendEmailFn_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendEmailFn"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendRegCode_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendRegCode"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendRegCode_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendRegCode"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendSponsorForm_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendSponsorForm"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendSponsorForm_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendSponsorForm"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendWelcomeEmail_deploymentBucketName": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendWelcomeEmail"
-                }
-            ]
-        },
-        "AMPLIFY_function_sendWelcomeEmail_s3Key": {
-            "usedBy": [
-                {
-                    "category": "function",
-                    "resourceName": "sendWelcomeEmail"
-                }
-            ]
-        },
-        "AMPLIFY_notifications_Pinpoint_Id": {
-            "usedBy": [
-                {
-                    "category": "notifications",
-                    "resourceName": "Pinpoint"
-                }
-            ]
-        },
-        "AMPLIFY_notifications_Pinpoint_Name": {
-            "usedBy": [
-                {
-                    "category": "notifications",
-                    "resourceName": "Pinpoint"
-                }
-            ]
-        },
-        "AMPLIFY_notifications_Pinpoint_Region": {
-            "usedBy": [
-                {
-                    "category": "notifications",
-                    "resourceName": "Pinpoint"
-                }
-            ]
+    "AMPLIFY_function_apsPushFanout_expoAccessToken": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "apsPushFanout"
         }
+      ]
     },
-    "storage": {
-        "packmedia": {
-            "service": "S3",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
+    "AMPLIFY_function_apsPushFanout_pushTokenGsiName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "apsPushFanout"
         }
+      ]
     },
-    "analytics": {}
+    "AMPLIFY_function_apsPushFanout_pushTokenTableName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "apsPushFanout"
+        }
+      ]
+    },
+    "AMPLIFY_function_apsPushFanout_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "apsPushFanout"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "apsapp": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

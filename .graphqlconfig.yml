@@ -1,6 +1,6 @@
 projects:
   packbrain:
-    schemaPath: amplify/backend/api/packbrain/build/schema.graphql
+    schemaPath: amplify/backend/api/autopacksummitapp/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

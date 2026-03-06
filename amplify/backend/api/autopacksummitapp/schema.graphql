@@ -1,0 +1,921 @@
+# NOTE: Messaging + other user-scoped data must NOT rely on global public auth.
+# Keep auth explicit per-model via @auth rules.
+# Enum: CompanyType
+enum CompanyType {
+  OEMTIER1
+  SOLUTIONPROVIDER
+  SPONSOR
+}
+
+enum RegistrantType {
+  OEM
+  TIER1
+  SOLUTIONPROVIDER
+  SPONSOR
+  SPEAKER
+  STAFF
+  EXHIBITOR
+}
+
+enum RegistrantStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum SponsorType {
+  BOOTH
+  TABLE
+  NONE
+}
+
+# Main Event Type
+type APS
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  year: String!
+  codes: [APSCode] @hasMany(indexName: "byEvent")
+  agenda: ApsAgenda @hasOne
+  startDate: String
+  endDate: String
+  location: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  website: String
+  Registrants: [ApsRegistrant] @hasMany(indexName: "byAPS")
+  Sponsors: [ApsSponsor] @hasMany(indexName: "byEvent")
+  Speakers: [APSSpeaker] @hasMany(indexName: "byEvent")
+  companies: [APSCompany] @manyToMany(relationName: "APSCompanyEvents")
+  photos: [ApsAppUserPhoto] @hasMany(indexName: "byEvent")
+  exhibitors: [ApsAppExhibitorProfile] @hasMany(indexName: "byEvent")
+  exhibitorPromotions: [ApsAppExhibitorPromotion] @hasMany(indexName: "byEvent")
+  exhibitorDeals: [ApsAppExhibitorDeal] @hasMany(indexName: "byEvent")
+  exhibitorPhotos: [ApsAppExhibitorPhoto] @hasMany(indexName: "byEvent")
+  exhibitorHandouts: [ApsAppExhibitorHandout] @hasMany(indexName: "byEvent")
+  addOns: [ApsAddOn] @hasMany(indexName: "byEvent")
+}
+
+type APSCode
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  code: String!
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  limit: Int
+  used: Int!
+}
+
+# Board Members
+type APSBoard
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  title: String
+  bio: String
+  company: String!
+  email: String!
+  linkedin: String
+  profilePic: String
+}
+
+# Agenda
+type ApsAgenda
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  items: [ApsAppSession] @hasMany(indexName: "byAgenda")
+}
+
+# Registrants
+type ApsRegistrant
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  apsID: ID! @index(name: "byAPS")
+  aps: APS! @belongsTo(fields: ["apsID"])
+  firstName: String
+  lastName: String
+  email: String! @index(name: "byEmail")
+  phone: String
+  companyId: ID @index(name: "byCompany")
+  company: APSCompany @belongsTo(fields: ["companyId"])
+  jobTitle: String
+  attendeeType: RegistrantType!
+  termsAccepted: Boolean
+  interests: [String]
+  otherInterest: String
+  interestQuestionOne: String
+  interestQuestionTwo: String
+  billingAddressFirstName: String
+  billingAddressLastName: String
+  billingAddressEmail: String
+  billingAddressPhone: String
+  billingAddressStreet: String
+  billingAddressCity: String
+  billingAddressState: String
+  billingAddressZip: String
+  sameAsAttendee: Boolean
+  speakerTopic: String
+  learningObjectives: String
+  totalAmount: Int
+  discountCode: String
+  status: RegistrantStatus!
+  paymentConfirmation: String
+  registrationEmailSent: Boolean
+  registrationEmailSentDate: String
+  registrationEmailReceived: Boolean
+  registrationEmailReceivedDate: String
+  welcomeEmailSent: Boolean
+  welcomeEmailSentDate: String
+  welcomeEmailReceived: Boolean
+  welcomeEmailReceivedDate: String
+  paymentMethod: String
+  paymentLast4: String
+  approvedAt: String
+  headshot: String
+  presentation: String
+  presentationTitle: String
+  presentationSummary: String
+  bio: String
+  certificate: String
+  seatingChartRegistrant: ApsSeatingChartRegistrant @hasOne
+  addOnsRequested: [ApsAddOn]
+    @manyToMany(relationName: "RegistrantAddOnsRequested")
+  addOnsApproved: [ApsAddOn]
+    @manyToMany(relationName: "RegistrantAddOnsApproved")
+
+  # ✅ FIX: make the hasOne key explicit so resolvers can traverse registrant -> appUser
+  appUserId: ID
+  appUser: ApsAppUser @hasOne(fields: ["appUserId"])
+
+  notes: [ApsAppUserNote] @hasMany(indexName: "byRegistrant", fields: ["id"])
+  qrCode: String
+}
+
+# Temporary credentials for bulk welcome emails
+type ApsTempCredential
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }]) {
+  id: ID!
+  apsID: ID! @index(name: "byAPS", sortKeyFields: ["createdAt"])
+  registrantId: ID! @index(name: "byRegistrant", sortKeyFields: ["createdAt"])
+  email: String!
+  tempPasswordCiphertext: String!
+  tempPasswordIv: String!
+  tempPasswordTag: String!
+  expiresAt: AWSTimestamp
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+# App User (for mobile app)
+type ApsAppUser
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  registrantId: ID! @index(name: "byRegistrant")
+  registrant: ApsRegistrant! @belongsTo(fields: ["registrantId"])
+  photos: [ApsAppUserPhoto] @hasMany(indexName: "byUser")
+  sessionQuestions: [ApsAppSessionQuestion] @hasMany(indexName: "byUser")
+  exhibitorDeals: [ApsAppExhibitorDeal] @hasMany(indexName: "byUser")
+  contacts: [ApsAppUserContact] @hasMany(indexName: "byUser")
+  notes: [ApsAppUserNote] @hasMany(indexName: "byUser")
+  leads: [ApsAppUserLead] @hasMany(indexName: "byUser")
+  sentDmMessages: [ApsDmMessage]
+    @hasMany(indexName: "bySenderCreated", fields: ["id"])
+
+  # ✅ FIX: make the hasOne key explicit so resolvers can traverse user -> profile
+  profileId: ID
+  profile: ApsAppUserProfile @hasOne(fields: ["profileId"])
+}
+
+# App User Contact
+type ApsAppUserContact
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  userId: ID! @index(name: "byUser")
+  user: ApsAppUser! @belongsTo(fields: ["userId"])
+  favorite: Boolean
+  contact: ApsAppUserProfile! @belongsTo(fields: ["contactId"])
+  contactId: ID! @index(name: "byContact")
+}
+
+# App User Note
+type ApsAppUserNote
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, provider: userPools }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  owner: String
+  userId: ID! @index(name: "byUser")
+  user: ApsAppUser! @belongsTo(fields: ["userId"])
+  note: String
+  sessionId: ID @index(name: "bySession")
+  session: ApsAppSession @belongsTo(fields: ["sessionId"])
+  exhibitorId: ID @index(name: "byExhibitor")
+  exhibitor: ApsAppExhibitorProfile @belongsTo(fields: ["exhibitorId"])
+  registrantId: ID @index(name: "byRegistrant")
+  registrant: ApsRegistrant @belongsTo(fields: ["registrantId"])
+
+  # Notes about a contact (profile)
+  profileId: ID @index(name: "byProfile")
+  profile: ApsAppUserProfile @belongsTo(fields: ["profileId"])
+
+  # Notes about a company
+  companyId: ID @index(name: "byCompany")
+  company: APSCompany @belongsTo(fields: ["companyId"])
+}
+
+# App User Lead
+type ApsAppUserLead
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  userId: ID! @index(name: "byUser")
+  user: ApsAppUser! @belongsTo(fields: ["userId"])
+  favorite: Boolean
+  contact: ApsAppUserProfile! @belongsTo(fields: ["contactId"])
+  contactId: ID! @index(name: "byContact")
+}
+
+# App User Profile
+type ApsAppUserProfile
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  userId: ID! @index(name: "byUser")
+  user: ApsAppUser! @belongsTo(fields: ["userId"])
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  company: String
+  jobTitle: String
+  attendeeType: RegistrantType
+  # User-scoped UI prefs (e.g., hub quick tools order)
+  quickTools: [String]
+  affiliates: [ProfileAffiliate] @hasMany(indexName: "byUser")
+  profilePicture: String
+  bio: String
+  linkedin: String
+  twitter: String
+  facebook: String
+  instagram: String
+  youtube: String
+  website: [String]
+  location: String
+  education: [ProfileEducation] @hasMany(indexName: "byUser")
+  interests: [ProfileInterest] @hasMany(indexName: "byUser")
+  resume: String
+
+  # Reverse relationships required for @belongsTo in Contact/Lead
+  contacts: [ApsAppUserContact] @hasMany(indexName: "byContact", fields: ["id"])
+  leads: [ApsAppUserLead] @hasMany(indexName: "byContact", fields: ["id"])
+
+  # Notes about this profile (contact notes)
+  notes: [ApsAppUserNote] @hasMany(indexName: "byProfile", fields: ["id"])
+  speakerId: ID @index(name: "bySpeaker")
+  speaker: APSSpeaker @hasOne(fields: ["speakerId"])
+}
+
+type ProfileAffiliate
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  profileId: ID! @index(name: "byUser")
+  profile: ApsAppUserProfile! @belongsTo(fields: ["profileId"])
+  affiliate: String
+  role: String
+  startDate: String
+  endDate: String
+}
+
+type ProfileEducation
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  profileId: ID! @index(name: "byUser")
+  profile: ApsAppUserProfile! @belongsTo(fields: ["profileId"])
+  school: String
+  degree: String
+  fieldOfStudy: String
+}
+
+type ProfileInterest
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  profileId: ID! @index(name: "byUser")
+  profile: ApsAppUserProfile! @belongsTo(fields: ["profileId"])
+  interest: String
+}
+
+# App User Photos
+type ApsAppUserPhoto
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  userId: ID @index(name: "byUser")
+  user: ApsAppUser @belongsTo(fields: ["userId"])
+  photo: String
+  caption: String
+  approved: Boolean
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+}
+
+# Sessions
+type ApsAppSession
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  title: String
+  date: String
+  startTime: String
+  endTime: String
+  location: String
+  description: String
+  agendaId: ID @index(name: "byAgenda")
+  agenda: ApsAgenda @belongsTo(fields: ["agendaId"])
+  sessionQuestions: [ApsAppSessionQuestion]
+    @hasMany(indexName: "bySession", fields: ["id"])
+  notes: [ApsAppUserNote] @hasMany(indexName: "bySession", fields: ["id"])
+  speakers: [APSSpeaker] @manyToMany(relationName: "SessionSpeakers")
+  sponsors: [ApsSponsor] @manyToMany(relationName: "SessionSponsors")
+}
+
+# Session Questions
+type ApsAppSessionQuestion
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  sessionId: ID! @index(name: "bySession")
+  session: ApsAppSession! @belongsTo(fields: ["sessionId"])
+  question: String
+  userId: ID! @index(name: "byUser")
+  user: ApsAppUser! @belongsTo(fields: ["userId"])
+}
+
+# Speakers
+type APSSpeaker
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  presentationTitle: String
+  presentationSummary: String
+  profileId: ID! @index(name: "bySpeakerProfile", sortKeyFields: ["eventId"])
+  profile: ApsAppUserProfile! @belongsTo(fields: ["profileId"])
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  sessions: [ApsAppSession] @manyToMany(relationName: "SessionSpeakers")
+}
+
+# Sponsors
+type ApsSponsor
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  companyId: ID! @index(name: "byCompany")
+  company: APSCompany! @belongsTo(fields: ["companyId"])
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  profile: ApsAppExhibitorProfile @hasOne
+  sessions: [ApsAppSession] @manyToMany(relationName: "SessionSponsors")
+  type: SponsorType
+}
+
+# Companies
+type APSCompany
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  email: String!
+  type: CompanyType
+  description: String
+  website: String
+  phone: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  country: String
+  logo: String
+  events: [APS] @manyToMany(relationName: "APSCompanyEvents")
+  registrants: [ApsRegistrant] @hasMany(indexName: "byCompany")
+  sponsorId: ID
+  sponsor: ApsSponsor @hasOne(fields: ["sponsorId"])
+  exhibitorProfileId: ID
+  exhibitorProfile: ApsAppExhibitorProfile
+    @hasOne(fields: ["exhibitorProfileId"])
+  notes: [ApsAppUserNote] @hasMany(indexName: "byCompany", fields: ["id"])
+  contacts: [APSCompanyContact] @hasMany(indexName: "byCompany", fields: ["id"])
+}
+
+# Company contacts (multiple contacts per company)
+type APSCompanyContact
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  companyId: ID! @index(name: "byCompany", sortKeyFields: ["createdAt"])
+  company: APSCompany! @belongsTo(fields: ["companyId"])
+  name: String
+  email: String!
+  phone: String
+  title: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+# Exhibitor Profiles
+type ApsAppExhibitorProfile
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  companyId: ID! @index(name: "byCompany")
+  company: APSCompany! @belongsTo(fields: ["companyId"])
+  sponsorId: ID @index(name: "bySponsor")
+  sponsor: ApsSponsor @belongsTo(fields: ["sponsorId"])
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  deals: [ApsAppExhibitorDeal] @hasMany(indexName: "byExhibitor")
+  photos: [ApsAppExhibitorPhoto] @hasMany(indexName: "byExhibitor")
+  handouts: [ApsAppExhibitorHandout] @hasMany(indexName: "byExhibitor")
+  promotions: [ApsAppExhibitorPromotion] @hasMany(indexName: "byExhibitor")
+  video: String
+  videoCaption: String
+  boothNumber: String
+  visits: Int
+  views: Int
+  likes: Int
+  notes: [ApsAppUserNote] @hasMany(indexName: "byExhibitor", fields: ["id"])
+}
+
+# Exhibitor Promotions
+type ApsAppExhibitorPromotion
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  exhibitorId: ID! @index(name: "byExhibitor")
+  exhibitor: ApsAppExhibitorProfile! @belongsTo(fields: ["exhibitorId"])
+  promotion: String
+  link: String
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+}
+
+# Exhibitor Deals
+type ApsAppExhibitorDeal
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  exhibitorId: ID! @index(name: "byExhibitor")
+  exhibitor: ApsAppExhibitorProfile! @belongsTo(fields: ["exhibitorId"])
+  deal: String
+  link: String
+  userId: ID @index(name: "byUser")
+  user: ApsAppUser @belongsTo(fields: ["userId"])
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+}
+
+# Exhibitor Photos
+type ApsAppExhibitorPhoto
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  exhibitorId: ID! @index(name: "byExhibitor")
+  exhibitor: ApsAppExhibitorProfile! @belongsTo(fields: ["exhibitorId"])
+  photo: String
+  caption: String
+  approved: Boolean
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+}
+
+# Exhibitor Handouts
+type ApsAppExhibitorHandout
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  exhibitorId: ID! @index(name: "byExhibitor")
+  exhibitor: ApsAppExhibitorProfile! @belongsTo(fields: ["exhibitorId"])
+  handout: String
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+}
+
+# Add Ons
+type ApsAddOn
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  description: String!
+  subheadline: String
+  location: String!
+  date: String!
+  time: String!
+  company: String!
+  altLink: String
+  type: String
+  limit: Int
+  eventId: ID! @index(name: "byEvent")
+  event: APS! @belongsTo(fields: ["eventId"])
+  price: Int
+  registrantsRequested: [ApsRegistrant]
+    @manyToMany(relationName: "RegistrantAddOnsRequested")
+  registrantsApproved: [ApsRegistrant]
+    @manyToMany(relationName: "RegistrantAddOnsApproved")
+}
+
+# Seating Charts
+type ApsSeatingChart
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  registrants: [ApsSeatingChartRegistrant] @hasMany(indexName: "bySeatingChart")
+}
+
+type ApsSeatingChartRegistrant
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  category: String
+  firstName: String
+  lastName: String
+  company: String
+  email: String
+  role: String
+  tableNumber: Int
+  notes: String
+  seatingChartID: ID! @index(name: "bySeatingChart")
+  seatingChart: ApsSeatingChart! @belongsTo(fields: ["seatingChartID"])
+  registrantID: ID! @index(name: "byRegistrant")
+  registrant: ApsRegistrant! @belongsTo(fields: ["registrantID"])
+}
+
+# Messaging
+
+# Contact / chat gating
+#
+# Goal: user A cannot DM user B until user B has accepted A's contact/chat request.
+# This is enforced at the application layer (AppSync @auth cannot express cross-model
+# conditional checks). The model below is the canonical "is this pair accepted?"
+# record the app checks before creating/using a DM thread.
+#
+# requestKey is deterministic and unique per event + user pair, so both sides can
+# read/update the same record once created.
+type ApsContactRequest
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "owners"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  eventId: ID!
+
+  # unique: e:<eventId>|u:<a>|u:<b> where a/b are sorted Cognito subs
+  requestKey: String! @index(name: "byRequestKey")
+
+  userAId: ID! # Cognito sub (sorted)
+  userBId: ID! # Cognito sub (sorted)
+  owners: [String!]! # [userAId, userBId] for @auth multi-owner access
+  # who initiated this request (must be either userAId or userBId)
+  requestedByUserId: ID!
+    @index(name: "byRequester", sortKeyFields: ["createdAt"])
+
+  # PENDING | ACCEPTED | DECLINED | BLOCKED
+  status: String! @index(name: "byStatusUpdated", sortKeyFields: ["updatedAt"])
+
+  acceptedAt: AWSDateTime
+  declinedAt: AWSDateTime
+  blockedAt: AWSDateTime
+
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsDmThread
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "owners"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  eventId: ID!
+  dmKey: String! @index(name: "byDmKey") # unique: u:<a>|u:<b> sorted
+  userAId: ID! # Cognito sub (sorted)
+  userBId: ID! # Cognito sub (sorted)
+  owners: [String!]! # [userAId, userBId] for @auth multi-owner access
+  # Relationships required by Gen1 for @belongsTo on child models
+  participantStates: [ApsDmParticipantState]
+    @hasMany(indexName: "byThread", fields: ["id"])
+  messages: [ApsDmMessage]
+    @hasMany(indexName: "byThreadCreated", fields: ["id"])
+
+  lastMessageAt: AWSDateTime
+  lastMessagePreview: String
+
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsDmParticipantState
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  eventId: ID!
+
+  threadId: ID! @index(name: "byThread", sortKeyFields: ["userId"])
+  thread: ApsDmThread! @belongsTo(fields: ["threadId"])
+
+  userId: ID! @index(name: "byUserLast", sortKeyFields: ["lastMessageAt"]) # Cognito sub
+  lastReadAt: AWSDateTime
+  unreadCount: Int
+  lastMessageAt: AWSDateTime
+
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsDmMessage
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "owners"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  eventId: ID!
+
+  threadId: ID! @index(name: "byThreadCreated", sortKeyFields: ["createdAt"])
+  thread: ApsDmThread! @belongsTo(fields: ["threadId"])
+
+  senderUserId: ID!
+    @index(name: "bySenderCreated", sortKeyFields: ["createdAt"])
+  sender: ApsAppUser! @belongsTo(fields: ["senderUserId"])
+  owners: [String!]! # [thread.userAId, thread.userBId] for @auth multi-owner access
+  type: String # "text" | "image" | "system"
+  body: String
+
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsAdminAnnouncement
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"], provider: userPools }
+      { allow: private, operations: [read], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  eventId: ID! @index(name: "byEventCreated", sortKeyFields: ["createdAt"])
+
+  title: String
+  body: String!
+  deepLink: String # optional, e.g. "app://announcements/<id>"
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+# Per-user engage read state (for accurate unread badge counts).
+# v1: announcements are "mark all read when opened" using lastSeenAnnouncementAt.
+type ApsUserEngageState
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  # Deterministic id recommended: e:<eventId>|u:<sub>
+  id: ID!
+  eventId: ID!
+  userId: ID!
+  lastSeenAnnouncementAt: AWSDateTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsPushToken
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        identityClaim: "sub"
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  userId: ID! @index(name: "byUserUpdated", sortKeyFields: ["updatedAt"]) # Cognito sub
+  token: String!
+  platform: String
+  updatedAt: AWSDateTime!
+  createdAt: AWSDateTime!
+}
+
+# --- Auth directive fix ---
+# Amplify Gen1 sometimes generates `ModelApsDmMessageConnection` with `@aws_api_key`
+# only, which breaks USER_POOLS callers when querying `items`.
+# We explicitly declare it here so it supports BOTH auth modes (API key + user pools).
+type ModelApsDmMessageConnection @aws_api_key @aws_cognito_user_pools {
+  items: [ApsDmMessage]!
+  nextToken: String
+}

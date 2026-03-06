@@ -1,6 +1,6 @@
 import { API, Amplify, Storage } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
-import { gen2Mutation, gen2Query } from './gen2-api';
+
 import QRCode from 'qrcode';
 import {
   createAPSRegistrant,
@@ -490,7 +490,18 @@ export const getBoardMembers = async () => {
 
 export const getAPSCompanies = async () => {
   const res = await API.graphql({
-    query: listAPSCompanies,
+    query: /* GraphQL */ `
+      query ListAPSCompanies($limit: Int, $nextToken: String) {
+        listAPSCompanies(limit: $limit, nextToken: $nextToken) {
+          items {
+            id
+            name
+          }
+          nextToken
+        }
+      }
+    `,
+    authMode: 'API_KEY',
     variables: {
       limit: 1000,
     },
@@ -520,133 +531,6 @@ export const checkForExistingCompany = async (email) => {
   return null;
 };
 
-// ========== Gen 2 Company Functions ==========
-
-const GEN2_EVENT_ID = 'd854c771-db74-4315-83ec-36ce55173532';
-const GEN2_APS_ID = 'd854c771-db74-4315-83ec-36ce55173532';
-
-/**
- * Get all APS companies from Gen 2 API
- * @returns {Promise<Array>} Array of company objects
- */
-export const getAPSCompaniesGen2 = async () => {
-  const query = `
-    query ListAPSCompanies($filter: ModelAPSCompanyFilterInput, $limit: Int) {
-      listAPSCompanies(filter: $filter, limit: $limit) {
-        items {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-        }
-      }
-    }
-  `;
-
-  try {
-    const result = await gen2Query(query, {
-      limit: 1000,
-    });
-
-    return result.listAPSCompanies.items || [];
-  } catch (error) {
-    console.error('Error fetching Gen 2 companies:', error);
-    throw error;
-  }
-};
-
-/**
- * Check if a company exists in Gen 2 by email (supports domain matching like Gen 1)
- * @param {string} email - Company email or domain to check (e.g., "@example.com")
- * @returns {Promise<object|null>} Company object if found, null otherwise
- */
-export const checkForExistingCompanyGen2 = async (email) => {
-  const query = `
-    query ListAPSCompanies($filter: ModelAPSCompanyFilterInput) {
-      listAPSCompanies(filter: $filter) {
-        items {
-          id
-          name
-          email
-        }
-      }
-    }
-  `;
-
-  try {
-    // Use contains to match Gen 1 behavior (supports domain matching)
-    const result = await gen2Query(query, {
-      filter: { email: { contains: email } },
-    });
-
-    if (result.listAPSCompanies.items.length > 0) {
-      return result.listAPSCompanies.items[0];
-    }
-    return null;
-  } catch (error) {
-    console.error('Error checking for existing Gen 2 company:', error);
-    throw error;
-  }
-};
-
-/**
- * Create a new company in Gen 2 API
- * @param {object} data - Company data { name, email, type?, description?, website?, phone?, address?, city?, state?, zip?, country?, logo? }
- * @returns {Promise<object>} Created company object
- */
-export const createCompanyGen2 = async (data) => {
-  const mutation = `
-    mutation CreateAPSCompany($input: CreateAPSCompanyInput!) {
-      createAPSCompany(input: $input) {
-        id
-        name
-        email
-        type
-        eventId
-        description
-        website
-        phone
-        address
-        city
-        state
-        zip
-        country
-        logo
-      }
-    }
-  `;
-
-  const companyInput = {
-    name: data.name,
-    email: data.email,
-    type: data.type || 'OEMTIER1', // Default to OEMTIER1 if not provided
-    eventId: GEN2_EVENT_ID,
-    description: data.description || null,
-    website: data.website || null,
-    phone: data.phone || null,
-    address: data.address || null,
-    city: data.city || null,
-    state: data.state || null,
-    zip: data.zip || null,
-    country: data.country || null,
-    logo: data.logo || null,
-  };
-
-  try {
-    const result = await gen2Mutation(mutation, {
-      input: companyInput,
-    });
-
-    return result.createAPSCompany;
-  } catch (error) {
-    console.error('Error creating Gen 2 company:', error);
-    throw error;
-  }
-};
-
 export const getAPS25AddOns = async () => {
   const res = await API.graphql({
     query: listAPSAddOn2025s,
@@ -655,25 +539,9 @@ export const getAPS25AddOns = async () => {
   return res.data.listAPSAddOn2025s.items;
 };
 
-/**
- * Create a new APS registrant in Gen 2 API (replaces old Gen 1 function)
- * Automatically creates an app user after creating the registrant
- * @param {object} data - Registration data (same format as before)
- * @returns {Promise<object>} Created registrant data with same structure as Gen 1 for compatibility
- */
 export const createNewAPS25Registrant = async (data) => {
-  // Use the new Gen 1 API function
-  const { createNewApsRegistrantNewGen1 } = await import('./new-gen1-api');
-  const result = await createNewApsRegistrantNewGen1(data);
-
-  // Return in the same format as Gen 1 for backward compatibility
-  return {
-    createAPSRegistrant2025: {
-      id: result.registrant.id,
-      ...result.registrant,
-      temporaryPassword: result.temporaryPassword, // Include password for client-side logging
-    },
-  };
+  console.log('createNewAPS25Registrant - not wired yet', data);
+  throw new Error('Registration API not yet connected. Will be rebuilt with standard Amplify config.');
 };
 
 export const createNewApsRegistrant = async (data) => {
@@ -724,32 +592,6 @@ export const createNewApsRegistrant = async (data) => {
   });
 
   return res.data;
-};
-
-/**
- * Get company name from Gen 2 API by company ID
- * @param {string} companyId - Company ID
- * @returns {Promise<string|null>} Company name or null if not found
- */
-const getCompanyNameGen2 = async (companyId) => {
-  if (!companyId) return null;
-
-  const query = `
-    query GetAPSCompany($id: ID!) {
-      getAPSCompany(id: $id) {
-        id
-        name
-      }
-    }
-  `;
-
-  try {
-    const result = await gen2Query(query, { id: companyId });
-    return result.getAPSCompany?.name || null;
-  } catch (error) {
-    console.error('Error fetching company name from Gen 2:', error);
-    return null;
-  }
 };
 
 /**
@@ -843,189 +685,6 @@ const generateAndUploadQRCode = async (registrantData, registrantId) => {
     return photoUrl;
   } catch (error) {
     console.error('Error generating or uploading QR code:', error);
-    throw error;
-  }
-};
-
-/**
- * Create a new APS registrant in Gen 2 API and automatically create an app user
- * @param {object} data - Registration data (same format as createNewApsRegistrant)
- * @param {string} apsId - The APS ID (required for Gen 2 schema - e.g., current year's APS ID)
- * @returns {Promise<object>} Created registrant and app user data
- */
-export const createNewApsRegistrantGen2 = async (data, apsId) => {
-  if (!apsId) {
-    throw new Error('apsId is required for Gen 2 API');
-  }
-
-  // Get company name if we have a companyId
-  let companyName = null;
-  if (data.aPSRegistrant2025CompanyNameId) {
-    companyName = await getCompanyNameGen2(data.aPSRegistrant2025CompanyNameId);
-  }
-
-  // Map fields to Gen 2 schema
-  const registrantInput = {
-    apsID: apsId,
-    firstName: data.firstName,
-    lastName: data.lastName,
-    email: data.email,
-    phone: data.phone || null,
-    companyId: data.aPSRegistrant2025CompanyNameId || null,
-    jobTitle: data.jobTitle || null,
-    attendeeType: data.attendeeType,
-    termsAccepted: data.termsAccepted || false,
-    interests: data.interests || [],
-    otherInterest: data.otherInterest || null,
-    speedNetworking: data.speedNetworking || false,
-    speedNetworkingStatus: data.speedNetworking ? 'PENDING' : null,
-    billingAddressFirstName: data.billingAddress?.firstName || null,
-    billingAddressLastName: data.billingAddress?.lastName || null,
-    billingAddressEmail: data.billingAddress?.email || null,
-    billingAddressPhone: data.billingAddress?.phone || null,
-    billingAddressStreet: data.billingAddress?.street || null,
-    billingAddressCity: data.billingAddress?.city || null,
-    billingAddressState: data.billingAddress?.state || null,
-    billingAddressZip: data.billingAddress?.zip || null,
-    sameAsAttendee: data.sameAsAttendee || false,
-    speakerTopic: data.speakerTopic || null,
-    learningObjectives: data.learningObjectives || null,
-    totalAmount: data.totalAmount ? parseInt(data.totalAmount) : null,
-    discountCode: data.discountCode || null,
-    status:
-      data.attendeeType === 'Solution-Provider' ||
-      data.attendeeType === 'Sponsor'
-        ? 'WAITLIST'
-        : 'PENDING',
-    morrisetteTransportation: data.morrisetteTransportation || null,
-    morrisetteStatus: data.morrisetteStatus || null,
-    magnaTransportation: data.magnaTransportation || null,
-    magnaStatus: data.magnaStatus || null,
-    aristoTransportation: data.aristoTransportation || null,
-    aristoStatus: data.aristoStatus || null,
-    paymentConfirmation: data.paymentConfirmation || null,
-    registrationEmailSent: false,
-    registrationEmailReceived: false,
-    welcomeEmailSent: false,
-  };
-
-  // Create registrant mutation
-  const createRegistrantMutation = `
-    mutation CreateApsRegistrant($input: CreateApsRegistrantInput!) {
-      createApsRegistrant(input: $input) {
-        id
-        email
-        firstName
-        lastName
-      }
-    }
-  `;
-
-  try {
-    // Create the registrant
-    const registrantResult = await gen2Mutation(createRegistrantMutation, {
-      input: registrantInput,
-    });
-
-    const registrantId = registrantResult.createApsRegistrant.id;
-
-    if (!registrantId) {
-      throw new Error('Failed to create registrant - no ID returned');
-    }
-
-    // Generate QR code and upload to S3
-    let qrCodeUrl = null;
-    try {
-      qrCodeUrl = await generateAndUploadQRCode(
-        {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          phone: data.phone,
-          jobTitle: data.jobTitle,
-          companyName: companyName,
-        },
-        registrantId
-      );
-    } catch (qrError) {
-      console.error(
-        'Error generating QR code, continuing without it:',
-        qrError
-      );
-      // Continue without QR code - don't fail the entire registration
-    }
-
-    // Create app user tied to the registrant with QR code URL
-    const createAppUserMutation = `
-      mutation CreateApsAppUser($input: CreateApsAppUserInput!) {
-        createApsAppUser(input: $input) {
-          id
-          registrantId
-          qrCode
-        }
-      }
-    `;
-
-    const appUserResult = await gen2Mutation(createAppUserMutation, {
-      input: {
-        registrantId: registrantId,
-        qrCode: qrCodeUrl,
-      },
-    });
-
-    // Create Cognito user for app authentication
-    let cognitoUser = null;
-    let temporaryPassword = null;
-    try {
-      const cognitoResponse = await fetch('/api/create-cognito-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: data.email,
-          firstName: data.firstName,
-          lastName: data.lastName,
-        }),
-      });
-
-      if (cognitoResponse.ok) {
-        const cognitoData = await cognitoResponse.json();
-        cognitoUser = cognitoData;
-        temporaryPassword = cognitoData.temporaryPassword;
-
-        // Log the password for app use
-        console.log('========================================');
-        console.log('COGNITO USER CREATED FOR APP AUTHENTICATION');
-        console.log('Email:', data.email);
-        console.log('Temporary Password:', temporaryPassword);
-        console.log('User Status:', cognitoData.userStatus);
-        console.log('========================================');
-      } else {
-        const errorData = await cognitoResponse.json();
-        // If user already exists, that's okay - log it but don't fail
-        if (cognitoResponse.status === 409) {
-          console.warn('Cognito user already exists:', data.email);
-        } else {
-          console.error('Error creating Cognito user:', errorData);
-        }
-      }
-    } catch (cognitoError) {
-      console.error(
-        'Error creating Cognito user, continuing without it:',
-        cognitoError
-      );
-      // Continue without Cognito user - don't fail the entire registration
-    }
-
-    return {
-      registrant: registrantResult.createApsRegistrant,
-      appUser: appUserResult.createApsAppUser,
-      cognitoUser: cognitoUser,
-      temporaryPassword: temporaryPassword, // Include password in response for logging
-    };
-  } catch (error) {
-    console.error('Error creating Gen 2 registrant and app user:', error);
     throw error;
   }
 };

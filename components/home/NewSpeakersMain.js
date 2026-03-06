@@ -3,7 +3,6 @@ import { motion, useInView } from 'framer-motion';
 import SpeakerBlock from '../../shared/SpeakerBlock';
 
 const NewSpeakersMain = ({ headline, subheadline, text, speakers }) => {
-  console.log('speakers', speakers);
   const textRef = useRef();
   const textInView = useInView(textRef);
 

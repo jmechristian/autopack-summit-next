@@ -1,7 +1,67 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
+import { S3Image, useS3Url } from '../S3Image';
+
+function SponsorLogo({ sponsor, whiteOverlay = false }) {
+  const { url: logoUrl } = useS3Url(sponsor?.logo);
+  if (!sponsor?.name && !sponsor?.logo) return null;
+  return (
+    <div className='flex items-center'>
+      {logoUrl ? (
+        <img
+          src={logoUrl}
+          alt={sponsor.name || 'Sponsor'}
+          className={`max-h-10 w-auto object-contain ${
+            whiteOverlay ? 'brightness-0 invert opacity-90' : ''
+          }`}
+        />
+      ) : (
+        <span className='text-sm text-neutral-500'>{sponsor.name}</span>
+      )}
+    </div>
+  );
+}
+
+function SpeakerCard({ speaker: sp }) {
+  const { url: logoUrl } = useS3Url(sp.companyLogo);
+  return (
+    <div className='flex flex-col items-center text-center'>
+      <div className='w-10 h-10 rounded-full overflow-hidden bg-neutral-200 flex-shrink-0 ring-2 ring-neutral-300'>
+        {sp.profilePicture ? (
+          <S3Image
+            src={sp.profilePicture}
+            alt={sp.name}
+            className='w-full h-full object-cover'
+          />
+        ) : (
+          <div className='w-full h-full flex items-center justify-center text-lg font-semibold text-neutral-500'>
+            {sp.name
+              ?.split(/\s+/)
+              .map((n) => n[0])
+              .slice(0, 2)
+              .join('')
+              .toUpperCase() || '?'}
+          </div>
+        )}
+      </div>
+      <div className='mt-2 font-semibold text-neutral-900'>{sp.name}</div>
+      <div className='text-xs leading-tight text-neutral-600'>
+        {sp.title && `${sp.title}`}
+        {sp.title && sp.company && ' · '}
+        {sp.company}
+      </div>
+      {sp.companyLogo && logoUrl && (
+        <div
+          className='mt-2 w-16 h-8 bg-contain bg-center bg-no-repeat opacity-80'
+          style={{ backgroundImage: `url(${logoUrl})` }}
+          role='img'
+          aria-label={sp.company || 'Company logo'}
+        />
+      )}
+    </div>
+  );
+}
 
 const FullAgendaItem = ({
   title,
@@ -28,7 +88,9 @@ const FullAgendaItem = ({
       ? formatter.format(startDate)
       : null;
   const end =
-    endDate && !Number.isNaN(endDate.getTime()) ? formatter.format(endDate) : null;
+    endDate && !Number.isNaN(endDate.getTime())
+      ? formatter.format(endDate)
+      : null;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -79,11 +141,43 @@ const FullAgendaItem = ({
               </div>
               <div
                 className={`mt-5 pb-3 text-sm ${
-                  type === 'session' ? 'text-white' : 'text-black'
+                  type === 'session'
+                    ? 'text-white [&_*]:!text-white [&_a]:!text-white'
+                    : 'text-black [&_*]:!text-black [&_a]:!text-black'
                 }`}
               >
-                {!isOpen && <div dangerouslySetInnerHTML={{ __html: description }} />}
+                {!isOpen && (
+                  <div dangerouslySetInnerHTML={{ __html: description }} />
+                )}
               </div>
+              {sponsors && sponsors.length > 0 && (
+                <div
+                  className={`mt-6 pt-4 border-t ${
+                    type === 'session'
+                      ? 'border-white/20'
+                      : 'border-neutral-100'
+                  }`}
+                >
+                  <p
+                    className={`text-xs font-medium uppercase tracking-wider mb-3 ${
+                      type === 'session'
+                        ? 'text-neutral-400'
+                        : 'text-neutral-500'
+                    }`}
+                  >
+                    Sponsored by
+                  </p>
+                  <div className='flex flex-wrap gap-6 items-center'>
+                    {sponsors.map((sp, i) => (
+                      <SponsorLogo
+                        key={sp.id || sp.name || i}
+                        sponsor={sp}
+                        whiteOverlay={type === 'session'}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
               {details ? (
                 <div className='flex flex-col gap-2'>
                   <div
@@ -106,7 +200,7 @@ const FullAgendaItem = ({
                       <motion.div className='flex flex-col gap-3 pb-3'>
                         {details.map((detail, i) => (
                           <motion.div
-                            className={`text-white text-sm ${
+                            className={`!text-white text-sm ${
                               detail.children[0].marks &&
                               detail.children[0].marks.includes('strong')
                                 ? 'font-bold'
@@ -129,43 +223,14 @@ const FullAgendaItem = ({
             <div
               className={`flex flex-col gap-6 lg:col-span-2 bg-white w-full px-5 py-6 rounded-xl lg:rounded-r-xl mx-1 mb-2`}
             >
-              <div className='grid md:grid-cols-2 gap-4 mt-3 lg:mt-0 lg:col-span-4'>
+              <div className='grid md:grid-cols-2 gap-6 mt-3 lg:mt-0 lg:col-span-4'>
                 {speakers.map((sp, i) => (
-                  <div className='flex flex-col ' key={sp.name}>
-                    <div className='font-semibold'>{sp && sp.name}</div>
-                    <div className='text-sm leading-tight text-neutral-900'>
-                      {sp && sp.title}, {sp && sp.company}
-                    </div>
-                    {sp.companyLogo && (
-                      <div
-                        className='w-[120px] h-[40px] bg-contain bg-no-repeat mt-3'
-                        style={{
-                          backgroundImage: `url(${sp.companyLogo.asset.url})`,
-                        }}
-                      ></div>
-                    )}
-                  </div>
+                  <SpeakerCard key={sp.id || sp.name || i} speaker={sp} />
                 ))}
               </div>
             </div>
           )}
         </div>
-        {/* {sponsors && (
-          <div className=' md:col-span-2 lg:col-span-1 flex justify-end items-center lg:items-start'>
-            <div className='flex flex-col gap-6 lg:col-span-2'>
-              {sponsors.map((sp, i) => (
-                <div className='p-2 w-1/2 md:w-2/3 lg:w-full' key={sp.name}>
-                  <Image
-                    src={sponsors && sponsors[0].logo}
-                    width='500'
-                    height='164'
-                    alt={sponsors && sponsors[0].name}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
       </div>
     </div>
   );

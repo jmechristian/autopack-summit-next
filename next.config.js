@@ -9,6 +9,7 @@ const nextConfig = {
       'packschool.s3.amazonaws.com',
       'cdn.sanity.io',
       'packschool.s3.us-east-1.amazonaws.com',
+      'autopacksummitapp94b14feadba64f23aff0ed8deae77b99bc6-dev.s3.us-east-1.amazonaws.com',
     ],
   },
   async redirects() {
