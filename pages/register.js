@@ -108,6 +108,7 @@ const RegistrationForm = () => {
   const [emailChecking, setEmailChecking] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const [eventCodes, setEventCodes] = useState([]);
+  const [sponsorTicketOption, setSponsorTicketOption] = useState(null);
 
   const dropdownRef = useRef(null);
   const emailCheckTimeout = useRef(null);
@@ -234,11 +235,21 @@ const RegistrationForm = () => {
     );
   }, [companies, companySearch]);
 
+  const effectiveAttendeeType = useMemo(() => {
+    if (
+      formData.attendeeType === 'Sponsor' &&
+      sponsorTicketOption === 'exhibitor-staff'
+    ) {
+      return 'Exhibitor';
+    }
+    return formData.attendeeType;
+  }, [formData.attendeeType, sponsorTicketOption]);
+
   const totalAmount = useMemo(() => {
     if (discountApplied) return 0;
-    const base = PRICING[formData.attendeeType] || 0;
+    const base = PRICING[effectiveAttendeeType] || 0;
     return base * ticketQuantity;
-  }, [formData.attendeeType, discountApplied, ticketQuantity]);
+  }, [effectiveAttendeeType, discountApplied, ticketQuantity]);
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -251,6 +262,10 @@ const RegistrationForm = () => {
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
     const newErrors = { ...errors };
+
+    if (name === 'attendeeType') {
+      setSponsorTicketOption(null);
+    }
 
     if (name === 'sameAsAttendee') {
       setFormData((prev) => ({
@@ -393,7 +408,11 @@ const RegistrationForm = () => {
 
   const handleSubmitRegistration = () => {
     console.log('Submit registration:', {
-      formData: { ...formData, totalAmount },
+      formData: {
+        ...formData,
+        attendeeType: effectiveAttendeeType, // EXHIBITOR when exhibitor-staff selected
+        totalAmount,
+      },
       additionalRegistrants,
       addOnsSelected,
     });
@@ -443,6 +462,13 @@ const RegistrationForm = () => {
     }
 
     if (stepToValidate === 3) {
+      if (
+        formData.attendeeType === 'Sponsor' &&
+        !sponsorTicketOption
+      ) {
+        newErrors.sponsorTicketOption =
+          'Please select a ticket option (Standard Sponsor or Exhibitor Staff Only)';
+      }
       const ba = formData.billingAddress;
       if (!ba.firstName.trim())
         newErrors.billingFirstName = 'First name is required';
@@ -493,7 +519,10 @@ const RegistrationForm = () => {
     }
     if (stepNumber === 3) {
       return errorKeys.some(
-        (k) => k.startsWith('billing') || k === 'termsAccepted',
+        (k) =>
+          k.startsWith('billing') ||
+          k === 'termsAccepted' ||
+          k === 'sponsorTicketOption',
       );
     }
     return false;
@@ -510,7 +539,14 @@ const RegistrationForm = () => {
   const handlePrev = () => setStep((s) => s - 1);
 
   const canSubmit = () => {
-    return !!formData.attendeeType;
+    if (!formData.attendeeType) return false;
+    if (
+      formData.attendeeType === 'Sponsor' &&
+      !sponsorTicketOption
+    ) {
+      return false;
+    }
+    return true;
   };
 
   const getSubmitLabel = () => {
@@ -775,7 +811,6 @@ const RegistrationForm = () => {
             <option value='Solution-Provider'>Solution Provider</option>
             <option value='Sponsor'>Sponsor</option>
             <option value='Speaker'>Speaker</option>
-            <option value='Exhibitor'>Exhibitor</option>
           </select>
           {renderFieldError('attendeeType')}
         </div>
@@ -917,7 +952,7 @@ const RegistrationForm = () => {
   );
 
   const renderStep3 = () => {
-    const basePrice = PRICING[formData.attendeeType] || 0;
+    const basePrice = PRICING[effectiveAttendeeType] || 0;
     const displayTotal = discountApplied ? 0 : basePrice * ticketQuantity;
 
     return (
@@ -1104,8 +1139,83 @@ const RegistrationForm = () => {
               </div>
             </div>
 
+            {/* Sponsor ticket option - only when attendeeType is Sponsor */}
+            {formData.attendeeType === 'Sponsor' && (
+              <div className='bg-white rounded-lg border border-gray-200 p-4'>
+                <h4 className='font-semibold text-sm text-gray-900 mb-3'>
+                  Sponsor ticket option
+                </h4>
+                <p className='text-xs text-gray-600 mb-3'>
+                  Choose the ticket type that matches your role:
+                </p>
+                <div className='space-y-3'>
+                  <label
+                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                      sponsorTicketOption === 'standard'
+                        ? 'border-ap-blue bg-ap-blue/5'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <input
+                      type='radio'
+                      name='sponsorTicketOption'
+                      value='standard'
+                      checked={sponsorTicketOption === 'standard'}
+                      onChange={() => setSponsorTicketOption('standard')}
+                      className='mt-1'
+                    />
+                    <div>
+                      <span className='font-medium text-gray-900'>
+                        Standard Sponsor ticket — $840
+                      </span>
+                      <p className='text-xs text-gray-600 mt-1'>
+                        Full sponsor access and assigned seating.
+                      </p>
+                    </div>
+                  </label>
+                  <label
+                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                      sponsorTicketOption === 'exhibitor-staff'
+                        ? 'border-ap-blue bg-ap-blue/5'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <input
+                      type='radio'
+                      name='sponsorTicketOption'
+                      value='exhibitor-staff'
+                      checked={sponsorTicketOption === 'exhibitor-staff'}
+                      onChange={() => setSponsorTicketOption('exhibitor-staff')}
+                      className='mt-1'
+                    />
+                    <div>
+                      <span className='font-medium text-gray-900'>
+                        Exhibitor Staff Only ticket — $699
+                      </span>
+                      <ul className='text-xs text-gray-600 mt-1 space-y-1 list-disc list-inside'>
+                        <li>
+                          Access to the event exhibitor space, networking, food
+                          and refreshments, and drinks
+                        </li>
+                        <li>
+                          Access to the presentation area but without an
+                          assigned seat
+                        </li>
+                        <li>Limit: 2 per exhibitor</li>
+                        <li>
+                          Requirement: Must be an exhibitor — add-on only for
+                          exhibitor sponsors
+                        </li>
+                      </ul>
+                    </div>
+                  </label>
+                </div>
+                {renderFieldError('sponsorTicketOption')}
+              </div>
+            )}
+
             {/* Discount Code */}
-            {DISCOUNT_ELIGIBLE_TYPES.includes(formData.attendeeType) && (
+            {DISCOUNT_ELIGIBLE_TYPES.includes(effectiveAttendeeType) && (
               <div className='bg-white rounded-lg border border-gray-200 p-4'>
                 <label className='text-sm font-semibold text-gray-900'>
                   Discount Code
@@ -1222,9 +1332,9 @@ const RegistrationForm = () => {
               ) : (
                 <div className='flex justify-between text-sm mt-3'>
                   <span className='text-gray-700'>
-                    {formData.attendeeType === 'Exhibitor'
-                      ? 'Exhibitor Registration'
-                      : formData.attendeeType === 'Sponsor'
+                    {effectiveAttendeeType === 'Exhibitor'
+                      ? 'Exhibitor Staff Only'
+                      : effectiveAttendeeType === 'Sponsor'
                         ? 'Sponsor Registration'
                         : 'General Registration'}
                   </span>
@@ -1361,7 +1471,7 @@ const RegistrationForm = () => {
             </p>
             <p>
               <span className='font-semibold'>Type:</span>{' '}
-              {formData.attendeeType}
+              {effectiveAttendeeType}
             </p>
           </div>
         </div>
@@ -1406,9 +1516,9 @@ const RegistrationForm = () => {
           </div>
           <div className='flex justify-between text-sm text-gray-700 py-1'>
             <span>
-              {formData.attendeeType === 'Exhibitor'
-                ? 'Exhibitor Registration'
-                : formData.attendeeType === 'Sponsor'
+              {effectiveAttendeeType === 'Exhibitor'
+                ? 'Exhibitor Staff Only'
+                : effectiveAttendeeType === 'Sponsor'
                   ? 'Sponsor Registration'
                   : 'General Registration'}
             </span>
@@ -1417,7 +1527,7 @@ const RegistrationForm = () => {
               $
               {(discountApplied
                 ? 0
-                : (PRICING[formData.attendeeType] || 0) * ticketQuantity
+                : (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
               ).toLocaleString()}
             </span>
           </div>
@@ -1431,7 +1541,7 @@ const RegistrationForm = () => {
               </span>
               <span>1</span>
               <span>
-                ${(PRICING[formData.attendeeType] || 0).toLocaleString()}
+                ${(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
               </span>
             </div>
           ))}
