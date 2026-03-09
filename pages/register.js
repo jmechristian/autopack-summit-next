@@ -7,7 +7,11 @@ import {
 } from '@heroicons/react/24/solid';
 import { MdCheckCircle } from 'react-icons/md';
 import { API } from 'aws-amplify';
-import { getAPSCompanies } from '../util/api';
+import {
+  getAPSCompanies,
+  getAddOnsByEventId,
+  createRegistrantAddOnRequestApi,
+} from '../util/api';
 import NewTicketForm from '../components/registration/NewTicketForm';
 
 const PRICING = {
@@ -22,6 +26,33 @@ const PRICING = {
 const DISCOUNT_ELIGIBLE_TYPES = ['OEM', 'Tier1', 'Sponsor', 'Speaker'];
 
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
+const FORM_ACCESS_PASSWORD = 'biancalars';
+const FORM_ACCESS_SESSION_KEY = 'aps-register-access-v1';
+
+const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
+  mutation CreateApsRegistrant($input: CreateApsRegistrantInput!, $condition: ModelApsRegistrantConditionInput) {
+    createApsRegistrant(input: $input, condition: $condition) {
+      id
+      apsID
+      firstName
+      lastName
+      email
+      attendeeType
+      totalAmount
+      status
+      billingAddressFirstName
+      billingAddressLastName
+      billingAddressEmail
+      billingAddressPhone
+      billingAddressStreet
+      billingAddressCity
+      billingAddressState
+      billingAddressZip
+      createdAt
+      updatedAt
+    }
+  }
+`;
 
 const INTEREST_OPTIONS = [
   'Expendable Packaging and/or After Sales Packaging',
@@ -103,12 +134,20 @@ const RegistrationForm = () => {
   const [additionalRegistrants, setAdditionalRegistrants] = useState([]);
   const [ticketQuantity, setTicketQuantity] = useState(1);
   const [showNewTicketForm, setShowNewTicketForm] = useState(false);
-  const [addOnsSelected, setAddOnsSelected] = useState([]);
+  const [addOns, setAddOns] = useState([]);
+  const [addOnsSelected, setAddOnsSelected] = useState([]); // { addOnId, addOn, preferences }
+  const [addOnsLoading, setAddOnsLoading] = useState(true);
   const [formDataId] = useState('preview-' + Date.now());
+  const [registrantId, setRegistrantId] = useState(null);
   const [emailChecking, setEmailChecking] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const [eventCodes, setEventCodes] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [sponsorTicketOption, setSponsorTicketOption] = useState(null);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [accessPassword, setAccessPassword] = useState('');
+  const [accessError, setAccessError] = useState('');
 
   const dropdownRef = useRef(null);
   const emailCheckTimeout = useRef(null);
@@ -128,6 +167,8 @@ const RegistrationForm = () => {
     otherInterest: '',
     buyerQuestion: '',
     packagingChallenge: '',
+    certification: '',
+
     termsAccepted: false,
     sameAsAttendee: false,
     billingAddress: {
@@ -144,6 +185,25 @@ const RegistrationForm = () => {
     discountCode: '',
     totalAmount: 0,
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const unlocked = window.sessionStorage.getItem(FORM_ACCESS_SESSION_KEY);
+    if (unlocked === 'true') setIsUnlocked(true);
+  }, []);
+
+  const handleUnlockForm = (e) => {
+    e.preventDefault();
+    if (accessPassword === FORM_ACCESS_PASSWORD) {
+      setIsUnlocked(true);
+      setAccessError('');
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem(FORM_ACCESS_SESSION_KEY, 'true');
+      }
+      return;
+    }
+    setAccessError('Incorrect password');
+  };
 
   useEffect(() => {
     const loadCompanies = async () => {
@@ -176,8 +236,20 @@ const RegistrationForm = () => {
         console.log('Error fetching event codes:', err);
       }
     };
+    const loadAddOns = async () => {
+      try {
+        setAddOnsLoading(true);
+        const items = await getAddOnsByEventId(APS_EVENT_ID);
+        setAddOns(items || []);
+      } catch (err) {
+        console.log('Error fetching add-ons:', err);
+      } finally {
+        setAddOnsLoading(false);
+      }
+    };
     loadCompanies();
     loadEventCodes();
+    loadAddOns();
   }, []);
 
   useEffect(() => {
@@ -245,11 +317,37 @@ const RegistrationForm = () => {
     return formData.attendeeType;
   }, [formData.attendeeType, sponsorTicketOption]);
 
+  const mapAttendeeTypeToEnum = (type) => {
+    switch (type) {
+      case 'OEM':
+        return 'OEM';
+      case 'Tier1':
+        return 'TIER1';
+      case 'Solution-Provider':
+        return 'SOLUTIONPROVIDER';
+      case 'Sponsor':
+        return 'SPONSOR';
+      case 'Speaker':
+        return 'SPEAKER';
+      case 'Exhibitor':
+        return 'EXHIBITOR';
+      default:
+        return 'OEM';
+    }
+  };
+
+  const addOnsTotal = useMemo(() => {
+    return addOnsSelected.reduce(
+      (sum, sel) => sum + ((sel.addOn?.price ?? 0) || 0),
+      0
+    );
+  }, [addOnsSelected]);
+
   const totalAmount = useMemo(() => {
-    if (discountApplied) return 0;
+    if (discountApplied) return addOnsTotal; // base ticket free, add-ons still paid
     const base = PRICING[effectiveAttendeeType] || 0;
-    return base * ticketQuantity;
-  }, [effectiveAttendeeType, discountApplied, ticketQuantity]);
+    return base * ticketQuantity + addOnsTotal;
+  }, [effectiveAttendeeType, discountApplied, ticketQuantity, addOnsTotal]);
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -406,17 +504,153 @@ const RegistrationForm = () => {
     setFormData((prev) => ({ ...prev, discountCode: discountCode.trim() }));
   };
 
-  const handleSubmitRegistration = () => {
-    console.log('Submit registration:', {
-      formData: {
-        ...formData,
-        attendeeType: effectiveAttendeeType, // EXHIBITOR when exhibitor-staff selected
-        totalAmount,
-      },
-      additionalRegistrants,
-      addOnsSelected,
-    });
-    setStep(4);
+  const createAddOnRequestsForRegistrant = async (registrantId) => {
+    if (!registrantId || addOnsSelected.length === 0) return;
+    const failures = [];
+
+    for (const sel of addOnsSelected) {
+      try {
+        await createRegistrantAddOnRequestApi({
+          addOnId: sel.addOnId,
+          registrantId,
+          status: 'PENDING',
+          preferences:
+            sel.preferences && Object.keys(sel.preferences).length > 0
+              ? sel.preferences
+              : null,
+        });
+      } catch (err) {
+        console.error('Failed to create add-on request:', err);
+        failures.push({
+          addOnId: sel.addOnId,
+          title: sel.addOn?.title || 'Unknown add-on',
+          error: err,
+        });
+      }
+    }
+
+    if (failures.length > 0) {
+      const message = failures
+        .map((f) => `${f.title} (${f.addOnId})`)
+        .join(', ');
+      throw new Error(`Failed to create add-on requests for: ${message}`);
+    }
+  };
+
+  const createAdditionalTicketRegistrants = async () => {
+    if (additionalRegistrants.length === 0) return;
+    // Only Sponsors can add extra tickets; guard just in case
+    if (formData.attendeeType !== 'Sponsor') return;
+
+    for (const extra of additionalRegistrants) {
+      const extraType = extra.attendeeType || formData.attendeeType;
+      try {
+        const extraInput = {
+          apsID: APS_EVENT_ID,
+          attendeeType: mapAttendeeTypeToEnum(extraType),
+          status: 'PENDING',
+          email: extra.email,
+          firstName: extra.firstName || null,
+          lastName: extra.lastName || null,
+          phone: extra.phone || null,
+          companyId: formData.companyId || null,
+          jobTitle: extra.jobTitle || null,
+          termsAccepted: true,
+          // Additional tickets share billing with the primary registrant
+          billingAddressFirstName: formData.billingAddress.firstName || null,
+          billingAddressLastName: formData.billingAddress.lastName || null,
+          billingAddressEmail: formData.billingAddress.email || null,
+          billingAddressPhone: formData.billingAddress.phone || null,
+          billingAddressStreet: formData.billingAddress.street || null,
+          billingAddressCity: formData.billingAddress.city || null,
+          billingAddressState: formData.billingAddress.state || null,
+          billingAddressZip: formData.billingAddress.zip || null,
+          sameAsAttendee: formData.sameAsAttendee ?? null,
+          totalAmount: PRICING[extraType] || 0,
+          discountCode: formData.discountCode || null,
+        };
+
+        await API.graphql({
+          query: CREATE_APS_REGISTRANT_MINIMAL,
+          variables: { input: extraInput },
+          authMode: 'API_KEY',
+        });
+      } catch (err) {
+        console.error('Failed to create additional ticket registrant:', err);
+      }
+    }
+  };
+
+  const handleSubmitRegistration = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const input = {
+        apsID: APS_EVENT_ID,
+        attendeeType: mapAttendeeTypeToEnum(effectiveAttendeeType),
+        status: 'PENDING',
+        email: formData.email,
+        firstName: formData.firstName || null,
+        lastName: formData.lastName || null,
+        phone: formData.phone || null,
+        companyId: formData.companyId || null,
+        jobTitle: formData.jobTitle || null,
+        termsAccepted: formData.termsAccepted ?? null,
+        interests: formData.interests?.length ? formData.interests : null,
+        otherInterest: formData.otherInterest || null,
+        buyerQuestion: formData.buyerQuestion || null,
+        packagingChallenge: formData.packagingChallenge || null,
+        certification: formData.certification || null,
+        billingAddressFirstName: formData.billingAddress.firstName || null,
+        billingAddressLastName: formData.billingAddress.lastName || null,
+        billingAddressEmail: formData.billingAddress.email || null,
+        billingAddressPhone: formData.billingAddress.phone || null,
+        billingAddressStreet: formData.billingAddress.street || null,
+        billingAddressCity: formData.billingAddress.city || null,
+        billingAddressState: formData.billingAddress.state || null,
+        billingAddressZip: formData.billingAddress.zip || null,
+        sameAsAttendee: formData.sameAsAttendee ?? null,
+        speakerTopic:
+          formData.attendeeType === 'Speaker'
+            ? formData.speakerTopic || null
+            : null,
+        learningObjectives:
+          formData.attendeeType === 'Speaker'
+            ? formData.learningObjectives || null
+            : null,
+        totalAmount: totalAmount ?? null,
+        discountCode: formData.discountCode || null,
+      };
+
+      const res = await API.graphql({
+        query: CREATE_APS_REGISTRANT_MINIMAL,
+        variables: { input },
+        authMode: 'API_KEY',
+      });
+
+      const created = res.data?.createApsRegistrant;
+      const mainRegistrantId = created?.id;
+      if (mainRegistrantId) {
+        setRegistrantId(mainRegistrantId);
+        await createAddOnRequestsForRegistrant(mainRegistrantId);
+        await createAdditionalTicketRegistrants();
+      }
+
+      // TODO: create additional registrants and their add-on requests here if needed
+
+      setStep(4);
+    } catch (err) {
+      console.error('Error submitting registration:', err);
+      setSubmitError(
+        err?.message
+          ? `Registration failed: ${err.message}`
+          : 'Something went wrong submitting your registration. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const validateStep = (stepToValidate) => {
@@ -935,17 +1169,213 @@ const RegistrationForm = () => {
             />
             {renderFieldError('packagingChallenge')}
           </div>
+
+          {/* Q4: Certification Interest */}
+          <div className='flex flex-col gap-2'>
+            <label className={labelClass}>
+              Would you be interested in completing a short post-event quiz to
+              qualify for a Certificate of Attendance? Indicate your interest to
+              receive more information.
+            </label>
+            <div className='flex gap-4 mt-1'>
+              <label className='inline-flex items-center gap-2 text-sm text-gray-700'>
+                <input
+                  type='radio'
+                  name='certification'
+                  value='true'
+                  checked={formData.certification === 'true'}
+                  onChange={handleChange}
+                  className='rounded border-gray-300 text-ap-blue focus:ring-ap-blue'
+                />
+                <span>Yes, I'm interested</span>
+              </label>
+              <label className='inline-flex items-center gap-2 text-sm text-gray-700'>
+                <input
+                  type='radio'
+                  name='certification'
+                  value='false'
+                  checked={formData.certification === 'false'}
+                  onChange={handleChange}
+                  className='rounded border-gray-300 text-ap-blue focus:ring-ap-blue'
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
         </div>
 
-        {/* Right: Add-ons placeholder */}
-        <div className='flex flex-col items-center justify-center p-6 lg:p-10 bg-gray-50 min-h-[300px]'>
-          <div className='text-center'>
-            <div className='w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mx-auto mb-4'>
-              <PlusIcon className='w-8 h-8 text-gray-400' />
+        {/* Right: Add-ons */}
+        <div className='flex flex-col gap-4 p-6 lg:p-10 bg-gray-50 min-h-[300px]'>
+          <h3 className='text-xl font-bold text-gray-900'>Add-ons</h3>
+          {addOnsLoading ? (
+            <p className='text-sm text-gray-500'>Loading add-ons...</p>
+          ) : addOns.length > 0 ? (
+            <div className='space-y-3'>
+              {addOns.map((addOn) => {
+                const isSelected = addOnsSelected.some(
+                  (s) => s.addOnId === addOn.id
+                );
+                const selectedEntry = addOnsSelected.find(
+                  (s) => s.addOnId === addOn.id
+                );
+                let schema = [];
+                try {
+                  schema =
+                    typeof addOn.preferenceSchema === 'string'
+                      ? JSON.parse(addOn.preferenceSchema || '[]')
+                      : Array.isArray(addOn.preferenceSchema)
+                        ? addOn.preferenceSchema
+                        : [];
+                } catch {
+                  schema = [];
+                }
+                return (
+                  <div
+                    key={addOn.id}
+                    className={`rounded-lg border p-3 transition-colors bg-white ${
+                      isSelected ? 'border-ap-blue bg-ap-blue/5' : 'border-gray-200'
+                    }`}
+                  >
+                    <label className='flex items-start gap-3 cursor-pointer'>
+                      <input
+                        type='checkbox'
+                        checked={isSelected}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            const prefs = {};
+                            schema.forEach((f) => {
+                              prefs[f.key] =
+                                f.type === 'select' && f.options?.[0]
+                                  ? f.options[0]
+                                  : '';
+                            });
+                            setAddOnsSelected((prev) => [
+                              ...prev,
+                              {
+                                addOnId: addOn.id,
+                                addOn,
+                                preferences: prefs,
+                              },
+                            ]);
+                          } else {
+                            setAddOnsSelected((prev) =>
+                              prev.filter((s) => s.addOnId !== addOn.id)
+                            );
+                          }
+                        }}
+                        className='mt-1'
+                      />
+                      <div className='flex-1 min-w-0'>
+                        <div className='font-medium text-gray-900'>
+                          {addOn.title}
+                        </div>
+                        <div className='text-xs text-gray-500 mt-0.5'>
+                          {addOn.date} • {addOn.time}
+                        </div>
+                        {addOn.location && (
+                          <div className='text-xs text-gray-500'>
+                            {addOn.location}
+                          </div>
+                        )}
+                        {(addOn.limit != null ||
+                          (addOn.registrantRequests?.items?.length > 0)) && (
+                          <div className='text-xs text-gray-600 mt-1'>
+                            {addOn.registrantRequests?.items?.filter(
+                              (r) => r.status === 'APPROVED'
+                            ).length ?? 0}
+                            {addOn.limit != null
+                              ? ` / ${addOn.limit} spots`
+                              : ' approved'}
+                          </div>
+                        )}
+                        {addOn.description && (
+                          <div
+                            className='text-sm text-gray-600 mt-2 [&_*]:!text-gray-600 [&_b]:!font-semibold'
+                            dangerouslySetInnerHTML={{
+                              __html: addOn.description,
+                            }}
+                          />
+                        )}
+                        {addOn.price != null && addOn.price > 0 && (
+                          <div className='text-sm font-medium text-gray-900 mt-2'>
+                            ${addOn.price}
+                          </div>
+                        )}
+                      </div>
+                    </label>
+                    {isSelected && schema.length > 0 && (
+                      <div className='mt-3 pt-3 border-t border-gray-200 space-y-2'>
+                        {schema.map((field) => (
+                          <div key={field.key}>
+                            <label className='block text-xs font-medium text-gray-700 mb-1'>
+                              {field.label}
+                            </label>
+                            {field.type === 'select' ? (
+                              <select
+                                value={
+                                  selectedEntry?.preferences?.[field.key] ?? ''
+                                }
+                                onChange={(e) => {
+                                  const v = e.target.value;
+                                  setAddOnsSelected((prev) =>
+                                    prev.map((s) =>
+                                      s.addOnId === addOn.id
+                                        ? {
+                                            ...s,
+                                            preferences: {
+                                              ...s.preferences,
+                                              [field.key]: v,
+                                            },
+                                          }
+                                        : s
+                                    )
+                                  );
+                                }}
+                                className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+                              >
+                                {field.options?.map((opt) => (
+                                  <option key={opt} value={opt}>
+                                    {opt}
+                                  </option>
+                                ))}
+                              </select>
+                            ) : (
+                              <input
+                                type='text'
+                                value={
+                                  selectedEntry?.preferences?.[field.key] ?? ''
+                                }
+                                onChange={(e) => {
+                                  const v = e.target.value;
+                                  setAddOnsSelected((prev) =>
+                                    prev.map((s) =>
+                                      s.addOnId === addOn.id
+                                        ? {
+                                            ...s,
+                                            preferences: {
+                                              ...s.preferences,
+                                              [field.key]: v,
+                                            },
+                                          }
+                                        : s
+                                    )
+                                  );
+                                }}
+                                className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            <h3 className='text-lg font-semibold text-gray-400'>Add-Ons</h3>
-            <p className='text-sm text-gray-400 mt-1'>Coming soon</p>
-          </div>
+          ) : (
+            <p className='text-sm text-gray-500'>No add-ons available.</p>
+          )}
         </div>
       </div>
     </div>
@@ -953,7 +1383,6 @@ const RegistrationForm = () => {
 
   const renderStep3 = () => {
     const basePrice = PRICING[effectiveAttendeeType] || 0;
-    const displayTotal = discountApplied ? 0 : basePrice * ticketQuantity;
 
     return (
       <div className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'>
@@ -1220,6 +1649,9 @@ const RegistrationForm = () => {
                 <label className='text-sm font-semibold text-gray-900'>
                   Discount Code
                 </label>
+                <p className='text-xs text-gray-500 mt-0.5'>
+                  Codes apply to ticket registration only, not add-ons.
+                </p>
                 <div className='flex gap-2 mt-2'>
                   <input
                     type='text'
@@ -1281,18 +1713,32 @@ const RegistrationForm = () => {
                 <span>Total</span>
               </div>
 
-              {formData.attendeeType === 'Solution-Provider' ? (
+              {formData.attendeeType === 'Sponsor' ? (
                 <div className='flex flex-col gap-2 mt-3'>
                   <div className='flex justify-between text-sm'>
                     <span className='text-gray-700'>
-                      General Registration - {formData.lastName}
+                      {effectiveAttendeeType === 'Exhibitor'
+                        ? 'Exhibitor Staff Only'
+                        : effectiveAttendeeType === 'Sponsor'
+                          ? 'Sponsor Registration'
+                          : 'General Registration'}{' '}
+                      - {formData.lastName}
                     </span>
                     <span className='text-gray-500'>1</span>
                     <span className='font-medium'>
                       ${basePrice.toLocaleString()}
                     </span>
                   </div>
-                  {additionalRegistrants.map((reg, index) => (
+                  {additionalRegistrants.map((reg, index) => {
+                    const regType = reg.attendeeType || effectiveAttendeeType;
+                    const regLabel =
+                      regType === 'Exhibitor'
+                        ? 'Exhibitor Staff Only'
+                        : regType === 'Sponsor'
+                          ? 'Sponsor Registration'
+                          : 'General Registration';
+                    const regPrice = PRICING[regType] || 0;
+                    return (
                     <div
                       key={index}
                       className='flex justify-between items-center text-sm border-t border-gray-100 pt-2'
@@ -1310,15 +1756,15 @@ const RegistrationForm = () => {
                           <XCircleIcon className='w-4 h-4' />
                         </button>
                         <span className='text-gray-700'>
-                          General Registration - {reg.lastName}
+                          {regLabel} - {reg.lastName}
                         </span>
                       </div>
                       <span className='text-gray-500'>1</span>
                       <span className='font-medium'>
-                        ${basePrice.toLocaleString()}
+                        ${regPrice.toLocaleString()}
                       </span>
                     </div>
-                  ))}
+                  )})}
                   <button
                     onClick={() => setShowNewTicketForm(true)}
                     className='flex items-center gap-2 mt-2 py-2 px-3 bg-gray-100 rounded-lg text-sm text-gray-600 hover:bg-gray-200 transition-colors'
@@ -1360,14 +1806,17 @@ const RegistrationForm = () => {
                   Add-ons
                 </div>
                 {addOnsSelected.length > 0 ? (
-                  addOnsSelected.map((addon, i) => (
+                  addOnsSelected.map((sel, i) => (
                     <div
                       key={i}
                       className='flex justify-between text-sm text-gray-600 py-1'
                     >
-                      <span>{addon.title}</span>
-                      <span className='text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full'>
-                        PENDING
+                      <span>{sel.addOn?.title}</span>
+                      <span className='flex items-center gap-2'>
+                        ${(sel.addOn?.price ?? 0).toLocaleString()}{' '}
+                        <span className='text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full'>
+                          PENDING
+                        </span>
                       </span>
                     </div>
                   ))
@@ -1385,12 +1834,17 @@ const RegistrationForm = () => {
               {discountApplied ? (
                 <div className='flex items-baseline gap-2'>
                   <span className='line-through text-gray-400 text-sm font-normal'>
-                    ${(basePrice * ticketQuantity).toLocaleString()}
+                    ${(
+                      basePrice * ticketQuantity +
+                      addOnsTotal
+                    ).toLocaleString()}
                   </span>
-                  <span className='text-green-400 text-lg'>$0.00</span>
+                  <span className='text-green-400 text-lg'>
+                    ${addOnsTotal.toLocaleString()}
+                  </span>
                 </div>
               ) : (
-                <span>${displayTotal.toLocaleString()}</span>
+                <span>${totalAmount.toLocaleString()}</span>
               )}
             </div>
 
@@ -1404,11 +1858,14 @@ const RegistrationForm = () => {
                     handleSubmitRegistration();
                   }
                 }}
-                disabled={!canSubmit()}
+                disabled={!canSubmit() || isSubmitting}
                 className='w-full px-4 py-3 bg-ap-blue text-white font-bold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
               >
-                {getSubmitLabel()}
+                {isSubmitting ? 'Submitting…' : getSubmitLabel()}
               </button>
+              {submitError && (
+                <p className='mt-3 text-sm text-red-500'>{submitError}</p>
+              )}
             </div>
           </div>
         </div>
@@ -1416,154 +1873,219 @@ const RegistrationForm = () => {
     );
   };
 
-  const renderStep4 = () => (
-    <div className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'>
-      {/* Thank You Banner */}
-      <div className='flex flex-col md:flex-row gap-8 md:gap-16 w-full px-6 md:px-10 py-10 md:py-16 items-center bg-ap-darkblue'>
-        <div className='flex flex-col gap-4 flex-1'>
-          <h3 className='text-2xl md:text-3xl font-bold text-white'>
-            {formData.attendeeType === 'Solution-Provider'
-              ? 'Thank you for joining the waitlist!'
-              : 'Thank you for completing your registration!'}
-          </h3>
-          <p className='text-white/90 text-lg leading-relaxed max-w-prose'>
-            {formData.attendeeType === 'Solution-Provider'
-              ? 'We will notify you if a ticket becomes available.'
-              : "We're reviewing your information and will send you a confirmation email soon once it's approved."}
-          </p>
-        </div>
-        <div className='flex-shrink-0'>
-          <div className='bg-white p-2 rounded-lg ring-4 ring-ap-yellow shadow-lg'>
-            <QRCodeSVG
-              value={`https://www.autopacksummit.com/aps25/${formDataId}`}
-              size={128}
-              bgColor='#ffffff'
-              fgColor='#000000'
-              level='Q'
-            />
-          </div>
-        </div>
-      </div>
+  const renderStep4 = () => {
+    const invoiceId = registrantId || formDataId;
 
-      {/* Details */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 p-6 md:p-10'>
-        <div>
-          <h4 className='text-lg font-bold text-gray-900 mb-4'>
-            Registrant Details
-          </h4>
-          <div className='space-y-2 text-sm text-gray-700 border-b border-gray-200 pb-6'>
-            <p>
-              <span className='font-semibold'>Name:</span> {formData.firstName}{' '}
-              {formData.lastName}
+    return (
+      <div className='space-y-6'>
+        {/* Header */}
+        <div className='bg-ap-darkblue text-white rounded-xl px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
+          <div className='space-y-2'>
+            <h3 className='text-2xl md:text-3xl font-bold'>
+              Registration complete
+            </h3>
+            <p className='text-xs md:text-sm text-ap-yellow font-semibold tracking-wide uppercase'>
+              Automotive Packaging Summit 2026 · Sept 30 – Oct 2, 2026
             </p>
-            <p>
-              <span className='font-semibold'>Email:</span> {formData.email}
-            </p>
-            <p>
-              <span className='font-semibold'>Company:</span>{' '}
-              {formData.companyName}
-            </p>
-            <p>
-              <span className='font-semibold'>Title:</span> {formData.jobTitle}
-            </p>
-            <p>
-              <span className='font-semibold'>Phone:</span> {formData.phone}
-            </p>
-            <p>
-              <span className='font-semibold'>Type:</span>{' '}
-              {effectiveAttendeeType}
+            <p className='text-sm md:text-base text-white/80 max-w-xl'>
+              A confirmation email will be sent shortly. Your registration
+              details and receipt are summarized below.
             </p>
           </div>
-        </div>
-        <div>
-          <h4 className='text-lg font-bold text-gray-900 mb-4'>
-            Billing Details
-          </h4>
-          <div className='space-y-2 text-sm text-gray-700 border-b border-gray-200 pb-6'>
-            <p>
-              <span className='font-semibold'>Name:</span>{' '}
-              {formData.billingAddress.firstName}{' '}
-              {formData.billingAddress.lastName}
-            </p>
-            <p>
-              <span className='font-semibold'>Email:</span>{' '}
-              {formData.billingAddress.email}
-            </p>
-            <p>
-              <span className='font-semibold'>Phone:</span>{' '}
-              {formData.billingAddress.phone}
-            </p>
-            <p>
-              <span className='font-semibold'>Address:</span>{' '}
-              {formData.billingAddress.street}
-            </p>
-            <p>
-              {formData.billingAddress.city}, {formData.billingAddress.state}{' '}
-              {formData.billingAddress.zip}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Ticket Summary */}
-      <div className='px-6 md:px-10 pb-10'>
-        <h4 className='text-lg font-bold text-gray-900 mb-4'>Ticket Summary</h4>
-        <div className='bg-gray-50 rounded-lg p-4'>
-          <div className='flex justify-between text-sm font-medium border-b border-gray-200 pb-2 mb-2'>
-            <span>Item</span>
-            <span>Qty</span>
-            <span>Total</span>
-          </div>
-          <div className='flex justify-between text-sm text-gray-700 py-1'>
-            <span>
-              {effectiveAttendeeType === 'Exhibitor'
-                ? 'Exhibitor Staff Only'
-                : effectiveAttendeeType === 'Sponsor'
-                  ? 'Sponsor Registration'
-                  : 'General Registration'}
-            </span>
-            <span>{ticketQuantity}</span>
-            <span>
-              $
-              {(discountApplied
-                ? 0
-                : (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
-              ).toLocaleString()}
-            </span>
-          </div>
-          {additionalRegistrants.map((reg, i) => (
-            <div
-              key={i}
-              className='flex justify-between text-sm text-gray-700 py-1'
+          <div className='flex flex-col items-center gap-3'>
+            {registrantId && (
+              <a
+                href={`/registrants/${registrantId}`}
+                className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-ap-yellow text-white hover:brightness-95 transition-colors shadow-sm'
+              >
+                View registrant dashboard
+              </a>
+            )}
+            <button
+              type='button'
+              onClick={() => window.print()}
+              className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm'
             >
-              <span>
-                Additional - {reg.firstName} {reg.lastName}
-              </span>
-              <span>1</span>
-              <span>
-                ${(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
-              </span>
+              Download invoice (PDF)
+            </button>
+          </div>
+        </div>
+
+        {/* Invoice / Receipt */}
+        <div
+          id='invoice-print'
+          className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'
+        >
+          <div className='flex items-center justify-between px-6 md:px-10 py-4 border-b border-gray-200'>
+            <div>
+              <h4 className='text-lg font-semibold text-gray-900'>
+                Registration invoice
+              </h4>
+              <p className='text-xs text-gray-500'>
+                Automotive Packaging Summit 2026 · Sept 30 – Oct 2, 2026
+              </p>
             </div>
-          ))}
-          {addOnsSelected.length > 0 && (
-            <div className='mt-2 pt-2 border-t border-gray-200'>
-              {addOnsSelected.map((addon, i) => (
-                <div
-                  key={i}
-                  className='flex justify-between text-sm text-gray-600 py-1'
-                >
-                  <span>{addon.title}</span>
-                  <span className='text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full'>
-                    PENDING
+            <span className='text-xs font-mono text-gray-500'>
+              #{invoiceId}
+            </span>
+          </div>
+
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 px-6 md:px-10 py-6 md:py-8'>
+            {/* Left: Registrant & Billing */}
+            <div className='space-y-6 lg:col-span-1'>
+              <div>
+                <h5 className='text-sm font-semibold text-gray-900 mb-2'>
+                  Registrant
+                </h5>
+                <div className='space-y-1 text-sm text-gray-700'>
+                  <p>
+                    <span className='font-medium'>
+                      {formData.firstName} {formData.lastName}
+                    </span>
+                  </p>
+                  <p>{formData.email}</p>
+                  <p>{formData.companyName}</p>
+                  <p>{formData.jobTitle}</p>
+                  <p>{formData.phone}</p>
+                  <p>
+                    <span className='font-semibold'>Type:</span>{' '}
+                    {effectiveAttendeeType}
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h5 className='text-sm font-semibold text-gray-900 mb-2'>
+                  Billing
+                </h5>
+                <div className='space-y-1 text-sm text-gray-700'>
+                  <p>
+                    <span className='font-medium'>
+                      {formData.billingAddress.firstName}{' '}
+                      {formData.billingAddress.lastName}
+                    </span>
+                  </p>
+                  <p>{formData.billingAddress.email}</p>
+                  <p>{formData.billingAddress.phone}</p>
+                  <p>{formData.billingAddress.companyName}</p>
+                  <p>{formData.billingAddress.street}</p>
+                  <p>
+                    {formData.billingAddress.city},{' '}
+                    {formData.billingAddress.state}{' '}
+                    {formData.billingAddress.zip}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Itemized charges */}
+            <div className='lg:col-span-2'>
+              <h5 className='text-sm font-semibold text-gray-900 mb-3'>
+                Itemized charges
+              </h5>
+              <div className='border border-gray-200 rounded-lg overflow-hidden'>
+                <div className='grid grid-cols-12 gap-2 px-3 py-2 text-xs font-semibold text-gray-500 bg-gray-50 border-b border-gray-200'>
+                  <span className='col-span-7'>Description</span>
+                  <span className='col-span-2 text-right'>Qty</span>
+                  <span className='col-span-3 text-right'>Amount</span>
+                </div>
+
+                {/* Primary ticket */}
+                <div className='grid grid-cols-12 gap-2 px-3 py-2 text-sm text-gray-800 border-b border-gray-100'>
+                  <span className='col-span-7'>
+                    {effectiveAttendeeType === 'Exhibitor'
+                      ? 'Exhibitor Staff Only'
+                      : effectiveAttendeeType === 'Sponsor'
+                        ? 'Sponsor Registration'
+                        : 'General Registration'}{' '}
+                    – {formData.firstName} {formData.lastName}
+                  </span>
+                  <span className='col-span-2 text-right'>1</span>
+                  <span className='col-span-3 text-right'>
+                    ${(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
                   </span>
                 </div>
-              ))}
+
+                {/* Additional tickets (Sponsors only) */}
+                {formData.attendeeType === 'Sponsor' &&
+                  additionalRegistrants.map((reg, i) => (
+                    <div
+                      key={i}
+                      className='grid grid-cols-12 gap-2 px-3 py-2 text-sm text-gray-700 border-b border-gray-100'
+                    >
+                      <span className='col-span-7'>
+                        {effectiveAttendeeType === 'Exhibitor'
+                          ? 'Exhibitor Staff Only'
+                          : 'Sponsor Registration'}{' '}
+                        – {reg.firstName} {reg.lastName}
+                      </span>
+                      <span className='col-span-2 text-right'>1</span>
+                      <span className='col-span-3 text-right'>
+                        ${(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
+
+                {/* Add-ons */}
+                {addOnsSelected.length > 0 && (
+                  <>
+                    <div className='px-3 py-2 text-xs font-semibold text-gray-500 bg-gray-50 border-t border-b border-gray-200'>
+                      Add-ons
+                    </div>
+                    {addOnsSelected.map((sel, i) => (
+                      <div
+                        key={i}
+                        className='grid grid-cols-12 gap-2 px-3 py-2 text-sm text-gray-700 border-b border-gray-100'
+                      >
+                        <span className='col-span-7'>{sel.addOn?.title}</span>
+                        <span className='col-span-2 text-right'>1</span>
+                        <span className='col-span-3 text-right'>
+                          ${(sel.addOn?.price ?? 0).toLocaleString()}
+                        </span>
+                      </div>
+                    ))}
+                  </>
+                )}
+
+                {/* Totals */}
+                <div className='px-3 py-3 space-y-1 text-sm bg-gray-50'>
+                  <div className='flex items-center justify-between text-gray-700'>
+                    <span>Subtotal</span>
+                    <span>
+                      $
+                      {(
+                        (PRICING[effectiveAttendeeType] || 0) * ticketQuantity +
+                        addOnsTotal
+                      ).toLocaleString()}
+                    </span>
+                  </div>
+                  {discountApplied && (
+                    <div className='flex items-center justify-between text-gray-700'>
+                      <span>Discount ({formData.discountCode})</span>
+                      <span className='text-green-600'>
+                        -$
+                        {(
+                          (PRICING[effectiveAttendeeType] || 0) *
+                          ticketQuantity
+                        ).toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+                  <div className='flex items-center justify-between font-semibold text-gray-900 border-t border-gray-200 pt-2 mt-1'>
+                    <span>Total due</span>
+                    <span>${totalAmount.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
+
+        {/* Actions */}
+        {/* Actions (moved into header right column) */}
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderStep = () => {
     switch (step) {
@@ -1579,6 +2101,35 @@ const RegistrationForm = () => {
         return null;
     }
   };
+
+  if (!isUnlocked) {
+    return (
+      <div className='max-w-md mx-auto px-4 py-16'>
+        <div className='rounded-xl border border-gray-200 bg-white p-6 shadow-sm'>
+          <h1 className='text-2xl font-bold text-gray-900'>Private Form Access</h1>
+          <p className='mt-2 text-sm text-gray-600'>
+            This registration form is currently protected. Enter the password to continue.
+          </p>
+          <form className='mt-5 space-y-3' onSubmit={handleUnlockForm}>
+            <input
+              type='password'
+              value={accessPassword}
+              onChange={(e) => setAccessPassword(e.target.value)}
+              placeholder='Enter password'
+              className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+            />
+            {accessError ? <p className='text-sm text-red-600'>{accessError}</p> : null}
+            <button
+              type='submit'
+              className='w-full px-4 py-2.5 text-sm font-semibold text-white bg-ap-blue rounded-lg hover:bg-ap-darkblue transition-colors'
+            >
+              Unlock form
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='max-w-6xl mx-auto px-4 py-10 flex flex-col gap-6'>

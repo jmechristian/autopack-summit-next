@@ -56,6 +56,26 @@ body {
   width: 0;
 }
 
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #invoice-print,
+  #invoice-print * {
+    visibility: visible;
+  }
+
+  #invoice-print {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
 .next,
 .prev {
   top: calc(50% - 20px);

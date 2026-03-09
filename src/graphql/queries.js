@@ -105,8 +105,9 @@ export const getApsAppUserNote = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -155,11 +156,7 @@ export const getApsAppUserNote = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -921,8 +918,9 @@ export const getApsAppUserNote = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -985,8 +983,9 @@ export const getApsAppUserNote = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -1032,23 +1031,13 @@ export const getApsAppUserNote = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -1073,8 +1062,9 @@ export const getApsAppUserNote = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -1221,8 +1211,9 @@ export const getApsAppUserNote = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -1534,8 +1525,9 @@ export const getApsAppUserNote = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -1803,8 +1795,9 @@ export const listApsAppUserNotes = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -2077,8 +2070,9 @@ export const listApsAppUserNotes = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -2127,11 +2121,7 @@ export const listApsAppUserNotes = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -2706,8 +2696,9 @@ export const getApsDmMessage = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -2756,11 +2747,7 @@ export const getApsDmMessage = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -3029,8 +3016,9 @@ export const listApsDmMessages = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -3359,8 +3347,9 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -3633,8 +3622,9 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -3683,11 +3673,7 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -3891,8 +3877,9 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -4165,8 +4152,9 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -4215,11 +4203,7 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -4423,8 +4407,9 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -4697,8 +4682,9 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -4747,11 +4733,7 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -4955,8 +4937,9 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -5229,8 +5212,9 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -5279,11 +5263,7 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -5487,8 +5467,9 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -5761,8 +5742,9 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -5811,11 +5793,7 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -6019,8 +5997,9 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -6293,8 +6272,9 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -6343,11 +6323,7 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -6862,8 +6838,9 @@ export const apsDmMessagesByThreadIdAndCreatedAt = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -7034,8 +7011,9 @@ export const apsDmMessagesBySenderUserIdAndCreatedAt = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -7400,8 +7378,9 @@ export const getAPS = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -7450,11 +7429,7 @@ export const getAPS = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -8001,7 +7976,6 @@ export const getAPS = /* GraphQL */ `
           location
           date
           time
-          company
           altLink
           type
           limit
@@ -8023,11 +7997,8 @@ export const getAPS = /* GraphQL */ `
             __typename
           }
           price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
+          preferenceSchema
+          registrantRequests {
             nextToken
             __typename
           }
@@ -8116,8 +8087,9 @@ export const listAPS = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -8315,12 +8287,12 @@ export const listAPS = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -8412,8 +8384,9 @@ export const getAPSCode = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -8611,12 +8584,12 @@ export const getAPSCode = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -8949,8 +8922,9 @@ export const getApsAgenda = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -9148,12 +9122,12 @@ export const getApsAgenda = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -9510,8 +9484,9 @@ export const getApsRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -9709,12 +9684,12 @@ export const getApsRegistrant = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -9773,8 +9748,9 @@ export const getApsRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -10013,8 +9989,9 @@ export const getApsRegistrant = /* GraphQL */ `
       termsAccepted
       interests
       otherInterest
-      interestQuestionOne
-      interestQuestionTwo
+      buyerQuestion
+      packagingChallenge
+      certification
       billingAddressFirstName
       billingAddressLastName
       billingAddressEmail
@@ -10117,8 +10094,9 @@ export const getApsRegistrant = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -10167,11 +10145,7 @@ export const getApsRegistrant = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -10201,12 +10175,11 @@ export const getApsRegistrant = /* GraphQL */ `
         apsSeatingChartRegistrantsId
         __typename
       }
-      addOnsRequested {
+      addOnRequests {
         items {
           id
-          apsRegistrantId
-          apsAddOnId
-          apsRegistrant {
+          registrantId
+          registrant {
             id
             apsID
             firstName
@@ -10219,8 +10192,9 @@ export const getApsRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -10261,7 +10235,8 @@ export const getApsRegistrant = /* GraphQL */ `
             apsRegistrantSeatingChartRegistrantId
             __typename
           }
-          apsAddOn {
+          addOnId
+          addOn {
             id
             title
             description
@@ -10269,103 +10244,19 @@ export const getApsRegistrant = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
             __typename
           }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      addOnsApproved {
-        items {
-          id
-          apsRegistrantId
-          apsAddOnId
-          apsRegistrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          apsAddOn {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            company
-            altLink
-            type
-            limit
-            eventId
-            price
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
+          status
+          preferences
           createdAt
           updatedAt
           __typename
@@ -10426,8 +10317,9 @@ export const getApsRegistrant = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -10476,11 +10368,7 @@ export const getApsRegistrant = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -10751,8 +10639,9 @@ export const getApsRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -11013,8 +10902,9 @@ export const listApsRegistrants = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -11077,8 +10967,9 @@ export const listApsRegistrants = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -11124,23 +11015,13 @@ export const listApsRegistrants = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -11165,8 +11046,9 @@ export const listApsRegistrants = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -11460,8 +11342,9 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -11524,8 +11407,9 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -11571,23 +11455,13 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -11612,8 +11486,9 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -11907,8 +11782,9 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -11971,8 +11847,9 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -12018,23 +11895,13 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -12059,8 +11926,9 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -12354,8 +12222,9 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -12418,8 +12287,9 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -12465,23 +12335,13 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -12506,8 +12366,9 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -12791,8 +12652,9 @@ export const getApsAppUser = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -12855,8 +12717,9 @@ export const getApsAppUser = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -12902,23 +12765,13 @@ export const getApsAppUser = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -12943,8 +12796,9 @@ export const getApsAppUser = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -13314,8 +13168,9 @@ export const getApsAppUser = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -13517,8 +13372,9 @@ export const getApsAppUser = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -13854,8 +13710,9 @@ export const listApsAppUsers = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -13904,11 +13761,7 @@ export const listApsAppUsers = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -14191,8 +14044,9 @@ export const apsAppUsersByRegistrantId = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -14241,11 +14095,7 @@ export const apsAppUsersByRegistrantId = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -14518,8 +14368,9 @@ export const getApsAppUserContact = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -14568,11 +14419,7 @@ export const getApsAppUserContact = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -14803,8 +14650,9 @@ export const getApsAppUserContact = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -15113,8 +14961,9 @@ export const listApsAppUserContacts = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -15329,8 +15178,9 @@ export const apsAppUserContactsByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -15545,8 +15395,9 @@ export const apsAppUserContactsByContactId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -15784,8 +15635,9 @@ export const getApsAppUserLead = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -15834,11 +15686,7 @@ export const getApsAppUserLead = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -16069,8 +15917,9 @@ export const getApsAppUserLead = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -16375,8 +16224,9 @@ export const listApsAppUserLeads = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -16591,8 +16441,9 @@ export const apsAppUserLeadsByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -16807,8 +16658,9 @@ export const apsAppUserLeadsByContactId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -17046,8 +16898,9 @@ export const getApsAppUserProfile = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -17096,11 +16949,7 @@ export const getApsAppUserProfile = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -17607,8 +17456,9 @@ export const getApsAppUserProfile = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -17905,8 +17755,9 @@ export const listApsAppUserProfiles = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -18216,8 +18067,9 @@ export const apsAppUserProfilesByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -18527,8 +18379,9 @@ export const apsAppUserProfilesBySpeakerId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -18828,8 +18681,9 @@ export const getProfileAffiliate = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -19333,8 +19187,9 @@ export const getProfileEducation = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -19835,8 +19690,9 @@ export const getProfileInterest = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -20364,8 +20220,9 @@ export const getApsAppUserPhoto = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -20414,11 +20271,7 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -20700,8 +20553,9 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -20899,12 +20753,12 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -20956,8 +20810,9 @@ export const listApsAppUserPhotos = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -21177,8 +21032,9 @@ export const apsAppUserPhotosByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -21398,8 +21254,9 @@ export const apsAppUserPhotosByEventId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -21788,8 +21645,9 @@ export const getApsAppSession = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -22352,8 +22210,9 @@ export const getApsAppSessionQuestion = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -22402,11 +22261,7 @@ export const getApsAppSessionQuestion = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -22693,8 +22548,9 @@ export const listApsAppSessionQuestions = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -22877,8 +22733,9 @@ export const apsAppSessionQuestionsBySessionId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -23061,8 +22918,9 @@ export const apsAppSessionQuestionsByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -23198,8 +23056,9 @@ export const getAPSSpeaker = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -23538,8 +23397,9 @@ export const getAPSSpeaker = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -23737,12 +23597,12 @@ export const getAPSSpeaker = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -24388,8 +24248,9 @@ export const getApsSponsor = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -24691,8 +24552,9 @@ export const getApsSponsor = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -24890,12 +24752,12 @@ export const getApsSponsor = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -26143,8 +26005,9 @@ export const getAPSCompany = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -26193,11 +26056,7 @@ export const getAPSCompany = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -26829,8 +26688,9 @@ export const getAPSCompany = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -27015,8 +26875,9 @@ export const listAPSCompanies = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -27300,8 +27161,9 @@ export const getAPSCompanyContact = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -27776,8 +27638,9 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -28320,8 +28183,9 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -28519,12 +28383,12 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -28806,8 +28670,9 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -30572,8 +30437,9 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -30771,12 +30637,12 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -31714,8 +31580,9 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -31764,11 +31631,7 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -32047,8 +31910,9 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -32246,12 +32110,12 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -32390,8 +32254,9 @@ export const listApsAppExhibitorDeals = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -32695,8 +32560,9 @@ export const apsAppExhibitorDealsByExhibitorId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -33000,8 +32866,9 @@ export const apsAppExhibitorDealsByUserId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -33305,8 +33172,9 @@ export const apsAppExhibitorDealsByEventId = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -33868,8 +33736,9 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -34067,12 +33936,12 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -35027,8 +34896,9 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -35226,12 +35096,12 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -35814,7 +35684,6 @@ export const getApsAddOn = /* GraphQL */ `
       location
       date
       time
-      company
       altLink
       type
       limit
@@ -35886,8 +35755,9 @@ export const getApsAddOn = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -36085,12 +35955,12 @@ export const getApsAddOn = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -36105,12 +35975,12 @@ export const getApsAddOn = /* GraphQL */ `
         __typename
       }
       price
-      registrantsRequested {
+      preferenceSchema
+      registrantRequests {
         items {
           id
-          apsRegistrantId
-          apsAddOnId
-          apsRegistrant {
+          registrantId
+          registrant {
             id
             apsID
             firstName
@@ -36123,8 +35993,9 @@ export const getApsAddOn = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -36165,7 +36036,8 @@ export const getApsAddOn = /* GraphQL */ `
             apsRegistrantSeatingChartRegistrantId
             __typename
           }
-          apsAddOn {
+          addOnId
+          addOn {
             id
             title
             description
@@ -36173,103 +36045,19 @@ export const getApsAddOn = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
             __typename
           }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      registrantsApproved {
-        items {
-          id
-          apsRegistrantId
-          apsAddOnId
-          apsRegistrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          apsAddOn {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            company
-            altLink
-            type
-            limit
-            eventId
-            price
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
+          status
+          preferences
           createdAt
           updatedAt
           __typename
@@ -36299,7 +36087,6 @@ export const listApsAddOns = /* GraphQL */ `
         location
         date
         time
-        company
         altLink
         type
         limit
@@ -36376,23 +36163,14 @@ export const listApsAddOns = /* GraphQL */ `
           __typename
         }
         price
-        registrantsRequested {
+        preferenceSchema
+        registrantRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrantsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -36433,7 +36211,6 @@ export const apsAddOnsByEventId = /* GraphQL */ `
         location
         date
         time
-        company
         altLink
         type
         limit
@@ -36510,23 +36287,14 @@ export const apsAddOnsByEventId = /* GraphQL */ `
           __typename
         }
         price
-        registrantsRequested {
+        preferenceSchema
+        registrantRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrantsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -36537,6 +36305,1122 @@ export const apsAddOnsByEventId = /* GraphQL */ `
         createdAt
         updatedAt
         aPSAddOnsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getRegistrantAddOnRequest = /* GraphQL */ `
+  query GetRegistrantAddOnRequest($id: ID!) {
+    getRegistrantAddOnRequest(id: $id) {
+      id
+      registrantId
+      registrant {
+        id
+        apsID
+        aps {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        jobTitle
+        attendeeType
+        termsAccepted
+        interests
+        otherInterest
+        buyerQuestion
+        packagingChallenge
+        certification
+        billingAddressFirstName
+        billingAddressLastName
+        billingAddressEmail
+        billingAddressPhone
+        billingAddressStreet
+        billingAddressCity
+        billingAddressState
+        billingAddressZip
+        sameAsAttendee
+        speakerTopic
+        learningObjectives
+        totalAmount
+        discountCode
+        status
+        paymentConfirmation
+        registrationEmailSent
+        registrationEmailSentDate
+        registrationEmailReceived
+        registrationEmailReceivedDate
+        welcomeEmailSent
+        welcomeEmailSentDate
+        welcomeEmailReceived
+        welcomeEmailReceivedDate
+        paymentMethod
+        paymentLast4
+        approvedAt
+        headshot
+        presentation
+        presentationTitle
+        presentationSummary
+        bio
+        seatingChartRegistrant {
+          id
+          category
+          firstName
+          lastName
+          company
+          email
+          role
+          tableNumber
+          notes
+          seatingChartID
+          seatingChart {
+            id
+            createdAt
+            updatedAt
+            __typename
+          }
+          registrantID
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsSeatingChartRegistrantsId
+          __typename
+        }
+        addOnRequests {
+          items {
+            id
+            registrantId
+            addOnId
+            status
+            preferences
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        appUserId
+        appUser {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        qrCode
+        createdAt
+        updatedAt
+        aPSRegistrantsId
+        aPSCompanyRegistrantsId
+        apsRegistrantSeatingChartRegistrantId
+        __typename
+      }
+      addOnId
+      addOn {
+        id
+        title
+        description
+        subheadline
+        location
+        date
+        time
+        altLink
+        type
+        limit
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        price
+        preferenceSchema
+        registrantRequests {
+          items {
+            id
+            registrantId
+            addOnId
+            status
+            preferences
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAddOnsId
+        __typename
+      }
+      status
+      preferences
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listRegistrantAddOnRequests = /* GraphQL */ `
+  query ListRegistrantAddOnRequests(
+    $filter: ModelRegistrantAddOnRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listRegistrantAddOnRequests(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        registrantId
+        registrant {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        addOnId
+        addOn {
+          id
+          title
+          description
+          subheadline
+          location
+          date
+          time
+          altLink
+          type
+          limit
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          price
+          preferenceSchema
+          registrantRequests {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAddOnsId
+          __typename
+        }
+        status
+        preferences
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const registrantAddOnRequestsByRegistrantId = /* GraphQL */ `
+  query RegistrantAddOnRequestsByRegistrantId(
+    $registrantId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelRegistrantAddOnRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    registrantAddOnRequestsByRegistrantId(
+      registrantId: $registrantId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        registrantId
+        registrant {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        addOnId
+        addOn {
+          id
+          title
+          description
+          subheadline
+          location
+          date
+          time
+          altLink
+          type
+          limit
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          price
+          preferenceSchema
+          registrantRequests {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAddOnsId
+          __typename
+        }
+        status
+        preferences
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const registrantAddOnRequestsByAddOnId = /* GraphQL */ `
+  query RegistrantAddOnRequestsByAddOnId(
+    $addOnId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelRegistrantAddOnRequestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    registrantAddOnRequestsByAddOnId(
+      addOnId: $addOnId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        registrantId
+        registrant {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        addOnId
+        addOn {
+          id
+          title
+          description
+          subheadline
+          location
+          date
+          time
+          altLink
+          type
+          limit
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          price
+          preferenceSchema
+          registrantRequests {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAddOnsId
+          __typename
+        }
+        status
+        preferences
+        createdAt
+        updatedAt
         __typename
       }
       nextToken
@@ -36580,8 +37464,9 @@ export const getApsSeatingChart = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -36867,8 +37752,9 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
         termsAccepted
         interests
         otherInterest
-        interestQuestionOne
-        interestQuestionTwo
+        buyerQuestion
+        packagingChallenge
+        certification
         billingAddressFirstName
         billingAddressLastName
         billingAddressEmail
@@ -36931,8 +37817,9 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -36978,23 +37865,13 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
           apsSeatingChartRegistrantsId
           __typename
         }
-        addOnsRequested {
+        addOnRequests {
           items {
             id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
+            registrantId
+            addOnId
+            status
+            preferences
             createdAt
             updatedAt
             __typename
@@ -37019,8 +37896,9 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -37236,8 +38114,9 @@ export const listApsSeatingChartRegistrants = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -37286,11 +38165,7 @@ export const listApsSeatingChartRegistrants = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -37411,8 +38286,9 @@ export const apsSeatingChartRegistrantsBySeatingChartID = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -37461,11 +38337,7 @@ export const apsSeatingChartRegistrantsBySeatingChartID = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -37586,8 +38458,9 @@ export const apsSeatingChartRegistrantsByRegistrantID = /* GraphQL */ `
           termsAccepted
           interests
           otherInterest
-          interestQuestionOne
-          interestQuestionTwo
+          buyerQuestion
+          packagingChallenge
+          certification
           billingAddressFirstName
           billingAddressLastName
           billingAddressEmail
@@ -37636,11 +38509,7 @@ export const apsSeatingChartRegistrantsByRegistrantID = /* GraphQL */ `
             apsSeatingChartRegistrantsId
             __typename
           }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
+          addOnRequests {
             nextToken
             __typename
           }
@@ -37748,8 +38617,9 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -37947,12 +38817,12 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             location
             date
             time
-            company
             altLink
             type
             limit
             eventId
             price
+            preferenceSchema
             createdAt
             updatedAt
             aPSAddOnsId
@@ -38006,8 +38876,9 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             termsAccepted
             interests
             otherInterest
-            interestQuestionOne
-            interestQuestionTwo
+            buyerQuestion
+            packagingChallenge
+            certification
             billingAddressFirstName
             billingAddressLastName
             billingAddressEmail
@@ -38718,2298 +39589,6 @@ export const aPSCompanyEventsByAPSCompanyId = /* GraphQL */ `
           }
           createdAt
           updatedAt
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getRegistrantAddOnsRequested = /* GraphQL */ `
-  query GetRegistrantAddOnsRequested($id: ID!) {
-    getRegistrantAddOnsRequested(id: $id) {
-      id
-      apsRegistrantId
-      apsAddOnId
-      apsRegistrant {
-        id
-        apsID
-        aps {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        firstName
-        lastName
-        email
-        phone
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        jobTitle
-        attendeeType
-        termsAccepted
-        interests
-        otherInterest
-        interestQuestionOne
-        interestQuestionTwo
-        billingAddressFirstName
-        billingAddressLastName
-        billingAddressEmail
-        billingAddressPhone
-        billingAddressStreet
-        billingAddressCity
-        billingAddressState
-        billingAddressZip
-        sameAsAttendee
-        speakerTopic
-        learningObjectives
-        totalAmount
-        discountCode
-        status
-        paymentConfirmation
-        registrationEmailSent
-        registrationEmailSentDate
-        registrationEmailReceived
-        registrationEmailReceivedDate
-        welcomeEmailSent
-        welcomeEmailSentDate
-        welcomeEmailReceived
-        welcomeEmailReceivedDate
-        paymentMethod
-        paymentLast4
-        approvedAt
-        headshot
-        presentation
-        presentationTitle
-        presentationSummary
-        bio
-        seatingChartRegistrant {
-          id
-          category
-          firstName
-          lastName
-          company
-          email
-          role
-          tableNumber
-          notes
-          seatingChartID
-          seatingChart {
-            id
-            createdAt
-            updatedAt
-            __typename
-          }
-          registrantID
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          createdAt
-          updatedAt
-          apsSeatingChartRegistrantsId
-          __typename
-        }
-        addOnsRequested {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        appUserId
-        appUser {
-          id
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          sessionQuestions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          leads {
-            nextToken
-            __typename
-          }
-          sentDmMessages {
-            nextToken
-            __typename
-          }
-          profileId
-          profile {
-            id
-            userId
-            firstName
-            lastName
-            email
-            phone
-            company
-            jobTitle
-            attendeeType
-            quickTools
-            profilePicture
-            bio
-            linkedin
-            twitter
-            facebook
-            instagram
-            youtube
-            website
-            location
-            resume
-            speakerId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        qrCode
-        createdAt
-        updatedAt
-        aPSRegistrantsId
-        aPSCompanyRegistrantsId
-        apsRegistrantSeatingChartRegistrantId
-        __typename
-      }
-      apsAddOn {
-        id
-        title
-        description
-        subheadline
-        location
-        date
-        time
-        company
-        altLink
-        type
-        limit
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        price
-        registrantsRequested {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrantsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAddOnsId
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listRegistrantAddOnsRequesteds = /* GraphQL */ `
-  query ListRegistrantAddOnsRequesteds(
-    $filter: ModelRegistrantAddOnsRequestedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listRegistrantAddOnsRequesteds(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const registrantAddOnsRequestedsByApsRegistrantId = /* GraphQL */ `
-  query RegistrantAddOnsRequestedsByApsRegistrantId(
-    $apsRegistrantId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelRegistrantAddOnsRequestedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    registrantAddOnsRequestedsByApsRegistrantId(
-      apsRegistrantId: $apsRegistrantId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const registrantAddOnsRequestedsByApsAddOnId = /* GraphQL */ `
-  query RegistrantAddOnsRequestedsByApsAddOnId(
-    $apsAddOnId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelRegistrantAddOnsRequestedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    registrantAddOnsRequestedsByApsAddOnId(
-      apsAddOnId: $apsAddOnId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getRegistrantAddOnsApproved = /* GraphQL */ `
-  query GetRegistrantAddOnsApproved($id: ID!) {
-    getRegistrantAddOnsApproved(id: $id) {
-      id
-      apsRegistrantId
-      apsAddOnId
-      apsRegistrant {
-        id
-        apsID
-        aps {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        firstName
-        lastName
-        email
-        phone
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        jobTitle
-        attendeeType
-        termsAccepted
-        interests
-        otherInterest
-        interestQuestionOne
-        interestQuestionTwo
-        billingAddressFirstName
-        billingAddressLastName
-        billingAddressEmail
-        billingAddressPhone
-        billingAddressStreet
-        billingAddressCity
-        billingAddressState
-        billingAddressZip
-        sameAsAttendee
-        speakerTopic
-        learningObjectives
-        totalAmount
-        discountCode
-        status
-        paymentConfirmation
-        registrationEmailSent
-        registrationEmailSentDate
-        registrationEmailReceived
-        registrationEmailReceivedDate
-        welcomeEmailSent
-        welcomeEmailSentDate
-        welcomeEmailReceived
-        welcomeEmailReceivedDate
-        paymentMethod
-        paymentLast4
-        approvedAt
-        headshot
-        presentation
-        presentationTitle
-        presentationSummary
-        bio
-        seatingChartRegistrant {
-          id
-          category
-          firstName
-          lastName
-          company
-          email
-          role
-          tableNumber
-          notes
-          seatingChartID
-          seatingChart {
-            id
-            createdAt
-            updatedAt
-            __typename
-          }
-          registrantID
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          createdAt
-          updatedAt
-          apsSeatingChartRegistrantsId
-          __typename
-        }
-        addOnsRequested {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOnsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        appUserId
-        appUser {
-          id
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            interestQuestionOne
-            interestQuestionTwo
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          sessionQuestions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          leads {
-            nextToken
-            __typename
-          }
-          sentDmMessages {
-            nextToken
-            __typename
-          }
-          profileId
-          profile {
-            id
-            userId
-            firstName
-            lastName
-            email
-            phone
-            company
-            jobTitle
-            attendeeType
-            quickTools
-            profilePicture
-            bio
-            linkedin
-            twitter
-            facebook
-            instagram
-            youtube
-            website
-            location
-            resume
-            speakerId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        qrCode
-        createdAt
-        updatedAt
-        aPSRegistrantsId
-        aPSCompanyRegistrantsId
-        apsRegistrantSeatingChartRegistrantId
-        __typename
-      }
-      apsAddOn {
-        id
-        title
-        description
-        subheadline
-        location
-        date
-        time
-        company
-        altLink
-        type
-        limit
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        price
-        registrantsRequested {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrantsApproved {
-          items {
-            id
-            apsRegistrantId
-            apsAddOnId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAddOnsId
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listRegistrantAddOnsApproveds = /* GraphQL */ `
-  query ListRegistrantAddOnsApproveds(
-    $filter: ModelRegistrantAddOnsApprovedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listRegistrantAddOnsApproveds(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const registrantAddOnsApprovedsByApsRegistrantId = /* GraphQL */ `
-  query RegistrantAddOnsApprovedsByApsRegistrantId(
-    $apsRegistrantId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelRegistrantAddOnsApprovedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    registrantAddOnsApprovedsByApsRegistrantId(
-      apsRegistrantId: $apsRegistrantId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const registrantAddOnsApprovedsByApsAddOnId = /* GraphQL */ `
-  query RegistrantAddOnsApprovedsByApsAddOnId(
-    $apsAddOnId: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelRegistrantAddOnsApprovedFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    registrantAddOnsApprovedsByApsAddOnId(
-      apsAddOnId: $apsAddOnId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        apsRegistrantId
-        apsAddOnId
-        apsRegistrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          interestQuestionOne
-          interestQuestionTwo
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnsRequested {
-            nextToken
-            __typename
-          }
-          addOnsApproved {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        apsAddOn {
-          id
-          title
-          description
-          subheadline
-          location
-          date
-          time
-          company
-          altLink
-          type
-          limit
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          price
-          registrantsRequested {
-            nextToken
-            __typename
-          }
-          registrantsApproved {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAddOnsId
           __typename
         }
         createdAt

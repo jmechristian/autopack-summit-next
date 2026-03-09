@@ -30,6 +30,7 @@ import {
   aPSRegistrant2025sByEmail,
   getAPSCompany,
   getAPSCode2025,
+  apsAddOnsByEventId,
 } from '../src/graphql/queries';
 
 Amplify.configure({ ...awsExports, ssr: true });
@@ -539,6 +540,60 @@ export const getAPS25AddOns = async () => {
   return res.data.listAPSAddOn2025s.items;
 };
 
+export const getAddOnsByEventId = async (eventId) => {
+  const res = await API.graphql({
+    query: apsAddOnsByEventId,
+    variables: { eventId },
+  });
+  return res.data.apsAddOnsByEventId.items || [];
+};
+
+export const createRegistrantAddOnRequestApi = async ({
+  addOnId,
+  registrantId,
+  status = 'PENDING',
+  preferences = null,
+}) => {
+  const CREATE_REGISTRANT_ADDON_REQUEST_MINIMAL = /* GraphQL */ `
+    mutation CreateRegistrantAddOnRequest(
+      $input: CreateRegistrantAddOnRequestInput!
+      $condition: ModelRegistrantAddOnRequestConditionInput
+    ) {
+      createRegistrantAddOnRequest(input: $input, condition: $condition) {
+        id
+        registrantId
+        addOnId
+        status
+        preferences
+      }
+    }
+  `;
+
+  const serializedPreferences =
+    preferences == null
+      ? null
+      : typeof preferences === 'string'
+      ? preferences
+      : JSON.stringify(preferences);
+
+  const res = await API.graphql({
+    query: CREATE_REGISTRANT_ADDON_REQUEST_MINIMAL,
+    variables: {
+      input: {
+        addOnId,
+        registrantId,
+        status,
+        ...(serializedPreferences &&
+          serializedPreferences !== '{}' && {
+            preferences: serializedPreferences,
+          }),
+      },
+    },
+    authMode: 'API_KEY',
+  });
+  return res.data.createRegistrantAddOnRequest;
+};
+
 export const createNewAPS25Registrant = async (data) => {
   console.log('createNewAPS25Registrant - not wired yet', data);
   throw new Error('Registration API not yet connected. Will be rebuilt with standard Amplify config.');
@@ -696,6 +751,72 @@ export const getCurrentAPS25Registrant = async (id) => {
   });
 
   return res.data.getAPSRegistrant2025;
+};
+
+const GET_APS_REGISTRANT_DASHBOARD = /* GraphQL */ `
+  query GetApsRegistrant($id: ID!) {
+    getApsRegistrant(id: $id) {
+      id
+      apsID
+      firstName
+      lastName
+      email
+      phone
+      attendeeType
+      status
+      totalAmount
+      discountCode
+      interests
+      otherInterest
+      buyerQuestion
+      packagingChallenge
+      certification
+      billingAddressFirstName
+      billingAddressLastName
+      billingAddressEmail
+      billingAddressPhone
+      billingAddressStreet
+      billingAddressCity
+      billingAddressState
+      billingAddressZip
+      sameAsAttendee
+      companyId
+      company {
+        id
+        name
+        type
+        logo
+      }
+      addOnRequests {
+        items {
+          id
+          addOnId
+          status
+          preferences
+          addOn {
+            id
+            title
+            description
+            location
+            date
+            time
+            price
+            preferenceSchema
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getApsRegistrantById = async (id) => {
+  const res = await API.graphql({
+    query: GET_APS_REGISTRANT_DASHBOARD,
+    variables: { id },
+    authMode: 'API_KEY',
+  });
+
+  return res.data.getApsRegistrant;
 };
 
 export const getAPS25Codes = async () => {
