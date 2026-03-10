@@ -254,12 +254,92 @@ const Page = ({ homepageData, speakers }) => {
 
 export default Page;
 
+import awsExports from '../src/aws-exports';
+
 const client = createClient({
   projectId: 'h72r2zbr',
   dataset: 'aps',
   apiVersion: '2022-11-20',
   useCdn: true,
 });
+
+const PUBLIC_SPEAKERS_QUERY = `
+  query PublicListAPSSpeakers($limit: Int) {
+    listAPSSpeakers(limit: $limit) {
+      items {
+        id
+        profile {
+          firstName
+          lastName
+          jobTitle
+          company
+          profilePicture
+          bio
+          linkedin
+          user {
+            registrant {
+              company {
+                name
+              }
+            }
+          }
+        }
+        sessions {
+          items {
+            apsAppSession {
+              id
+              title
+              date
+              startTime
+              endTime
+              location
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const normalizeAgendaDate = (value) => {
+  if (!value) return null;
+
+  if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
+    return value.slice(0, 10);
+  }
+
+  const parts = value.split(/[-/]/);
+  if (parts.length === 3) {
+    const [month, day, year] = parts;
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    const paddedMonth = month.padStart(2, '0');
+    const paddedDay = day.padStart(2, '0');
+    return `${fullYear}-${paddedMonth}-${paddedDay}`;
+  }
+
+  const parsed = new Date(value);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+
+  return value;
+};
+
+const normalizeAgendaTime = (value) => {
+  if (!value) return null;
+  if (/^\d{2}:\d{2}:\d{2}$/.test(value)) return value;
+  if (/^\d{2}:\d{2}$/.test(value)) return `${value}:00`;
+  return value;
+};
+
+const combineDateTime = (dateValue, timeValue) => {
+  if (!dateValue || !timeValue) return null;
+  const normalizedDate = normalizeAgendaDate(dateValue);
+  const normalizedTime = normalizeAgendaTime(timeValue);
+  if (!normalizedDate || !normalizedTime) return null;
+  if (normalizedTime.includes('T')) return normalizedTime;
+  return `${normalizedDate}T${normalizedTime}`;
+};
 
 export async function getStaticProps() {
   const homepageData = await client.fetch(`*[_type == "homepage"]{
@@ -268,9 +348,101 @@ export async function getStaticProps() {
     }
   }`);
 
-  const speakers = await client.fetch(`*[_type == "speaker"] {
-    ..., companyLogo { asset-> {url}}, profilePic { asset-> {url}}, speakerSessions[]->{ name, location, session_start, session_end, date, linkedin}
-  }`);
+  let speakers = [];
+
+  try {
+    const endpoint =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_GRAPHQL_ENDPOINT ||
+      awsExports.aws_appsync_graphqlEndpoint;
+
+    if (!endpoint) {
+      throw new Error('AppSync endpoint is missing.');
+    }
+
+    const apiKey =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_API_KEY ||
+      awsExports.aws_appsync_apiKey;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    };
+
+    if (apiKey) {
+      headers['x-api-key'] = apiKey;
+    }
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query: PUBLIC_SPEAKERS_QUERY,
+        variables: { limit: 100 },
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || result.errors) {
+      console.error(
+        'Speakers fetch error:',
+        result.errors || response.statusText,
+      );
+    } else {
+      const items = result.data?.listAPSSpeakers?.items || [];
+      const mapped = items.map((item) => {
+        const profile = item.profile || {};
+        const registrantCompanyName =
+          profile.user?.registrant?.company?.name || '';
+        const fullName = [profile.firstName, profile.lastName]
+          .filter(Boolean)
+          .join(' ');
+
+        const sessions =
+          item.sessions?.items?.map((sessionItem) => {
+            const s = sessionItem.apsAppSession || {};
+            return {
+              name: s.title,
+              location: s.location,
+              session_start: combineDateTime(s.date, s.startTime),
+              session_end: combineDateTime(s.date, s.endTime),
+            };
+          }) || [];
+
+        return {
+          _id: item.id,
+          name: fullName || 'Speaker',
+          title: profile.jobTitle || '',
+          company: profile.company || registrantCompanyName || '',
+          profilePic: {
+            asset: {
+              url: profile.profilePicture || '',
+            },
+          },
+          bio: profile.bio || '',
+          linkedin: profile.linkedin || '',
+          speakerSessions: sessions,
+        };
+      });
+
+      // Sort speakers by last name (fallback to full name)
+      speakers = mapped.sort((a, b) => {
+        const getLast = (name) => {
+          if (!name) return '';
+          const parts = name.trim().split(/\s+/);
+          return parts[parts.length - 1].toLowerCase();
+        };
+        const lastA = getLast(a.name);
+        const lastB = getLast(b.name);
+        if (lastA === lastB) {
+          return (a.name || '').localeCompare(b.name || '');
+        }
+        return lastA.localeCompare(lastB);
+      });
+    }
+  } catch (error) {
+    console.error('Speakers fetch failed:', error);
+  }
 
   // const testimonialsData = await API.graphql({
   //   query: listTestimonials,

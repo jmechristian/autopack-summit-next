@@ -35,7 +35,7 @@ const NewSpeakersMain = ({ headline, subheadline, text, speakers }) => {
         </p>
       </div>
       <div
-        className='w-full h-full grid grid-flow-col lg:grid-cols-3 xl:grid-cols-4 lg:grid-flow-dense overflow-scroll lg:overflow-hidden gap-8 max-w-7xl lg:mx-auto pr-3'
+        className='w-full h-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-7xl lg:mx-auto pr-3'
         id='scrollers'
       >
         {speakers &&
@@ -44,7 +44,7 @@ const NewSpeakersMain = ({ headline, subheadline, text, speakers }) => {
             .map((speaker, i) => (
               <div
                 key={speaker.name}
-                className='w-full h-full min-w-[300px] bg-white border-4 border-black rounded-2xl flex flex-col group'
+                className='w-full h-full bg-white border-4 border-black rounded-2xl flex flex-col group'
               >
                 <SpeakerBlock
                   name={speaker.name}

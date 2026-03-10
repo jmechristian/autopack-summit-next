@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SpeakerModal from './SpeakerModal';
+import { useS3Url } from '../components/S3Image';
 
 const SpeakerBlock = ({
   name,
@@ -13,6 +14,8 @@ const SpeakerBlock = ({
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { url: resolvedUrl } = useS3Url(url);
+  const effectiveUrl = resolvedUrl || url || '';
 
   return (
     <div
@@ -27,7 +30,7 @@ const SpeakerBlock = ({
         name={name}
         title={title}
         company={company}
-        url={url}
+        url={effectiveUrl}
         bio={bio}
         linkedin={linkedin}
         session={session}
@@ -35,7 +38,7 @@ const SpeakerBlock = ({
       <div
         className='aspect-square w-full h-full bg-neutral-200 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all ease-in'
         style={{
-          backgroundImage: `url(${url ? url : ''})`,
+          backgroundImage: `url(${effectiveUrl})`,
         }}
       ></div>
       <div className='bg-neutral-900 w-full p-3 flex flex-col'>
