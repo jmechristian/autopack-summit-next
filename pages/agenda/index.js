@@ -1,21 +1,256 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { createClient } from 'next-sanity';
 import Head from 'next/head';
 import { motion, AnimatePresence } from 'framer-motion';
-import { API } from 'aws-amplify';
-import { listTourists } from '../../src/graphql/queries';
 import { Switch } from '@headlessui/react';
 import FullAgendaItem from '../../components/agenda/FullAgendaItem';
-import CompactAgenda from '../../shared/CompactAgenda';
+import NewAgendaItem from '../../components/agenda/NewAgendaItem';
 import Logo from '../../shared/Logo';
+import awsExports from '../../src/aws-exports';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Agenda = ({ sessionData, tourists }) => {
-  console.log(sessionData);
+const AGENDA_DATES = {
+  dayOne: '2026-09-30',
+  dayTwo: '2026-10-01',
+  dayThree: '2026-10-02',
+};
+
+const AGENDA_LABELS = {
+  dayOne: 'Wednesday, September 30, 2026',
+  dayTwo: 'Thursday, October 1, 2026',
+  dayThree: 'Friday, October 2, 2026',
+};
+
+const APS_AGENDA_ID = '83afcde3-7ff3-464a-b116-69e244a39dfd';
+
+const APS_AGENDA_QUERY = `
+  query MyQuery {
+    getApsAgenda(id: "${APS_AGENDA_ID}") {
+      id
+      eventId
+      items {
+        items {
+          agendaId
+          createdAt
+          date
+          description
+          endTime
+          id
+          location
+          startTime
+          title
+          speakers {
+            items {
+              aPSSpeaker {
+                id
+                profile {
+                  id
+                  firstName
+                  lastName
+                  profilePicture
+                  linkedin
+                  company
+                  jobTitle
+                  user {
+                    registrant {
+                      company {
+                        logo
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          sponsors {
+            items {
+              apsSponsor {
+                id
+                company {
+                  logo
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const normalizeAgendaDate = (value) => {
+  if (!value) return null;
+
+  if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
+    return value.slice(0, 10);
+  }
+
+  const parts = value.split(/[-/]/);
+  if (parts.length === 3) {
+    const [month, day, year] = parts;
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    const paddedMonth = month.padStart(2, '0');
+    const paddedDay = day.padStart(2, '0');
+    return `${fullYear}-${paddedMonth}-${paddedDay}`;
+  }
+
+  const parsed = new Date(value);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+
+  return value;
+};
+
+const normalizeAgendaTime = (value) => {
+  if (!value) return null;
+  if (/^\d{2}:\d{2}:\d{2}$/.test(value)) return value;
+  if (/^\d{2}:\d{2}$/.test(value)) return `${value}:00`;
+  return value;
+};
+
+const combineDateTime = (dateValue, timeValue) => {
+  if (!dateValue || !timeValue) return null;
+  const normalizedDate = normalizeAgendaDate(dateValue);
+  const normalizedTime = normalizeAgendaTime(timeValue);
+  if (!normalizedDate || !normalizedTime) return null;
+  if (normalizedTime.includes('T')) return normalizedTime;
+  return `${normalizedDate}T${normalizedTime}`;
+};
+
+const matchesAgendaDate = (value, targetDate) => {
+  if (!value || !targetDate) return false;
+
+  if (value === targetDate) return true;
+
+  const normalized = normalizeAgendaDate(value);
+  if (normalized === targetDate) return true;
+
+  const monthDay =
+    normalized && normalized.length >= 10 ? normalized.slice(5) : null;
+  return monthDay ? monthDay === targetDate.slice(5) : false;
+};
+
+const mapAgendaItems = (items) =>
+  items.map((item) => {
+    const mapSpeaker = (speakerItem) => {
+      const sp = speakerItem?.aPSSpeaker;
+      const profile = sp?.profile;
+      const registrantCompany = profile?.user?.registrant?.company;
+      const companyName = registrantCompany?.name || profile?.company || '';
+      const companyLogo = registrantCompany?.logo || null;
+      const name =
+        [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') ||
+        'Speaker';
+      return {
+        id: sp?.id,
+        name,
+        company: companyName,
+        title: profile?.jobTitle || '',
+        profilePicture: profile?.profilePicture,
+        companyLogo,
+        linkedin: profile?.linkedin,
+      };
+    };
+    return {
+      _id: item.id,
+      date: normalizeAgendaDate(item.date),
+      location: item.location,
+      title: item.title || item.description,
+      description: item.description || 'No Description',
+      type: 'session',
+      startTime: combineDateTime(item.date, item.startTime),
+      endTime: combineDateTime(item.date, item.endTime),
+      speakers: item.speakers?.items?.map(mapSpeaker) || [],
+      sponsors:
+        item.sponsors?.items?.map((sponsorItem) => ({
+          id: sponsorItem.apsSponsor?.id,
+          name: sponsorItem.apsSponsor?.company?.name,
+          logo: sponsorItem.apsSponsor?.company?.logo,
+        })) || [],
+    };
+  });
+
+const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
+  return (
+    <motion.div
+      className='flex flex-col'
+      key={enabled}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div className='bg-black rounded-xl w-full px-6 py-4 flex'>
+        <motion.div className='text-ap-yellow font-medium text-lg lg:text-xl font-oswald uppercase'>
+          <span className='text-white'>Day One</span> {AGENDA_LABELS.dayOne}
+        </motion.div>
+      </motion.div>
+      {dayOne &&
+        dayOne.map((s) => (
+          <motion.div className='w-full' key={s._id}>
+            <NewAgendaItem
+              type={s.type}
+              title={s.title}
+              description={s.description}
+              startTime={s.startTime}
+              endTime={s.endTime}
+              location={s.location}
+              speakers={s.speakers}
+              sponsors={s.sponsors}
+            />
+          </motion.div>
+        ))}
+      <motion.div className='bg-black rounded-xl w-full px-6 py-4 flex'>
+        <motion.div className='text-ap-yellow font-medium text-lg lg:text-xl font-oswald uppercase'>
+          <span className='text-white'>Day Two</span> {AGENDA_LABELS.dayTwo}
+        </motion.div>
+      </motion.div>
+      {dayTwo &&
+        dayTwo.map((s) => (
+          <motion.div className='w-full' key={s._id}>
+            <NewAgendaItem
+              type={s.type}
+              title={s.title}
+              description={s.description}
+              startTime={s.startTime}
+              endTime={s.endTime}
+              location={s.location}
+              speakers={s.speakers}
+              sponsors={s.sponsors}
+            />
+          </motion.div>
+        ))}
+      <motion.div className='bg-black rounded-xl w-full px-6 py-4 flex'>
+        <motion.div className='text-ap-yellow font-medium text-lg lg:text-xl font-oswald uppercase'>
+          <span className='text-white'>Day Three</span> {AGENDA_LABELS.dayThree}
+        </motion.div>
+      </motion.div>
+      {dayThree &&
+        dayThree.map((s) => (
+          <motion.div className='w-full' key={s._id}>
+            <NewAgendaItem
+              type={s.type}
+              title={s.title}
+              description={s.description}
+              startTime={s.startTime}
+              endTime={s.endTime}
+              location={s.location}
+              speakers={s.speakers}
+              sponsors={s.sponsors}
+            />
+          </motion.div>
+        ))}
+    </motion.div>
+  );
+};
+
+const AgendaDraft = ({ sessionData }) => {
   const [enabled, setEnabled] = useState(false);
   const [isDay, setDay] = useState(1);
 
@@ -26,21 +261,26 @@ const Agenda = ({ sessionData, tourists }) => {
 
   const dayOne = useMemo(() => {
     const one =
-      sessionData && sessionData.filter((s) => s.date === '2025-10-15');
+      sessionData &&
+      sessionData.filter((s) => matchesAgendaDate(s.date, AGENDA_DATES.dayOne));
 
     return one;
   }, [sessionData]);
 
   const dayTwo = useMemo(() => {
     const two =
-      sessionData && sessionData.filter((s) => s.date === '2025-10-16');
+      sessionData &&
+      sessionData.filter((s) => matchesAgendaDate(s.date, AGENDA_DATES.dayTwo));
 
     return two;
   }, [sessionData]);
 
   const dayThree = useMemo(() => {
     const three =
-      sessionData && sessionData.filter((s) => s.date === '2025-10-17');
+      sessionData &&
+      sessionData.filter((s) =>
+        matchesAgendaDate(s.date, AGENDA_DATES.dayThree),
+      );
     return three;
   }, [sessionData]);
 
@@ -48,18 +288,19 @@ const Agenda = ({ sessionData, tourists }) => {
     const currentDay = () => {
       switch (isDay) {
         case 0:
-          return '2025-10-15';
+          return AGENDA_DATES.dayOne;
         case 1:
-          return '2025-10-16';
+          return AGENDA_DATES.dayTwo;
         case 2:
-          return '2025-10-17';
+          return AGENDA_DATES.dayThree;
         default:
-          return '2025-10-15';
+          return AGENDA_DATES.dayOne;
       }
     };
 
     const dayToShow =
-      sessionData && sessionData.filter((s) => s.date === currentDay(isDay));
+      sessionData &&
+      sessionData.filter((s) => matchesAgendaDate(s.date, currentDay(isDay)));
 
     return dayToShow;
   }, [sessionData, isDay]);
@@ -73,15 +314,12 @@ const Agenda = ({ sessionData, tourists }) => {
           content='Automotive Packaging Summit | Agenda'
         />
       </Head>
-      {/* <div className='w-full'>
-        <AgendaBody sessions={sessionData} tourists={tourists} />
-      </div> */}
       <div className='max-w-lg lg:max-w-5xl xl:max-w-7xl mx-auto pt-5 lg:pt-9 pb-20 relative px-5 xl:px-0'>
-        <div className='w-full flex flex-col sticky top-9 bg-white rounded-2xl shadow-xl'>
+        <div className='w-full flex flex-col sticky top-9 z-20 bg-white rounded-2xl shadow-xl'>
           <div className='w-full flex flex-col gap-6 lg:flex-row justify-between py-9 items-center px-8 rounded-2xl border-4 border-neutral-900'>
             <div className='flex gap-3 items-center'>
               <div className='font-oswald uppercase font-medium text-3xl lg:text-5xl'>
-                2025 Agenda
+                2026 Agenda
               </div>
             </div>
             <div className='flex items-center gap-6'>
@@ -92,14 +330,14 @@ const Agenda = ({ sessionData, tourists }) => {
                   onChange={setEnabled}
                   className={classNames(
                     enabled ? 'bg-ap-yellow' : 'bg-gray-200',
-                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2'
+                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2',
                   )}
                 >
                   <span className='sr-only'>Use setting</span>
                   <span
                     className={classNames(
                       enabled ? 'translate-x-5' : 'translate-x-0',
-                      'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                      'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
                     )}
                   >
                     <span
@@ -107,7 +345,7 @@ const Agenda = ({ sessionData, tourists }) => {
                         enabled
                           ? 'opacity-0 duration-100 ease-out'
                           : 'opacity-100 duration-200 ease-in',
-                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
+                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
                       )}
                       aria-hidden='true'
                     >
@@ -130,7 +368,7 @@ const Agenda = ({ sessionData, tourists }) => {
                         enabled
                           ? 'opacity-100 duration-200 ease-in'
                           : 'opacity-0 duration-100 ease-out',
-                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
+                        'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
                       )}
                       aria-hidden='true'
                     >
@@ -154,22 +392,16 @@ const Agenda = ({ sessionData, tourists }) => {
                     <Logo />
                   </div>
                   <div className='font-oswald uppercase font-medium text-3xl lg:text-5xl'>
-                    2025 Agenda
+                    2026 Agenda
                   </div>
                 </div>
-                <CompactAgenda
+                <DraftCompactAgenda
                   dayOne={dayOne}
                   dayTwo={dayTwo}
                   dayThree={dayThree}
                   enabled={enabled}
                 />
               </div>
-              <button
-                className='bg-ap-blue w-fit text-white text-sm md:text-sm font-medium px-4 py-1.5 shadow-[3px_3px_0_black] hover:shadow-[1px_1px_0_black] hover:translate-x-[3px] hover:translate-y-[3px] transition-all'
-                onClick={handlePrint}
-              >
-                Download as PDF
-              </button>
             </div>
           </div>
           {!enabled && (
@@ -185,33 +417,33 @@ const Agenda = ({ sessionData, tourists }) => {
                         isDay === 0
                           ? 'bg-ap-yellow text-white'
                           : 'bg-gray-300 text-neutral-400',
-                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in'
+                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
                       onClick={() => setDay(0)}
                     >
-                      <div>WED OCT 15</div>
+                      <div>WED SEP 30</div>
                     </div>
                     <div
                       className={classNames(
                         isDay === 1
                           ? 'bg-ap-yellow text-white'
                           : 'bg-gray-300 text-neutral-400',
-                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in'
+                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
                       onClick={() => setDay(1)}
                     >
-                      <div>THU OCT 16</div>
+                      <div>THU OCT 1</div>
                     </div>
                     <div
                       className={classNames(
                         isDay === 2
                           ? 'bg-ap-yellow text-white'
                           : 'bg-gray-300 text-neutral-400',
-                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in'
+                        'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
                       onClick={() => setDay(2)}
                     >
-                      <div>FRI OCT 17</div>
+                      <div>FRI OCT 2</div>
                     </div>
                   </div>
                 </div>
@@ -219,13 +451,10 @@ const Agenda = ({ sessionData, tourists }) => {
             </AnimatePresence>
           )}
         </div>
-        <div
-          className={`w-full rounded-2xl border-4 border-neutral-900 bg-amber-100 lg:px-6 lg:py-8 flex flex-col `}
-        >
-          {/* COMPACT VIEW */}
+        <div className='w-full rounded-2xl border-4 border-neutral-900 bg-amber-100 lg:px-6 lg:py-8 flex flex-col'>
           <AnimatePresence>
             {enabled && (
-              <CompactAgenda
+              <DraftCompactAgenda
                 dayOne={dayOne}
                 dayTwo={dayTwo}
                 dayThree={dayThree}
@@ -234,7 +463,6 @@ const Agenda = ({ sessionData, tourists }) => {
             )}
           </AnimatePresence>
 
-          {/* FULL VIEW */}
           <AnimatePresence>
             {!enabled && (
               <motion.div
@@ -247,15 +475,15 @@ const Agenda = ({ sessionData, tourists }) => {
                 {sessionByDate &&
                   sessionByDate
                     .sort((a, b) =>
-                      a.session_start.localeCompare(b.session_start)
+                      (a.startTime || '').localeCompare(b.startTime || ''),
                     )
                     .map((s) => (
                       <motion.div key={s._id}>
                         <FullAgendaItem
                           type={s.type}
-                          title={s.name}
-                          startTime={s.session_start}
-                          endTime={s.session_end}
+                          title={s.title}
+                          startTime={s.startTime}
+                          endTime={s.endTime}
                           location={s.location}
                           speakers={s.speakers}
                           sponsors={s.sponsors}
@@ -273,42 +501,57 @@ const Agenda = ({ sessionData, tourists }) => {
   );
 };
 
-const client = createClient({
-  projectId: 'h72r2zbr',
-  dataset: 'aps',
-  apiVersion: '2022-11-20',
-  useCdn: true,
-});
-
 export async function getServerSideProps() {
-  const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT;
-  const GRAPHQL_API_KEY = process.env.GRAPHQL_API_KEY;
+  let sessionData = [];
 
-  const getTourists = await API.graphql({ query: listTourists });
-  const tourists = getTourists.data.listTourists.items;
+  try {
+    const endpoint =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_GRAPHQL_ENDPOINT ||
+      awsExports.aws_appsync_graphqlEndpoint;
 
-  const sessionData = await client.fetch(
-    `*[_type == "session"] | order(session_start asc) {
-      _id,
-      date,
-      location,
-      name,
-      description,
-      details,
-      type,
-      session_end,
-      session_start,
-      speakers[]->{_id, name, company, title, profilePic { asset -> { url}}, companyLogo { asset-> { url }}},
-      sponsors[]->{logo, name, website}
-    }`
-  );
+    if (!endpoint) {
+      throw new Error('AppSync endpoint is missing.');
+    }
+
+    const apiKey =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_API_KEY ||
+      awsExports.aws_appsync_apiKey;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    };
+
+    if (apiKey) {
+      headers['x-api-key'] = apiKey;
+    }
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ query: APS_AGENDA_QUERY }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || result.errors) {
+      console.error(
+        'Agenda fetch error:',
+        result.errors || response.statusText,
+      );
+    } else {
+      const agendaItems = result.data?.getApsAgenda?.items?.items || [];
+      sessionData = mapAgendaItems(agendaItems);
+    }
+  } catch (error) {
+    console.error('Agenda fetch failed:', error);
+  }
 
   return {
     props: {
       sessionData,
-      tourists,
     },
   };
 }
 
-export default Agenda;
+export default AgendaDraft;
