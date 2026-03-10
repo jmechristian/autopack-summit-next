@@ -22,19 +22,14 @@ import {
 import { useSelector } from 'react-redux';
 import { PowerIcon, ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
 
-import ScrollingTestimonials from '../shared/ScrollingTestimonial';
-import HeaderPadding from '../shared/HeaderPadding';
-import SpeakersMain from '../components/home/SpeakersMain';
-import SponsorsMain from '../components/home/sponsors/SponsorsMain';
 import RibbonLogos from '../shared/RibbonLogos';
-import PingIcon from '../shared/PingIcon';
 import NewSpeakersMain from '../components/home/NewSpeakersMain';
 import NewSponsorsMain from '../components/home/NewSponsorsMain';
 import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
 import LatestEventSignupForm from '../components/home/LatestEventSignupForm';
 
-const Page = ({ homepageData, speakers }) => {
+const Page = ({ homepageData, speakers, sponsors }) => {
   const dispatch = useDispatch();
   const { powerOpen } = useSelector((state) => state.layout);
   const router = useRouter();
@@ -246,7 +241,7 @@ const Page = ({ homepageData, speakers }) => {
         />
       </div>
       <div className='md:max-w-lg lg:max-w-7xl mx-auto w-full'>
-        <NewSponsorsMain sponsors={homepageData[0].sponsorList} />
+        <NewSponsorsMain sponsors={sponsors} />
       </div>
     </div>
   );
@@ -301,6 +296,21 @@ const PUBLIC_SPEAKERS_QUERY = `
   }
 `;
 
+const PUBLIC_SPONSORS_QUERY = `
+  query PublicListApsSponsors($limit: Int) {
+    listApsSponsors(limit: $limit) {
+      items {
+        company {
+          id
+          logo
+          name
+          website
+        }
+      }
+    }
+  }
+`;
+
 const normalizeAgendaDate = (value) => {
   if (!value) return null;
 
@@ -349,6 +359,7 @@ export async function getStaticProps() {
   }`);
 
   let speakers = [];
+  let sponsors = [];
 
   try {
     const endpoint =
@@ -444,6 +455,63 @@ export async function getStaticProps() {
     console.error('Speakers fetch failed:', error);
   }
 
+  try {
+    const endpoint =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_GRAPHQL_ENDPOINT ||
+      awsExports.aws_appsync_graphqlEndpoint;
+
+    if (!endpoint) {
+      throw new Error('AppSync endpoint is missing.');
+    }
+
+    const apiKey =
+      process.env.NEXT_PUBLIC_AWS_APPSYNC_API_KEY ||
+      awsExports.aws_appsync_apiKey;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    };
+
+    if (apiKey) {
+      headers['x-api-key'] = apiKey;
+    }
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query: PUBLIC_SPONSORS_QUERY,
+        variables: { limit: 200 },
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || result.errors) {
+      console.error(
+        'Sponsors fetch error:',
+        result.errors || response.statusText,
+      );
+    } else {
+      const items = result.data?.listApsSponsors?.items || [];
+      const companies = items
+        .map((item) => item.company)
+        .filter((company) => company && company.logo);
+
+      sponsors = companies
+        .map((company) => ({
+          id: company.id,
+          name: company.name || '',
+          logo: company.logo,
+          website: company.website || '',
+        }))
+        .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    }
+  } catch (error) {
+    console.error('Sponsors fetch failed:', error);
+  }
+
   // const testimonialsData = await API.graphql({
   //   query: listTestimonials,
   //   variables: { filter: { tags: { contains: 'APS' } } },
@@ -454,6 +522,7 @@ export async function getStaticProps() {
     props: {
       homepageData,
       speakers,
+      sponsors,
     },
     revalidate: 10,
   };
