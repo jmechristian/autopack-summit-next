@@ -1,10 +1,12 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Storage } from 'aws-amplify';
+import awsExports from '../src/aws-exports';
 
 const UploadImage = ({ setUrl }) => {
   const [file, setFile] = useState(null);
   const [uploadingStatus, setUploadingStatus] = useState(false);
   const [buttonText, setButtonText] = useState('Upload Your Profile Pic');
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const slugify = (str) =>
     str
@@ -13,51 +15,49 @@ const UploadImage = ({ setUrl }) => {
       .replace(/[\s_-]+/g, '-');
 
   const uploadFile = async () => {
-    const cleanUrl = slugify(file.name);
+    if (!file) return;
+
+    const cleanName = slugify(file.name);
+    const key = `images/${cleanName}`;
     setUploadingStatus(true);
+    setErrorMessage(null);
 
-    let { data } = await axios.post('/api/s3/upload', {
-      name: `images/${cleanUrl}`,
-      type: file.type,
-    });
-
-    const url = data.url;
-
-    await axios
-      .put(url, file, {
-        headers: {
-          'Content-type': file.type,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .then((response) => {
-        const cleanName = slugify(response.config.data.name);
-        if (response.status === 200) {
-          setFile(`https://apsmedia.s3.amazonaws.com/images/${cleanName}`);
-          setUrl(`https://apsmedia.s3.amazonaws.com/images/${cleanName}`);
-          setButtonText('Uploaded!');
-        } else {
-          setButtonText('Error!');
-          setError(
-            'Error uploading, please email bianca@packagingschool.com for support.'
-          );
-        }
+    try {
+      const res = await Storage.put(key, file, {
+        contentType: file.type,
+        level: 'public',
       });
 
-    setUploadingStatus(false);
-    setFile(null);
+      const storedKey = res?.key ?? res?.params?.Key ?? key;
+      const bucket = awsExports.aws_user_files_s3_bucket;
+      const region = awsExports.aws_user_files_s3_bucket_region ?? awsExports.aws_project_region ?? 'us-east-1';
+      const path = String(storedKey).startsWith('public/') ? storedKey : `public/${storedKey}`;
+      const publicUrl = `https://${bucket}.s3.${region}.amazonaws.com/${path}`;
+
+      setUrl(publicUrl);
+      setButtonText('Uploaded!');
+    } catch (err) {
+      console.error('Error uploading profile image:', err);
+      setButtonText('Error!');
+      setErrorMessage('Error uploading. Please email bianca@packagingschool.com for support.');
+    } finally {
+      setUploadingStatus(false);
+      setFile(null);
+    }
   };
 
   useEffect(() => {
     if (file) {
-      const uploadedFileDetail = async () => await uploadFile();
-      uploadedFileDetail();
+      uploadFile();
     }
   }, [file]);
 
   return (
     <div className='text-ap-blue border-2 font-bold border-ap-blue py-3 px-6 rounded-lg cursor-pointer'>
       <p>{uploadingStatus ? 'Uploading...' : buttonText}</p>
+      {errorMessage && (
+        <p className='mt-1 text-sm text-red-600'>{errorMessage}</p>
+      )}
       <input
         type='file'
         accept='image/*'

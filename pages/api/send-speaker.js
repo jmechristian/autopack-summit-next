@@ -1,11 +1,20 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+
 const REGION = 'us-east-1';
-const creds = {
-  accessKeyId: process.env.AWSACCESSKEYID,
-  secretAccessKey: process.env.AWSSECRETACCESSKEY,
-};
-// Create SES service object.
-const sesClient = new SESClient({ region: REGION, credentials: creds });
+
+// Use explicit credentials only when set (e.g. local). Otherwise use default
+// credential chain (Amplify execution role, AWS_ACCESS_KEY_ID env, etc.).
+const hasExplicitCreds =
+  process.env.AWSACCESSKEYID && process.env.AWSSECRETACCESSKEY;
+const sesClient = new SESClient({
+  region: REGION,
+  ...(hasExplicitCreds && {
+    credentials: {
+      accessKeyId: process.env.AWSACCESSKEYID,
+      secretAccessKey: process.env.AWSSECRETACCESSKEY,
+    },
+  }),
+});
 export { sesClient };
 
 export default async function handler(req, res) {
@@ -121,7 +130,7 @@ export default async function handler(req, res) {
     '                        line-height: 32px;' +
     '                      "' +
     '                    >' +
-    '                      Hello Diana,' +
+    '                      Hello Bianca and Lars,' +
     '                    </h1>' +
     '                  </td>' +
     '                </tr>' +
@@ -947,8 +956,8 @@ export default async function handler(req, res) {
     await sesClient.send(
       createSendEmailCommand(
         'jamie@packagingschool.com',
-        'jamie@packagingschool.com'
-      )
+        'jamie@packagingschool.com',
+      ),
     );
     res.status(200).json({ message: 'Success' });
   } catch (error) {

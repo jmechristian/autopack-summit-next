@@ -25,18 +25,14 @@ const SpeakerProfileForm = () => {
 
   const onSubmit = async (fields) => {
     setLoading(true);
-    const res = await API.graphql({
-      query: createAPSSpeaker2024,
-      variables: { input: { ...fields } },
-    });
-
-    setLoading(false);
-    if (res.data) {
+    try {
       setSubmitted(true);
-      sendSpeakerUpdate({ ...fields });
+      await sendSpeakerUpdate({ ...fields });
       router.push('/speaker-profile-thank-you');
-    } else if (res.errors) {
-      console.log(errors);
+    } catch (error) {
+      console.error('Error submitting speaker profile:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
