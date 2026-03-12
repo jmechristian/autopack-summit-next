@@ -1,12 +1,17 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import AWS from 'aws-sdk';
 
 const REGION = 'us-east-1';
+const STORAGE_BUCKET =
+  process.env.AMPLIFY_STORAGE_BUCKET ||
+  'autopacksummitapp94b14feadba64f23aff0ed8deae77b99bc6-dev';
+const PRESIGNED_URL_EXPIRY_SECONDS = 7 * 24 * 60 * 60; // 7 days
 
 // Use explicit credentials only when set (e.g. local). Otherwise use default
 // credential chain (Amplify execution role, AWS_ACCESS_KEY_ID env, etc.).
 const hasExplicitCreds =
   process.env.AWSACCESSKEYID && process.env.AWSSECRETACCESSKEY;
-const sesClient = new SESClient({
+const sharedConfig = {
   region: REGION,
   ...(hasExplicitCreds && {
     credentials: {
@@ -14,11 +19,29 @@ const sesClient = new SESClient({
       secretAccessKey: process.env.AWSSECRETACCESSKEY,
     },
   }),
-});
+};
+const sesClient = new SESClient(sharedConfig);
+const s3 = new AWS.S3(sharedConfig);
 export { sesClient };
+
+function getPresignedHeadshotUrl(key) {
+  if (!key || typeof key !== 'string') return null;
+  const s3Key = key.startsWith('public/') ? key : `public/${key}`;
+  try {
+    return s3.getSignedUrl('getObject', {
+      Bucket: STORAGE_BUCKET,
+      Key: s3Key,
+      Expires: PRESIGNED_URL_EXPIRY_SECONDS,
+    });
+  } catch (e) {
+    console.warn('Failed to generate presigned headshot URL:', e);
+    return null;
+  }
+}
 
 export default async function handler(req, res) {
   const body = req.body;
+  const headshotUrl = getPresignedHeadshotUrl(body.headshot) || '';
 
   const myVar =
     '<!DOCTYPE html>' +
@@ -624,15 +647,17 @@ export default async function handler(req, res) {
     '                      text-align: left;' +
     '                    "' +
     '                  >' +
-    '                    <p' +
-    '                      style="' +
-    '                        margin-top: 0;' +
-    '                        margin-bottom: 12px;' +
-    '                        font-family: Arial, sans-serif;' +
-    '                      "' +
-    '                    >' +
-    `                      ${body.headshot}` +
-    '                    </p>' +
+    (headshotUrl
+      ? '                    <p style="margin-top: 0; margin-bottom: 8px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;">Profile photo</p>' +
+        '                    <p style="margin: 0 0 12px 0;"><img src="' +
+        headshotUrl +
+        '" alt="Speaker profile" style="max-width: 200px; height: auto; border: 1px solid #ddd;" /></p>' +
+        '                    <p style="margin: 0; font-size: 14px;"><a href="' +
+        headshotUrl +
+        '" style="color: #0066cc;">Download profile photo</a> (link valid 7 days)</p>'
+      : '                    <p style="margin-top: 0; margin-bottom: 12px; font-family: Arial, sans-serif;">Profile photo: ' +
+        (body.headshot || '—') +
+        '</p>') +
     '                  </div>' +
     '                </div>' +
     '                <!--[if mso]> ' +

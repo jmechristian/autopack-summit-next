@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Storage } from 'aws-amplify';
-import awsExports from '../src/aws-exports';
 
 const UploadImage = ({ setUrl }) => {
   const [file, setFile] = useState(null);
@@ -23,18 +22,14 @@ const UploadImage = ({ setUrl }) => {
     setErrorMessage(null);
 
     try {
-      const res = await Storage.put(key, file, {
+      await Storage.put(key, file, {
         contentType: file.type,
         level: 'public',
       });
 
-      const storedKey = res?.key ?? res?.params?.Key ?? key;
-      const bucket = awsExports.aws_user_files_s3_bucket;
-      const region = awsExports.aws_user_files_s3_bucket_region ?? awsExports.aws_project_region ?? 'us-east-1';
-      const path = String(storedKey).startsWith('public/') ? storedKey : `public/${storedKey}`;
-      const publicUrl = `https://${bucket}.s3.${region}.amazonaws.com/${path}`;
-
-      setUrl(publicUrl);
+      // Store the Storage key (not a direct S3 URL) so display can use
+      // useS3Url/S3Image and Storage.get() to get a working signed URL.
+      setUrl(key);
       setButtonText('Uploaded!');
     } catch (err) {
       console.error('Error uploading profile image:', err);

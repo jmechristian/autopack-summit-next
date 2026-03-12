@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import UploadImage from '../../util/UploadImage';
 import { sendSpeakerUpdate } from '../../util/sendSpeakerUpdate';
 import { API } from 'aws-amplify';
+import { S3Image, useS3Url } from '../S3Image';
 import {
   createAPSSpeaker,
   createAPSSpeaker2024,
@@ -286,18 +287,26 @@ const SpeakerProfileForm = () => {
                     <div className='inline-flex items-center justify-center text-sm text-gray-600 mx-auto'>
                       <label htmlFor='profile' className=''>
                         <UploadImage
-                          setUrl={(url) => {
-                            setValue('headshot', url);
+                          setUrl={(key) => {
+                            setValue('headshot', key);
+                            setProfileUrl(key);
                           }}
                         />
-                        {profileUrl && profileUrl}
+                        {profileUrl && (
+                          <div className='mt-2 w-24 h-24 mx-auto rounded overflow-hidden bg-gray-100'>
+                            <S3Image
+                              src={profileUrl}
+                              alt='Profile preview'
+                              className='w-full h-full object-cover'
+                            />
+                          </div>
+                        )}
                       </label>
                       <input
                         {...register('headshot', { required: true })}
                         id='headshot'
                         name='headshot'
                         type='text'
-                        value={profileUrl}
                         className='sr-only'
                       />
                     </div>
