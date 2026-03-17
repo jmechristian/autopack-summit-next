@@ -5,6 +5,13 @@ import {
   PlusIcon,
   XCircleIcon,
 } from '@heroicons/react/24/solid';
+import { loadStripe } from '@stripe/stripe-js';
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
 import { MdCheckCircle } from 'react-icons/md';
 import { API } from 'aws-amplify';
 import {
@@ -121,6 +128,10 @@ const STEP_LABELS = [
   'Confirmation',
 ];
 
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+);
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
@@ -185,6 +196,10 @@ const RegistrationForm = () => {
     discountCode: '',
     totalAmount: 0,
   });
+  const [clientSecret, setClientSecret] = useState(null);
+  const [processingPayment, setProcessingPayment] = useState(false);
+  const [paymentError, setPaymentError] = useState(null);
+  const [invoiceUrl, setInvoiceUrl] = useState(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -638,9 +653,100 @@ const RegistrationForm = () => {
         await createAdditionalTicketRegistrants();
       }
 
-      // TODO: create additional registrants and their add-on requests here if needed
-
+      // Move the UI forward to confirmation regardless of invoice outcome.
       setStep(4);
+
+      // Fire-and-forget: generate and attach invoice PDF (including zero-balance with coupon).
+      if (mainRegistrantId) {
+        const registrationLabel =
+          effectiveAttendeeType === 'Exhibitor'
+            ? 'Exhibitor Staff Only'
+            : effectiveAttendeeType === 'Sponsor'
+              ? 'Sponsor Registration'
+              : 'General Registration';
+        const unitPrice = PRICING[effectiveAttendeeType] || 0;
+        const subtotal =
+          (PRICING[effectiveAttendeeType] || 0) * ticketQuantity + addOnsTotal;
+        const discountAmount = discountApplied
+          ? (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
+          : 0;
+        const lineItems = [
+          {
+            description: `${registrationLabel} - ${formData.firstName} ${formData.lastName}`,
+            quantity: 1,
+            amount: unitPrice,
+          },
+        ];
+
+        if (formData.attendeeType === 'Sponsor' && additionalRegistrants.length) {
+          additionalRegistrants.forEach((reg) => {
+            lineItems.push({
+              description: `${registrationLabel} - ${reg.firstName || ''} ${reg.lastName || ''}`.trim(),
+              quantity: 1,
+              amount: unitPrice,
+            });
+          });
+        }
+
+        if (addOnsSelected.length) {
+          lineItems.push({ type: 'section', description: 'Add-ons' });
+          addOnsSelected.forEach((sel) => {
+            lineItems.push({
+              description: sel.addOn?.title || 'Add-on',
+              quantity: 1,
+              amount: sel.addOn?.price ?? 0,
+            });
+          });
+        }
+
+        fetch('/api/generate-invoice', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            registrantId: mainRegistrantId,
+            registrant: {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              companyName: formData.companyName,
+              jobTitle: formData.jobTitle,
+              attendeeType: effectiveAttendeeType,
+              billingAddressFirstName: formData.billingAddress.firstName,
+              billingAddressLastName: formData.billingAddress.lastName,
+              billingAddressEmail: formData.billingAddress.email,
+              billingAddressPhone: formData.billingAddress.phone,
+              billingAddressStreet: formData.billingAddress.street,
+              billingAddressCity: formData.billingAddress.city,
+              billingAddressState: formData.billingAddress.state,
+              billingAddressZip: formData.billingAddress.zip,
+            },
+            invoiceId: mainRegistrantId,
+            lineItems,
+            subtotal,
+            discountAmount,
+            totalDue: totalAmount,
+            discountCode: formData.discountCode || null,
+            paymentConfirmation: formData.paymentConfirmation || null,
+          }),
+        })
+          .then(async (invoiceRes) => {
+            if (!invoiceRes.ok) {
+              const data = await invoiceRes.json().catch(() => ({}));
+              console.error('Invoice generation failed:', data?.error || invoiceRes.statusText);
+              return;
+            }
+            const data = await invoiceRes.json().catch(() => ({}));
+            if (data?.url) {
+              setInvoiceUrl(data.url);
+            }
+            console.log('Invoice generated:', data?.url);
+          })
+          .catch((invoiceErr) => {
+          console.error('Failed to generate invoice PDF:', invoiceErr);
+          });
+      }
     } catch (err) {
       console.error('Error submitting registration:', err);
       setSubmitError(
@@ -651,6 +757,140 @@ const RegistrationForm = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const initializePayment = async () => {
+    // For zero-total registrations (e.g. fully covered by a code),
+    // skip Stripe entirely and submit the registration directly.
+    if (totalAmount === 0) {
+      const isValid = validateStep(3);
+      if (!isValid) return;
+      setCompletedSteps((prev) => ({ ...prev, 3: true }));
+      await handleSubmitRegistration();
+      return;
+    }
+
+    const isValid = validateStep(3);
+    if (!isValid) return;
+
+    setProcessingPayment(true);
+    setPaymentError(null);
+    try {
+      const response = await fetch('/api/handle-stripe-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: totalAmount,
+          currency: 'usd',
+          quantity: ticketQuantity,
+          description: `APS Registration ${formData.lastName} -- ${formData.attendeeType}`,
+          metadata: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            attendeeType: formData.attendeeType,
+            email: formData.email,
+            phone: formData.phone,
+            companyName: formData.companyName,
+          },
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.clientSecret) {
+        throw new Error(data.error || 'Unable to initialize payment');
+      }
+      setClientSecret(data.clientSecret);
+    } catch (error) {
+      console.error('Error initializing payment:', error);
+      setPaymentError(
+        error.message || 'Failed to initialize payment. Please try again.',
+      );
+    } finally {
+      setProcessingPayment(false);
+    }
+  };
+
+  const PaymentForm = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [error, setError] = useState(null);
+    const [isSubmittingPayment, setIsSubmittingPayment] = useState(false);
+
+    const handlePaymentSubmit = async (e) => {
+      e.preventDefault();
+
+      if (!stripe || !elements) {
+        setError('Payment system is not ready. Please try again.');
+        return;
+      }
+
+      setIsSubmittingPayment(true);
+      setError(null);
+
+      try {
+        const { error: submitError } = await elements.submit();
+        if (submitError) {
+          setError(submitError.message);
+          setIsSubmittingPayment(false);
+          return;
+        }
+
+        const result = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            payment_method_data: {
+              billing_details: {
+                email: formData.email,
+                name: `${formData.firstName} ${formData.lastName}`,
+              },
+            },
+          },
+          redirect: 'if_required',
+        });
+
+        if (result.error) {
+          setError(result.error.message);
+          setIsSubmittingPayment(false);
+          return;
+        }
+
+        if (result.paymentIntent) {
+          // Store payment confirmation on the formData for downstream usage.
+          setFormData((prev) => ({
+            ...prev,
+            paymentConfirmation: result.paymentIntent.id,
+          }));
+          setCompletedSteps((prev) => ({ ...prev, 3: true }));
+          await handleSubmitRegistration();
+        }
+      } catch (err) {
+        console.error('Unexpected payment error:', err);
+        setError(
+          'An unexpected error occurred. Please try again or contact support.',
+        );
+      } finally {
+        setIsSubmittingPayment(false);
+      }
+    };
+
+    return (
+      <form onSubmit={handlePaymentSubmit} className='space-y-3'>
+        <PaymentElement />
+        {error && (
+          <div className='text-red-500 mt-2 p-2 bg-red-50 rounded'>{error}</div>
+        )}
+        <button
+          type='submit'
+          disabled={!stripe || !elements || isSubmittingPayment}
+          className='mt-2 w-full px-4 py-2.5 bg-ap-blue text-white text-sm font-semibold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+        >
+          {isSubmittingPayment
+            ? 'Processing payment…'
+            : `Pay $${totalAmount.toLocaleString()}`}
+        </button>
+      </form>
+    );
   };
 
   const validateStep = (stepToValidate) => {
@@ -703,19 +943,23 @@ const RegistrationForm = () => {
         newErrors.sponsorTicketOption =
           'Please select a ticket option (Standard Sponsor or Exhibitor Staff Only)';
       }
-      const ba = formData.billingAddress;
-      if (!ba.firstName.trim())
-        newErrors.billingFirstName = 'First name is required';
-      if (!ba.lastName.trim())
-        newErrors.billingLastName = 'Last name is required';
-      if (!ba.email.trim()) newErrors.billingEmail = 'Email is required';
-      if (!ba.phone.trim()) newErrors.billingPhone = 'Phone is required';
-      if (!ba.companyName.trim())
-        newErrors.billingCompanyName = 'Company name is required';
-      if (!ba.street.trim()) newErrors.billingStreet = 'Street is required';
-      if (!ba.city.trim()) newErrors.billingCity = 'City is required';
-      if (!ba.state) newErrors.billingState = 'State is required';
-      if (!ba.zip.trim()) newErrors.billingZip = 'Zip code is required';
+      // Only require billing details when there is a non-zero total.
+      // If a discount/code brings totalAmount to 0, billing can be skipped.
+      if (totalAmount > 0) {
+        const ba = formData.billingAddress;
+        if (!ba.firstName.trim())
+          newErrors.billingFirstName = 'First name is required';
+        if (!ba.lastName.trim())
+          newErrors.billingLastName = 'Last name is required';
+        if (!ba.email.trim()) newErrors.billingEmail = 'Email is required';
+        if (!ba.phone.trim()) newErrors.billingPhone = 'Phone is required';
+        if (!ba.companyName.trim())
+          newErrors.billingCompanyName = 'Company name is required';
+        if (!ba.street.trim()) newErrors.billingStreet = 'Street is required';
+        if (!ba.city.trim()) newErrors.billingCity = 'City is required';
+        if (!ba.state) newErrors.billingState = 'State is required';
+        if (!ba.zip.trim()) newErrors.billingZip = 'Zip code is required';
+      }
       if (!formData.termsAccepted)
         newErrors.termsAccepted = 'You must accept the terms';
     }
@@ -1848,23 +2092,44 @@ const RegistrationForm = () => {
               )}
             </div>
 
-            {/* Submit */}
-            <div className='mt-2'>
-              <button
-                onClick={() => {
-                  const isValid = validateStep(3);
-                  if (isValid) {
-                    setCompletedSteps((prev) => ({ ...prev, 3: true }));
-                    handleSubmitRegistration();
-                  }
-                }}
-                disabled={!canSubmit() || isSubmitting}
-                className='w-full px-4 py-3 bg-ap-blue text-white font-bold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
-              >
-                {isSubmitting ? 'Submitting…' : getSubmitLabel()}
-              </button>
+            {/* Submit / Payment */}
+            <div className='mt-2 space-y-3'>
+              {totalAmount > 0 && clientSecret && (
+                <Elements
+                  stripe={stripePromise}
+                  options={{
+                    clientSecret,
+                    appearance: { theme: 'stripe' },
+                  }}
+                >
+                  <PaymentForm />
+                </Elements>
+              )}
+              {totalAmount === 0 && (
+                <button
+                  onClick={initializePayment}
+                  disabled={!canSubmit() || isSubmitting}
+                  className='w-full px-4 py-3 bg-ap-blue text-white font-bold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                >
+                  {isSubmitting ? 'Submitting…' : getSubmitLabel()}
+                </button>
+              )}
+              {totalAmount > 0 && !clientSecret && (
+                <button
+                  onClick={initializePayment}
+                  disabled={!canSubmit() || processingPayment}
+                  className='w-full px-4 py-3 bg-ap-blue text-white font-bold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                >
+                  {processingPayment
+                    ? 'Starting payment…'
+                    : 'Continue to payment'}
+                </button>
+              )}
               {submitError && (
-                <p className='mt-3 text-sm text-red-500'>{submitError}</p>
+                <p className='text-sm text-red-500'>{submitError}</p>
+              )}
+              {paymentError && (
+                <p className='text-sm text-red-500'>{paymentError}</p>
               )}
             </div>
           </div>
@@ -1901,13 +2166,24 @@ const RegistrationForm = () => {
                 View registrant dashboard
               </a>
             )}
-            <button
-              type='button'
-              onClick={() => window.print()}
-              className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm'
-            >
-              Download invoice (PDF)
-            </button>
+            {invoiceUrl ? (
+              <a
+                href={invoiceUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm'
+              >
+                Download invoice (PDF)
+              </a>
+            ) : (
+              <button
+                type='button'
+                onClick={() => window.print()}
+                className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm'
+              >
+                Download invoice (PDF)
+              </button>
+            )}
           </div>
         </div>
 

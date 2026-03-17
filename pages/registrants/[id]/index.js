@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   getApsRegistrantById,
   getAddOnsByEventId,
@@ -6,12 +6,41 @@ import {
   uploadToAPS3,
   updateSpeakerProfile,
 } from '../../../util/api';
-import { MdAccessTime, MdCheckCircle, MdEdit } from 'react-icons/md';
+import { loadStripe } from '@stripe/stripe-js';
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
+import { Storage } from 'aws-amplify';
+import {
+  MdAccessTime,
+  MdCheckCircle,
+  MdEdit,
+  MdAddCircleOutline,
+  MdHotel,
+  MdEventNote,
+} from 'react-icons/md';
+import { useS3Url } from '../../../components/S3Image';
 
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 export const RegistrantPage = ({ registrant }) => {
   const [showEditSpeakerProfile, setShowEditSpeakerProfile] = useState(false);
   const billingPhone = registrant && registrant.billingAddressPhone;
   const billingEmail = registrant && registrant.billingAddressEmail;
+  const hasBilling =
+    registrant &&
+    (registrant.billingAddressFirstName ||
+      registrant.billingAddressLastName ||
+      registrant.billingAddressEmail ||
+      registrant.billingAddressPhone ||
+      registrant.billingAddressStreet ||
+      registrant.billingAddressCity ||
+      registrant.billingAddressState ||
+      registrant.billingAddressZip);
   console.log('registrant', registrant);
 
   const [speakerProfile, setSpeakerProfile] = useState({
@@ -30,6 +59,32 @@ export const RegistrantPage = ({ registrant }) => {
   const [savingAddOns, setSavingAddOns] = useState(false);
   const [addOnRequestError, setAddOnRequestError] = useState(null);
   const [addOnRequestSuccess, setAddOnRequestSuccess] = useState(null);
+  const [addOnPaymentClientSecret, setAddOnPaymentClientSecret] = useState(null);
+  const [addOnPaymentLoading, setAddOnPaymentLoading] = useState(false);
+  const [addOnPaymentError, setAddOnPaymentError] = useState(null);
+  const [uploadingProfilePic, setUploadingProfilePic] = useState(false);
+  const [profilePicError, setProfilePicError] = useState(null);
+
+  const appProfilePicPath = registrantData?.appUser?.profile?.profilePicture || '';
+  const { url: resolvedAppProfilePicUrl } = useS3Url(appProfilePicPath);
+  const canUploadProfilePic =
+    String(registrantData?.status || '').toUpperCase() === 'APPROVED' &&
+    !!registrantData?.appUser?.profile?.id;
+  const initials = `${registrantData?.firstName?.[0] || ''}${registrantData?.lastName?.[0] || ''}`.toUpperCase();
+
+  const paidAddOnsTotal = useMemo(
+    () =>
+      pendingAddOnsSelected.reduce(
+        (sum, entry) => sum + (Number(entry?.addOn?.price) > 0 ? Number(entry.addOn.price) : 0),
+        0
+      ),
+    [pendingAddOnsSelected]
+  );
+
+  useEffect(() => {
+    setAddOnPaymentClientSecret(null);
+    setAddOnPaymentError(null);
+  }, [paidAddOnsTotal, pendingAddOnsSelected.length]);
 
   const handleFileUpload = async (file, type) => {
     if (!file) return;
@@ -90,7 +145,7 @@ export const RegistrantPage = ({ registrant }) => {
     loadAddOns();
   }, [registrantData?.apsID]);
 
-  const handleSubmitAddOnRequests = async () => {
+  const submitAddOnRequests = async () => {
     if (!registrantData?.id || pendingAddOnsSelected.length === 0) return;
     setAddOnRequestError(null);
     setAddOnRequestSuccess(null);
@@ -106,6 +161,7 @@ export const RegistrantPage = ({ registrant }) => {
         });
       }
       setPendingAddOnsSelected([]);
+      setAddOnPaymentClientSecret(null);
       setAddOnRequestSuccess('Your add-on requests have been submitted.');
       await refreshData();
     } catch (err) {
@@ -118,154 +174,337 @@ export const RegistrantPage = ({ registrant }) => {
     }
   };
 
+  const handleSubmitAddOnRequests = async () => {
+    if (!registrantData?.id || pendingAddOnsSelected.length === 0) return;
+    setAddOnPaymentError(null);
+
+    if (paidAddOnsTotal <= 0) {
+      await submitAddOnRequests();
+      return;
+    }
+
+    try {
+      setAddOnPaymentLoading(true);
+      const response = await fetch('/api/handle-stripe-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: paidAddOnsTotal,
+          currency: 'usd',
+          description: `APS Add-on requests (${registrantData.firstName} ${registrantData.lastName})`,
+          metadata: {
+            registrantId: registrantData.id,
+            email: registrantData.email,
+            type: 'ADD_ON_REQUESTS',
+            addOnCount: String(pendingAddOnsSelected.length),
+          },
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.clientSecret) {
+        throw new Error(data.error || 'Unable to initialize add-on payment');
+      }
+      setAddOnPaymentClientSecret(data.clientSecret);
+    } catch (err) {
+      console.error('Error initializing add-on payment', err);
+      setAddOnPaymentError(
+        err?.message || 'Unable to initialize payment for add-ons.'
+      );
+    } finally {
+      setAddOnPaymentLoading(false);
+    }
+  };
+
+  const AddOnPaymentForm = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [error, setError] = useState(null);
+    const [submitting, setSubmitting] = useState(false);
+
+    const handlePay = async (e) => {
+      e.preventDefault();
+      if (!stripe || !elements) return;
+      setSubmitting(true);
+      setError(null);
+
+      try {
+        const { error: submitError } = await elements.submit();
+        if (submitError) {
+          setError(submitError.message);
+          setSubmitting(false);
+          return;
+        }
+
+        const result = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            payment_method_data: {
+              billing_details: {
+                email: registrantData.email,
+                name: `${registrantData.firstName} ${registrantData.lastName}`,
+              },
+            },
+          },
+          redirect: 'if_required',
+        });
+
+        if (result.error) {
+          setError(result.error.message);
+          setSubmitting(false);
+          return;
+        }
+
+        await submitAddOnRequests();
+      } catch (err) {
+        console.error('Add-on payment failed', err);
+        setError('Payment failed. Please try again.');
+      } finally {
+        setSubmitting(false);
+      }
+    };
+
+    return (
+      <form onSubmit={handlePay} className='mt-3 space-y-3'>
+        <PaymentElement />
+        {error && <div className='text-sm text-red-600'>{error}</div>}
+        <button
+          type='submit'
+          disabled={!stripe || !elements || submitting}
+          className='inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg bg-ap-blue text-white hover:bg-ap-blue/90 disabled:opacity-50 disabled:cursor-not-allowed'
+        >
+          {submitting
+            ? 'Processing payment...'
+            : `Pay $${paidAddOnsTotal.toLocaleString()} and submit`}
+        </button>
+      </form>
+    );
+  };
+
+  const handleAppProfilePictureUpload = async (file) => {
+    if (!file || !canUploadProfilePic) return;
+    setUploadingProfilePic(true);
+    setProfilePicError(null);
+
+    try {
+      const safeName = file.name.replace(/\s+/g, '-');
+      const key = `profile-pictures/${registrantData.id}-${Date.now()}-${safeName}`;
+      const uploadRes = await Storage.put(key, file, {
+        contentType: file.type,
+        level: 'public',
+      });
+      const storedKey = uploadRes?.key || uploadRes?.params?.Key || key;
+
+      const response = await fetch('/api/update-app-user-profile-picture', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          profileId: registrantData.appUser.profile.id,
+          profilePicture: storedKey,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to update profile picture');
+      }
+      await refreshData();
+    } catch (error) {
+      console.error('Error uploading app profile picture:', error);
+      setProfilePicError(
+        error?.message || 'Could not upload profile picture. Please try again.'
+      );
+    } finally {
+      setUploadingProfilePic(false);
+    }
+  };
+
   return (
     <div className='w-full pt-10 pb-16'>
       {registrantData ? (
-        <div className='w-full max-w-7xl mx-auto border border-gray-300 p-5 grid grid-cols-1 lg:grid-cols-12'>
-          <div className='col-span-12 lg:col-span-3'>
-            <div
-              className='w-full h-full  bg-ap-blue p-6 bg-cover bg-center bg-no-repeat'
-              style={{
-                backgroundImage: `url('https://apsmedia.s3.us-east-1.amazonaws.com/profile-header.png')`,
-              }}
-            >
-              <div className='flex flex-col gap-5 h-full'>
-                <div className='w-full flex flex-col gap-2'>
-                  <div className='text-3xl text-ap-yellow font-oswald uppercase'>
-                    Welcome!
-                  </div>
-                  <div className='w-full flex flex-col gap-0'>
-                    <div className='text-white text-5xl font-oswald uppercase'>
-                      {registrantData.firstName} <br />{' '}
-                      {registrantData.lastName}
-                    </div>
-                  </div>
-                  <div className='w-full flex flex-col gap-0 mt-3'>
-                    <div className='text-white text-xl font-oswald uppercase'>
-                      {registrantData.company.name}
-                    </div>
-                    <div className='text-white text-lg max-w-[200px] font-oswald text-white/60 leading-tight'>
-                      {registrantData.jobTitle}
-                    </div>
-                  </div>
-                </div>
-                <div className='flex flex-col gap-3'>
-                  <div className='flex flex-col gap-0'>
-                    <div className='text-sm font-bold text-ap-yellow'>
-                      Registration Type
-                    </div>
-                    <div className='text-white text-lg font-oswald uppercase'>
-                      {registrantData.attendeeType}
-                    </div>
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <div className='text-sm font-bold text-ap-yellow'>
-                      Registration Status
-                    </div>
-                    <div
-                      className={`flex items-center gap-1 text-lg font-oswald uppercase w-fit ${
-                        registrantData.status === 'PENDING'
-                          ? 'bg-ap-yellow px-2 py-0.5 rounded-lg'
-                          : registrantData.status === 'WAITLIST'
-                          ? 'bg-yellow-500 px-2 py-0.5 rounded-lg'
-                          : 'bg-green-600 px-2 py-0.5 rounded-lg'
-                      }`}
-                    >
-                      <div>
-                        {registrantData.status === 'PENDING' ? (
-                          <MdAccessTime color='black' size={24} />
-                        ) : registrantData.status === 'WAITLIST' ? (
-                          <MdAccessTime color='black' size={24} />
-                        ) : (
-                          <MdCheckCircle color='green' size={24} />
-                        )}
-                      </div>
-                      <div
-                        className={`${
-                          registrantData.status === 'PENDING'
-                            ? 'text-neutral-600'
-                            : registrantData.status === 'WAITLIST'
-                            ? 'text-black'
-                            : 'text-white'
-                        }`}
-                      >
-                        {registrantData.status === 'PENDING'
-                          ? 'Pending'
-                          : registrantData.status === 'WAITLIST'
-                          ? 'Waitlist'
-                          : 'Registered'}
-                      </div>
-                    </div>
-                  </div>
-                  <div className='pt-6 mt-6 border-t border-white/30'>
-                    <div className='rounded-md bg-black/45 backdrop-blur-md border border-white/40 shadow-lg p-3'>
-                      <div className='text-sm font-bold text-ap-yellow mb-2'>
-                        Billing Details
-                      </div>
-                      <div className='text-white text-sm leading-tight font-medium'>
-                        {registrantData.billingAddressFirstName}{' '}
-                        {registrantData.billingAddressLastName}
-                      </div>
-                      <div className='text-white text-sm'>{billingPhone}</div>
-                      <div className='text-white text-sm'>{billingEmail}</div>
-                      <div className='text-white text-sm'>
-                        {registrantData.billingAddressStreet}
-                      </div>
-                      <div className='text-white text-sm'>
-                        {registrantData.billingAddressCity},{' '}
-                        {registrantData.billingAddressState},{' '}
-                        {registrantData.billingAddressZip}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* SPEAKER PROFILE */}
-                {registrantData.attendeeType === 'Speaker' && (
-                  <div className='flex items-end flex-1 gap-2'>
-                    <div
-                      className='flex items-center gap-4 cursor-pointer'
-                      onClick={() => setShowEditSpeakerProfile(true)}
-                    >
-                      {speakerProfile.headshot ? (
-                        <div
-                          className='w-16 h-20 bg-cover bg-center bg-no-repeat'
-                          style={{
-                            backgroundImage: `url(${speakerProfile.headshot})`,
-                          }}
-                        ></div>
-                      ) : (
-                        <div className='w-12 h-16 bg-ap-blue rounded flex items-center justify-center'>
-                          <div className='text-white/70 text-3xl font-oswald uppercase'>
-                            {registrantData.firstName.charAt(0)}
-                            {registrantData.lastName.charAt(0)}
-                          </div>
-                        </div>
-                      )}
-                      <div className='flex items-center gap-2'>
-                        <div className='w-7 h-7 bg-white rounded-full flex items-center justify-center'>
-                          <MdEdit color='black' size={20} />
-                        </div>
-                        <div className='text-sm font-semibold text-white hover:text-ap-yellow'>
-                          Edit Speaker Profile
-                        </div>
-                      </div>
-                    </div>
+        <div className='w-full max-w-7xl mx-auto p-5 bg-gray-100 rounded-xl grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch'>
+          {/* LEFT COLUMN */}
+          <div className='col-span-12 lg:col-span-3 space-y-4 lg:flex lg:flex-col'>
+            <div className='bg-white border border-gray-200 rounded-lg p-4'>
+              <div className='flex flex-col items-center text-center'>
+                {resolvedAppProfilePicUrl ? (
+                  <div
+                    className='w-24 h-24 rounded-full bg-cover bg-center'
+                    style={{ backgroundImage: `url(${resolvedAppProfilePicUrl})` }}
+                  />
+                ) : (
+                  <div className='w-24 h-24 rounded-full bg-ap-blue text-white flex items-center justify-center text-3xl font-oswald'>
+                    {initials || 'AP'}
                   </div>
                 )}
+                <div className='mt-3 text-3xl font-oswald leading-tight'>
+                  {registrantData.firstName}
+                  <br />
+                  {registrantData.lastName}
+                </div>
+                {registrantData.jobTitle && (
+                  <div className='text-sm text-gray-700 mt-1'>{registrantData.jobTitle}</div>
+                )}
+                <div className='text-sm text-gray-600 mt-1'>{registrantData.company?.name}</div>
+              </div>
+              {canUploadProfilePic && (
+                <div className='mt-4'>
+                  <label className='w-full inline-flex items-center justify-center text-sm font-semibold px-3 py-2 rounded-md border border-gray-300 hover:bg-gray-50 cursor-pointer'>
+                    {uploadingProfilePic ? 'Uploading...' : 'Upload profile photo'}
+                    <input
+                      type='file'
+                      accept='image/*'
+                      className='hidden'
+                      onChange={(e) => {
+                        if (e.target.files?.[0]) {
+                          handleAppProfilePictureUpload(e.target.files[0]);
+                        }
+                      }}
+                      disabled={uploadingProfilePic}
+                    />
+                  </label>
+                  {profilePicError && (
+                    <div className='mt-2 text-xs text-red-600'>{profilePicError}</div>
+                  )}
+                </div>
+              )}
+              {registrantData.attendeeType === 'Speaker' && (
+                <button
+                  type='button'
+                  onClick={() => setShowEditSpeakerProfile(true)}
+                  className='mt-4 w-full text-sm font-semibold px-3 py-2 rounded-md border border-gray-300 hover:bg-gray-50'
+                >
+                  Edit Speaker Profile
+                </button>
+              )}
+            </div>
+
+            <div className='bg-white border border-gray-200 rounded-lg p-4 lg:flex-1 lg:flex lg:flex-col'>
+              <div className='text-sm font-bold text-gray-900'>Registration Status</div>
+              <div className='mt-2'>
+                <span
+                  className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full ${
+                    registrantData.status === 'PENDING'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : registrantData.status === 'WAITLIST'
+                      ? 'bg-orange-100 text-orange-800'
+                      : 'bg-green-100 text-green-800'
+                  }`}
+                >
+                  {registrantData.status === 'PENDING' ? (
+                    <MdAccessTime size={14} />
+                  ) : (
+                    <MdCheckCircle size={14} />
+                  )}
+                  {registrantData.status}
+                </span>
+              </div>
+
+              <div className='mt-5 pt-4 border-t border-gray-200 text-sm lg:flex-1'>
+                <div className='rounded-md border border-gray-200 divide-y divide-gray-200'>
+                  <a
+                    href='/register'
+                    className='flex items-center gap-2 px-3 py-2.5 font-medium hover:bg-gray-50'
+                  >
+                    <MdAddCircleOutline size={16} />
+                    <span>Add Tickets</span>
+                  </a>
+                  <a
+                    href='https://www.hyatt.com/en-US/group-booking/GSPRG/G-APSM'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center gap-2 px-3 py-2.5 font-medium hover:bg-gray-50'
+                  >
+                    <MdHotel size={16} />
+                    <span>Book Hotel</span>
+                  </a>
+                  <a
+                    href='/agenda'
+                    className='flex items-center gap-2 px-3 py-2.5 font-medium hover:bg-gray-50'
+                  >
+                    <MdEventNote size={16} />
+                    <span>View Agenda</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className='mt-4 space-y-2'>
+                {registrantData.invoice && (
+                  <a
+                    href={registrantData.invoice}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='block w-full px-3 py-2 rounded-md bg-black text-white text-sm font-semibold text-center hover:bg-gray-800'
+                  >
+                    Download invoice
+                  </a>
+                )}
+                <button
+                  type='button'
+                  disabled
+                  className='block w-full px-3 py-2 rounded-md border border-gray-300 text-sm font-semibold text-gray-500 cursor-not-allowed'
+                >
+                  Download app (coming soon)
+                </button>
+                <a
+                  href='mailto:bianca@packagingschool.com'
+                  className='block w-full px-3 py-2 rounded-md border border-gray-300 text-sm font-semibold text-center hover:bg-gray-50'
+                >
+                  Contact organizer
+                </a>
               </div>
             </div>
           </div>
-          {/* MAIN CONTENT */}
-          <div className='col-span-12 lg:col-span-9'>
-            <div className='w-full h-full px-8 pt-8 pb-10 bg-ap-yellow/10 flex flex-col gap-12'>
-              {/* ADD-ONS (SUMMARY) */}
-              <div className='w-full'>
-                <div className='text-sm font-bold text-ap-blue mb-3'>
-                  Add-ons
+
+          {/* RIGHT MAIN COLUMN */}
+          <div className='col-span-12 lg:col-span-9 space-y-4'>
+            {/* TOP ROW */}
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-4'>
+              <div className='lg:col-span-12 bg-white border border-gray-200 rounded-lg p-4'>
+                <div className='text-base font-semibold text-gray-900'>
+                  Automotive Packaging Summit 2026
                 </div>
-                {registrantData.addOnRequests &&
-                registrantData.addOnRequests.items &&
-                registrantData.addOnRequests.items.length > 0 ? (
+                <div className='text-sm text-gray-600 mt-1'>
+                  Sept 30 - Oct 2, 2026 · Greenville, SC
+                </div>
+                <div className='text-sm font-bold text-ap-blue mt-4 mb-2'>
+                  Agenda Snapshot
+                </div>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
+                  <div className='rounded-lg border border-gray-200 bg-white p-3'>
+                    <div className='text-sm font-semibold text-gray-900 mb-2'>Wed, Sep 30</div>
+                    <div className='space-y-2 text-sm text-gray-800 leading-snug'>
+                      <div>Optional Add on Tours</div>
+                      <div>6PM: Cocktail Hour at New Realm Brewery</div>
+                    </div>
+                  </div>
+                  <div className='rounded-lg border border-gray-200 bg-white p-3'>
+                    <div className='text-sm font-semibold text-gray-900 mb-2'>Thursday, Oct 1st</div>
+                    <div className='space-y-2 text-sm text-gray-800 leading-snug'>
+                      <div>7:30AM: Doors Open and Registration</div>
+                      <div>8:30AM: All Day Conference</div>
+                      <div>5PM: Cocktail Reception and Hors d&apos;Oeuvres</div>
+                    </div>
+                  </div>
+                  <div className='rounded-lg border border-gray-200 bg-white p-3'>
+                    <div className='text-sm font-semibold text-gray-900 mb-2'>Friday, Oct 2nd</div>
+                    <div className='space-y-2 text-sm text-gray-800 leading-snug'>
+                      <div>Optional Add on Tours</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SECOND ROW */}
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-4'>
+              <div className='lg:col-span-8 bg-white border border-gray-200 rounded-lg p-4'>
+                <div className='text-sm font-bold text-ap-blue mb-3'>
+                  Add-ons Requested/Approved
+                </div>
+                {registrantData.addOnRequests?.items?.length > 0 ? (
                   <div className='space-y-3'>
                     {registrantData.addOnRequests.items.map((req) => {
                       const addon = req.addOn;
@@ -282,15 +521,10 @@ export const RegistrantPage = ({ registrant }) => {
                       }
 
                       const isApproved = req.status === 'APPROVED';
-                      const statusLabel = isApproved ? 'Approved' : 'Pending';
-                      const statusClasses = isApproved
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800';
-
                       return (
                         <div
                           key={req.id}
-                          className='flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-3 bg-white border border-gray-200 rounded-lg'
+                          className='flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-3 border border-gray-200 rounded-lg'
                         >
                           <div className='space-y-1 text-sm text-gray-700'>
                             <div className='font-semibold text-gray-900'>
@@ -315,9 +549,13 @@ export const RegistrantPage = ({ registrant }) => {
                             )}
                           </div>
                           <span
-                            className={`inline-flex items-center justify-center px-3 py-1 text-xs font-semibold rounded-full ${statusClasses}`}
+                            className={`inline-flex items-center justify-center px-3 py-1 text-xs font-semibold rounded-full ${
+                              isApproved
+                                ? 'bg-green-100 text-green-800'
+                                : 'bg-yellow-100 text-yellow-800'
+                            }`}
                           >
-                            {statusLabel}
+                            {isApproved ? 'Approved' : 'Pending'}
                           </span>
                         </div>
                       );
@@ -329,7 +567,8 @@ export const RegistrantPage = ({ registrant }) => {
                   </div>
                 )}
               </div>
-              <div className='w-full'>
+
+              <div className='lg:col-span-4 bg-white border border-gray-200 rounded-lg p-4'>
                 <div className='text-sm font-bold text-ap-blue mb-3'>
                   Request additional add-ons
                 </div>
@@ -339,13 +578,9 @@ export const RegistrantPage = ({ registrant }) => {
                   <>
                     {(() => {
                       const requestedIds = new Set(
-                        registrantData.addOnRequests?.items?.map(
-                          (r) => r.addOnId
-                        ) || []
+                        registrantData.addOnRequests?.items?.map((r) => r.addOnId) || []
                       );
-                      const available = availableAddOns.filter(
-                        (a) => !requestedIds.has(a.id)
-                      );
+                      const available = availableAddOns.filter((a) => !requestedIds.has(a.id));
 
                       if (available.length === 0) {
                         return (
@@ -356,7 +591,7 @@ export const RegistrantPage = ({ registrant }) => {
                       }
 
                       return (
-                        <div className='space-y-3'>
+                        <div className='space-y-3 max-h-[420px] overflow-auto pr-1'>
                           {available.map((addOn) => {
                             const isSelected = pendingAddOnsSelected.some(
                               (s) => s.addOnId === addOn.id
@@ -379,7 +614,7 @@ export const RegistrantPage = ({ registrant }) => {
                             return (
                               <div
                                 key={addOn.id}
-                                className={`rounded-lg border p-3 bg-white ${
+                                className={`rounded-lg border p-3 ${
                                   isSelected
                                     ? 'border-ap-blue bg-ap-blue/5'
                                     : 'border-gray-200'
@@ -394,31 +629,24 @@ export const RegistrantPage = ({ registrant }) => {
                                         const prefs = {};
                                         schema.forEach((f) => {
                                           prefs[f.key] =
-                                            f.type === 'select' &&
-                                            f.options?.[0]
+                                            f.type === 'select' && f.options?.[0]
                                               ? f.options[0]
                                               : '';
                                         });
                                         setPendingAddOnsSelected((prev) => [
                                           ...prev,
-                                          {
-                                            addOnId: addOn.id,
-                                            addOn,
-                                            preferences: prefs,
-                                          },
+                                          { addOnId: addOn.id, addOn, preferences: prefs },
                                         ]);
                                       } else {
                                         setPendingAddOnsSelected((prev) =>
-                                          prev.filter(
-                                            (s) => s.addOnId !== addOn.id
-                                          )
+                                          prev.filter((s) => s.addOnId !== addOn.id)
                                         );
                                       }
                                     }}
                                     className='mt-1'
                                   />
                                   <div className='flex-1 min-w-0'>
-                                    <div className='font-medium text-gray-900'>
+                                    <div className='font-medium text-gray-900 text-sm'>
                                       {addOn.title}
                                     </div>
                                     <div className='text-xs text-gray-500 mt-0.5'>
@@ -426,16 +654,8 @@ export const RegistrantPage = ({ registrant }) => {
                                         .filter(Boolean)
                                         .join(' • ')}
                                     </div>
-                                    {addOn.description && (
-                                      <div
-                                        className='text-sm text-gray-600 mt-2 [&_*]:!text-gray-600 [&_b]:!font-semibold'
-                                        dangerouslySetInnerHTML={{
-                                          __html: addOn.description,
-                                        }}
-                                      />
-                                    )}
                                     {addOn.price != null && addOn.price > 0 && (
-                                      <div className='text-sm font-medium text-gray-900 mt-2'>
+                                      <div className='text-sm font-medium text-gray-900 mt-1'>
                                         ${addOn.price}
                                       </div>
                                     )}
@@ -451,28 +671,25 @@ export const RegistrantPage = ({ registrant }) => {
                                         {field.type === 'select' ? (
                                           <select
                                             value={
-                                              selectedEntry?.preferences?.[
-                                                field.key
-                                              ] ?? ''
+                                              selectedEntry?.preferences?.[field.key] ?? ''
                                             }
                                             onChange={(e) => {
                                               const v = e.target.value;
-                                              setPendingAddOnsSelected(
-                                                (prev) =>
-                                                  prev.map((s) =>
-                                                    s.addOnId === addOn.id
-                                                      ? {
-                                                          ...s,
-                                                          preferences: {
-                                                            ...s.preferences,
-                                                            [field.key]: v,
-                                                          },
-                                                        }
-                                                      : s
-                                                  )
+                                              setPendingAddOnsSelected((prev) =>
+                                                prev.map((s) =>
+                                                  s.addOnId === addOn.id
+                                                    ? {
+                                                        ...s,
+                                                        preferences: {
+                                                          ...s.preferences,
+                                                          [field.key]: v,
+                                                        },
+                                                      }
+                                                    : s
+                                                )
                                               );
                                             }}
-                                            className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+                                            className='w-full px-2 py-1.5 border border-gray-300 rounded text-sm'
                                           >
                                             {field.options?.map((opt) => (
                                               <option key={opt} value={opt}>
@@ -484,28 +701,25 @@ export const RegistrantPage = ({ registrant }) => {
                                           <input
                                             type='text'
                                             value={
-                                              selectedEntry?.preferences?.[
-                                                field.key
-                                              ] ?? ''
+                                              selectedEntry?.preferences?.[field.key] ?? ''
                                             }
                                             onChange={(e) => {
                                               const v = e.target.value;
-                                              setPendingAddOnsSelected(
-                                                (prev) =>
-                                                  prev.map((s) =>
-                                                    s.addOnId === addOn.id
-                                                      ? {
-                                                          ...s,
-                                                          preferences: {
-                                                            ...s.preferences,
-                                                            [field.key]: v,
-                                                          },
-                                                        }
-                                                      : s
-                                                  )
+                                              setPendingAddOnsSelected((prev) =>
+                                                prev.map((s) =>
+                                                  s.addOnId === addOn.id
+                                                    ? {
+                                                        ...s,
+                                                        preferences: {
+                                                          ...s.preferences,
+                                                          [field.key]: v,
+                                                        },
+                                                      }
+                                                    : s
+                                                )
                                               );
                                             }}
-                                            className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+                                            className='w-full px-2 py-1.5 border border-gray-300 rounded text-sm'
                                           />
                                         )}
                                       </div>
@@ -518,34 +732,145 @@ export const RegistrantPage = ({ registrant }) => {
                         </div>
                       );
                     })()}
+
                     {addOnRequestError && (
-                      <div className='mt-3 text-sm text-red-600'>
-                        {addOnRequestError}
-                      </div>
+                      <div className='mt-3 text-sm text-red-600'>{addOnRequestError}</div>
                     )}
                     {addOnRequestSuccess && (
-                      <div className='mt-3 text-sm text-green-600'>
-                        {addOnRequestSuccess}
-                      </div>
+                      <div className='mt-3 text-sm text-green-600'>{addOnRequestSuccess}</div>
                     )}
                     <div className='mt-4'>
-                      <button
-                        type='button'
-                        onClick={handleSubmitAddOnRequests}
-                        disabled={
-                          savingAddOns || pendingAddOnsSelected.length === 0
-                        }
-                        className={`inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg shadow-sm ${
-                          savingAddOns || pendingAddOnsSelected.length === 0
-                            ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                            : 'bg-ap-blue text-white hover:bg-ap-blue/90'
-                        }`}
-                      >
-                        {savingAddOns ? 'Submitting...' : 'Submit add-on requests'}
-                      </button>
+                      {!addOnPaymentClientSecret ? (
+                        <button
+                          type='button'
+                          onClick={handleSubmitAddOnRequests}
+                          disabled={
+                            savingAddOns ||
+                            addOnPaymentLoading ||
+                            pendingAddOnsSelected.length === 0
+                          }
+                          className={`inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg shadow-sm ${
+                            savingAddOns ||
+                            addOnPaymentLoading ||
+                            pendingAddOnsSelected.length === 0
+                              ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
+                              : 'bg-ap-blue text-white hover:bg-ap-blue/90'
+                          }`}
+                        >
+                          {addOnPaymentLoading
+                            ? 'Starting payment...'
+                            : paidAddOnsTotal > 0
+                            ? `Continue to payment ($${paidAddOnsTotal.toLocaleString()})`
+                            : savingAddOns
+                            ? 'Submitting...'
+                            : 'Submit add-on requests'}
+                        </button>
+                      ) : (
+                        <div className='max-w-xl'>
+                          <div className='text-xs text-gray-600 mb-2'>
+                            Complete payment to submit paid add-on requests.
+                          </div>
+                          <Elements
+                            stripe={stripePromise}
+                            options={{
+                              clientSecret: addOnPaymentClientSecret,
+                              appearance: { theme: 'stripe' },
+                            }}
+                          >
+                            <AddOnPaymentForm />
+                          </Elements>
+                        </div>
+                      )}
+                      {addOnPaymentError && (
+                        <div className='mt-2 text-sm text-red-600'>
+                          {addOnPaymentError}
+                        </div>
+                      )}
                     </div>
                   </>
                 )}
+              </div>
+            </div>
+
+            {/* BOTTOM SUMMARY */}
+            <div className='bg-white border border-gray-200 rounded-lg p-4'>
+              <div className='text-sm font-bold text-ap-blue mb-3'>
+                Registration Summary
+              </div>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700'>
+                <div className='space-y-1'>
+                  <div>
+                    <span className='font-semibold'>Name:</span>{' '}
+                    {registrantData.firstName} {registrantData.lastName}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Email:</span> {registrantData.email}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Company:</span>{' '}
+                    {registrantData.company?.name}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Title:</span>{' '}
+                    {registrantData.jobTitle}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Type:</span>{' '}
+                    {registrantData.attendeeType}
+                  </div>
+                </div>
+                <div className='space-y-1'>
+                  <div>
+                    <span className='font-semibold'>Total Amount:</span> $
+                    {Number(registrantData.totalAmount || 0).toLocaleString()}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Status:</span>{' '}
+                    {registrantData.status}
+                  </div>
+                  {registrantData.discountCode && (
+                    <div>
+                      <span className='font-semibold'>Discount Code:</span>{' '}
+                      {registrantData.discountCode}
+                    </div>
+                  )}
+                  {registrantData.paymentConfirmation && (
+                    <div>
+                      <span className='font-semibold'>Payment Confirmation:</span>{' '}
+                      {registrantData.paymentConfirmation}
+                    </div>
+                  )}
+                  {registrantData.invoice && (
+                    <div>
+                      <span className='font-semibold'>Invoice:</span>{' '}
+                      <a
+                        href={registrantData.invoice}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-ap-blue underline'
+                      >
+                        Download PDF
+                      </a>
+                    </div>
+                  )}
+                  {hasBilling && (
+                    <div className='mt-3 pt-3 border-t border-gray-200'>
+                      <div className='font-semibold mb-1'>Billing</div>
+                      <div>
+                        {registrantData.billingAddressFirstName}{' '}
+                        {registrantData.billingAddressLastName}
+                      </div>
+                      <div>{billingEmail}</div>
+                      <div>{billingPhone}</div>
+                      <div>{registrantData.billingAddressStreet}</div>
+                      <div>
+                        {registrantData.billingAddressCity},{' '}
+                        {registrantData.billingAddressState}{' '}
+                        {registrantData.billingAddressZip}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -715,6 +1040,7 @@ export const RegistrantPage = ({ registrant }) => {
 
 export const getServerSideProps = async ({ params }) => {
   const registrant = await getApsRegistrantById(params.id);
+
   return {
     props: { registrant },
   };

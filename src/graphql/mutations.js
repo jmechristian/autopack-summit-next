@@ -228,6 +228,7 @@ export const updateAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -1060,6 +1061,7 @@ export const deleteAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -1775,6 +1777,7 @@ export const createAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -2079,6 +2082,7 @@ export const updateAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -2383,6 +2387,7 @@ export const deleteAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -2746,6 +2751,7 @@ export const createApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -3087,6 +3093,7 @@ export const updateApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -3428,6 +3435,7 @@ export const deleteApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -3660,1345 +3668,6 @@ export const deleteApsAgenda = /* GraphQL */ `
     }
   }
 `;
-export const updateApsRegistrant = /* GraphQL */ `
-  mutation UpdateApsRegistrant(
-    $input: UpdateApsRegistrantInput!
-    $condition: ModelApsRegistrantConditionInput
-  ) {
-    updateApsRegistrant(input: $input, condition: $condition) {
-      id
-      apsID
-      aps {
-        id
-        year
-        codes {
-          items {
-            id
-            code
-            eventId
-            limit
-            used
-            createdAt
-            updatedAt
-            aPSCodesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        agenda {
-          id
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          items {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        startDate
-        endDate
-        location
-        address
-        city
-        state
-        zip
-        website
-        Registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Sponsors {
-          items {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Speakers {
-          items {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        companies {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitors {
-          items {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPromotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPhotos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorHandouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOns {
-          items {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAgendaId
-        __typename
-      }
-      firstName
-      lastName
-      email
-      phone
-      companyId
-      company {
-        id
-        name
-        email
-        type
-        description
-        website
-        phone
-        address
-        city
-        state
-        zip
-        country
-        logo
-        events {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        exhibitorProfileId
-        exhibitorProfile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        contacts {
-          items {
-            id
-            companyId
-            name
-            email
-            phone
-            title
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      jobTitle
-      attendeeType
-      termsAccepted
-      interests
-      otherInterest
-      buyerQuestion
-      packagingChallenge
-      certification
-      billingAddressFirstName
-      billingAddressLastName
-      billingAddressEmail
-      billingAddressPhone
-      billingAddressStreet
-      billingAddressCity
-      billingAddressState
-      billingAddressZip
-      sameAsAttendee
-      speakerTopic
-      learningObjectives
-      totalAmount
-      discountCode
-      status
-      paymentConfirmation
-      registrationEmailSent
-      registrationEmailSentDate
-      registrationEmailReceived
-      registrationEmailReceivedDate
-      welcomeEmailSent
-      welcomeEmailSentDate
-      welcomeEmailReceived
-      welcomeEmailReceivedDate
-      paymentMethod
-      paymentLast4
-      approvedAt
-      headshot
-      presentation
-      presentationTitle
-      presentationSummary
-      bio
-      seatingChartRegistrant {
-        id
-        category
-        firstName
-        lastName
-        company
-        email
-        role
-        tableNumber
-        notes
-        seatingChartID
-        seatingChart {
-          id
-          registrants {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        registrantID
-        registrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          buyerQuestion
-          packagingChallenge
-          certification
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnRequests {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        createdAt
-        updatedAt
-        apsSeatingChartRegistrantsId
-        __typename
-      }
-      addOnRequests {
-        items {
-          id
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          addOnId
-          addOn {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          status
-          preferences
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      appUserId
-      appUser {
-        id
-        registrantId
-        registrant {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          buyerQuestion
-          packagingChallenge
-          certification
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnRequests {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sessionQuestions {
-          items {
-            id
-            sessionId
-            question
-            userId
-            createdAt
-            updatedAt
-            apsAppUserSessionQuestionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        contacts {
-          items {
-            id
-            userId
-            favorite
-            contactId
-            createdAt
-            updatedAt
-            apsAppUserContactsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        leads {
-          items {
-            id
-            userId
-            favorite
-            contactId
-            createdAt
-            updatedAt
-            apsAppUserLeadsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sentDmMessages {
-          items {
-            id
-            eventId
-            threadId
-            senderUserId
-            owners
-            type
-            body
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        profileId
-        profile {
-          id
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          company
-          jobTitle
-          attendeeType
-          quickTools
-          affiliates {
-            nextToken
-            __typename
-          }
-          profilePicture
-          bio
-          linkedin
-          twitter
-          facebook
-          instagram
-          youtube
-          website
-          location
-          education {
-            nextToken
-            __typename
-          }
-          interests {
-            nextToken
-            __typename
-          }
-          resume
-          contacts {
-            nextToken
-            __typename
-          }
-          leads {
-            nextToken
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          speakerId
-          speaker {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      notes {
-        items {
-          id
-          owner
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          note
-          sessionId
-          session {
-            id
-            title
-            date
-            startTime
-            endTime
-            location
-            description
-            agendaId
-            createdAt
-            updatedAt
-            apsAgendaItemsId
-            __typename
-          }
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          profileId
-          profile {
-            id
-            userId
-            firstName
-            lastName
-            email
-            phone
-            company
-            jobTitle
-            attendeeType
-            quickTools
-            profilePicture
-            bio
-            linkedin
-            twitter
-            facebook
-            instagram
-            youtube
-            website
-            location
-            resume
-            speakerId
-            createdAt
-            updatedAt
-            __typename
-          }
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          apsAppUserNotesId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      qrCode
-      createdAt
-      updatedAt
-      aPSRegistrantsId
-      aPSCompanyRegistrantsId
-      apsRegistrantSeatingChartRegistrantId
-      __typename
-    }
-  }
-`;
 export const deleteApsRegistrant = /* GraphQL */ `
   mutation DeleteApsRegistrant(
     $input: DeleteApsRegistrantInput!
@@ -5108,6 +3777,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -5372,6 +4042,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -5613,6 +4284,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
       presentationTitle
       presentationSummary
       bio
+      invoice
       seatingChartRegistrant {
         id
         category
@@ -5718,6 +4390,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -5816,6 +4489,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -5941,6 +4615,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -6263,6 +4938,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -6587,6 +5263,7 @@ export const createApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -6652,6 +5329,7 @@ export const createApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -6731,6 +5409,7 @@ export const createApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -7103,6 +5782,7 @@ export const createApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -7307,6 +5987,7 @@ export const createApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -7741,6 +6422,7 @@ export const updateApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -7806,6 +6488,7 @@ export const updateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -7885,6 +6568,7 @@ export const updateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -8257,6 +6941,7 @@ export const updateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -8461,6 +7146,7 @@ export const updateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -8895,6 +7581,7 @@ export const deleteApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -8960,6 +7647,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -9039,6 +7727,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -9411,6 +8100,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -9615,6 +8305,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -9954,6 +8645,7 @@ export const createApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -10236,6 +8928,7 @@ export const createApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -10577,6 +9270,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -10859,6 +9553,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -11200,6 +9895,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -11482,6 +10178,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -11824,6 +10521,7 @@ export const createApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -12637,6 +11335,7 @@ export const createApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -12702,6 +11401,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -12781,6 +11481,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -12930,6 +11631,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -13244,6 +11946,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -13548,6 +12251,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -14361,6 +13065,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -14426,6 +13131,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14505,6 +13211,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14654,6 +13361,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14968,6 +13676,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -15272,6 +13981,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -16085,6 +14795,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -16150,6 +14861,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16229,6 +14941,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16378,6 +15091,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16692,6 +15406,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16995,6 +15710,7 @@ export const createApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -17277,6 +15993,7 @@ export const createApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -17618,6 +16335,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -17900,6 +16618,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -18241,6 +16960,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -18523,6 +17243,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -18864,6 +17585,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -19422,6 +18144,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -19751,6 +18474,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -20309,6 +19033,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -20638,6 +19363,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -21196,6 +19922,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -21492,6 +20219,7 @@ export const createProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -21803,6 +20531,7 @@ export const updateProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -22114,6 +20843,7 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -22425,6 +21155,7 @@ export const createProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -22735,6 +21466,7 @@ export const updateProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -23045,6 +21777,7 @@ export const deleteProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -23355,6 +22088,7 @@ export const createProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -23663,6 +22397,7 @@ export const updateProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -23971,6 +22706,7 @@ export const deleteProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -24312,6 +23048,7 @@ export const createApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -24645,6 +23382,7 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -24932,6 +23670,7 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -25265,6 +24004,7 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -25552,6 +24292,7 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -25885,6 +24626,7 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26318,6 +25060,7 @@ export const createApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26704,6 +25447,7 @@ export const updateApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -27090,6 +25834,7 @@ export const deleteApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -27430,6 +26175,7 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -27859,6 +26605,7 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -28288,6 +27035,7 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -28586,6 +27334,7 @@ export const createAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -28927,6 +27676,7 @@ export const createAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -29219,6 +27969,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -29560,6 +28311,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -29852,6 +28604,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30193,6 +28946,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30504,6 +29258,7 @@ export const createApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30808,6 +29563,7 @@ export const createApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -31423,6 +30179,7 @@ export const updateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -31727,6 +30484,7 @@ export const updateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -32342,6 +31100,7 @@ export const deleteApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -32646,6 +31405,7 @@ export const deleteApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -33330,6 +32090,7 @@ export const createAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -34013,6 +32774,7 @@ export const createAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -34270,6 +33032,7 @@ export const updateAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -34953,6 +33716,7 @@ export const updateAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -35210,6 +33974,7 @@ export const deleteAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -35893,6 +34658,7 @@ export const deleteAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36081,6 +34847,7 @@ export const createAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36375,6 +35142,7 @@ export const updateAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36669,6 +35437,7 @@ export const deleteAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36963,6 +35732,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -37508,6 +36278,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -37995,6 +36766,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -38149,6 +36921,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -38694,6 +37467,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -39181,6 +37955,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -39335,6 +38110,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -39880,6 +38656,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -40367,6 +39144,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -40853,6 +39631,7 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -41460,6 +40239,7 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -42067,6 +40847,7 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -42659,6 +41440,7 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -42989,6 +41771,7 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -43582,6 +42365,7 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -43912,6 +42696,7 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -44505,6 +43290,7 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -44835,6 +43621,7 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -45444,6 +44231,7 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -46052,6 +44840,7 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -46660,6 +45449,7 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -47266,6 +46056,7 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -47872,6 +46663,7 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -48478,6 +47270,7 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -48789,6 +47582,7 @@ export const createApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49027,6 +47821,7 @@ export const createApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49190,6 +47985,7 @@ export const updateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49428,6 +48224,7 @@ export const updateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49591,6 +48388,7 @@ export const deleteApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49829,6 +48627,7 @@ export const deleteApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -50063,6 +48862,7 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -50128,6 +48928,7 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -50207,6 +49008,7 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -50604,6 +49406,7 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -50669,6 +49472,7 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -50748,6 +49552,7 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51029,6 +49834,7 @@ export const createApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51125,6 +49931,7 @@ export const updateApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51221,6 +50028,7 @@ export const deleteApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51469,6 +50277,7 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -51534,6 +50343,7 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51613,6 +50423,7 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51940,6 +50751,7 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -52005,6 +50817,7 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52084,6 +50897,7 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52411,6 +51225,7 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -52476,6 +51291,7 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52555,6 +51371,7 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53317,6 +52134,7 @@ export const createApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -53695,6 +52513,7 @@ export const updateApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -54073,6 +52892,7 @@ export const deleteApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -54567,6 +53387,7 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -54826,6 +53647,7 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55144,6 +53966,7 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55403,6 +54226,7 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55721,6 +54545,7 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55980,6 +54805,7 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -58302,6 +57128,7 @@ export const createAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -59016,6 +57843,7 @@ export const createApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -59280,6 +58108,7 @@ export const createApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -59521,6 +58350,7 @@ export const createApsRegistrant = /* GraphQL */ `
       presentationTitle
       presentationSummary
       bio
+      invoice
       seatingChartRegistrant {
         id
         category
@@ -59626,6 +58456,7 @@ export const createApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -59724,6 +58555,7 @@ export const createApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -59849,6 +58681,7 @@ export const createApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -60171,6 +59004,1353 @@ export const createApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      qrCode
+      createdAt
+      updatedAt
+      aPSRegistrantsId
+      aPSCompanyRegistrantsId
+      apsRegistrantSeatingChartRegistrantId
+      __typename
+    }
+  }
+`;
+export const updateApsRegistrant = /* GraphQL */ `
+  mutation UpdateApsRegistrant(
+    $input: UpdateApsRegistrantInput!
+    $condition: ModelApsRegistrantConditionInput
+  ) {
+    updateApsRegistrant(input: $input, condition: $condition) {
+      id
+      apsID
+      aps {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      firstName
+      lastName
+      email
+      phone
+      companyId
+      company {
+        id
+        name
+        email
+        type
+        description
+        website
+        phone
+        address
+        city
+        state
+        zip
+        country
+        logo
+        events {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        exhibitorProfileId
+        exhibitorProfile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        contacts {
+          items {
+            id
+            companyId
+            name
+            email
+            phone
+            title
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      jobTitle
+      attendeeType
+      termsAccepted
+      interests
+      otherInterest
+      buyerQuestion
+      packagingChallenge
+      certification
+      billingAddressFirstName
+      billingAddressLastName
+      billingAddressEmail
+      billingAddressPhone
+      billingAddressStreet
+      billingAddressCity
+      billingAddressState
+      billingAddressZip
+      sameAsAttendee
+      speakerTopic
+      learningObjectives
+      totalAmount
+      discountCode
+      status
+      paymentConfirmation
+      registrationEmailSent
+      registrationEmailSentDate
+      registrationEmailReceived
+      registrationEmailReceivedDate
+      welcomeEmailSent
+      welcomeEmailSentDate
+      welcomeEmailReceived
+      welcomeEmailReceivedDate
+      paymentMethod
+      paymentLast4
+      approvedAt
+      headshot
+      presentation
+      presentationTitle
+      presentationSummary
+      bio
+      invoice
+      seatingChartRegistrant {
+        id
+        category
+        firstName
+        lastName
+        company
+        email
+        role
+        tableNumber
+        notes
+        seatingChartID
+        seatingChart {
+          id
+          registrants {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        registrantID
+        registrant {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          invoice
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        createdAt
+        updatedAt
+        apsSeatingChartRegistrantsId
+        __typename
+      }
+      addOnRequests {
+        items {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          addOnId
+          addOn {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          status
+          preferences
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      appUserId
+      appUser {
+        id
+        registrantId
+        registrant {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          invoice
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sessionQuestions {
+          items {
+            id
+            sessionId
+            question
+            userId
+            createdAt
+            updatedAt
+            apsAppUserSessionQuestionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sentDmMessages {
+          items {
+            id
+            eventId
+            threadId
+            senderUserId
+            owners
+            type
+            body
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profileId
+        profile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      notes {
+        items {
+          id
+          owner
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          note
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -60435,6 +60615,7 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -60500,6 +60681,7 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -60579,6 +60761,7 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt

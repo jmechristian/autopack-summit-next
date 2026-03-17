@@ -153,6 +153,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -966,6 +967,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -1031,6 +1033,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -1110,6 +1113,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -1259,6 +1263,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -1573,6 +1578,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -1877,6 +1883,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -2690,6 +2697,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -2755,6 +2763,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -2834,6 +2843,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -2983,6 +2993,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -3297,6 +3308,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -3601,6 +3613,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -4414,6 +4427,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -4479,6 +4493,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -4558,6 +4573,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -4707,6 +4723,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -5021,6 +5038,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -5883,6 +5901,7 @@ export const onCreateApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -6260,6 +6279,7 @@ export const onUpdateApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -6637,6 +6657,7 @@ export const onDeleteApsDmMessage = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -7242,6 +7263,7 @@ export const onCreateAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -8071,6 +8093,7 @@ export const onUpdateAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -8900,6 +8923,7 @@ export const onDeleteAPS = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -9612,6 +9636,7 @@ export const onCreateAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -9913,6 +9938,7 @@ export const onUpdateAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -10214,6 +10240,7 @@ export const onDeleteAPSCode = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -10567,6 +10594,7 @@ export const onCreateApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -10907,6 +10935,7 @@ export const onUpdateApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -11247,6 +11276,7 @@ export const onDeleteApsAgenda = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -11587,6 +11617,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -11851,6 +11882,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -12092,6 +12124,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
       presentationTitle
       presentationSummary
       bio
+      invoice
       seatingChartRegistrant {
         id
         category
@@ -12197,6 +12230,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -12295,6 +12329,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -12420,6 +12455,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -12742,6 +12778,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -12925,6 +12962,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -13189,6 +13227,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -13430,6 +13469,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
       presentationTitle
       presentationSummary
       bio
+      invoice
       seatingChartRegistrant {
         id
         category
@@ -13535,6 +13575,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -13633,6 +13674,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -13758,6 +13800,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -14080,6 +14123,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14263,6 +14307,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14527,6 +14572,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -14768,6 +14814,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
       presentationTitle
       presentationSummary
       bio
+      invoice
       seatingChartRegistrant {
         id
         category
@@ -14873,6 +14920,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -14971,6 +15019,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -15096,6 +15145,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -15418,6 +15468,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -15681,6 +15732,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -15746,6 +15798,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -15825,6 +15878,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16197,6 +16251,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16401,6 +16456,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16834,6 +16890,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -16899,6 +16956,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -16978,6 +17036,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -17350,6 +17409,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -17554,6 +17614,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -17987,6 +18048,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -18052,6 +18114,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -18131,6 +18194,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -18503,6 +18567,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -18707,6 +18772,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -19045,6 +19111,7 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -19327,6 +19394,7 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -19667,6 +19735,7 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -19949,6 +20018,7 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -20289,6 +20359,7 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -20571,6 +20642,7 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -20911,6 +20983,7 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -21193,6 +21266,7 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -21533,6 +21607,7 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -21815,6 +21890,7 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -22155,6 +22231,7 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -22437,6 +22514,7 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -22777,6 +22855,7 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -23335,6 +23414,7 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -23663,6 +23743,7 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -24221,6 +24302,7 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -24549,6 +24631,7 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -25107,6 +25190,7 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -25402,6 +25486,7 @@ export const onCreateProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -25712,6 +25797,7 @@ export const onUpdateProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26022,6 +26108,7 @@ export const onDeleteProfileAffiliate = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26332,6 +26419,7 @@ export const onCreateProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26641,6 +26729,7 @@ export const onUpdateProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -26950,6 +27039,7 @@ export const onDeleteProfileEducation = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -27259,6 +27349,7 @@ export const onCreateProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -27566,6 +27657,7 @@ export const onUpdateProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -27873,6 +27965,7 @@ export const onDeleteProfileInterest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -28213,6 +28306,7 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -28546,6 +28640,7 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -28832,6 +28927,7 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -29165,6 +29261,7 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -29451,6 +29548,7 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -29784,6 +29882,7 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30216,6 +30315,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30601,6 +30701,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -30986,6 +31087,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -31325,6 +31427,7 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -31753,6 +31856,7 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -32181,6 +32285,7 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -32478,6 +32583,7 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -32819,6 +32925,7 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -33110,6 +33217,7 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -33451,6 +33559,7 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -33742,6 +33851,7 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -34083,6 +34193,7 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -34393,6 +34504,7 @@ export const onCreateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -34697,6 +34809,7 @@ export const onCreateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -35311,6 +35424,7 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -35615,6 +35729,7 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36229,6 +36344,7 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -36533,6 +36649,7 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -37216,6 +37333,7 @@ export const onCreateAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -37899,6 +38017,7 @@ export const onCreateAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -38155,6 +38274,7 @@ export const onUpdateAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -38838,6 +38958,7 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -39094,6 +39215,7 @@ export const onDeleteAPSCompany = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -39777,6 +39899,7 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -39964,6 +40087,7 @@ export const onCreateAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -40257,6 +40381,7 @@ export const onUpdateAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -40550,6 +40675,7 @@ export const onDeleteAPSCompanyContact = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -40843,6 +40969,7 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -41388,6 +41515,7 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -41875,6 +42003,7 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -42028,6 +42157,7 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -42573,6 +42703,7 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -43060,6 +43191,7 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -43213,6 +43345,7 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -43758,6 +43891,7 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -44245,6 +44379,7 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -44730,6 +44865,7 @@ export const onCreateApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -45336,6 +45472,7 @@ export const onUpdateApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -45942,6 +46079,7 @@ export const onDeleteApsAppExhibitorPromotion = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -46533,6 +46671,7 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -46863,6 +47002,7 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -47455,6 +47595,7 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -47785,6 +47926,7 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -48377,6 +48519,7 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
           presentationTitle
           presentationSummary
           bio
+          invoice
           seatingChartRegistrant {
             id
             category
@@ -48707,6 +48850,7 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49315,6 +49459,7 @@ export const onCreateApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -49922,6 +50067,7 @@ export const onUpdateApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -50529,6 +50675,7 @@ export const onDeleteApsAppExhibitorPhoto = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51134,6 +51281,7 @@ export const onCreateApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -51739,6 +51887,7 @@ export const onUpdateApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52344,6 +52493,7 @@ export const onDeleteApsAppExhibitorHandout = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52652,6 +52802,7 @@ export const onCreateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -52890,6 +53041,7 @@ export const onCreateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53050,6 +53202,7 @@ export const onUpdateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53288,6 +53441,7 @@ export const onUpdateApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53448,6 +53602,7 @@ export const onDeleteApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53686,6 +53841,7 @@ export const onDeleteApsAddOn = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -53919,6 +54075,7 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -53984,6 +54141,7 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -54063,6 +54221,7 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -54459,6 +54618,7 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -54524,6 +54684,7 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -54603,6 +54764,7 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -54999,6 +55161,7 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -55064,6 +55227,7 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55143,6 +55307,7 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55423,6 +55588,7 @@ export const onCreateApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55518,6 +55684,7 @@ export const onUpdateApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55613,6 +55780,7 @@ export const onDeleteApsSeatingChart = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -55860,6 +56028,7 @@ export const onCreateApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -55925,6 +56094,7 @@ export const onCreateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -56004,6 +56174,7 @@ export const onCreateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -56330,6 +56501,7 @@ export const onUpdateApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -56395,6 +56567,7 @@ export const onUpdateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -56474,6 +56647,7 @@ export const onUpdateApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -56800,6 +56974,7 @@ export const onDeleteApsSeatingChartRegistrant = /* GraphQL */ `
         presentationTitle
         presentationSummary
         bio
+        invoice
         seatingChartRegistrant {
           id
           category
@@ -56865,6 +57040,7 @@ export const onDeleteApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -56944,6 +57120,7 @@ export const onDeleteApsSeatingChartRegistrant = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -57155,6 +57332,7 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -57414,6 +57592,7 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -57731,6 +57910,7 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -57990,6 +58170,7 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -58307,6 +58488,7 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt
@@ -58566,6 +58748,7 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
             presentationTitle
             presentationSummary
             bio
+            invoice
             appUserId
             qrCode
             createdAt

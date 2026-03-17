@@ -762,6 +762,7 @@ const GET_APS_REGISTRANT_DASHBOARD = /* GraphQL */ `
       lastName
       email
       phone
+      jobTitle
       attendeeType
       status
       totalAmount
@@ -780,6 +781,16 @@ const GET_APS_REGISTRANT_DASHBOARD = /* GraphQL */ `
       billingAddressState
       billingAddressZip
       sameAsAttendee
+      invoice
+      appUserId
+      appUser {
+        id
+        profileId
+        profile {
+          id
+          profilePicture
+        }
+      }
       companyId
       company {
         id
