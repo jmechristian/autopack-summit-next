@@ -61,6 +61,20 @@ const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
   }
 `;
 
+const UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL = /* GraphQL */ `
+  mutation UpdateApsRegistrantEmailStatus(
+    $input: UpdateApsRegistrantInput!
+    $condition: ModelApsRegistrantConditionInput
+  ) {
+    updateApsRegistrant(input: $input, condition: $condition) {
+      id
+      registrationEmailSent
+      registrationEmailSentDate
+      updatedAt
+    }
+  }
+`;
+
 const INTEREST_OPTIONS = [
   'Expendable Packaging and/or After Sales Packaging',
   'Returnable and/or reusable Packaging',
@@ -681,6 +695,26 @@ const RegistrationForm = () => {
               console.error(
                 'Registration confirmation email failed:',
                 data?.message || emailRes.statusText
+              );
+              return;
+            }
+
+            try {
+              await API.graphql({
+                query: UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL,
+                variables: {
+                  input: {
+                    id: mainRegistrantId,
+                    registrationEmailSent: true,
+                    registrationEmailSentDate: new Date().toISOString(),
+                  },
+                },
+                authMode: 'API_KEY',
+              });
+            } catch (updateEmailStatusErr) {
+              console.error(
+                'Failed to update registrationEmailSent status:',
+                updateEmailStatusErr
               );
             }
           })
