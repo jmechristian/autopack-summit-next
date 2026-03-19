@@ -39,6 +39,30 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     color: '#1f2937',
   },
+  companyHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 18,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  companyName: {
+    fontSize: 11,
+    fontFamily: 'Helvetica-Bold',
+    marginBottom: 2,
+  },
+  companyLine: {
+    fontSize: 9,
+    lineHeight: 1.5,
+    color: '#374151',
+  },
+  companyLogo: {
+    width: 80,
+    height: 80,
+    objectFit: 'contain',
+  },
   card: {
     borderWidth: 1,
     borderColor: '#e5e7eb',
@@ -173,6 +197,21 @@ const InvoiceDocument = ({
 }) => (
   <Document>
     <Page size='A4' style={styles.page}>
+      <View style={styles.companyHeader}>
+        <View>
+          <Text style={styles.companyName}>Packaging School, LLC</Text>
+          <Text style={styles.companyLine}>3620 Pelham Road #294</Text>
+          <Text style={styles.companyLine}>Greenville, SC  29615 US</Text>
+          <Text style={styles.companyLine}>(864) 704-2968</Text>
+          <Text style={styles.companyLine}>drew@packagingschool.com</Text>
+          <Text style={styles.companyLine}>www.packagingschool.com</Text>
+        </View>
+        <Image
+          style={styles.companyLogo}
+          src='https://packschool.s3.us-east-1.amazonaws.com/ps-square150x.png'
+        />
+      </View>
+
       <View style={styles.card}>
         <View style={styles.header}>
           <View>
@@ -180,7 +219,7 @@ const InvoiceDocument = ({
               style={styles.logo}
               src='https://apsmedia.s3.amazonaws.com/images/AutoPackSummit-RGB-digital_color_stacked.png'
             />
-            <Text style={styles.title}>Registration invoice</Text>
+            <Text style={styles.title}>Registration Receipt</Text>
             <Text style={styles.subtitle}>
               Automotive Packaging Summit 2026 · Sept 30 - Oct 2, 2026
             </Text>
@@ -282,7 +321,7 @@ const InvoiceDocument = ({
                     </View>
                   ) : null}
                   <View style={[styles.totalsRow, styles.totalDue]}>
-                    <Text>Total due</Text>
+                    <Text>Total paid</Text>
                     <Text>${Number(totalDue || 0).toLocaleString()}</Text>
                   </View>
                 </View>
@@ -340,7 +379,7 @@ export default async function handler(req, res) {
         Key: key,
         Body: buffer,
         ContentType: 'application/pdf',
-        ContentDisposition: `attachment; filename="aps-invoice-${registrantId}.pdf"`,
+        ContentDisposition: `attachment; filename="aps-receipt-${registrantId}.pdf"`,
       })
       .promise();
 

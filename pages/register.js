@@ -656,6 +656,42 @@ const RegistrationForm = () => {
       // Move the UI forward to confirmation regardless of invoice outcome.
       setStep(4);
 
+      // Fire-and-forget: send registration confirmation email.
+      if (mainRegistrantId) {
+        const emailAddOns = addOnsSelected.map((sel) => ({
+          id: sel.addOnId || sel.addOn?.id || '',
+          title: sel.addOn?.title || 'Add-on',
+        }));
+
+        fetch('/api/send-registration-confirmation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            formData,
+            totalAmount,
+            formDataId: mainRegistrantId,
+            addOnsSelected: emailAddOns,
+          }),
+        })
+          .then(async (emailRes) => {
+            if (!emailRes.ok) {
+              const data = await emailRes.json().catch(() => ({}));
+              console.error(
+                'Registration confirmation email failed:',
+                data?.message || emailRes.statusText
+              );
+            }
+          })
+          .catch((emailErr) => {
+            console.error(
+              'Failed to send registration confirmation email:',
+              emailErr
+            );
+          });
+      }
+
       // Fire-and-forget: generate and attach invoice PDF (including zero-balance with coupon).
       if (mainRegistrantId) {
         const registrationLabel =
