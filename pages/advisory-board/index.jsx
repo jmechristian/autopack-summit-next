@@ -1,52 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { getBoardMembers } from '../../util/api';
 import Head from 'next/head';
+import { useS3Url } from '../../components/S3Image';
 
-const MemberCard = ({ member, onReadBio }) => (
-  <div className='bg-white border border-gray-900 p-4 flex items-center gap-4'>
-    <div>
-      <div
-        className='w-28 h-28 rounded-full bg-gray-900 flex items-center justify-center bg-cover bg-center'
-        style={{ backgroundImage: `url(${member.profilePic})` }}
-      ></div>
-    </div>
-    <div className='flex flex-col justify-between'>
-      <h3 className='text-lg font-semibold'>{member.name}</h3>
-      <p className='text-sm text-gray-600'>{member.company}</p>
-      <p className='text-sm text-gray-600'>{member.title}</p>
-      <button
-        onClick={() => onReadBio(member)}
-        className='mt-2 bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600'
-      >
-        Read Bio
-      </button>
-    </div>
-  </div>
-);
+const MemberCard = ({ member }) => {
+  const { url: profilePicUrl } = useS3Url(member.profilePic);
+  const initials = useMemo(() => {
+    if (!member?.name) return 'AB';
+    const parts = member.name.trim().split(/\s+/).slice(0, 2);
+    return parts.map((part) => part[0]?.toUpperCase() || '').join('') || 'AB';
+  }, [member?.name]);
 
-const BioModal = ({ member, onClose }) => (
-  <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
-    <div className='bg-white p-6 rounded-lg shadow-lg max-w-md'>
-      <h2 className='text-xl font-bold mb-4'>About {member.name}</h2>
-      <p className='text-gray-700'>{member.bio}</p>
-      <button
-        onClick={onClose}
-        className='mt-4 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600'
-      >
-        Close
-      </button>
+  return (
+    <div className='bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow'>
+      <div className='w-28 h-28 rounded-full overflow-hidden border border-gray-200 bg-gray-100 mb-4'>
+        {profilePicUrl ? (
+          <img
+            src={profilePicUrl}
+            alt={member.name}
+            className='w-full h-full object-cover'
+          />
+        ) : (
+          <div className='w-full h-full flex items-center justify-center bg-ap-darkblue text-white text-2xl font-semibold'>
+            {initials}
+          </div>
+        )}
+      </div>
+      <h3 className='text-lg font-semibold text-gray-900 leading-tight'>
+        {member.name}
+      </h3>
+      <p className='text-sm text-gray-700 mt-1'>{member.company}</p>
+      {member.title ? (
+        <p className='text-sm text-gray-500 mt-0.5'>{member.title}</p>
+      ) : null}
     </div>
-  </div>
-);
+  );
+};
 
 const Index = () => {
-  const [selectedMember, setSelectedMember] = useState(null);
   const [boardMembers, setBoardMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const sortedBoardMembers = useMemo(() => {
+    const getLastName = (fullName = '') => {
+      const parts = fullName.trim().split(/\s+/).filter(Boolean);
+      return parts.length ? parts[parts.length - 1].toLowerCase() : '';
+    };
+
+    return [...boardMembers].sort((a, b) => {
+      const lastNameCompare = getLastName(a?.name).localeCompare(
+        getLastName(b?.name)
+      );
+      if (lastNameCompare !== 0) return lastNameCompare;
+      return (a?.name || '').localeCompare(b?.name || '');
+    });
+  }, [boardMembers]);
 
   useEffect(() => {
     const fetchBoardMembers = async () => {
-      const members = await getBoardMembers();
-      setBoardMembers(members);
+      try {
+        const members = await getBoardMembers();
+        setBoardMembers(Array.isArray(members) ? members : []);
+      } catch (err) {
+        console.error('Failed to load advisory board members:', err);
+        setBoardMembers([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchBoardMembers();
   }, []);
@@ -54,30 +73,29 @@ const Index = () => {
   return (
     <div className='py-16 max-w-7xl mx-auto'>
       <Head>
-        <title>2025 Advisory Board</title>
+        <title>APS Advisory Board</title>
         <meta
           name='description'
-          content='Meet the 2025 Advisory Board members of the Future of Work Institute'
+          content='Meet the APS Advisory Board members'
         />
-        <meta name='robots' content='noindex, nofollow' />
       </Head>
-      <h1 className='text-4xl tracking-tight uppercase font-medium font-oswald mb-16'>
-        2025 Advisory Board
+      <h1 className='text-4xl tracking-tight uppercase font-medium font-oswald mb-4'>
+        APS Advisory Board
       </h1>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
-        {boardMembers.map((member) => (
-          <MemberCard
-            key={member.id}
-            member={member}
-            onReadBio={setSelectedMember}
-          />
-        ))}
-      </div>
-      {selectedMember && (
-        <BioModal
-          member={selectedMember}
-          onClose={() => setSelectedMember(null)}
-        />
+      <p className='text-gray-600 mb-12'>
+        Industry leaders helping shape Automotive Packaging Summit.
+      </p>
+
+      {isLoading ? (
+        <div className='text-gray-500'>Loading board members...</div>
+      ) : sortedBoardMembers.length === 0 ? (
+        <div className='text-gray-500'>No board members available yet.</div>
+      ) : (
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
+          {sortedBoardMembers.map((member) => (
+            <MemberCard key={member.id} member={member} />
+          ))}
+        </div>
       )}
     </div>
   );

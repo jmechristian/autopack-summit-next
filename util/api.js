@@ -484,9 +484,10 @@ export const trackEmailOpen = async (id) => {
 export const getBoardMembers = async () => {
   const res = await API.graphql({
     query: listAPSBoards,
+    authMode: 'API_KEY',
   });
 
-  return res.data.listAPSBoards.items;
+  return res.data?.listAPSBoards?.items || [];
 };
 
 export const getAPSCompanies = async () => {
