@@ -30,7 +30,13 @@ const PRICING = {
   Exhibitor: 699,
 };
 
-const DISCOUNT_ELIGIBLE_TYPES = ['OEM', 'Tier1', 'Sponsor', 'Speaker'];
+const DISCOUNT_ELIGIBLE_TYPES = [
+  'OEM',
+  'Tier1',
+  'Sponsor',
+  'Speaker',
+  'Exhibitor',
+];
 
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
 
