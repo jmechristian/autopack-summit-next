@@ -54,11 +54,7 @@ export default async function handler(req, res) {
 
   try {
     await sesClient.send(
-      createSendEmailCommand(
-        body.formData.email,
-        'bianca@packagingschool.com',
-        'lars@packagingschool.com',
-      ),
+      createSendEmailCommand(body.formData.email, 'info@packagingschool.com'),
     );
     res.status(200).json({ message: 'success' });
   } catch (error) {

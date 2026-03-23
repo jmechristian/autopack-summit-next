@@ -120,7 +120,9 @@ export const RegConfirmEmail = ({
             />
 
             {/* Registration status heading */}
-            <Section style={{ padding: '36px 32px 0', textAlign: 'center' as const }}>
+            <Section
+              style={{ padding: '36px 32px 0', textAlign: 'center' as const }}
+            >
               <Text
                 style={{
                   fontSize: '24px',
@@ -131,8 +133,8 @@ export const RegConfirmEmail = ({
                   ...font,
                 }}
               >
-                {formData.firstName}, your registration has been received and
-                is PENDING.
+                {formData.firstName}, your registration has been received and is
+                PENDING.
               </Text>
               <Text
                 style={{
@@ -143,8 +145,8 @@ export const RegConfirmEmail = ({
                   ...font,
                 }}
               >
-                View your dashboard to check the status of your registration
-                and add-ons
+                View your dashboard to check the status of your registration and
+                add-ons
               </Text>
               <Button
                 href={dashboardUrl}
@@ -196,19 +198,59 @@ export const RegConfirmEmail = ({
                   >
                     Registrant
                   </Text>
-                  <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: DARK_TEXT,
+                      margin: '0 0 2px',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.firstName} {formData.lastName}
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0 0 2px',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.jobTitle}
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0 0 2px',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.companyName}
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0 0 2px',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.email}
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.phone}
                   </Text>
                 </Column>
@@ -224,11 +266,28 @@ export const RegConfirmEmail = ({
                   >
                     Billing Address
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0 0 2px',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
                     {formData.billingAddress.street}
                   </Text>
-                  <Text style={{ fontSize: '13px', color: MUTED_TEXT, margin: '0', lineHeight: '1.5', ...font }}>
-                    {formData.billingAddress.city}, {formData.billingAddress.state}{' '}
+                  <Text
+                    style={{
+                      fontSize: '13px',
+                      color: MUTED_TEXT,
+                      margin: '0',
+                      lineHeight: '1.5',
+                      ...font,
+                    }}
+                  >
+                    {formData.billingAddress.city},{' '}
+                    {formData.billingAddress.state}{' '}
                     {formData.billingAddress.zip}
                   </Text>
                 </Column>
@@ -245,17 +304,45 @@ export const RegConfirmEmail = ({
                 >
                   <Row>
                     <Column style={{ width: '50%' }}>
-                      <Text style={{ fontSize: '12px', fontWeight: 700, color: MUTED_TEXT, margin: 0, ...font }}>
+                      <Text
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          color: MUTED_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         Item
                       </Text>
                     </Column>
-                    <Column style={{ width: '25%', textAlign: 'center' as const }}>
-                      <Text style={{ fontSize: '12px', fontWeight: 700, color: MUTED_TEXT, margin: 0, ...font }}>
+                    <Column
+                      style={{ width: '25%', textAlign: 'center' as const }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          color: MUTED_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         Qty
                       </Text>
                     </Column>
-                    <Column style={{ width: '25%', textAlign: 'right' as const }}>
-                      <Text style={{ fontSize: '12px', fontWeight: 700, color: MUTED_TEXT, margin: 0, ...font }}>
+                    <Column
+                      style={{ width: '25%', textAlign: 'right' as const }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          color: MUTED_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         Amount
                       </Text>
                     </Column>
@@ -269,15 +356,42 @@ export const RegConfirmEmail = ({
                 >
                   <Row>
                     <Column style={{ width: '50%' }}>
-                      <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>
+                      <Text
+                        style={{
+                          fontSize: '13px',
+                          color: DARK_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         General Admission ({formData.attendeeType})
                       </Text>
                     </Column>
-                    <Column style={{ width: '25%', textAlign: 'center' as const }}>
-                      <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>1</Text>
+                    <Column
+                      style={{ width: '25%', textAlign: 'center' as const }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: '13px',
+                          color: DARK_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
+                        1
+                      </Text>
                     </Column>
-                    <Column style={{ width: '25%', textAlign: 'right' as const }}>
-                      <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>
+                    <Column
+                      style={{ width: '25%', textAlign: 'right' as const }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: '13px',
+                          color: DARK_TEXT,
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         ${totalAmount}
                       </Text>
                     </Column>
@@ -292,15 +406,45 @@ export const RegConfirmEmail = ({
                   >
                     <Row>
                       <Column style={{ width: '50%' }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>
-                          Add-ons: {addOnsSelected.map((a) => a.title).join(', ')}
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
+                          Add-ons:{' '}
+                          {addOnsSelected.map((a) => a.title).join(', ')}
                         </Text>
                       </Column>
-                      <Column style={{ width: '25%', textAlign: 'center' as const }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>—</Text>
+                      <Column
+                        style={{ width: '25%', textAlign: 'center' as const }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
+                          —
+                        </Text>
                       </Column>
-                      <Column style={{ width: '25%', textAlign: 'right' as const }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>Included</Text>
+                      <Column
+                        style={{ width: '25%', textAlign: 'right' as const }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
+                          Included
+                        </Text>
                       </Column>
                     </Row>
                   </Section>
@@ -314,15 +458,44 @@ export const RegConfirmEmail = ({
                   >
                     <Row>
                       <Column style={{ width: '50%' }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
                           Speed Networking
                         </Text>
                       </Column>
-                      <Column style={{ width: '25%', textAlign: 'center' as const }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>1</Text>
+                      <Column
+                        style={{ width: '25%', textAlign: 'center' as const }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
+                          1
+                        </Text>
                       </Column>
-                      <Column style={{ width: '25%', textAlign: 'right' as const }}>
-                        <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: 0, ...font }}>Included</Text>
+                      <Column
+                        style={{ width: '25%', textAlign: 'right' as const }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: '13px',
+                            color: DARK_TEXT,
+                            margin: 0,
+                            ...font,
+                          }}
+                        >
+                          Included
+                        </Text>
                       </Column>
                     </Row>
                   </Section>
@@ -336,12 +509,30 @@ export const RegConfirmEmail = ({
                 >
                   <Row>
                     <Column style={{ width: '50%' }}>
-                      <Text style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', margin: 0, ...font }}>
+                      <Text
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          color: '#ffffff',
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         Paid
                       </Text>
                     </Column>
-                    <Column style={{ width: '50%', textAlign: 'right' as const }}>
-                      <Text style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', margin: 0, ...font }}>
+                    <Column
+                      style={{ width: '50%', textAlign: 'right' as const }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          color: '#ffffff',
+                          margin: 0,
+                          ...font,
+                        }}
+                      >
                         ${totalAmount}
                       </Text>
                     </Column>
@@ -350,7 +541,9 @@ export const RegConfirmEmail = ({
               </Section>
 
               {/* Download receipt button */}
-              <Section style={{ textAlign: 'center' as const, padding: '20px 0 0' }}>
+              <Section
+                style={{ textAlign: 'center' as const, padding: '20px 0 0' }}
+              >
                 <Button
                   href={dashboardUrl}
                   style={{
@@ -396,33 +589,177 @@ export const RegConfirmEmail = ({
                 }}
               >
                 <Row>
-                  <Column style={{ width: '33%', verticalAlign: 'top', paddingRight: '8px' }}>
-                    <Text style={{ fontSize: '13px', fontWeight: 700, color: APS_BLUE, margin: '0 0 6px', textTransform: 'uppercase' as const, ...font }}>
-                      Wednesday<br />Sept 30
+                  <Column
+                    style={{
+                      width: '33%',
+                      verticalAlign: 'top',
+                      paddingRight: '8px',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 700,
+                        color: APS_BLUE,
+                        margin: '0 0 6px',
+                        textTransform: 'uppercase' as const,
+                        ...font,
+                      }}
+                    >
+                      Wednesday
+                      <br />
+                      Sept 30
                     </Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Tours</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Registration</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0', lineHeight: '1.5', ...font }}>Cocktail Hour</Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Tours
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Registration
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Cocktail Hour
+                    </Text>
                   </Column>
-                  <Column style={{ width: '33%', verticalAlign: 'top', paddingLeft: '8px', paddingRight: '8px' }}>
-                    <Text style={{ fontSize: '13px', fontWeight: 700, color: APS_BLUE, margin: '0 0 6px', textTransform: 'uppercase' as const, ...font }}>
-                      Thursday<br />Oct 1
+                  <Column
+                    style={{
+                      width: '33%',
+                      verticalAlign: 'top',
+                      paddingLeft: '8px',
+                      paddingRight: '8px',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 700,
+                        color: APS_BLUE,
+                        margin: '0 0 6px',
+                        textTransform: 'uppercase' as const,
+                        ...font,
+                      }}
+                    >
+                      Thursday
+                      <br />
+                      Oct 1
                     </Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Doors Open 7:30 AM</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Presentations &amp; Workshops</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Speed Networking</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0 0 2px', lineHeight: '1.5', ...font }}>Exhibitor Hall</Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0', lineHeight: '1.5', ...font }}>Reception</Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Doors Open 7:30 AM
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Presentations &amp; Workshops
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Speed Networking
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0 0 2px',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Exhibitor Hall
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Reception
+                    </Text>
                   </Column>
-                  <Column style={{ width: '33%', verticalAlign: 'top', paddingLeft: '8px' }}>
-                    <Text style={{ fontSize: '13px', fontWeight: 700, color: APS_BLUE, margin: '0 0 6px', textTransform: 'uppercase' as const, ...font }}>
-                      Friday<br />Oct 2
+                  <Column
+                    style={{
+                      width: '33%',
+                      verticalAlign: 'top',
+                      paddingLeft: '8px',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 700,
+                        color: APS_BLUE,
+                        margin: '0 0 6px',
+                        textTransform: 'uppercase' as const,
+                        ...font,
+                      }}
+                    >
+                      Friday
+                      <br />
+                      Oct 2
                     </Text>
-                    <Text style={{ fontSize: '13px', color: DARK_TEXT, margin: '0', lineHeight: '1.5', ...font }}>Tours</Text>
+                    <Text
+                      style={{
+                        fontSize: '13px',
+                        color: DARK_TEXT,
+                        margin: '0',
+                        lineHeight: '1.5',
+                        ...font,
+                      }}
+                    >
+                      Tours
+                    </Text>
                   </Column>
                 </Row>
               </Section>
-              <Section style={{ textAlign: 'center' as const, padding: '16px 0 0' }}>
+              <Section
+                style={{ textAlign: 'center' as const, padding: '16px 0 0' }}
+              >
                 <Button
                   href='https://www.autopacksummit.com/agenda'
                   style={{
@@ -442,7 +779,9 @@ export const RegConfirmEmail = ({
             </Section>
 
             {/* Add to Calendar */}
-            <Section style={{ padding: '20px 32px 0', textAlign: 'center' as const }}>
+            <Section
+              style={{ padding: '20px 32px 0', textAlign: 'center' as const }}
+            >
               <Text
                 style={{
                   fontSize: '13px',
@@ -452,13 +791,53 @@ export const RegConfirmEmail = ({
                 }}
               >
                 Add event to calendar:{' '}
-                <Link href={googleCalUrl} style={{ color: APS_BLUE, fontWeight: 600, textDecoration: 'underline', ...font }}>Google</Link>
+                <Link
+                  href={googleCalUrl}
+                  style={{
+                    color: APS_BLUE,
+                    fontWeight: 600,
+                    textDecoration: 'underline',
+                    ...font,
+                  }}
+                >
+                  Google
+                </Link>
                 {' | '}
-                <Link href={icsDownloadUrl} style={{ color: APS_BLUE, fontWeight: 600, textDecoration: 'underline', ...font }}>iCal</Link>
+                <Link
+                  href={icsDownloadUrl}
+                  style={{
+                    color: APS_BLUE,
+                    fontWeight: 600,
+                    textDecoration: 'underline',
+                    ...font,
+                  }}
+                >
+                  iCal
+                </Link>
                 {' | '}
-                <Link href={yahooCalUrl} style={{ color: APS_BLUE, fontWeight: 600, textDecoration: 'underline', ...font }}>Yahoo</Link>
+                <Link
+                  href={yahooCalUrl}
+                  style={{
+                    color: APS_BLUE,
+                    fontWeight: 600,
+                    textDecoration: 'underline',
+                    ...font,
+                  }}
+                >
+                  Yahoo
+                </Link>
                 {' | '}
-                <Link href={outlookCalUrl} style={{ color: APS_BLUE, fontWeight: 600, textDecoration: 'underline', ...font }}>Outlook</Link>
+                <Link
+                  href={outlookCalUrl}
+                  style={{
+                    color: APS_BLUE,
+                    fontWeight: 600,
+                    textDecoration: 'underline',
+                    ...font,
+                  }}
+                >
+                  Outlook
+                </Link>
               </Text>
             </Section>
 
@@ -470,7 +849,13 @@ export const RegConfirmEmail = ({
             {/* Hotel & Travel / Tours — two columns */}
             <Section style={{ padding: '28px 32px 0' }}>
               <Row>
-                <Column style={{ width: '50%', verticalAlign: 'top', paddingRight: '12px' }}>
+                <Column
+                  style={{
+                    width: '50%',
+                    verticalAlign: 'top',
+                    paddingRight: '12px',
+                  }}
+                >
                   <Text
                     style={{
                       fontSize: '16px',
@@ -495,7 +880,8 @@ export const RegConfirmEmail = ({
                     Summit room block (G-APSU) at the host hotel, Hyatt Regency
                     Downtown Greenville, SC, before the cutoff date of September
                     6, 2026 at 11:59 PM EST. Please plan to arrive on Wednesday,
-                    September 30, with the event running through Friday, October 2.
+                    September 30, with the event running through Friday, October
+                    2.
                   </Text>
                   <Button
                     href='https://www.hyatt.com/en-US/group-booking/GSPRG/G-APSM'
@@ -513,7 +899,13 @@ export const RegConfirmEmail = ({
                     Book Hotel
                   </Button>
                 </Column>
-                <Column style={{ width: '50%', verticalAlign: 'top', paddingLeft: '12px' }}>
+                <Column
+                  style={{
+                    width: '50%',
+                    verticalAlign: 'top',
+                    paddingLeft: '12px',
+                  }}
+                >
                   <Text
                     style={{
                       fontSize: '16px',
@@ -534,12 +926,12 @@ export const RegConfirmEmail = ({
                       ...font,
                     }}
                   >
-                    We will be hosting off-site tours on Wednesday, Sep 30th &amp;
-                    Friday, October 2nd. Tour registrations might have a separate
-                    fee (as indicated). Tour registrations are non-transferable
-                    and non-refundable. If you did not add a tour when you
-                    registered for the event please click on the link below to
-                    modify your registration.
+                    We will be hosting off-site tours on Wednesday, Sep 30th
+                    &amp; Friday, October 2nd. Tour registrations might have a
+                    separate fee (as indicated). Tour registrations are
+                    non-transferable and non-refundable. If you did not add a
+                    tour when you registered for the event please click on the
+                    link below to modify your registration.
                   </Text>
                   <Button
                     href={dashboardUrl}
@@ -603,7 +995,9 @@ export const RegConfirmEmail = ({
                   ...font,
                 }}
               >
-                <strong style={{ color: DARK_TEXT }}>Registration Close Date:</strong>{' '}
+                <strong style={{ color: DARK_TEXT }}>
+                  Registration Close Date:
+                </strong>{' '}
                 Sunday, October 27th 2026
               </Text>
             </Section>
@@ -640,7 +1034,11 @@ export const RegConfirmEmail = ({
                 For event details, please visit the{' '}
                 <Link
                   href='https://www.autopacksummit.com'
-                  style={{ color: APS_YELLOW, fontWeight: 700, textDecoration: 'underline' }}
+                  style={{
+                    color: APS_YELLOW,
+                    fontWeight: 700,
+                    textDecoration: 'underline',
+                  }}
                 >
                   AutopackSummit.com
                 </Link>
@@ -657,10 +1055,14 @@ export const RegConfirmEmail = ({
               >
                 For additional questions, please contact{' '}
                 <Link
-                  href='mailto:events@packagingschool.com'
-                  style={{ color: APS_YELLOW, fontWeight: 700, textDecoration: 'underline' }}
+                  href='mailto:info@packagingschool.com'
+                  style={{
+                    color: APS_YELLOW,
+                    fontWeight: 700,
+                    textDecoration: 'underline',
+                  }}
                 >
-                  events@packagingschool.com
+                  info@packagingschool.com
                 </Link>
                 .
               </Text>
@@ -685,7 +1087,12 @@ export const RegConfirmEmail = ({
                     style={{ display: 'inline-block' }}
                   />
                 </Column>
-                <Column style={{ textAlign: 'right' as const, verticalAlign: 'middle' }}>
+                <Column
+                  style={{
+                    textAlign: 'right' as const,
+                    verticalAlign: 'middle',
+                  }}
+                >
                   <Link
                     href='https://www.packagingschool.com'
                     style={{ textDecoration: 'none' }}
