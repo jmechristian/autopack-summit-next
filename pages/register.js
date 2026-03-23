@@ -35,6 +35,7 @@ const DISCOUNT_ELIGIBLE_TYPES = ['OEM', 'Tier1', 'Sponsor', 'Speaker'];
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
 const FORM_ACCESS_PASSWORD = 'biancalars';
 const FORM_ACCESS_SESSION_KEY = 'aps-register-access-v1';
+const ONE_DOLLAR_TEST_CODE = 'onedollar';
 
 const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
   mutation CreateApsRegistrant($input: CreateApsRegistrantInput!, $condition: ModelApsRegistrantConditionInput) {
@@ -166,6 +167,7 @@ const RegistrationForm = () => {
   const [completedSteps, setCompletedSteps] = useState({});
   const [discountCode, setDiscountCode] = useState('');
   const [discountApplied, setDiscountApplied] = useState(false);
+  const [oneDollarTestApplied, setOneDollarTestApplied] = useState(false);
   const [discountCodeError, setDiscountCodeError] = useState('');
   const [additionalRegistrants, setAdditionalRegistrants] = useState([]);
   const [ticketQuantity, setTicketQuantity] = useState(1);
@@ -402,10 +404,11 @@ const RegistrationForm = () => {
   }, [addOnsSelected]);
 
   const totalAmount = useMemo(() => {
+    if (oneDollarTestApplied) return 1;
     if (discountApplied) return addOnsTotal; // base ticket free, add-ons still paid
     const base = PRICING[effectiveAttendeeType] || 0;
     return base * ticketQuantity + addOnsTotal;
-  }, [effectiveAttendeeType, discountApplied, ticketQuantity, addOnsTotal]);
+  }, [effectiveAttendeeType, discountApplied, oneDollarTestApplied, ticketQuantity, addOnsTotal]);
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -545,20 +548,32 @@ const RegistrationForm = () => {
       setDiscountCodeError('Please enter a discount code');
       return;
     }
+    const normalizedCode = discountCode.trim().toLowerCase();
+    if (normalizedCode === ONE_DOLLAR_TEST_CODE) {
+      setOneDollarTestApplied(true);
+      setDiscountApplied(false);
+      setDiscountCodeError('');
+      setFormData((prev) => ({ ...prev, discountCode: discountCode.trim() }));
+      return;
+    }
+
     const match = eventCodes.find(
-      (c) => c.code.toLowerCase() === discountCode.trim().toLowerCase()
+      (c) => c.code.toLowerCase() === normalizedCode
     );
     if (!match) {
       setDiscountCodeError('Invalid discount code');
       setDiscountApplied(false);
+      setOneDollarTestApplied(false);
       return;
     }
     if (match.limit != null && match.used >= match.limit) {
       setDiscountCodeError('This code has reached its usage limit');
       setDiscountApplied(false);
+      setOneDollarTestApplied(false);
       return;
     }
     setDiscountApplied(true);
+    setOneDollarTestApplied(false);
     setDiscountCodeError('');
     setFormData((prev) => ({ ...prev, discountCode: discountCode.trim() }));
   };
@@ -767,9 +782,13 @@ const RegistrationForm = () => {
         const unitPrice = PRICING[effectiveAttendeeType] || 0;
         const subtotal =
           (PRICING[effectiveAttendeeType] || 0) * ticketQuantity + addOnsTotal;
-        const discountAmount = discountApplied
-          ? (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
-          : 0;
+        const fullSubtotal =
+          (PRICING[effectiveAttendeeType] || 0) * ticketQuantity + addOnsTotal;
+        const discountAmount = oneDollarTestApplied
+          ? Math.max(fullSubtotal - 1, 0)
+          : discountApplied
+            ? (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
+            : 0;
         const lineItems = [
           {
             description: `${registrationLabel} - ${formData.firstName} ${formData.lastName}`,
@@ -1131,7 +1150,7 @@ const RegistrationForm = () => {
 
   const getSubmitLabel = () => {
     const type = formData.attendeeType;
-    if (discountApplied) return 'Register with Code';
+    if (discountApplied || oneDollarTestApplied) return 'Register with Code';
     if (type === 'Solution-Provider') return 'Join Waitlist';
     return 'Register';
   };
@@ -2009,19 +2028,21 @@ const RegistrationForm = () => {
                     onChange={(e) => {
                       setDiscountCode(e.target.value);
                       setDiscountCodeError('');
-                      if (discountApplied) {
+                      if (discountApplied || oneDollarTestApplied) {
                         setDiscountApplied(false);
+                        setOneDollarTestApplied(false);
                         setFormData((prev) => ({ ...prev, discountCode: '' }));
                       }
                     }}
-                    disabled={discountApplied}
+                    disabled={discountApplied || oneDollarTestApplied}
                     placeholder='Enter code'
                     className='flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30 disabled:bg-gray-50 disabled:text-gray-500'
                   />
-                  {discountApplied ? (
+                  {discountApplied || oneDollarTestApplied ? (
                     <button
                       onClick={() => {
                         setDiscountApplied(false);
+                        setOneDollarTestApplied(false);
                         setDiscountCode('');
                         setFormData((prev) => ({ ...prev, discountCode: '' }));
                       }}
@@ -2044,9 +2065,12 @@ const RegistrationForm = () => {
                     {discountCodeError}
                   </p>
                 )}
-                {discountApplied && (
+                {(discountApplied || oneDollarTestApplied) && (
                   <p className='text-green-600 text-xs mt-1 flex items-center gap-1'>
-                    <MdCheckCircle className='w-3.5 h-3.5' /> Coupon applied — registration is complimentary
+                    <MdCheckCircle className='w-3.5 h-3.5' />
+                    {oneDollarTestApplied
+                      ? 'Code applied — test total set to $1.00'
+                      : 'Coupon applied — registration is complimentary'}
                   </p>
                 )}
               </div>
@@ -2135,7 +2159,7 @@ const RegistrationForm = () => {
                         : 'General Registration'}
                   </span>
                   <span className='text-gray-500'>1</span>
-                  {discountApplied ? (
+                  {discountApplied && !oneDollarTestApplied ? (
                     <div className='flex items-baseline gap-2'>
                       <span className='line-through text-gray-400 text-xs'>
                         ${basePrice.toLocaleString()}
@@ -2144,7 +2168,7 @@ const RegistrationForm = () => {
                     </div>
                   ) : (
                     <span className='font-medium'>
-                      ${basePrice.toLocaleString()}
+                      ${oneDollarTestApplied ? '1.00' : basePrice.toLocaleString()}
                     </span>
                   )}
                 </div>
@@ -2181,7 +2205,7 @@ const RegistrationForm = () => {
             {/* Total */}
             <div className='flex justify-between items-center bg-gray-900 text-white p-4 rounded-lg font-bold'>
               <span>Total</span>
-              {discountApplied ? (
+              {discountApplied && !oneDollarTestApplied ? (
                 <div className='flex items-baseline gap-2'>
                   <span className='line-through text-gray-400 text-sm font-normal'>
                     ${(
@@ -2194,7 +2218,7 @@ const RegistrationForm = () => {
                   </span>
                 </div>
               ) : (
-                <span>${totalAmount.toLocaleString()}</span>
+                <span>${oneDollarTestApplied ? '1.00' : totalAmount.toLocaleString()}</span>
               )}
             </div>
 
@@ -2441,15 +2465,22 @@ const RegistrationForm = () => {
                       ).toLocaleString()}
                     </span>
                   </div>
-                  {discountApplied && (
+                  {(discountApplied || oneDollarTestApplied) && (
                     <div className='flex items-center justify-between text-gray-700'>
                       <span>Discount ({formData.discountCode})</span>
                       <span className='text-green-600'>
                         -$
-                        {(
-                          (PRICING[effectiveAttendeeType] || 0) *
-                          ticketQuantity
-                        ).toLocaleString()}
+                        {oneDollarTestApplied
+                          ? Math.max(
+                              (PRICING[effectiveAttendeeType] || 0) * ticketQuantity +
+                                addOnsTotal -
+                                1,
+                              0
+                            ).toLocaleString()
+                          : (
+                              (PRICING[effectiveAttendeeType] || 0) *
+                              ticketQuantity
+                            ).toLocaleString()}
                       </span>
                     </div>
                   )}
