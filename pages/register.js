@@ -33,8 +33,6 @@ const PRICING = {
 const DISCOUNT_ELIGIBLE_TYPES = ['OEM', 'Tier1', 'Sponsor', 'Speaker'];
 
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
-const FORM_ACCESS_PASSWORD = 'biancalars';
-const FORM_ACCESS_SESSION_KEY = 'aps-register-access-v1';
 
 const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
   mutation CreateApsRegistrant($input: CreateApsRegistrantInput!, $condition: ModelApsRegistrantConditionInput) {
@@ -182,9 +180,6 @@ const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [sponsorTicketOption, setSponsorTicketOption] = useState(null);
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [accessPassword, setAccessPassword] = useState('');
-  const [accessError, setAccessError] = useState('');
 
   const dropdownRef = useRef(null);
   const emailCheckTimeout = useRef(null);
@@ -226,25 +221,6 @@ const RegistrationForm = () => {
   const [processingPayment, setProcessingPayment] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [invoiceUrl, setInvoiceUrl] = useState(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const unlocked = window.sessionStorage.getItem(FORM_ACCESS_SESSION_KEY);
-    if (unlocked === 'true') setIsUnlocked(true);
-  }, []);
-
-  const handleUnlockForm = (e) => {
-    e.preventDefault();
-    if (accessPassword === FORM_ACCESS_PASSWORD) {
-      setIsUnlocked(true);
-      setAccessError('');
-      if (typeof window !== 'undefined') {
-        window.sessionStorage.setItem(FORM_ACCESS_SESSION_KEY, 'true');
-      }
-      return;
-    }
-    setAccessError('Incorrect password');
-  };
 
   useEffect(() => {
     const loadCompanies = async () => {
@@ -2485,35 +2461,6 @@ const RegistrationForm = () => {
         return null;
     }
   };
-
-  if (!isUnlocked) {
-    return (
-      <div className='max-w-md mx-auto px-4 py-16'>
-        <div className='rounded-xl border border-gray-200 bg-white p-6 shadow-sm'>
-          <h1 className='text-2xl font-bold text-gray-900'>Private Form Access</h1>
-          <p className='mt-2 text-sm text-gray-600'>
-            This registration form is currently protected. Enter the password to continue.
-          </p>
-          <form className='mt-5 space-y-3' onSubmit={handleUnlockForm}>
-            <input
-              type='password'
-              value={accessPassword}
-              onChange={(e) => setAccessPassword(e.target.value)}
-              placeholder='Enter password'
-              className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
-            />
-            {accessError ? <p className='text-sm text-red-600'>{accessError}</p> : null}
-            <button
-              type='submit'
-              className='w-full px-4 py-2.5 text-sm font-semibold text-white bg-ap-blue rounded-lg hover:bg-ap-darkblue transition-colors'
-            >
-              Unlock form
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className='max-w-6xl mx-auto px-4 py-10 flex flex-col gap-6'>
