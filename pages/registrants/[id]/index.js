@@ -438,7 +438,7 @@ export const RegistrantPage = ({ registrant }) => {
                     rel='noopener noreferrer'
                     className='block w-full px-3 py-2 rounded-md bg-black text-white text-sm font-semibold text-center hover:bg-gray-800'
                   >
-                    Download invoice
+                    Download receipt
                   </a>
                 )}
                 <button
@@ -842,7 +842,7 @@ export const RegistrantPage = ({ registrant }) => {
                   )}
                   {registrantData.invoice && (
                     <div>
-                      <span className='font-semibold'>Invoice:</span>{' '}
+                      <span className='font-semibold'>Receipt:</span>{' '}
                       <a
                         href={registrantData.invoice}
                         target='_blank'
