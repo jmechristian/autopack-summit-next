@@ -62,11 +62,14 @@ body {
   }
 
   #invoice-print,
-  #invoice-print * {
+  #invoice-print *,
+  #agenda-print,
+  #agenda-print * {
     visibility: visible;
   }
 
-  #invoice-print {
+  #invoice-print,
+  #agenda-print {
     position: absolute;
     inset: 0;
     margin: 0;

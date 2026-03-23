@@ -383,7 +383,21 @@ const AgendaDraft = ({ sessionData }) => {
                   </span>
                 </Switch>
               </div>
+              <button
+                type='button'
+                onClick={handlePrint}
+                disabled={!enabled}
+                className={classNames(
+                  enabled
+                    ? 'bg-ap-blue text-white hover:bg-ap-darkblue'
+                    : 'bg-gray-200 text-gray-500 cursor-not-allowed',
+                  'px-4 py-2 rounded-lg text-sm font-semibold transition-colors',
+                )}
+              >
+                Download Compact PDF
+              </button>
               <div
+                id='agenda-print'
                 ref={componentRef}
                 className='hidden print:flex print:flex-col gap-6 p-6'
               >
