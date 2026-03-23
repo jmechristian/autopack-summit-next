@@ -146,6 +146,17 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
 
+const isValidEmailFormat = (email = '') => {
+  const normalized = String(email).trim();
+  if (!normalized) return false;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(normalized)) return false;
+  const [localPart, domainPart] = normalized.split('@');
+  if (!localPart || !domainPart) return false;
+  if (localPart.startsWith('.') || localPart.endsWith('.')) return false;
+  if (localPart.includes('..') || domainPart.includes('..')) return false;
+  return true;
+};
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
@@ -166,6 +177,7 @@ const RegistrationForm = () => {
   const [registrantId, setRegistrantId] = useState(null);
   const [emailChecking, setEmailChecking] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
+  const [emailDomainValid, setEmailDomainValid] = useState(true);
   const [eventCodes, setEventCodes] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
@@ -296,13 +308,30 @@ const RegistrationForm = () => {
   }, [step]);
 
   const checkEmailExists = useCallback(async (email) => {
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    if (!normalizedEmail || !isValidEmailFormat(normalizedEmail)) {
       setEmailExists(false);
+      setEmailDomainValid(true);
       setEmailChecking(false);
       return;
     }
     setEmailChecking(true);
     try {
+      const validateRes = await fetch(
+        `/api/validate-email?email=${encodeURIComponent(normalizedEmail)}`
+      );
+      const validateData = await validateRes.json().catch(() => ({}));
+      if (!validateRes.ok || validateData?.valid === false) {
+        setEmailDomainValid(false);
+        setEmailExists(false);
+        setErrors((prev) => ({
+          ...prev,
+          email: 'Please enter a valid email address',
+        }));
+        return;
+      }
+
+      setEmailDomainValid(true);
       const res = await API.graphql({
         query: /* GraphQL */ `
           query ApsRegistrantsByEmail($email: String!) {
@@ -314,7 +343,7 @@ const RegistrationForm = () => {
           }
         `,
         authMode: 'API_KEY',
-        variables: { email },
+        variables: { email: normalizedEmail },
       });
       const exists = (res.data.apsRegistrantsByEmail.items?.length || 0) > 0;
       setEmailExists(exists);
@@ -481,6 +510,7 @@ const RegistrationForm = () => {
     if (name === 'email') {
       setFormData((prev) => ({ ...prev, email: value }));
       setEmailExists(false);
+      setEmailDomainValid(true);
       if (value) delete newErrors.email;
       setErrors(newErrors);
       if (emailCheckTimeout.current) clearTimeout(emailCheckTimeout.current);
@@ -972,8 +1002,10 @@ const RegistrationForm = () => {
       if (!formData.lastName.trim())
         newErrors.lastName = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
-      else if (!/\S+@\S+\.\S+/.test(formData.email))
+      else if (!isValidEmailFormat(formData.email))
         newErrors.email = 'Please enter a valid email';
+      else if (!emailDomainValid)
+        newErrors.email = 'Please enter a valid email address';
       else if (emailExists)
         newErrors.email = 'This email is already registered';
       if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
@@ -1223,7 +1255,11 @@ const RegistrationForm = () => {
                 </svg>
               </div>
             )}
-            {!emailChecking && formData.email && /\S+@\S+\.\S+/.test(formData.email) && !emailExists && (
+            {!emailChecking &&
+              formData.email &&
+              isValidEmailFormat(formData.email) &&
+              emailDomainValid &&
+              !emailExists && (
               <MdCheckCircle className='absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500' />
             )}
           </div>
