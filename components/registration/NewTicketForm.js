@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { API } from 'aws-amplify';
 
-const NewTicketForm = ({ setRegistrant, close, company, companyId, formData }) => {
+const NewTicketForm = ({
+  setRegistrant,
+  close,
+  company,
+  companyId,
+  formData,
+  existingAdditionalRegistrants = [],
+}) => {
   const isSponsor = formData?.attendeeType === 'Sponsor';
   const initialAttendeeType = isSponsor ? 'Sponsor' : 'Solution-Provider';
 
@@ -53,6 +60,15 @@ const NewTicketForm = ({ setRegistrant, close, company, companyId, formData }) =
     ) {
       newErrors.email =
         'This email is already used for the primary ticket';
+      isValid = false;
+    } else if (
+      existingAdditionalRegistrants.some(
+        (r) =>
+          String(r.email || '').trim().toLowerCase() ===
+          String(newTicketRegistrant.email || '').trim().toLowerCase(),
+      )
+    ) {
+      newErrors.email = 'This email is already used for another added ticket';
       isValid = false;
     } else {
       try {

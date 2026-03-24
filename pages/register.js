@@ -79,6 +79,16 @@ const UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL = /* GraphQL */ `
   }
 `;
 
+const APS_REGISTRANTS_BY_EMAIL_QUERY = /* GraphQL */ `
+  query ApsRegistrantsByEmail($email: String!) {
+    apsRegistrantsByEmail(email: $email) {
+      items {
+        id
+      }
+    }
+  }
+`;
+
 const INTEREST_OPTIONS = [
   'Expendable Packaging and/or After Sales Packaging',
   'Returnable and/or reusable Packaging',
@@ -579,19 +589,89 @@ const RegistrationForm = () => {
     }
   };
 
+  const checkRegistrantExistsByEmail = async (email) => {
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    if (!normalizedEmail) return false;
+    const res = await API.graphql({
+      query: APS_REGISTRANTS_BY_EMAIL_QUERY,
+      variables: { email: normalizedEmail },
+      authMode: 'API_KEY',
+    });
+    return (res.data?.apsRegistrantsByEmail?.items?.length || 0) > 0;
+  };
+
+  const sendRegistrationConfirmationAndMarkSent = async ({
+    registrantRecordId,
+    registrantFormData,
+    registrantTotalAmount,
+    registrantAddOnsSelected = [],
+  }) => {
+    const emailRes = await fetch('/api/send-registration-confirmation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        formData: registrantFormData,
+        totalAmount: registrantTotalAmount,
+        formDataId: registrantRecordId,
+        addOnsSelected: registrantAddOnsSelected,
+      }),
+    });
+
+    if (!emailRes.ok) {
+      const data = await emailRes.json().catch(() => ({}));
+      throw new Error(data?.message || emailRes.statusText || 'Email send failed');
+    }
+
+    await API.graphql({
+      query: UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL,
+      variables: {
+        input: {
+          id: registrantRecordId,
+          registrationEmailSent: true,
+          registrationEmailSentDate: new Date().toISOString(),
+        },
+      },
+      authMode: 'API_KEY',
+    });
+  };
+
   const createAdditionalTicketRegistrants = async () => {
-    if (additionalRegistrants.length === 0) return;
+    if (additionalRegistrants.length === 0) return [];
     // Only Sponsors can add extra tickets; guard just in case
-    if (formData.attendeeType !== 'Sponsor') return;
+    if (formData.attendeeType !== 'Sponsor') return [];
+
+    const seenEmails = new Set([String(formData.email || '').trim().toLowerCase()]);
+    for (const extra of additionalRegistrants) {
+      const normalizedExtraEmail = String(extra.email || '').trim().toLowerCase();
+      if (!normalizedExtraEmail) {
+        throw new Error('Each additional ticket must include an email.');
+      }
+      if (seenEmails.has(normalizedExtraEmail)) {
+        throw new Error(
+          `Additional ticket email "${normalizedExtraEmail}" is duplicated in this registration.`,
+        );
+      }
+      seenEmails.add(normalizedExtraEmail);
+    }
+
+    const createdAdditional = [];
 
     for (const extra of additionalRegistrants) {
       const extraType = extra.attendeeType || formData.attendeeType;
       try {
+        const normalizedExtraEmail = String(extra.email || '').trim().toLowerCase();
+        const alreadyRegistered = await checkRegistrantExistsByEmail(normalizedExtraEmail);
+        if (alreadyRegistered) {
+          throw new Error(`This email is already registered: ${normalizedExtraEmail}`);
+        }
+
         const extraInput = {
           apsID: APS_EVENT_ID,
           attendeeType: mapAttendeeTypeToEnum(extraType),
           status: 'PENDING',
-          email: extra.email,
+          email: normalizedExtraEmail,
           firstName: extra.firstName || null,
           lastName: extra.lastName || null,
           phone: extra.phone || null,
@@ -612,15 +692,35 @@ const RegistrationForm = () => {
           discountCode: formData.discountCode || null,
         };
 
-        await API.graphql({
+        const createExtraRes = await API.graphql({
           query: CREATE_APS_REGISTRANT_MINIMAL,
           variables: { input: extraInput },
           authMode: 'API_KEY',
         });
+        const createdExtra = createExtraRes.data?.createApsRegistrant;
+        if (createdExtra?.id) {
+          createdAdditional.push({
+            id: createdExtra.id,
+            attendeeType: extraType,
+            totalAmount: PRICING[extraType] || 0,
+            formData: {
+              firstName: extra.firstName || '',
+              lastName: extra.lastName || '',
+              email: normalizedExtraEmail,
+              phone: extra.phone || '',
+              companyName: formData.companyName || '',
+              jobTitle: extra.jobTitle || '',
+              attendeeType: extraType,
+              billingAddress: { ...formData.billingAddress },
+            },
+          });
+        }
       } catch (err) {
         console.error('Failed to create additional ticket registrant:', err);
+        throw err;
       }
     }
+    return createdAdditional;
   };
 
   const handleSubmitRegistration = async () => {
@@ -674,10 +774,11 @@ const RegistrationForm = () => {
 
       const created = res.data?.createApsRegistrant;
       const mainRegistrantId = created?.id;
+      let createdAdditionalRegistrants = [];
       if (mainRegistrantId) {
         setRegistrantId(mainRegistrantId);
         await createAddOnRequestsForRegistrant(mainRegistrantId);
-        await createAdditionalTicketRegistrants();
+        createdAdditionalRegistrants = await createAdditionalTicketRegistrants();
       }
 
       // Move the UI forward to confirmation regardless of invoice outcome.
@@ -689,54 +790,31 @@ const RegistrationForm = () => {
           id: sel.addOnId || sel.addOn?.id || '',
           title: sel.addOn?.title || 'Add-on',
         }));
+        sendRegistrationConfirmationAndMarkSent({
+          registrantRecordId: mainRegistrantId,
+          registrantFormData: formData,
+          registrantTotalAmount: totalAmount,
+          registrantAddOnsSelected: emailAddOns,
+        }).catch((emailErr) => {
+          console.error(
+            'Failed to send registration confirmation email:',
+            emailErr
+          );
+        });
 
-        fetch('/api/send-registration-confirmation', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            formData,
-            totalAmount,
-            formDataId: mainRegistrantId,
-            addOnsSelected: emailAddOns,
-          }),
-        })
-          .then(async (emailRes) => {
-            if (!emailRes.ok) {
-              const data = await emailRes.json().catch(() => ({}));
-              console.error(
-                'Registration confirmation email failed:',
-                data?.message || emailRes.statusText
-              );
-              return;
-            }
-
-            try {
-              await API.graphql({
-                query: UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL,
-                variables: {
-                  input: {
-                    id: mainRegistrantId,
-                    registrationEmailSent: true,
-                    registrationEmailSentDate: new Date().toISOString(),
-                  },
-                },
-                authMode: 'API_KEY',
-              });
-            } catch (updateEmailStatusErr) {
-              console.error(
-                'Failed to update registrationEmailSent status:',
-                updateEmailStatusErr
-              );
-            }
-          })
-          .catch((emailErr) => {
+        createdAdditionalRegistrants.forEach((extraRegistrant) => {
+          sendRegistrationConfirmationAndMarkSent({
+            registrantRecordId: extraRegistrant.id,
+            registrantFormData: extraRegistrant.formData,
+            registrantTotalAmount: extraRegistrant.totalAmount,
+            registrantAddOnsSelected: [],
+          }).catch((emailErr) => {
             console.error(
-              'Failed to send registration confirmation email:',
+              `Failed to send additional registrant confirmation email (${extraRegistrant.id}):`,
               emailErr
             );
           });
+        });
       }
 
       // Fire-and-forget: generate and attach invoice PDF (including zero-balance with coupon).
@@ -2517,6 +2595,7 @@ const RegistrationForm = () => {
           company={formData.companyName}
           companyId={formData.companyId}
           formData={formData}
+          existingAdditionalRegistrants={additionalRegistrants}
         />
       )}
     </div>
