@@ -102,6 +102,30 @@ const APS_REGISTRANTS_BY_EMAIL_QUERY = /* GraphQL */ `
   }
 `;
 
+const GET_APS_CODE_MINIMAL = /* GraphQL */ `
+  query GetAPSCode($id: ID!) {
+    getAPSCode(id: $id) {
+      id
+      used
+      limit
+    }
+  }
+`;
+
+const UPDATE_APS_CODE_USAGE_MINIMAL = /* GraphQL */ `
+  mutation UpdateAPSCodeUsage(
+    $input: UpdateAPSCodeInput!
+    $condition: ModelAPSCodeConditionInput
+  ) {
+    updateAPSCode(input: $input, condition: $condition) {
+      id
+      used
+      limit
+      updatedAt
+    }
+  }
+`;
+
 const INTEREST_OPTIONS = [
   'Expendable Packaging and/or After Sales Packaging',
   'Returnable and/or reusable Packaging',
@@ -602,6 +626,48 @@ const RegistrationForm = () => {
     }
   };
 
+  const incrementAppliedDiscountCodeUsage = async () => {
+    if (!discountApplied || !formData.discountCode) return;
+
+    const normalizedCode = formData.discountCode.trim().toLowerCase();
+    const matchedCode = eventCodes.find(
+      (codeItem) => codeItem.code?.toLowerCase() === normalizedCode,
+    );
+    if (!matchedCode?.id) {
+      console.warn(
+        `Discount code usage increment skipped. Could not find code id for: ${normalizedCode}`,
+      );
+      return;
+    }
+
+    const latestCodeRes = await API.graphql({
+      query: GET_APS_CODE_MINIMAL,
+      variables: { id: matchedCode.id },
+      authMode: 'API_KEY',
+    });
+    const latestCode = latestCodeRes.data?.getAPSCode;
+    if (!latestCode?.id) return;
+
+    await API.graphql({
+      query: UPDATE_APS_CODE_USAGE_MINIMAL,
+      variables: {
+        input: {
+          id: latestCode.id,
+          used: (latestCode.used || 0) + 1,
+        },
+      },
+      authMode: 'API_KEY',
+    });
+
+    setEventCodes((prev) =>
+      prev.map((codeItem) =>
+        codeItem.id === latestCode.id
+          ? { ...codeItem, used: (latestCode.used || 0) + 1 }
+          : codeItem,
+      ),
+    );
+  };
+
   const checkRegistrantExistsByEmail = async (email) => {
     const normalizedEmail = String(email || '').trim().toLowerCase();
     if (!normalizedEmail) return false;
@@ -789,6 +855,7 @@ const RegistrationForm = () => {
       const mainRegistrantId = created?.id;
       let createdAdditionalRegistrants = [];
       if (mainRegistrantId) {
+        await incrementAppliedDiscountCodeUsage();
         setRegistrantId(mainRegistrantId);
         await createAddOnRequestsForRegistrant(mainRegistrantId);
         createdAdditionalRegistrants = await createAdditionalTicketRegistrants();
