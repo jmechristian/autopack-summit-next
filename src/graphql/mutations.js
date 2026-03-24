@@ -2582,66 +2582,6 @@ export const deleteAPSCode = /* GraphQL */ `
     }
   }
 `;
-export const createAPSBoard = /* GraphQL */ `
-  mutation CreateAPSBoard(
-    $input: CreateAPSBoardInput!
-    $condition: ModelAPSBoardConditionInput
-  ) {
-    createAPSBoard(input: $input, condition: $condition) {
-      id
-      name
-      title
-      bio
-      company
-      email
-      linkedin
-      profilePic
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateAPSBoard = /* GraphQL */ `
-  mutation UpdateAPSBoard(
-    $input: UpdateAPSBoardInput!
-    $condition: ModelAPSBoardConditionInput
-  ) {
-    updateAPSBoard(input: $input, condition: $condition) {
-      id
-      name
-      title
-      bio
-      company
-      email
-      linkedin
-      profilePic
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteAPSBoard = /* GraphQL */ `
-  mutation DeleteAPSBoard(
-    $input: DeleteAPSBoardInput!
-    $condition: ModelAPSBoardConditionInput
-  ) {
-    deleteAPSBoard(input: $input, condition: $condition) {
-      id
-      name
-      title
-      bio
-      company
-      email
-      linkedin
-      profilePic
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const createApsAgenda = /* GraphQL */ `
   mutation CreateApsAgenda(
     $input: CreateApsAgendaInput!
@@ -29891,1890 +29831,6 @@ export const deleteApsSponsor = /* GraphQL */ `
     }
   }
 `;
-export const createAPSCompany = /* GraphQL */ `
-  mutation CreateAPSCompany(
-    $input: CreateAPSCompanyInput!
-    $condition: ModelAPSCompanyConditionInput
-  ) {
-    createAPSCompany(input: $input, condition: $condition) {
-      id
-      name
-      email
-      type
-      description
-      website
-      phone
-      address
-      city
-      state
-      zip
-      country
-      logo
-      events {
-        items {
-          id
-          aPSId
-          aPSCompanyId
-          aPS {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          aPSCompany {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      registrants {
-        items {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          buyerQuestion
-          packagingChallenge
-          certification
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          invoice
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnRequests {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      sponsorId
-      sponsor {
-        id
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        profile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        sessions {
-          items {
-            id
-            apsAppSessionId
-            apsSponsorId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        type
-        createdAt
-        updatedAt
-        aPSSponsorsId
-        apsSponsorProfileId
-        __typename
-      }
-      exhibitorProfileId
-      exhibitorProfile {
-        id
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        deals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        handouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        promotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        video
-        videoCaption
-        boothNumber
-        visits
-        views
-        likes
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSExhibitorsId
-        __typename
-      }
-      notes {
-        items {
-          id
-          owner
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          note
-          sessionId
-          session {
-            id
-            title
-            date
-            startTime
-            endTime
-            location
-            description
-            agendaId
-            createdAt
-            updatedAt
-            apsAgendaItemsId
-            __typename
-          }
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          profileId
-          profile {
-            id
-            userId
-            firstName
-            lastName
-            email
-            phone
-            company
-            jobTitle
-            attendeeType
-            quickTools
-            profilePicture
-            bio
-            linkedin
-            twitter
-            facebook
-            instagram
-            youtube
-            website
-            location
-            resume
-            speakerId
-            createdAt
-            updatedAt
-            __typename
-          }
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          apsAppUserNotesId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      contacts {
-        items {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          name
-          email
-          phone
-          title
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateAPSCompany = /* GraphQL */ `
-  mutation UpdateAPSCompany(
-    $input: UpdateAPSCompanyInput!
-    $condition: ModelAPSCompanyConditionInput
-  ) {
-    updateAPSCompany(input: $input, condition: $condition) {
-      id
-      name
-      email
-      type
-      description
-      website
-      phone
-      address
-      city
-      state
-      zip
-      country
-      logo
-      events {
-        items {
-          id
-          aPSId
-          aPSCompanyId
-          aPS {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          aPSCompany {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      registrants {
-        items {
-          id
-          apsID
-          aps {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          firstName
-          lastName
-          email
-          phone
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          jobTitle
-          attendeeType
-          termsAccepted
-          interests
-          otherInterest
-          buyerQuestion
-          packagingChallenge
-          certification
-          billingAddressFirstName
-          billingAddressLastName
-          billingAddressEmail
-          billingAddressPhone
-          billingAddressStreet
-          billingAddressCity
-          billingAddressState
-          billingAddressZip
-          sameAsAttendee
-          speakerTopic
-          learningObjectives
-          totalAmount
-          discountCode
-          status
-          paymentConfirmation
-          registrationEmailSent
-          registrationEmailSentDate
-          registrationEmailReceived
-          registrationEmailReceivedDate
-          welcomeEmailSent
-          welcomeEmailSentDate
-          welcomeEmailReceived
-          welcomeEmailReceivedDate
-          paymentMethod
-          paymentLast4
-          approvedAt
-          headshot
-          presentation
-          presentationTitle
-          presentationSummary
-          bio
-          invoice
-          seatingChartRegistrant {
-            id
-            category
-            firstName
-            lastName
-            company
-            email
-            role
-            tableNumber
-            notes
-            seatingChartID
-            registrantID
-            createdAt
-            updatedAt
-            apsSeatingChartRegistrantsId
-            __typename
-          }
-          addOnRequests {
-            nextToken
-            __typename
-          }
-          appUserId
-          appUser {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          qrCode
-          createdAt
-          updatedAt
-          aPSRegistrantsId
-          aPSCompanyRegistrantsId
-          apsRegistrantSeatingChartRegistrantId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      sponsorId
-      sponsor {
-        id
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        profile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        sessions {
-          items {
-            id
-            apsAppSessionId
-            apsSponsorId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        type
-        createdAt
-        updatedAt
-        aPSSponsorsId
-        apsSponsorProfileId
-        __typename
-      }
-      exhibitorProfileId
-      exhibitorProfile {
-        id
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        deals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        handouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        promotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        video
-        videoCaption
-        boothNumber
-        visits
-        views
-        likes
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSExhibitorsId
-        __typename
-      }
-      notes {
-        items {
-          id
-          owner
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          note
-          sessionId
-          session {
-            id
-            title
-            date
-            startTime
-            endTime
-            location
-            description
-            agendaId
-            createdAt
-            updatedAt
-            apsAgendaItemsId
-            __typename
-          }
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          profileId
-          profile {
-            id
-            userId
-            firstName
-            lastName
-            email
-            phone
-            company
-            jobTitle
-            attendeeType
-            quickTools
-            profilePicture
-            bio
-            linkedin
-            twitter
-            facebook
-            instagram
-            youtube
-            website
-            location
-            resume
-            speakerId
-            createdAt
-            updatedAt
-            __typename
-          }
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          createdAt
-          updatedAt
-          apsAppUserNotesId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      contacts {
-        items {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          name
-          email
-          phone
-          title
-          createdAt
-          updatedAt
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const deleteAPSCompany = /* GraphQL */ `
   mutation DeleteAPSCompany(
     $input: DeleteAPSCompanyInput!
@@ -51229,1164 +49285,6 @@ export const deleteApsPushToken = /* GraphQL */ `
     }
   }
 `;
-export const createAPSCompanyEvents = /* GraphQL */ `
-  mutation CreateAPSCompanyEvents(
-    $input: CreateAPSCompanyEventsInput!
-    $condition: ModelAPSCompanyEventsConditionInput
-  ) {
-    createAPSCompanyEvents(input: $input, condition: $condition) {
-      id
-      aPSId
-      aPSCompanyId
-      aPS {
-        id
-        year
-        codes {
-          items {
-            id
-            code
-            eventId
-            limit
-            used
-            createdAt
-            updatedAt
-            aPSCodesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        agenda {
-          id
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          items {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        startDate
-        endDate
-        location
-        address
-        city
-        state
-        zip
-        website
-        Registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Sponsors {
-          items {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Speakers {
-          items {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        companies {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitors {
-          items {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPromotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPhotos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorHandouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOns {
-          items {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAgendaId
-        __typename
-      }
-      aPSCompany {
-        id
-        name
-        email
-        type
-        description
-        website
-        phone
-        address
-        city
-        state
-        zip
-        country
-        logo
-        events {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        exhibitorProfileId
-        exhibitorProfile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        contacts {
-          items {
-            id
-            companyId
-            name
-            email
-            phone
-            title
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateAPSCompanyEvents = /* GraphQL */ `
-  mutation UpdateAPSCompanyEvents(
-    $input: UpdateAPSCompanyEventsInput!
-    $condition: ModelAPSCompanyEventsConditionInput
-  ) {
-    updateAPSCompanyEvents(input: $input, condition: $condition) {
-      id
-      aPSId
-      aPSCompanyId
-      aPS {
-        id
-        year
-        codes {
-          items {
-            id
-            code
-            eventId
-            limit
-            used
-            createdAt
-            updatedAt
-            aPSCodesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        agenda {
-          id
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          items {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        startDate
-        endDate
-        location
-        address
-        city
-        state
-        zip
-        website
-        Registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Sponsors {
-          items {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Speakers {
-          items {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        companies {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitors {
-          items {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPromotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPhotos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorHandouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOns {
-          items {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAgendaId
-        __typename
-      }
-      aPSCompany {
-        id
-        name
-        email
-        type
-        description
-        website
-        phone
-        address
-        city
-        state
-        zip
-        country
-        logo
-        events {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        exhibitorProfileId
-        exhibitorProfile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        contacts {
-          items {
-            id
-            companyId
-            name
-            email
-            phone
-            title
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const deleteAPSCompanyEvents = /* GraphQL */ `
   mutation DeleteAPSCompanyEvents(
     $input: DeleteAPSCompanyEventsInput!
@@ -55682,6 +52580,66 @@ export const createAPS = /* GraphQL */ `
       createdAt
       updatedAt
       aPSAgendaId
+      __typename
+    }
+  }
+`;
+export const createAPSBoard = /* GraphQL */ `
+  mutation CreateAPSBoard(
+    $input: CreateAPSBoardInput!
+    $condition: ModelAPSBoardConditionInput
+  ) {
+    createAPSBoard(input: $input, condition: $condition) {
+      id
+      name
+      title
+      bio
+      company
+      email
+      linkedin
+      profilePic
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateAPSBoard = /* GraphQL */ `
+  mutation UpdateAPSBoard(
+    $input: UpdateAPSBoardInput!
+    $condition: ModelAPSBoardConditionInput
+  ) {
+    updateAPSBoard(input: $input, condition: $condition) {
+      id
+      name
+      title
+      bio
+      company
+      email
+      linkedin
+      profilePic
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteAPSBoard = /* GraphQL */ `
+  mutation DeleteAPSBoard(
+    $input: DeleteAPSBoardInput!
+    $condition: ModelAPSBoardConditionInput
+  ) {
+    deleteAPSBoard(input: $input, condition: $condition) {
+      id
+      name
+      title
+      bio
+      company
+      email
+      linkedin
+      profilePic
+      createdAt
+      updatedAt
       __typename
     }
   }
@@ -60426,6 +57384,1890 @@ export const updateApsAppUserProfile = /* GraphQL */ `
     }
   }
 `;
+export const createAPSCompany = /* GraphQL */ `
+  mutation CreateAPSCompany(
+    $input: CreateAPSCompanyInput!
+    $condition: ModelAPSCompanyConditionInput
+  ) {
+    createAPSCompany(input: $input, condition: $condition) {
+      id
+      name
+      email
+      type
+      description
+      website
+      phone
+      address
+      city
+      state
+      zip
+      country
+      logo
+      events {
+        items {
+          id
+          aPSId
+          aPSCompanyId
+          aPS {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          aPSCompany {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      registrants {
+        items {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          invoice
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      exhibitorProfileId
+      exhibitorProfile {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      notes {
+        items {
+          id
+          owner
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          note
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      contacts {
+        items {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          name
+          email
+          phone
+          title
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateAPSCompany = /* GraphQL */ `
+  mutation UpdateAPSCompany(
+    $input: UpdateAPSCompanyInput!
+    $condition: ModelAPSCompanyConditionInput
+  ) {
+    updateAPSCompany(input: $input, condition: $condition) {
+      id
+      name
+      email
+      type
+      description
+      website
+      phone
+      address
+      city
+      state
+      zip
+      country
+      logo
+      events {
+        items {
+          id
+          aPSId
+          aPSCompanyId
+          aPS {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          aPSCompany {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      registrants {
+        items {
+          id
+          apsID
+          aps {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          jobTitle
+          attendeeType
+          termsAccepted
+          interests
+          otherInterest
+          buyerQuestion
+          packagingChallenge
+          certification
+          billingAddressFirstName
+          billingAddressLastName
+          billingAddressEmail
+          billingAddressPhone
+          billingAddressStreet
+          billingAddressCity
+          billingAddressState
+          billingAddressZip
+          sameAsAttendee
+          speakerTopic
+          learningObjectives
+          totalAmount
+          discountCode
+          status
+          paymentConfirmation
+          registrationEmailSent
+          registrationEmailSentDate
+          registrationEmailReceived
+          registrationEmailReceivedDate
+          welcomeEmailSent
+          welcomeEmailSentDate
+          welcomeEmailReceived
+          welcomeEmailReceivedDate
+          paymentMethod
+          paymentLast4
+          approvedAt
+          headshot
+          presentation
+          presentationTitle
+          presentationSummary
+          bio
+          invoice
+          seatingChartRegistrant {
+            id
+            category
+            firstName
+            lastName
+            company
+            email
+            role
+            tableNumber
+            notes
+            seatingChartID
+            registrantID
+            createdAt
+            updatedAt
+            apsSeatingChartRegistrantsId
+            __typename
+          }
+          addOnRequests {
+            nextToken
+            __typename
+          }
+          appUserId
+          appUser {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          qrCode
+          createdAt
+          updatedAt
+          aPSRegistrantsId
+          aPSCompanyRegistrantsId
+          apsRegistrantSeatingChartRegistrantId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      exhibitorProfileId
+      exhibitorProfile {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      notes {
+        items {
+          id
+          owner
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          note
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      contacts {
+        items {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          name
+          email
+          phone
+          title
+          createdAt
+          updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createRegistrantAddOnRequest = /* GraphQL */ `
   mutation CreateRegistrantAddOnRequest(
     $input: CreateRegistrantAddOnRequestInput!
@@ -60964,6 +59806,1164 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
       }
       status
       preferences
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createAPSCompanyEvents = /* GraphQL */ `
+  mutation CreateAPSCompanyEvents(
+    $input: CreateAPSCompanyEventsInput!
+    $condition: ModelAPSCompanyEventsConditionInput
+  ) {
+    createAPSCompanyEvents(input: $input, condition: $condition) {
+      id
+      aPSId
+      aPSCompanyId
+      aPS {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      aPSCompany {
+        id
+        name
+        email
+        type
+        description
+        website
+        phone
+        address
+        city
+        state
+        zip
+        country
+        logo
+        events {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        exhibitorProfileId
+        exhibitorProfile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        contacts {
+          items {
+            id
+            companyId
+            name
+            email
+            phone
+            title
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateAPSCompanyEvents = /* GraphQL */ `
+  mutation UpdateAPSCompanyEvents(
+    $input: UpdateAPSCompanyEventsInput!
+    $condition: ModelAPSCompanyEventsConditionInput
+  ) {
+    updateAPSCompanyEvents(input: $input, condition: $condition) {
+      id
+      aPSId
+      aPSCompanyId
+      aPS {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      aPSCompany {
+        id
+        name
+        email
+        type
+        description
+        website
+        phone
+        address
+        city
+        state
+        zip
+        country
+        logo
+        events {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        exhibitorProfileId
+        exhibitorProfile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        contacts {
+          items {
+            id
+            companyId
+            name
+            email
+            phone
+            title
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       __typename

@@ -102,6 +102,15 @@ const APS_REGISTRANTS_BY_EMAIL_QUERY = /* GraphQL */ `
   }
 `;
 
+const CREATE_APS_COMPANY_MINIMAL = /* GraphQL */ `
+  mutation CreateAPSCompany($input: CreateAPSCompanyInput!) {
+    createAPSCompany(input: $input) {
+      id
+      name
+    }
+  }
+`;
+
 const GET_APS_CODE_MINIMAL = /* GraphQL */ `
   query GetAPSCode($id: ID!) {
     getAPSCode(id: $id) {
@@ -212,6 +221,10 @@ const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
   const [companySearch, setCompanySearch] = useState('');
+  const [showAddCompanyModal, setShowAddCompanyModal] = useState(false);
+  const [manualCompanyName, setManualCompanyName] = useState('');
+  const [isCreatingCompany, setIsCreatingCompany] = useState(false);
+  const [addCompanyModalError, setAddCompanyModalError] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [completedSteps, setCompletedSteps] = useState({});
@@ -565,8 +578,65 @@ const RegistrationForm = () => {
     setErrors(newErrors);
   };
 
-  const handleAddCompany = () => {
-    console.log('Add company requested. Search term:', companySearch);
+  const handleAddCompany = async () => {
+    const typedCompany = manualCompanyName.trim();
+    if (!typedCompany) {
+      setAddCompanyModalError('Please type your company name first');
+      return;
+    }
+
+    setIsCreatingCompany(true);
+    setAddCompanyModalError('');
+    try {
+      const existing = companies.find(
+        (c) => c.name?.trim().toLowerCase() === typedCompany.toLowerCase(),
+      );
+
+      let selectedCompany = existing || null;
+      if (!selectedCompany) {
+        const createRes = await API.graphql({
+          query: CREATE_APS_COMPANY_MINIMAL,
+          variables: {
+            input: {
+              name: typedCompany,
+            },
+          },
+          authMode: 'API_KEY',
+        });
+        selectedCompany = createRes.data?.createAPSCompany || null;
+      }
+
+      if (!selectedCompany?.id) {
+        throw new Error('Unable to create company');
+      }
+
+      setCompanies((prev) => {
+        const exists = prev.some((c) => c.id === selectedCompany.id);
+        return exists ? prev : [...prev, selectedCompany];
+      });
+
+      setFormData((prev) => ({
+        ...prev,
+        companyName: selectedCompany.name || typedCompany,
+        companyId: selectedCompany.id,
+      }));
+      setCompanySearch(selectedCompany.name || typedCompany);
+      setManualCompanyName('');
+      setShowAddCompanyModal(false);
+      setIsDropdownOpen(false);
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next.companyName;
+        return next;
+      });
+    } catch (err) {
+      console.error('Error creating company from registration form:', err);
+      setAddCompanyModalError(
+        'Could not create company right now. Please try again or select an existing company.',
+      );
+    } finally {
+      setIsCreatingCompany(false);
+    }
   };
 
   const handleApplyDiscount = () => {
@@ -1535,7 +1605,11 @@ const RegistrationForm = () => {
             If your company is not listed,{' '}
             <button
               type='button'
-              onClick={handleAddCompany}
+              onClick={() => {
+                  setAddCompanyModalError('');
+                setManualCompanyName(formData.companyName || companySearch || '');
+                setShowAddCompanyModal(true);
+              }}
               className='text-ap-blue hover:underline'
             >
               click here to add it.
@@ -2712,6 +2786,52 @@ const RegistrationForm = () => {
           formData={formData}
           existingAdditionalRegistrants={additionalRegistrants}
         />
+      )}
+
+      {showAddCompanyModal && (
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4'>
+          <div className='w-full max-w-md rounded-xl bg-white p-5 shadow-xl border border-gray-200'>
+            <h3 className='text-base font-bold text-gray-900'>Add company</h3>
+            <p className='mt-1 text-sm text-gray-600'>
+              Enter your company name if it is not listed.
+            </p>
+            <input
+              type='text'
+              value={manualCompanyName}
+              onChange={(e) => {
+                setManualCompanyName(e.target.value);
+                if (addCompanyModalError) setAddCompanyModalError('');
+              }}
+              placeholder='Company name'
+              className='mt-4 w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
+            />
+            {addCompanyModalError ? (
+              <p className='mt-2 text-xs text-red-600'>{addCompanyModalError}</p>
+            ) : null}
+            <div className='mt-4 flex justify-end gap-2'>
+              <button
+                type='button'
+                disabled={isCreatingCompany}
+                onClick={() => {
+                  setShowAddCompanyModal(false);
+                  setManualCompanyName('');
+                  setAddCompanyModalError('');
+                }}
+                className='px-3 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed'
+              >
+                Cancel
+              </button>
+              <button
+                type='button'
+                disabled={isCreatingCompany}
+                onClick={handleAddCompany}
+                className='px-3 py-2 text-sm font-semibold text-white bg-ap-blue rounded-lg hover:bg-ap-darkblue disabled:opacity-50 disabled:cursor-not-allowed'
+              >
+                {isCreatingCompany ? 'Saving...' : 'Save company'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
