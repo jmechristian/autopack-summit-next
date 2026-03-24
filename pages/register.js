@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import {
   ExclamationCircleIcon,
@@ -41,7 +47,10 @@ const DISCOUNT_ELIGIBLE_TYPES = [
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
 
 const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
-  mutation CreateApsRegistrant($input: CreateApsRegistrantInput!, $condition: ModelApsRegistrantConditionInput) {
+  mutation CreateApsRegistrant(
+    $input: CreateApsRegistrantInput!
+    $condition: ModelApsRegistrantConditionInput
+  ) {
     createApsRegistrant(input: $input, condition: $condition) {
       id
       apsID
@@ -350,7 +359,9 @@ const RegistrationForm = () => {
   }, [step]);
 
   const checkEmailExists = useCallback(async (email) => {
-    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedEmail = String(email || '')
+      .trim()
+      .toLowerCase();
     if (!normalizedEmail || !isValidEmailFormat(normalizedEmail)) {
       setEmailExists(false);
       setEmailDomainValid(true);
@@ -360,7 +371,7 @@ const RegistrationForm = () => {
     setEmailChecking(true);
     try {
       const validateRes = await fetch(
-        `/api/validate-email?email=${encodeURIComponent(normalizedEmail)}`
+        `/api/validate-email?email=${encodeURIComponent(normalizedEmail)}`,
       );
       const validateData = await validateRes.json().catch(() => ({}));
       if (!validateRes.ok || validateData?.valid === false) {
@@ -390,7 +401,10 @@ const RegistrationForm = () => {
       const exists = (res.data.apsRegistrantsByEmail.items?.length || 0) > 0;
       setEmailExists(exists);
       if (exists) {
-        setErrors((prev) => ({ ...prev, email: 'This email is already registered' }));
+        setErrors((prev) => ({
+          ...prev,
+          email: 'This email is already registered',
+        }));
       }
     } catch (err) {
       console.log('Error checking email:', err);
@@ -439,7 +453,7 @@ const RegistrationForm = () => {
   const addOnsTotal = useMemo(() => {
     return addOnsSelected.reduce(
       (sum, sel) => sum + ((sel.addOn?.price ?? 0) || 0),
-      0
+      0,
     );
   }, [addOnsSelected]);
 
@@ -556,7 +570,10 @@ const RegistrationForm = () => {
       if (value) delete newErrors.email;
       setErrors(newErrors);
       if (emailCheckTimeout.current) clearTimeout(emailCheckTimeout.current);
-      emailCheckTimeout.current = setTimeout(() => checkEmailExists(value), 600);
+      emailCheckTimeout.current = setTimeout(
+        () => checkEmailExists(value),
+        600,
+      );
       return;
     }
 
@@ -646,7 +663,7 @@ const RegistrationForm = () => {
     }
     const normalizedCode = discountCode.trim().toLowerCase();
     const match = eventCodes.find(
-      (c) => c.code.toLowerCase() === normalizedCode
+      (c) => c.code.toLowerCase() === normalizedCode,
     );
     if (!match) {
       setDiscountCodeError('Invalid discount code');
@@ -654,7 +671,10 @@ const RegistrationForm = () => {
       return;
     }
     const requestedUnits = Math.max(ticketQuantity || 1, 1);
-    if (match.limit != null && (match.used || 0) + requestedUnits > match.limit) {
+    if (
+      match.limit != null &&
+      (match.used || 0) + requestedUnits > match.limit
+    ) {
       setDiscountCodeError(
         `This code has reached its usage limit (${match.used || 0}/${match.limit} used)`,
       );
@@ -751,7 +771,9 @@ const RegistrationForm = () => {
   };
 
   const checkRegistrantExistsByEmail = async (email) => {
-    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedEmail = String(email || '')
+      .trim()
+      .toLowerCase();
     if (!normalizedEmail) return false;
     const res = await API.graphql({
       query: APS_REGISTRANTS_BY_EMAIL_QUERY,
@@ -782,7 +804,9 @@ const RegistrationForm = () => {
 
     if (!emailRes.ok) {
       const data = await emailRes.json().catch(() => ({}));
-      throw new Error(data?.message || emailRes.statusText || 'Email send failed');
+      throw new Error(
+        data?.message || emailRes.statusText || 'Email send failed',
+      );
     }
 
     await API.graphql({
@@ -803,9 +827,15 @@ const RegistrationForm = () => {
     // Only Sponsors can add extra tickets; guard just in case
     if (formData.attendeeType !== 'Sponsor') return [];
 
-    const seenEmails = new Set([String(formData.email || '').trim().toLowerCase()]);
+    const seenEmails = new Set([
+      String(formData.email || '')
+        .trim()
+        .toLowerCase(),
+    ]);
     for (const extra of additionalRegistrants) {
-      const normalizedExtraEmail = String(extra.email || '').trim().toLowerCase();
+      const normalizedExtraEmail = String(extra.email || '')
+        .trim()
+        .toLowerCase();
       if (!normalizedExtraEmail) {
         throw new Error('Each additional ticket must include an email.');
       }
@@ -822,10 +852,15 @@ const RegistrationForm = () => {
     for (const extra of additionalRegistrants) {
       const extraType = extra.attendeeType || formData.attendeeType;
       try {
-        const normalizedExtraEmail = String(extra.email || '').trim().toLowerCase();
-        const alreadyRegistered = await checkRegistrantExistsByEmail(normalizedExtraEmail);
+        const normalizedExtraEmail = String(extra.email || '')
+          .trim()
+          .toLowerCase();
+        const alreadyRegistered =
+          await checkRegistrantExistsByEmail(normalizedExtraEmail);
         if (alreadyRegistered) {
-          throw new Error(`This email is already registered: ${normalizedExtraEmail}`);
+          throw new Error(
+            `This email is already registered: ${normalizedExtraEmail}`,
+          );
         }
 
         const extraInput = {
@@ -940,7 +975,8 @@ const RegistrationForm = () => {
         await incrementAppliedDiscountCodeUsage();
         setRegistrantId(mainRegistrantId);
         await createAddOnRequestsForRegistrant(mainRegistrantId);
-        createdAdditionalRegistrants = await createAdditionalTicketRegistrants();
+        createdAdditionalRegistrants =
+          await createAdditionalTicketRegistrants();
       }
 
       // Move the UI forward to confirmation regardless of invoice outcome.
@@ -960,7 +996,7 @@ const RegistrationForm = () => {
         }).catch((emailErr) => {
           console.error(
             'Failed to send registration confirmation email:',
-            emailErr
+            emailErr,
           );
         });
 
@@ -973,7 +1009,7 @@ const RegistrationForm = () => {
           }).catch((emailErr) => {
             console.error(
               `Failed to send additional registrant confirmation email (${extraRegistrant.id}):`,
-              emailErr
+              emailErr,
             );
           });
         });
@@ -1001,10 +1037,14 @@ const RegistrationForm = () => {
           },
         ];
 
-        if (formData.attendeeType === 'Sponsor' && additionalRegistrants.length) {
+        if (
+          formData.attendeeType === 'Sponsor' &&
+          additionalRegistrants.length
+        ) {
           additionalRegistrants.forEach((reg) => {
             lineItems.push({
-              description: `${registrationLabel} - ${reg.firstName || ''} ${reg.lastName || ''}`.trim(),
+              description:
+                `${registrationLabel} - ${reg.firstName || ''} ${reg.lastName || ''}`.trim(),
               quantity: 1,
               amount: unitPrice,
             });
@@ -1057,7 +1097,10 @@ const RegistrationForm = () => {
           .then(async (invoiceRes) => {
             if (!invoiceRes.ok) {
               const data = await invoiceRes.json().catch(() => ({}));
-              console.error('Invoice generation failed:', data?.error || invoiceRes.statusText);
+              console.error(
+                'Invoice generation failed:',
+                data?.error || invoiceRes.statusText,
+              );
               return;
             }
             const data = await invoiceRes.json().catch(() => ({}));
@@ -1080,17 +1123,17 @@ const RegistrationForm = () => {
                     } catch (updateInvoiceErr) {
                       console.error(
                         `Failed to attach invoice URL to additional registrant (${extraRegistrant.id}):`,
-                        updateInvoiceErr
+                        updateInvoiceErr,
                       );
                     }
-                  })
+                  }),
                 );
               }
             }
             console.log('Invoice generated:', data?.url);
           })
           .catch((invoiceErr) => {
-          console.error('Failed to generate invoice PDF:', invoiceErr);
+            console.error('Failed to generate invoice PDF:', invoiceErr);
           });
       }
     } catch (err) {
@@ -1098,7 +1141,7 @@ const RegistrationForm = () => {
       setSubmitError(
         err?.message
           ? `Registration failed: ${err.message}`
-          : 'Something went wrong submitting your registration. Please try again.'
+          : 'Something went wrong submitting your registration. Please try again.',
       );
     } finally {
       setIsSubmitting(false);
@@ -1284,10 +1327,7 @@ const RegistrationForm = () => {
     }
 
     if (stepToValidate === 3) {
-      if (
-        formData.attendeeType === 'Sponsor' &&
-        !sponsorTicketOption
-      ) {
+      if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
         newErrors.sponsorTicketOption =
           'Please select a ticket option (Standard Sponsor or Exhibitor Staff Only)';
       }
@@ -1366,10 +1406,7 @@ const RegistrationForm = () => {
 
   const canSubmit = () => {
     if (!formData.attendeeType) return false;
-    if (
-      formData.attendeeType === 'Sponsor' &&
-      !sponsorTicketOption
-    ) {
+    if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
       return false;
     }
     return true;
@@ -1495,9 +1532,25 @@ const RegistrationForm = () => {
             />
             {emailChecking && (
               <div className='absolute right-3 top-1/2 -translate-y-1/2'>
-                <svg className='animate-spin h-4 w-4 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
-                  <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-                  <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z' />
+                <svg
+                  className='animate-spin h-4 w-4 text-gray-400'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                >
+                  <circle
+                    className='opacity-25'
+                    cx='12'
+                    cy='12'
+                    r='10'
+                    stroke='currentColor'
+                    strokeWidth='4'
+                  />
+                  <path
+                    className='opacity-75'
+                    fill='currentColor'
+                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z'
+                  />
                 </svg>
               </div>
             )}
@@ -1506,8 +1559,8 @@ const RegistrationForm = () => {
               isValidEmailFormat(formData.email) &&
               emailDomainValid &&
               !emailExists && (
-              <MdCheckCircle className='absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500' />
-            )}
+                <MdCheckCircle className='absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500' />
+              )}
           </div>
           {emailExists && (
             <p className='text-red-500 text-xs mt-1 flex items-center gap-1'>
@@ -1606,8 +1659,10 @@ const RegistrationForm = () => {
             <button
               type='button'
               onClick={() => {
-                  setAddCompanyModalError('');
-                setManualCompanyName(formData.companyName || companySearch || '');
+                setAddCompanyModalError('');
+                setManualCompanyName(
+                  formData.companyName || companySearch || '',
+                );
                 setShowAddCompanyModal(true);
               }}
               className='text-ap-blue hover:underline'
@@ -1774,8 +1829,8 @@ const RegistrationForm = () => {
           <div className='flex flex-col gap-2'>
             <label className={labelClass}>
               Would you be interested in completing a short post-event quiz to
-              qualify for a Certificate of Attendance? Indicate your interest to
-              receive more information.
+              qualify for a Certificate of Attendance (8 CEUs)? Indicate your
+              interest to receive more information.
             </label>
             <div className='flex gap-4 mt-1'>
               <label className='inline-flex items-center gap-2 text-sm text-gray-700'>
@@ -1802,7 +1857,6 @@ const RegistrationForm = () => {
               </label>
             </div>
           </div>
-
         </div>
 
         {/* Right: Add-ons */}
@@ -1814,10 +1868,10 @@ const RegistrationForm = () => {
             <div className='space-y-3'>
               {addOns.map((addOn) => {
                 const isSelected = addOnsSelected.some(
-                  (s) => s.addOnId === addOn.id
+                  (s) => s.addOnId === addOn.id,
                 );
                 const selectedEntry = addOnsSelected.find(
-                  (s) => s.addOnId === addOn.id
+                  (s) => s.addOnId === addOn.id,
                 );
                 let schema = [];
                 try {
@@ -1834,7 +1888,9 @@ const RegistrationForm = () => {
                   <div
                     key={addOn.id}
                     className={`rounded-lg border p-3 transition-colors bg-white ${
-                      isSelected ? 'border-ap-blue bg-ap-blue/5' : 'border-gray-200'
+                      isSelected
+                        ? 'border-ap-blue bg-ap-blue/5'
+                        : 'border-gray-200'
                     }`}
                   >
                     <label className='flex items-start gap-3 cursor-pointer'>
@@ -1860,7 +1916,7 @@ const RegistrationForm = () => {
                             ]);
                           } else {
                             setAddOnsSelected((prev) =>
-                              prev.filter((s) => s.addOnId !== addOn.id)
+                              prev.filter((s) => s.addOnId !== addOn.id),
                             );
                           }
                         }}
@@ -1879,10 +1935,10 @@ const RegistrationForm = () => {
                           </div>
                         )}
                         {(addOn.limit != null ||
-                          (addOn.registrantRequests?.items?.length > 0)) && (
+                          addOn.registrantRequests?.items?.length > 0) && (
                           <div className='text-xs text-gray-600 mt-1'>
                             {addOn.registrantRequests?.items?.filter(
-                              (r) => r.status === 'APPROVED'
+                              (r) => r.status === 'APPROVED',
                             ).length ?? 0}
                             {addOn.limit != null
                               ? ` / ${addOn.limit} spots`
@@ -1928,8 +1984,8 @@ const RegistrationForm = () => {
                                               [field.key]: v,
                                             },
                                           }
-                                        : s
-                                    )
+                                        : s,
+                                    ),
                                   );
                                 }}
                                 className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
@@ -1958,8 +2014,8 @@ const RegistrationForm = () => {
                                               [field.key]: v,
                                             },
                                           }
-                                        : s
-                                    )
+                                        : s,
+                                    ),
                                   );
                                 }}
                                 className='w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
@@ -2340,32 +2396,33 @@ const RegistrationForm = () => {
                           : 'General Registration';
                     const regPrice = PRICING[regType] || 0;
                     return (
-                    <div
-                      key={index}
-                      className='flex justify-between items-center text-sm border-t border-gray-100 pt-2'
-                    >
-                      <div className='flex items-center gap-1.5'>
-                        <button
-                          onClick={() => {
-                            setTicketQuantity((t) => t - 1);
-                            setAdditionalRegistrants((prev) =>
-                              prev.filter((_, i) => i !== index),
-                            );
-                          }}
-                          className='text-red-400 hover:text-red-600 transition-colors'
-                        >
-                          <XCircleIcon className='w-4 h-4' />
-                        </button>
-                        <span className='text-gray-700'>
-                          {regLabel} - {reg.lastName}
+                      <div
+                        key={index}
+                        className='flex justify-between items-center text-sm border-t border-gray-100 pt-2'
+                      >
+                        <div className='flex items-center gap-1.5'>
+                          <button
+                            onClick={() => {
+                              setTicketQuantity((t) => t - 1);
+                              setAdditionalRegistrants((prev) =>
+                                prev.filter((_, i) => i !== index),
+                              );
+                            }}
+                            className='text-red-400 hover:text-red-600 transition-colors'
+                          >
+                            <XCircleIcon className='w-4 h-4' />
+                          </button>
+                          <span className='text-gray-700'>
+                            {regLabel} - {reg.lastName}
+                          </span>
+                        </div>
+                        <span className='text-gray-500'>1</span>
+                        <span className='font-medium'>
+                          ${regPrice.toLocaleString()}
                         </span>
                       </div>
-                      <span className='text-gray-500'>1</span>
-                      <span className='font-medium'>
-                        ${regPrice.toLocaleString()}
-                      </span>
-                    </div>
-                  )})}
+                    );
+                  })}
                   <button
                     onClick={() => setShowNewTicketForm(true)}
                     className='flex items-center gap-2 mt-2 py-2 px-3 bg-gray-100 rounded-lg text-sm text-gray-600 hover:bg-gray-200 transition-colors'
@@ -2391,7 +2448,9 @@ const RegistrationForm = () => {
                       <span className='line-through text-gray-400 text-xs'>
                         ${basePrice.toLocaleString()}
                       </span>
-                      <span className='font-semibold text-green-600'>$0.00</span>
+                      <span className='font-semibold text-green-600'>
+                        $0.00
+                      </span>
                     </div>
                   ) : (
                     <span className='font-medium'>
@@ -2435,7 +2494,8 @@ const RegistrationForm = () => {
               {discountApplied ? (
                 <div className='flex items-baseline gap-2'>
                   <span className='line-through text-gray-400 text-sm font-normal'>
-                    ${(
+                    $
+                    {(
                       basePrice * ticketQuantity +
                       addOnsTotal
                     ).toLocaleString()}
@@ -2654,7 +2714,8 @@ const RegistrationForm = () => {
                       </span>
                       <span className='col-span-2 text-right'>1</span>
                       <span className='col-span-3 text-right'>
-                        ${(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
+                        $
+                        {(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
                       </span>
                     </div>
                   ))}
@@ -2698,8 +2759,7 @@ const RegistrationForm = () => {
                       <span className='text-green-600'>
                         -$
                         {(
-                          (PRICING[effectiveAttendeeType] || 0) *
-                          ticketQuantity
+                          (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
                         ).toLocaleString()}
                       </span>
                     </div>
@@ -2806,7 +2866,9 @@ const RegistrationForm = () => {
               className='mt-4 w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30'
             />
             {addCompanyModalError ? (
-              <p className='mt-2 text-xs text-red-600'>{addCompanyModalError}</p>
+              <p className='mt-2 text-xs text-red-600'>
+                {addCompanyModalError}
+              </p>
             ) : null}
             <div className='mt-4 flex justify-end gap-2'>
               <button
