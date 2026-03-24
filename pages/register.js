@@ -583,8 +583,11 @@ const RegistrationForm = () => {
       setDiscountApplied(false);
       return;
     }
-    if (match.limit != null && match.used >= match.limit) {
-      setDiscountCodeError('This code has reached its usage limit');
+    const requestedUnits = Math.max(ticketQuantity || 1, 1);
+    if (match.limit != null && (match.used || 0) + requestedUnits > match.limit) {
+      setDiscountCodeError(
+        `This code has reached its usage limit (${match.used || 0}/${match.limit} used)`,
+      );
       setDiscountApplied(false);
       return;
     }
@@ -628,6 +631,7 @@ const RegistrationForm = () => {
 
   const incrementAppliedDiscountCodeUsage = async () => {
     if (!discountApplied || !formData.discountCode) return;
+    const unitsToConsume = Math.max(ticketQuantity || 1, 1);
 
     const normalizedCode = formData.discountCode.trim().toLowerCase();
     const matchedCode = eventCodes.find(
@@ -648,12 +652,20 @@ const RegistrationForm = () => {
     const latestCode = latestCodeRes.data?.getAPSCode;
     if (!latestCode?.id) return;
 
+    const latestUsed = latestCode.used || 0;
+    const latestLimit = latestCode.limit;
+    if (latestLimit != null && latestUsed + unitsToConsume > latestLimit) {
+      throw new Error(
+        `Discount code usage limit reached (${latestUsed}/${latestLimit} used).`,
+      );
+    }
+
     await API.graphql({
       query: UPDATE_APS_CODE_USAGE_MINIMAL,
       variables: {
         input: {
           id: latestCode.id,
-          used: (latestCode.used || 0) + 1,
+          used: latestUsed + unitsToConsume,
         },
       },
       authMode: 'API_KEY',
@@ -662,7 +674,7 @@ const RegistrationForm = () => {
     setEventCodes((prev) =>
       prev.map((codeItem) =>
         codeItem.id === latestCode.id
-          ? { ...codeItem, used: (latestCode.used || 0) + 1 }
+          ? { ...codeItem, used: latestUsed + unitsToConsume }
           : codeItem,
       ),
     );
