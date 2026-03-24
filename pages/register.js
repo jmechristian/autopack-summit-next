@@ -79,6 +79,19 @@ const UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL = /* GraphQL */ `
   }
 `;
 
+const UPDATE_APS_REGISTRANT_INVOICE_URL_MINIMAL = /* GraphQL */ `
+  mutation UpdateApsRegistrantInvoiceUrl(
+    $input: UpdateApsRegistrantInput!
+    $condition: ModelApsRegistrantConditionInput
+  ) {
+    updateApsRegistrant(input: $input, condition: $condition) {
+      id
+      invoice
+      updatedAt
+    }
+  }
+`;
+
 const APS_REGISTRANTS_BY_EMAIL_QUERY = /* GraphQL */ `
   query ApsRegistrantsByEmail($email: String!) {
     apsRegistrantsByEmail(email: $email) {
@@ -901,6 +914,29 @@ const RegistrationForm = () => {
             const data = await invoiceRes.json().catch(() => ({}));
             if (data?.url) {
               setInvoiceUrl(data.url);
+              if (createdAdditionalRegistrants.length > 0) {
+                await Promise.all(
+                  createdAdditionalRegistrants.map(async (extraRegistrant) => {
+                    try {
+                      await API.graphql({
+                        query: UPDATE_APS_REGISTRANT_INVOICE_URL_MINIMAL,
+                        variables: {
+                          input: {
+                            id: extraRegistrant.id,
+                            invoice: data.url,
+                          },
+                        },
+                        authMode: 'API_KEY',
+                      });
+                    } catch (updateInvoiceErr) {
+                      console.error(
+                        `Failed to attach invoice URL to additional registrant (${extraRegistrant.id}):`,
+                        updateInvoiceErr
+                      );
+                    }
+                  })
+                );
+              }
             }
             console.log('Invoice generated:', data?.url);
           })
