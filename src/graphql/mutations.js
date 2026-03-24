@@ -105,6 +105,26 @@ export const updateAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -335,6 +355,10 @@ export const updateAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -395,6 +419,10 @@ export const updateAPS = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -571,6 +599,10 @@ export const updateAPS = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -779,6 +811,374 @@ export const updateAPS = /* GraphQL */ `
           updatedAt
           aPSExhibitorHandoutsId
           apsAppExhibitorProfileHandoutsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
           __typename
         }
         nextToken
@@ -938,6 +1338,26 @@ export const deleteAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -1168,6 +1588,10 @@ export const deleteAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -1228,6 +1652,10 @@ export const deleteAPS = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -1404,6 +1832,10 @@ export const deleteAPS = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -1612,6 +2044,374 @@ export const deleteAPS = /* GraphQL */ `
           updatedAt
           aPSExhibitorHandoutsId
           apsAppExhibitorProfileHandoutsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
           __typename
         }
         nextToken
@@ -1935,6 +2735,86 @@ export const createAPSCode = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -2235,6 +3115,86 @@ export const updateAPSCode = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -2545,6 +3505,86 @@ export const deleteAPSCode = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -2849,6 +3889,86 @@ export const createApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -2907,6 +4027,10 @@ export const createApsAgenda = /* GraphQL */ `
             __typename
           }
           sponsors {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -3191,6 +4315,86 @@ export const updateApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -3249,6 +4453,10 @@ export const updateApsAgenda = /* GraphQL */ `
             __typename
           }
           sponsors {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -3533,6 +4741,86 @@ export const deleteApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -3591,6 +4879,10 @@ export const deleteApsAgenda = /* GraphQL */ `
             __typename
           }
           sponsors {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -3875,6 +5167,86 @@ export const deleteApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -4056,6 +5428,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -4139,6 +5515,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -4760,6 +6140,30 @@ export const deleteApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -5087,6 +6491,26 @@ export const createApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -6086,6 +7510,102 @@ export const createApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -6155,6 +7675,10 @@ export const createApsAppUser = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -6246,6 +7770,26 @@ export const deleteApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -7245,6 +8789,102 @@ export const deleteApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -7314,6 +8954,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -7631,6 +9275,30 @@ export const createApsAppUserContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -7868,6 +9536,102 @@ export const createApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -7937,6 +9701,10 @@ export const createApsAppUserContact = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -8256,6 +10024,30 @@ export const updateApsAppUserContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -8493,6 +10285,102 @@ export const updateApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -8562,6 +10450,10 @@ export const updateApsAppUserContact = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -8881,6 +10773,30 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -9118,6 +11034,102 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -9187,6 +11199,10 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -9507,6 +11523,30 @@ export const createApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -9621,6 +11661,22 @@ export const createApsAppUserNote = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
             __typename
           }
           nextToken
@@ -9759,6 +11815,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -9826,6 +11886,26 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -9929,6 +12009,22 @@ export const createApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -9997,6 +12093,26 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -10571,6 +12687,102 @@ export const createApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -10640,6 +12852,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -10801,6 +13017,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -10884,6 +13104,10 @@ export const createApsAppUserNote = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -11237,6 +13461,30 @@ export const updateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -11351,6 +13599,22 @@ export const updateApsAppUserNote = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
             __typename
           }
           nextToken
@@ -11489,6 +13753,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -11556,6 +13824,26 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -11659,6 +13947,22 @@ export const updateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -11727,6 +14031,26 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -12301,6 +14625,102 @@ export const updateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -12370,6 +14790,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -12531,6 +14955,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -12614,6 +15042,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -12967,6 +15399,30 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -13081,6 +15537,22 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
             __typename
           }
           nextToken
@@ -13219,6 +15691,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -13286,6 +15762,26 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -13389,6 +15885,22 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -13457,6 +15969,26 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -14031,6 +16563,102 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -14100,6 +16728,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -14261,6 +16893,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -14344,6 +16980,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -14696,6 +17336,30 @@ export const createApsAppUserLead = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -14933,6 +17597,102 @@ export const createApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -15002,6 +17762,10 @@ export const createApsAppUserLead = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -15321,6 +18085,30 @@ export const updateApsAppUserLead = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -15558,6 +18346,102 @@ export const updateApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -15627,6 +18511,10 @@ export const updateApsAppUserLead = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -15946,6 +18834,30 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16183,6 +19095,102 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -16252,6 +19260,10 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -16571,6 +19583,30 @@ export const createApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16831,6 +19867,458 @@ export const createApsAppUserProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoritedByProfiles {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       notes {
         items {
           id
@@ -17046,6 +20534,30 @@ export const createApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17129,6 +20641,26 @@ export const createApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -17145,6 +20677,22 @@ export const createApsAppUserProfile = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -17460,6 +21008,30 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17720,6 +21292,458 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoritedByProfiles {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       notes {
         items {
           id
@@ -17935,6 +21959,30 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -18018,6 +22066,26 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -18034,6 +22102,22 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -18270,6 +22354,102 @@ export const createProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -18339,6 +22519,10 @@ export const createProfileAffiliate = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -18582,6 +22766,102 @@ export const updateProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -18651,6 +22931,10 @@ export const updateProfileAffiliate = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -18894,6 +23178,102 @@ export const deleteProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -18963,6 +23343,10 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -19206,6 +23590,102 @@ export const createProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -19275,6 +23755,10 @@ export const createProfileEducation = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -19517,6 +24001,102 @@ export const updateProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -19586,6 +24166,10 @@ export const updateProfileEducation = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -19828,6 +24412,102 @@ export const deleteProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -19897,6 +24577,10 @@ export const deleteProfileEducation = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -20139,6 +24823,102 @@ export const createProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -20208,6 +24988,10 @@ export const createProfileInterest = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -20448,6 +25232,102 @@ export const updateProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -20517,6 +25397,10 @@ export const updateProfileInterest = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -20757,6 +25641,102 @@ export const deleteProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -20826,6 +25806,10 @@ export const deleteProfileInterest = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -21145,6 +26129,30 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -21427,6 +26435,86 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -21767,6 +26855,30 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -22049,6 +27161,86 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -22389,6 +27581,30 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -22676,6 +27892,86 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -22791,6 +28087,26 @@ export const createApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -23087,6 +28403,78 @@ export const createApsAppSession = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
           __typename
         }
         nextToken
@@ -23178,6 +28566,26 @@ export const updateApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -23474,6 +28882,78 @@ export const updateApsAppSession = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
           __typename
         }
         nextToken
@@ -23565,6 +29045,26 @@ export const deleteApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -23861,6 +29361,78 @@ export const deleteApsAppSession = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
           __typename
         }
         nextToken
@@ -23969,6 +29541,22 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
             __typename
           }
           nextToken
@@ -24269,6 +29857,30 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -24404,6 +30016,22 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -24699,6 +30327,30 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -24834,6 +30486,22 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -25129,6 +30797,30 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -25385,6 +31077,102 @@ export const createAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -25454,6 +31242,10 @@ export const createAPSSpeaker = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -25726,6 +31518,86 @@ export const createAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -25786,6 +31658,75 @@ export const createAPSSpeaker = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
           __typename
         }
         nextToken
@@ -26020,6 +31961,102 @@ export const updateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -26089,6 +32126,10 @@ export const updateAPSSpeaker = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -26361,6 +32402,86 @@ export const updateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -26421,6 +32542,75 @@ export const updateAPSSpeaker = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
           __typename
         }
         nextToken
@@ -26655,6 +32845,102 @@ export const deleteAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -26724,6 +33010,10 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -26996,6 +33286,86 @@ export const deleteAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -27056,6 +33426,75 @@ export const deleteAPSSpeaker = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
           __typename
         }
         nextToken
@@ -27224,6 +33663,10 @@ export const createApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -27307,6 +33750,10 @@ export const createApsSponsor = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -27613,6 +34060,86 @@ export const createApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -27768,6 +34295,10 @@ export const createApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -27835,6 +34366,26 @@ export const createApsSponsor = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -27938,6 +34489,22 @@ export const createApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -27975,6 +34542,75 @@ export const createApsSponsor = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
           __typename
         }
         nextToken
@@ -28145,6 +34781,10 @@ export const updateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -28228,6 +34868,10 @@ export const updateApsSponsor = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -28534,6 +35178,86 @@ export const updateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -28689,6 +35413,10 @@ export const updateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -28756,6 +35484,26 @@ export const updateApsSponsor = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -28859,6 +35607,22 @@ export const updateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -28896,6 +35660,75 @@ export const updateApsSponsor = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
           __typename
         }
         nextToken
@@ -29066,6 +35899,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -29149,6 +35986,10 @@ export const deleteApsSponsor = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -29455,6 +36296,86 @@ export const deleteApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -29610,6 +36531,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -29677,6 +36602,26 @@ export const deleteApsSponsor = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -29780,6 +36725,22 @@ export const deleteApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -29817,6 +36778,75 @@ export const deleteApsSponsor = /* GraphQL */ `
           }
           createdAt
           updatedAt
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
           __typename
         }
         nextToken
@@ -30158,6 +37188,26 @@ export const deleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -30245,6 +37295,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -30257,6 +37311,22 @@ export const deleteAPSCompany = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -30397,6 +37467,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -30464,6 +37538,26 @@ export const deleteAPSCompany = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -30562,6 +37656,22 @@ export const deleteAPSCompany = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -30929,6 +38039,10 @@ export const createAPSCompanyContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -31012,6 +38126,10 @@ export const createAPSCompanyContact = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -31224,6 +38342,10 @@ export const updateAPSCompanyContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -31307,6 +38429,10 @@ export const updateAPSCompanyContact = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -31519,6 +38645,10 @@ export const deleteAPSCompanyContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -31602,6 +38732,10 @@ export const deleteAPSCompanyContact = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -31814,6 +38948,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -31897,6 +39035,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -32073,6 +39215,26 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -32160,6 +39322,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -32172,6 +39338,22 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -32439,6 +39621,86 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -32840,1141 +40102,12 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
         nextToken
         __typename
       }
-      createdAt
-      updatedAt
-      aPSExhibitorsId
-      __typename
-    }
-  }
-`;
-export const updateApsAppExhibitorProfile = /* GraphQL */ `
-  mutation UpdateApsAppExhibitorProfile(
-    $input: UpdateApsAppExhibitorProfileInput!
-    $condition: ModelApsAppExhibitorProfileConditionInput
-  ) {
-    updateApsAppExhibitorProfile(input: $input, condition: $condition) {
-      id
-      companyId
-      company {
-        id
-        name
-        email
-        type
-        description
-        website
-        phone
-        address
-        city
-        state
-        zip
-        country
-        logo
-        events {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        sponsorId
-        sponsor {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          profile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          sessions {
-            nextToken
-            __typename
-          }
-          type
-          createdAt
-          updatedAt
-          aPSSponsorsId
-          apsSponsorProfileId
-          __typename
-        }
-        exhibitorProfileId
-        exhibitorProfile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        notes {
-          items {
-            id
-            owner
-            userId
-            note
-            sessionId
-            exhibitorId
-            registrantId
-            profileId
-            companyId
-            createdAt
-            updatedAt
-            apsAppUserNotesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        contacts {
-          items {
-            id
-            companyId
-            name
-            email
-            phone
-            title
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      sponsorId
-      sponsor {
-        id
-        companyId
-        company {
-          id
-          name
-          email
-          type
-          description
-          website
-          phone
-          address
-          city
-          state
-          zip
-          country
-          logo
-          events {
-            nextToken
-            __typename
-          }
-          registrants {
-            nextToken
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          exhibitorProfileId
-          exhibitorProfile {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          notes {
-            nextToken
-            __typename
-          }
-          contacts {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        eventId
-        event {
-          id
-          year
-          codes {
-            nextToken
-            __typename
-          }
-          agenda {
-            id
-            eventId
-            createdAt
-            updatedAt
-            __typename
-          }
-          startDate
-          endDate
-          location
-          address
-          city
-          state
-          zip
-          website
-          Registrants {
-            nextToken
-            __typename
-          }
-          Sponsors {
-            nextToken
-            __typename
-          }
-          Speakers {
-            nextToken
-            __typename
-          }
-          companies {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          exhibitors {
-            nextToken
-            __typename
-          }
-          exhibitorPromotions {
-            nextToken
-            __typename
-          }
-          exhibitorDeals {
-            nextToken
-            __typename
-          }
-          exhibitorPhotos {
-            nextToken
-            __typename
-          }
-          exhibitorHandouts {
-            nextToken
-            __typename
-          }
-          addOns {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSAgendaId
-          __typename
-        }
-        profile {
-          id
-          companyId
-          company {
-            id
-            name
-            email
-            type
-            description
-            website
-            phone
-            address
-            city
-            state
-            zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          sponsorId
-          sponsor {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          deals {
-            nextToken
-            __typename
-          }
-          photos {
-            nextToken
-            __typename
-          }
-          handouts {
-            nextToken
-            __typename
-          }
-          promotions {
-            nextToken
-            __typename
-          }
-          video
-          videoCaption
-          boothNumber
-          visits
-          views
-          likes
-          notes {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorsId
-          __typename
-        }
-        sessions {
-          items {
-            id
-            apsAppSessionId
-            apsSponsorId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        type
-        createdAt
-        updatedAt
-        aPSSponsorsId
-        apsSponsorProfileId
-        __typename
-      }
-      eventId
-      event {
-        id
-        year
-        codes {
-          items {
-            id
-            code
-            eventId
-            limit
-            used
-            createdAt
-            updatedAt
-            aPSCodesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        agenda {
-          id
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          items {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        startDate
-        endDate
-        location
-        address
-        city
-        state
-        zip
-        website
-        Registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Sponsors {
-          items {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Speakers {
-          items {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        companies {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitors {
-          items {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPromotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPhotos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorHandouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOns {
-          items {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAgendaId
-        __typename
-      }
-      deals {
-        items {
-          id
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          deal
-          link
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorDealsId
-          apsAppUserExhibitorDealsId
-          apsAppExhibitorProfileDealsId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      photos {
-        items {
-          id
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          photo
-          caption
-          approved
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorPhotosId
-          apsAppExhibitorProfilePhotosId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      handouts {
-        items {
-          id
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          handout
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorHandoutsId
-          apsAppExhibitorProfileHandoutsId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      promotions {
-        items {
-          id
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          promotion
-          link
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          createdAt
-          updatedAt
-          aPSExhibitorPromotionsId
-          apsAppExhibitorProfilePromotionsId
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      video
-      videoCaption
-      boothNumber
-      visits
-      views
-      likes
-      notes {
+      favoriteByUsers {
         items {
           id
           owner
-          userId
-          user {
-            id
-            registrantId
-            profileId
-            createdAt
-            updatedAt
-            __typename
-          }
-          note
-          sessionId
-          session {
-            id
-            title
-            date
-            startTime
-            endTime
-            location
-            description
-            agendaId
-            createdAt
-            updatedAt
-            apsAgendaItemsId
-            __typename
-          }
-          exhibitorId
-          exhibitor {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          registrantId
-          registrant {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          profileId
-          profile {
+          userProfileId
+          userProfile {
             id
             userId
             firstName
@@ -34000,30 +40133,44 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             updatedAt
             __typename
           }
-          companyId
-          company {
+          exhibitorId
+          exhibitor {
             id
-            name
-            email
-            type
-            description
-            website
-            phone
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
             address
             city
             state
             zip
-            country
-            logo
-            sponsorId
-            exhibitorProfileId
+            website
             createdAt
             updatedAt
+            aPSAgendaId
             __typename
           }
+          favoriteKey
           createdAt
           updatedAt
-          apsAppUserNotesId
+          aPSFavoriteExhibitorsId
           __typename
         }
         nextToken
@@ -34192,6 +40339,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -34275,6 +40426,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -34451,6 +40606,26 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -34538,6 +40713,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -34550,6 +40729,22 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -34817,6 +41012,86 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -35218,9 +41493,15824 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       aPSExhibitorsId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
+  mutation CreateApsAppUserFavoriteExhibitor(
+    $input: CreateApsAppUserFavoriteExhibitorInput!
+    $condition: ModelApsAppUserFavoriteExhibitorConditionInput
+  ) {
+    createApsAppUserFavoriteExhibitor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteExhibitorsId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
+  mutation UpdateApsAppUserFavoriteExhibitor(
+    $input: UpdateApsAppUserFavoriteExhibitorInput!
+    $condition: ModelApsAppUserFavoriteExhibitorConditionInput
+  ) {
+    updateApsAppUserFavoriteExhibitor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteExhibitorsId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
+  mutation DeleteApsAppUserFavoriteExhibitor(
+    $input: DeleteApsAppUserFavoriteExhibitorInput!
+    $condition: ModelApsAppUserFavoriteExhibitorConditionInput
+  ) {
+    deleteApsAppUserFavoriteExhibitor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteExhibitorsId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
+  mutation CreateApsAppUserFavoriteSpeaker(
+    $input: CreateApsAppUserFavoriteSpeakerInput!
+    $condition: ModelApsAppUserFavoriteSpeakerConditionInput
+  ) {
+    createApsAppUserFavoriteSpeaker(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      speakerId
+      speaker {
+        id
+        presentationTitle
+        presentationSummary
+        profileId
+        profile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSSpeakersId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSpeakersId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
+  mutation UpdateApsAppUserFavoriteSpeaker(
+    $input: UpdateApsAppUserFavoriteSpeakerInput!
+    $condition: ModelApsAppUserFavoriteSpeakerConditionInput
+  ) {
+    updateApsAppUserFavoriteSpeaker(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      speakerId
+      speaker {
+        id
+        presentationTitle
+        presentationSummary
+        profileId
+        profile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSSpeakersId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSpeakersId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
+  mutation DeleteApsAppUserFavoriteSpeaker(
+    $input: DeleteApsAppUserFavoriteSpeakerInput!
+    $condition: ModelApsAppUserFavoriteSpeakerConditionInput
+  ) {
+    deleteApsAppUserFavoriteSpeaker(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      speakerId
+      speaker {
+        id
+        presentationTitle
+        presentationSummary
+        profileId
+        profile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSSpeakersId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSpeakersId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
+  mutation CreateApsAppUserFavoriteSponsor(
+    $input: CreateApsAppUserFavoriteSponsorInput!
+    $condition: ModelApsAppUserFavoriteSponsorConditionInput
+  ) {
+    createApsAppUserFavoriteSponsor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSponsorsId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
+  mutation UpdateApsAppUserFavoriteSponsor(
+    $input: UpdateApsAppUserFavoriteSponsorInput!
+    $condition: ModelApsAppUserFavoriteSponsorConditionInput
+  ) {
+    updateApsAppUserFavoriteSponsor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSponsorsId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
+  mutation DeleteApsAppUserFavoriteSponsor(
+    $input: DeleteApsAppUserFavoriteSponsorInput!
+    $condition: ModelApsAppUserFavoriteSponsorConditionInput
+  ) {
+    deleteApsAppUserFavoriteSponsor(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSponsorsId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserFavoriteSession = /* GraphQL */ `
+  mutation CreateApsAppUserFavoriteSession(
+    $input: CreateApsAppUserFavoriteSessionInput!
+    $condition: ModelApsAppUserFavoriteSessionConditionInput
+  ) {
+    createApsAppUserFavoriteSession(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sessionId
+      session {
+        id
+        title
+        date
+        startTime
+        endTime
+        location
+        description
+        agendaId
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sessionQuestions {
+          items {
+            id
+            sessionId
+            question
+            userId
+            createdAt
+            updatedAt
+            apsAppUserSessionQuestionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakers {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsors {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        apsAgendaItemsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSessionsId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserFavoriteSession = /* GraphQL */ `
+  mutation UpdateApsAppUserFavoriteSession(
+    $input: UpdateApsAppUserFavoriteSessionInput!
+    $condition: ModelApsAppUserFavoriteSessionConditionInput
+  ) {
+    updateApsAppUserFavoriteSession(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sessionId
+      session {
+        id
+        title
+        date
+        startTime
+        endTime
+        location
+        description
+        agendaId
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sessionQuestions {
+          items {
+            id
+            sessionId
+            question
+            userId
+            createdAt
+            updatedAt
+            apsAppUserSessionQuestionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakers {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsors {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        apsAgendaItemsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSessionsId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
+  mutation DeleteApsAppUserFavoriteSession(
+    $input: DeleteApsAppUserFavoriteSessionInput!
+    $condition: ModelApsAppUserFavoriteSessionConditionInput
+  ) {
+    deleteApsAppUserFavoriteSession(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sessionId
+      session {
+        id
+        title
+        date
+        startTime
+        endTime
+        location
+        description
+        agendaId
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sessionQuestions {
+          items {
+            id
+            sessionId
+            question
+            userId
+            createdAt
+            updatedAt
+            apsAppUserSessionQuestionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakers {
+          items {
+            id
+            apsAppSessionId
+            aPSSpeakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsors {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        apsAgendaItemsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteSessionsId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserFavoriteContact = /* GraphQL */ `
+  mutation CreateApsAppUserFavoriteContact(
+    $input: CreateApsAppUserFavoriteContactInput!
+    $condition: ModelApsAppUserFavoriteContactConditionInput
+  ) {
+    createApsAppUserFavoriteContact(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      contactProfileId
+      contactProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteContactsId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserFavoriteContact = /* GraphQL */ `
+  mutation UpdateApsAppUserFavoriteContact(
+    $input: UpdateApsAppUserFavoriteContactInput!
+    $condition: ModelApsAppUserFavoriteContactConditionInput
+  ) {
+    updateApsAppUserFavoriteContact(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      contactProfileId
+      contactProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteContactsId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
+  mutation DeleteApsAppUserFavoriteContact(
+    $input: DeleteApsAppUserFavoriteContactInput!
+    $condition: ModelApsAppUserFavoriteContactConditionInput
+  ) {
+    deleteApsAppUserFavoriteContact(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      contactProfileId
+      contactProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteContactsId
       __typename
     }
   }
@@ -35360,6 +57450,10 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -35427,6 +57521,26 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -35525,6 +57639,22 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -35792,6 +57922,86 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -35968,6 +58178,10 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -36035,6 +58249,26 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -36133,6 +58367,22 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -36400,6 +58650,86 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -36576,6 +58906,10 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -36643,6 +58977,26 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -36741,6 +59095,22 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -37013,6 +59383,86 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -37184,6 +59634,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -37251,6 +59705,26 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -37349,6 +59823,22 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -37653,6 +60143,30 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -37932,6 +60446,86 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -38109,6 +60703,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -38176,6 +60774,26 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -38274,6 +60892,22 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -38578,6 +61212,30 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -38857,6 +61515,86 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -39034,6 +61772,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -39101,6 +61843,26 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -39199,6 +61961,22 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -39503,6 +62281,30 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -39787,6 +62589,86 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -39959,6 +62841,10 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -40026,6 +62912,26 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -40124,6 +63030,22 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -40392,6 +63314,86 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -40568,6 +63570,10 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -40635,6 +63641,26 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -40733,6 +63759,22 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -41001,6 +64043,86 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -41177,6 +64299,10 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -41244,6 +64370,26 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -41342,6 +64488,22 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -41615,6 +64777,86 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -41786,6 +65028,10 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -41853,6 +65099,26 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -41951,6 +65217,22 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -42217,6 +65499,86 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -42393,6 +65755,10 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -42460,6 +65826,26 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -42558,6 +65944,22 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -42824,6 +66226,86 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -43000,6 +66482,10 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -43067,6 +66553,26 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -43165,6 +66671,22 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -43431,6 +66953,86 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -43743,6 +67345,86 @@ export const createApsAddOn = /* GraphQL */ `
             updatedAt
             aPSExhibitorHandoutsId
             apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
             __typename
           }
           nextToken
@@ -44151,6 +67833,86 @@ export const updateApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -44554,6 +68316,86 @@ export const deleteApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -44754,6 +68596,26 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -45184,6 +69046,26 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -45298,6 +69180,26 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -45728,6 +69630,26 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -46166,6 +70088,26 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -46643,6 +70585,26 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -47114,6 +71076,26 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -48347,6 +72329,30 @@ export const createApsDmMessage = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -48726,6 +72732,30 @@ export const updateApsDmMessage = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -49102,6 +73132,30 @@ export const deleteApsDmMessage = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -49553,6 +73607,86 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -49729,6 +73863,10 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -49812,6 +73950,10 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -49966,6 +74108,22 @@ export const createSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -50022,6 +74180,30 @@ export const createSessionSpeakers = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -50108,6 +74290,26 @@ export const createSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -50124,6 +74326,22 @@ export const createSessionSpeakers = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -50242,6 +74460,22 @@ export const updateSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -50298,6 +74532,30 @@ export const updateSessionSpeakers = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -50384,6 +74642,26 @@ export const updateSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -50400,6 +74678,22 @@ export const updateSessionSpeakers = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -50518,6 +74812,22 @@ export const deleteSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -50574,6 +74884,30 @@ export const deleteSessionSpeakers = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -50660,6 +74994,26 @@ export const deleteSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -50676,6 +75030,22 @@ export const deleteSessionSpeakers = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -50789,6 +75159,22 @@ export const createSessionSponsors = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
             __typename
           }
           nextToken
@@ -50928,6 +75314,26 @@ export const createSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51015,6 +75421,10 @@ export const createSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -51027,6 +75437,22 @@ export const createSessionSponsors = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -51147,6 +75573,22 @@ export const updateSessionSponsors = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -51281,6 +75723,26 @@ export const updateSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51368,6 +75830,10 @@ export const updateSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -51380,6 +75846,22 @@ export const updateSessionSponsors = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -51500,6 +75982,22 @@ export const deleteSessionSponsors = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -51634,6 +76132,26 @@ export const deleteSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51721,6 +76239,10 @@ export const deleteSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -51733,6 +76255,22 @@ export const deleteSessionSponsors = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -51852,6 +76390,26 @@ export const createAPS = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -52085,6 +76643,10 @@ export const createAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -52145,6 +76707,10 @@ export const createAPS = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -52321,6 +76887,10 @@ export const createAPS = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -52529,6 +77099,374 @@ export const createAPS = /* GraphQL */ `
           updatedAt
           aPSExhibitorHandoutsId
           apsAppExhibitorProfileHandoutsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
           __typename
         }
         nextToken
@@ -52911,6 +77849,86 @@ export const createApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -53092,6 +78110,10 @@ export const createApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -53175,6 +78197,10 @@ export const createApsRegistrant = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -53793,6 +78819,30 @@ export const createApsRegistrant = /* GraphQL */ `
             __typename
           }
           leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
             nextToken
             __typename
           }
@@ -54257,6 +79307,86 @@ export const updateApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -54438,6 +79568,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -54521,6 +79655,10 @@ export const updateApsRegistrant = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -55142,6 +80280,30 @@ export const updateApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -55406,6 +80568,26 @@ export const updateApsAppUser = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -56408,6 +81590,102 @@ export const updateApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -56477,6 +81755,10 @@ export const updateApsAppUser = /* GraphQL */ `
             __typename
           }
           sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -56794,6 +82076,30 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -57054,6 +82360,458 @@ export const updateApsAppUserProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      favoriteExhibitors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSpeakers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSpeakersId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSponsors {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSponsorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteSessions {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteSessionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteContacts {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoritedByProfiles {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          contactProfileId
+          contactProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteContactsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       notes {
         items {
           id
@@ -57269,6 +83027,30 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -57352,6 +83134,26 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -57368,6 +83170,22 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             aPSSpeakerId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
             __typename
           }
           nextToken
@@ -57711,6 +83529,26 @@ export const createAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -57798,6 +83636,10 @@ export const createAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -57810,6 +83652,22 @@ export const createAPSCompany = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -57950,6 +83808,10 @@ export const createAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -58017,6 +83879,26 @@ export const createAPSCompany = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -58115,6 +83997,22 @@ export const createAPSCompany = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -58653,6 +84551,26 @@ export const updateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -58740,6 +84658,10 @@ export const updateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -58752,6 +84674,22 @@ export const updateAPSCompany = /* GraphQL */ `
             apsSponsorId
             createdAt
             updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
             __typename
           }
           nextToken
@@ -58892,6 +84830,10 @@ export const updateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -58959,6 +84901,26 @@ export const updateAPSCompany = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -59057,6 +85019,22 @@ export const updateAPSCompany = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
             __typename
           }
           nextToken
@@ -59268,6 +85246,1397 @@ export const updateAPSCompany = /* GraphQL */ `
     }
   }
 `;
+export const updateApsAppExhibitorProfile = /* GraphQL */ `
+  mutation UpdateApsAppExhibitorProfile(
+    $input: UpdateApsAppExhibitorProfileInput!
+    $condition: ModelApsAppExhibitorProfileConditionInput
+  ) {
+    updateApsAppExhibitorProfile(input: $input, condition: $condition) {
+      id
+      companyId
+      company {
+        id
+        name
+        email
+        type
+        description
+        website
+        phone
+        address
+        city
+        state
+        zip
+        country
+        logo
+        events {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        exhibitorProfileId
+        exhibitorProfile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        contacts {
+          items {
+            id
+            companyId
+            name
+            email
+            phone
+            title
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      sponsorId
+      sponsor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        profile {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        sessions {
+          items {
+            id
+            apsAppSessionId
+            apsSponsorId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        type
+        createdAt
+        updatedAt
+        aPSSponsorsId
+        apsSponsorProfileId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      deals {
+        items {
+          id
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          deal
+          link
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorDealsId
+          apsAppUserExhibitorDealsId
+          apsAppExhibitorProfileDealsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      photos {
+        items {
+          id
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          photo
+          caption
+          approved
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorPhotosId
+          apsAppExhibitorProfilePhotosId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      handouts {
+        items {
+          id
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          handout
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorHandoutsId
+          apsAppExhibitorProfileHandoutsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      promotions {
+        items {
+          id
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          promotion
+          link
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorPromotionsId
+          apsAppExhibitorProfilePromotionsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      video
+      videoCaption
+      boothNumber
+      visits
+      views
+      likes
+      notes {
+        items {
+          id
+          owner
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          note
+          sessionId
+          session {
+            id
+            title
+            date
+            startTime
+            endTime
+            location
+            description
+            agendaId
+            createdAt
+            updatedAt
+            apsAgendaItemsId
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      favoriteByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          favoriteKey
+          createdAt
+          updatedAt
+          aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      aPSExhibitorsId
+      __typename
+    }
+  }
+`;
 export const createRegistrantAddOnRequest = /* GraphQL */ `
   mutation CreateRegistrantAddOnRequest(
     $input: CreateRegistrantAddOnRequestInput!
@@ -59338,6 +86707,26 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             __typename
           }
           exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
             nextToken
             __typename
           }
@@ -59774,6 +87163,26 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -60080,6 +87489,86 @@ export const createAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -60256,6 +87745,10 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -60339,6 +87832,10 @@ export const createAPSCompanyEvents = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
@@ -60659,6 +88156,86 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -60835,6 +88412,10 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             nextToken
             __typename
           }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
           type
           createdAt
           updatedAt
@@ -60918,6 +88499,10 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
           views
           likes
           notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
             nextToken
             __typename
           }
