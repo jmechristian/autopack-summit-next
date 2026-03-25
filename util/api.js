@@ -30,7 +30,6 @@ import {
   aPSRegistrant2025sByEmail,
   getAPSCompany,
   getAPSCode2025,
-  apsAddOnsByEventId,
 } from '../src/graphql/queries';
 
 Amplify.configure({ ...awsExports, ssr: true });
@@ -542,11 +541,45 @@ export const getAPS25AddOns = async () => {
 };
 
 export const getAddOnsByEventId = async (eventId) => {
+  const APS_ADD_ONS_BY_EVENT_ID_MINIMAL = /* GraphQL */ `
+    query ApsAddOnsByEventId($eventId: ID!) {
+      apsAddOnsByEventId(eventId: $eventId) {
+        items {
+          id
+          title
+          description
+          subheadline
+          location
+          date
+          time
+          altLink
+          type
+          limit
+          price
+          preferenceSchema
+          registrantRequests {
+            items {
+              id
+              registrantId
+              addOnId
+              status
+              preferences
+              createdAt
+              updatedAt
+            }
+          }
+        }
+      }
+    }
+  `;
+
   const res = await API.graphql({
-    query: apsAddOnsByEventId,
+    query: APS_ADD_ONS_BY_EVENT_ID_MINIMAL,
     variables: { eventId },
+    authMode: 'API_KEY',
   });
-  return res.data.apsAddOnsByEventId.items || [];
+
+  return res.data?.apsAddOnsByEventId?.items || [];
 };
 
 export const createRegistrantAddOnRequestApi = async ({
