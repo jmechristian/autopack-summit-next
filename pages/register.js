@@ -6,11 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import {
-  ExclamationCircleIcon,
-  PlusIcon,
-  XCircleIcon,
-} from '@heroicons/react/24/solid';
+import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
@@ -25,8 +21,6 @@ import {
   getAddOnsByEventId,
   createRegistrantAddOnRequestApi,
 } from '../util/api';
-import NewTicketForm from '../components/registration/NewTicketForm';
-
 const PRICING = {
   OEM: 1600,
   Tier1: 1600,
@@ -84,29 +78,6 @@ const UPDATE_APS_REGISTRANT_EMAIL_STATUS_MINIMAL = /* GraphQL */ `
       registrationEmailSent
       registrationEmailSentDate
       updatedAt
-    }
-  }
-`;
-
-const UPDATE_APS_REGISTRANT_INVOICE_URL_MINIMAL = /* GraphQL */ `
-  mutation UpdateApsRegistrantInvoiceUrl(
-    $input: UpdateApsRegistrantInput!
-    $condition: ModelApsRegistrantConditionInput
-  ) {
-    updateApsRegistrant(input: $input, condition: $condition) {
-      id
-      invoice
-      updatedAt
-    }
-  }
-`;
-
-const APS_REGISTRANTS_BY_EMAIL_QUERY = /* GraphQL */ `
-  query ApsRegistrantsByEmail($email: String!) {
-    apsRegistrantsByEmail(email: $email) {
-      items {
-        id
-      }
     }
   }
 `;
@@ -240,9 +211,6 @@ const RegistrationForm = () => {
   const [discountCode, setDiscountCode] = useState('');
   const [discountApplied, setDiscountApplied] = useState(false);
   const [discountCodeError, setDiscountCodeError] = useState('');
-  const [additionalRegistrants, setAdditionalRegistrants] = useState([]);
-  const [ticketQuantity, setTicketQuantity] = useState(1);
-  const [showNewTicketForm, setShowNewTicketForm] = useState(false);
   const [addOns, setAddOns] = useState([]);
   const [addOnsSelected, setAddOnsSelected] = useState([]); // { addOnId, addOn, preferences }
   const [addOnsLoading, setAddOnsLoading] = useState(true);
@@ -460,8 +428,8 @@ const RegistrationForm = () => {
   const totalAmount = useMemo(() => {
     if (discountApplied) return addOnsTotal; // base ticket free, add-ons still paid
     const base = PRICING[effectiveAttendeeType] || 0;
-    return base * ticketQuantity + addOnsTotal;
-  }, [effectiveAttendeeType, discountApplied, ticketQuantity, addOnsTotal]);
+    return base + addOnsTotal;
+  }, [effectiveAttendeeType, discountApplied, addOnsTotal]);
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -670,7 +638,7 @@ const RegistrationForm = () => {
       setDiscountApplied(false);
       return;
     }
-    const requestedUnits = Math.max(ticketQuantity || 1, 1);
+    const requestedUnits = 1;
     if (
       match.limit != null &&
       (match.used || 0) + requestedUnits > match.limit
@@ -721,7 +689,7 @@ const RegistrationForm = () => {
 
   const incrementAppliedDiscountCodeUsage = async () => {
     if (!discountApplied || !formData.discountCode) return;
-    const unitsToConsume = Math.max(ticketQuantity || 1, 1);
+    const unitsToConsume = 1;
 
     const normalizedCode = formData.discountCode.trim().toLowerCase();
     const matchedCode = eventCodes.find(
@@ -770,19 +738,6 @@ const RegistrationForm = () => {
     );
   };
 
-  const checkRegistrantExistsByEmail = async (email) => {
-    const normalizedEmail = String(email || '')
-      .trim()
-      .toLowerCase();
-    if (!normalizedEmail) return false;
-    const res = await API.graphql({
-      query: APS_REGISTRANTS_BY_EMAIL_QUERY,
-      variables: { email: normalizedEmail },
-      authMode: 'API_KEY',
-    });
-    return (res.data?.apsRegistrantsByEmail?.items?.length || 0) > 0;
-  };
-
   const sendRegistrationConfirmationAndMarkSent = async ({
     registrantRecordId,
     registrantFormData,
@@ -820,103 +775,6 @@ const RegistrationForm = () => {
       },
       authMode: 'API_KEY',
     });
-  };
-
-  const createAdditionalTicketRegistrants = async () => {
-    if (additionalRegistrants.length === 0) return [];
-    // Only Sponsors can add extra tickets; guard just in case
-    if (formData.attendeeType !== 'Sponsor') return [];
-
-    const seenEmails = new Set([
-      String(formData.email || '')
-        .trim()
-        .toLowerCase(),
-    ]);
-    for (const extra of additionalRegistrants) {
-      const normalizedExtraEmail = String(extra.email || '')
-        .trim()
-        .toLowerCase();
-      if (!normalizedExtraEmail) {
-        throw new Error('Each additional ticket must include an email.');
-      }
-      if (seenEmails.has(normalizedExtraEmail)) {
-        throw new Error(
-          `Additional ticket email "${normalizedExtraEmail}" is duplicated in this registration.`,
-        );
-      }
-      seenEmails.add(normalizedExtraEmail);
-    }
-
-    const createdAdditional = [];
-
-    for (const extra of additionalRegistrants) {
-      const extraType = extra.attendeeType || formData.attendeeType;
-      try {
-        const normalizedExtraEmail = String(extra.email || '')
-          .trim()
-          .toLowerCase();
-        const alreadyRegistered =
-          await checkRegistrantExistsByEmail(normalizedExtraEmail);
-        if (alreadyRegistered) {
-          throw new Error(
-            `This email is already registered: ${normalizedExtraEmail}`,
-          );
-        }
-
-        const extraInput = {
-          apsID: APS_EVENT_ID,
-          attendeeType: mapAttendeeTypeToEnum(extraType),
-          status: 'PENDING',
-          email: normalizedExtraEmail,
-          firstName: extra.firstName || null,
-          lastName: extra.lastName || null,
-          phone: extra.phone || null,
-          companyId: formData.companyId || null,
-          jobTitle: extra.jobTitle || null,
-          termsAccepted: true,
-          // Additional tickets share billing with the primary registrant
-          billingAddressFirstName: formData.billingAddress.firstName || null,
-          billingAddressLastName: formData.billingAddress.lastName || null,
-          billingAddressEmail: formData.billingAddress.email || null,
-          billingAddressPhone: formData.billingAddress.phone || null,
-          billingAddressStreet: formData.billingAddress.street || null,
-          billingAddressCity: formData.billingAddress.city || null,
-          billingAddressState: formData.billingAddress.state || null,
-          billingAddressZip: formData.billingAddress.zip || null,
-          sameAsAttendee: formData.sameAsAttendee ?? null,
-          totalAmount: PRICING[extraType] || 0,
-          discountCode: formData.discountCode || null,
-        };
-
-        const createExtraRes = await API.graphql({
-          query: CREATE_APS_REGISTRANT_MINIMAL,
-          variables: { input: extraInput },
-          authMode: 'API_KEY',
-        });
-        const createdExtra = createExtraRes.data?.createApsRegistrant;
-        if (createdExtra?.id) {
-          createdAdditional.push({
-            id: createdExtra.id,
-            attendeeType: extraType,
-            totalAmount: PRICING[extraType] || 0,
-            formData: {
-              firstName: extra.firstName || '',
-              lastName: extra.lastName || '',
-              email: normalizedExtraEmail,
-              phone: extra.phone || '',
-              companyName: formData.companyName || '',
-              jobTitle: extra.jobTitle || '',
-              attendeeType: extraType,
-              billingAddress: { ...formData.billingAddress },
-            },
-          });
-        }
-      } catch (err) {
-        console.error('Failed to create additional ticket registrant:', err);
-        throw err;
-      }
-    }
-    return createdAdditional;
   };
 
   const handleSubmitRegistration = async () => {
@@ -970,13 +828,10 @@ const RegistrationForm = () => {
 
       const created = res.data?.createApsRegistrant;
       const mainRegistrantId = created?.id;
-      let createdAdditionalRegistrants = [];
       if (mainRegistrantId) {
         await incrementAppliedDiscountCodeUsage();
         setRegistrantId(mainRegistrantId);
         await createAddOnRequestsForRegistrant(mainRegistrantId);
-        createdAdditionalRegistrants =
-          await createAdditionalTicketRegistrants();
       }
 
       // Move the UI forward to confirmation regardless of invoice outcome.
@@ -999,20 +854,6 @@ const RegistrationForm = () => {
             emailErr,
           );
         });
-
-        createdAdditionalRegistrants.forEach((extraRegistrant) => {
-          sendRegistrationConfirmationAndMarkSent({
-            registrantRecordId: extraRegistrant.id,
-            registrantFormData: extraRegistrant.formData,
-            registrantTotalAmount: extraRegistrant.totalAmount,
-            registrantAddOnsSelected: [],
-          }).catch((emailErr) => {
-            console.error(
-              `Failed to send additional registrant confirmation email (${extraRegistrant.id}):`,
-              emailErr,
-            );
-          });
-        });
       }
 
       // Fire-and-forget: generate and attach invoice PDF (including zero-balance with coupon).
@@ -1025,9 +866,9 @@ const RegistrationForm = () => {
               : 'General Registration';
         const unitPrice = PRICING[effectiveAttendeeType] || 0;
         const subtotal =
-          (PRICING[effectiveAttendeeType] || 0) * ticketQuantity + addOnsTotal;
+          (PRICING[effectiveAttendeeType] || 0) + addOnsTotal;
         const discountAmount = discountApplied
-          ? (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
+          ? (PRICING[effectiveAttendeeType] || 0)
           : 0;
         const lineItems = [
           {
@@ -1036,20 +877,6 @@ const RegistrationForm = () => {
             amount: unitPrice,
           },
         ];
-
-        if (
-          formData.attendeeType === 'Sponsor' &&
-          additionalRegistrants.length
-        ) {
-          additionalRegistrants.forEach((reg) => {
-            lineItems.push({
-              description:
-                `${registrationLabel} - ${reg.firstName || ''} ${reg.lastName || ''}`.trim(),
-              quantity: 1,
-              amount: unitPrice,
-            });
-          });
-        }
 
         if (addOnsSelected.length) {
           lineItems.push({ type: 'section', description: 'Add-ons' });
@@ -1106,29 +933,6 @@ const RegistrationForm = () => {
             const data = await invoiceRes.json().catch(() => ({}));
             if (data?.url) {
               setInvoiceUrl(data.url);
-              if (createdAdditionalRegistrants.length > 0) {
-                await Promise.all(
-                  createdAdditionalRegistrants.map(async (extraRegistrant) => {
-                    try {
-                      await API.graphql({
-                        query: UPDATE_APS_REGISTRANT_INVOICE_URL_MINIMAL,
-                        variables: {
-                          input: {
-                            id: extraRegistrant.id,
-                            invoice: data.url,
-                          },
-                        },
-                        authMode: 'API_KEY',
-                      });
-                    } catch (updateInvoiceErr) {
-                      console.error(
-                        `Failed to attach invoice URL to additional registrant (${extraRegistrant.id}):`,
-                        updateInvoiceErr,
-                      );
-                    }
-                  }),
-                );
-              }
             }
             console.log('Invoice generated:', data?.url);
           })
@@ -1173,7 +977,7 @@ const RegistrationForm = () => {
         body: JSON.stringify({
           amount: totalAmount,
           currency: 'usd',
-          quantity: ticketQuantity,
+          quantity: 1,
           description: `APS Registration ${formData.lastName} -- ${formData.attendeeType}`,
           metadata: {
             firstName: formData.firstName,
@@ -2370,95 +2174,28 @@ const RegistrationForm = () => {
                 <span>Total</span>
               </div>
 
-              {formData.attendeeType === 'Sponsor' ? (
-                <div className='flex flex-col gap-2 mt-3'>
-                  <div className='flex justify-between text-sm'>
-                    <span className='text-gray-700'>
-                      {effectiveAttendeeType === 'Exhibitor'
-                        ? 'Exhibitor Staff Only'
-                        : effectiveAttendeeType === 'Sponsor'
-                          ? 'Sponsor Registration'
-                          : 'General Registration'}{' '}
-                      - {formData.lastName}
-                    </span>
-                    <span className='text-gray-500'>1</span>
-                    <span className='font-medium'>
+              <div className='flex justify-between text-sm mt-3'>
+                <span className='text-gray-700'>
+                  {effectiveAttendeeType === 'Exhibitor'
+                    ? 'Exhibitor Staff Only'
+                    : effectiveAttendeeType === 'Sponsor'
+                      ? 'Sponsor Registration'
+                      : 'General Registration'}
+                </span>
+                <span className='text-gray-500'>1</span>
+                {discountApplied ? (
+                  <div className='flex items-baseline gap-2'>
+                    <span className='line-through text-gray-400 text-xs'>
                       ${basePrice.toLocaleString()}
                     </span>
+                    <span className='font-semibold text-green-600'>$0.00</span>
                   </div>
-                  {additionalRegistrants.map((reg, index) => {
-                    const regType = reg.attendeeType || effectiveAttendeeType;
-                    const regLabel =
-                      regType === 'Exhibitor'
-                        ? 'Exhibitor Staff Only'
-                        : regType === 'Sponsor'
-                          ? 'Sponsor Registration'
-                          : 'General Registration';
-                    const regPrice = PRICING[regType] || 0;
-                    return (
-                      <div
-                        key={index}
-                        className='flex justify-between items-center text-sm border-t border-gray-100 pt-2'
-                      >
-                        <div className='flex items-center gap-1.5'>
-                          <button
-                            onClick={() => {
-                              setTicketQuantity((t) => t - 1);
-                              setAdditionalRegistrants((prev) =>
-                                prev.filter((_, i) => i !== index),
-                              );
-                            }}
-                            className='text-red-400 hover:text-red-600 transition-colors'
-                          >
-                            <XCircleIcon className='w-4 h-4' />
-                          </button>
-                          <span className='text-gray-700'>
-                            {regLabel} - {reg.lastName}
-                          </span>
-                        </div>
-                        <span className='text-gray-500'>1</span>
-                        <span className='font-medium'>
-                          ${regPrice.toLocaleString()}
-                        </span>
-                      </div>
-                    );
-                  })}
-                  <button
-                    onClick={() => setShowNewTicketForm(true)}
-                    className='flex items-center gap-2 mt-2 py-2 px-3 bg-gray-100 rounded-lg text-sm text-gray-600 hover:bg-gray-200 transition-colors'
-                  >
-                    <div className='bg-white rounded-full p-0.5'>
-                      <PlusIcon className='w-3.5 h-3.5' />
-                    </div>
-                    Add New Ticket
-                  </button>
-                </div>
-              ) : (
-                <div className='flex justify-between text-sm mt-3'>
-                  <span className='text-gray-700'>
-                    {effectiveAttendeeType === 'Exhibitor'
-                      ? 'Exhibitor Staff Only'
-                      : effectiveAttendeeType === 'Sponsor'
-                        ? 'Sponsor Registration'
-                        : 'General Registration'}
+                ) : (
+                  <span className='font-medium'>
+                    ${basePrice.toLocaleString()}
                   </span>
-                  <span className='text-gray-500'>1</span>
-                  {discountApplied ? (
-                    <div className='flex items-baseline gap-2'>
-                      <span className='line-through text-gray-400 text-xs'>
-                        ${basePrice.toLocaleString()}
-                      </span>
-                      <span className='font-semibold text-green-600'>
-                        $0.00
-                      </span>
-                    </div>
-                  ) : (
-                    <span className='font-medium'>
-                      ${basePrice.toLocaleString()}
-                    </span>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
 
               {/* Add-ons */}
               <div className='mt-3 pt-3 border-t border-gray-100'>
@@ -2494,11 +2231,7 @@ const RegistrationForm = () => {
               {discountApplied ? (
                 <div className='flex items-baseline gap-2'>
                   <span className='line-through text-gray-400 text-sm font-normal'>
-                    $
-                    {(
-                      basePrice * ticketQuantity +
-                      addOnsTotal
-                    ).toLocaleString()}
+                    ${(basePrice + addOnsTotal).toLocaleString()}
                   </span>
                   <span className='text-green-400 text-lg'>
                     ${addOnsTotal.toLocaleString()}
@@ -2699,27 +2432,6 @@ const RegistrationForm = () => {
                   </span>
                 </div>
 
-                {/* Additional tickets (Sponsors only) */}
-                {formData.attendeeType === 'Sponsor' &&
-                  additionalRegistrants.map((reg, i) => (
-                    <div
-                      key={i}
-                      className='grid grid-cols-12 gap-2 px-3 py-2 text-sm text-gray-700 border-b border-gray-100'
-                    >
-                      <span className='col-span-7'>
-                        {effectiveAttendeeType === 'Exhibitor'
-                          ? 'Exhibitor Staff Only'
-                          : 'Sponsor Registration'}{' '}
-                        – {reg.firstName} {reg.lastName}
-                      </span>
-                      <span className='col-span-2 text-right'>1</span>
-                      <span className='col-span-3 text-right'>
-                        $
-                        {(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
-                      </span>
-                    </div>
-                  ))}
-
                 {/* Add-ons */}
                 {addOnsSelected.length > 0 && (
                   <>
@@ -2748,8 +2460,7 @@ const RegistrationForm = () => {
                     <span>
                       $
                       {(
-                        (PRICING[effectiveAttendeeType] || 0) * ticketQuantity +
-                        addOnsTotal
+                        (PRICING[effectiveAttendeeType] || 0) + addOnsTotal
                       ).toLocaleString()}
                     </span>
                   </div>
@@ -2759,7 +2470,7 @@ const RegistrationForm = () => {
                       <span className='text-green-600'>
                         -$
                         {(
-                          (PRICING[effectiveAttendeeType] || 0) * ticketQuantity
+                          PRICING[effectiveAttendeeType] || 0
                         ).toLocaleString()}
                       </span>
                     </div>
@@ -2831,21 +2542,6 @@ const RegistrationForm = () => {
             </button>
           )}
         </div>
-      )}
-
-      {/* New Ticket Modal */}
-      {showNewTicketForm && (
-        <NewTicketForm
-          setRegistrant={(registrant) => {
-            setAdditionalRegistrants((prev) => [...prev, registrant]);
-            setTicketQuantity((t) => t + 1);
-          }}
-          close={() => setShowNewTicketForm(false)}
-          company={formData.companyName}
-          companyId={formData.companyId}
-          formData={formData}
-          existingAdditionalRegistrants={additionalRegistrants}
-        />
       )}
 
       {showAddCompanyModal && (

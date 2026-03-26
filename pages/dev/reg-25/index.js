@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { QRCodeSVG } from 'qrcode.react';
 import { loadStripe } from '@stripe/stripe-js';
 import { MdCheckCircle } from 'react-icons/md';
-import NewTicketForm from '../../../components/registration/NewTicketForm';
 import {
   Elements,
   CardElement,
@@ -11,17 +10,12 @@ import {
   useElements,
   PaymentElement,
 } from '@stripe/react-stripe-js';
-import {
-  ExclamationCircleIcon,
-  PlusIcon,
-  XCircleIcon,
-} from '@heroicons/react/24/solid';
+import { ExclamationCircleIcon, PlusIcon } from '@heroicons/react/24/solid';
 import {
   getAPSCompanies,
   createCompany,
   getAPS25AddOns,
   createNewAPS25Registrant,
-  createAdditionalAPS25Registrant,
   getAPS25Codes,
   createAPS25Notification,
   sendRegistrationConfirmation,
@@ -31,7 +25,6 @@ import {
   checkForExistingRegistrant,
   getSolutionProviderRegistrants,
   checkCodeUsage,
-  sendAdditionalRegistrationConfirmation,
 } from '../../../util/api';
 import AddOnCard from '../../../components/registration/AddOnCard';
 // Initialize Stripe (put this outside the component)
@@ -129,10 +122,6 @@ const RegistrationForm = () => {
   const [previousCompanyRegistrants, setPreviousCompanyRegistrants] = useState(
     []
   );
-  const [ticketQuantity, setTicketQuantity] = useState(1);
-  const [showNewTicketForm, setShowNewTicketForm] = useState(false);
-
-  const [additionalRegistrants, setAdditionalRegistrants] = useState([]);
   const [paymentSuccess, setPaymentSuccess] = useState({
     success: '',
     message: '',
@@ -181,55 +170,19 @@ const RegistrationForm = () => {
     }
   };
 
-  const calculateSolutionProviderTotal = (
-    previousRegistrantsCount,
-    currentTicketQuantity
-  ) => {
-    let total = 0;
-    // Start from the next ticket after previous registrants
-    for (
-      let i = previousRegistrantsCount;
-      i < previousRegistrantsCount + currentTicketQuantity;
-      i++
-    ) {
-      switch (i) {
-        case 0:
-          total += 1015; // First ticket
-          break;
-        case 1:
-          total += 2000; // Second ticket
-          break;
-        case 2:
-          total += 3000; // Third ticket
-          break;
-        default:
-          total += 0;
-      }
-    }
-    return total;
-  };
-
   const totalAmount = useMemo(() => {
     if (formData.discountCode) {
       return 0;
     }
 
     if (formData.attendeeType === 'Solution-Provider') {
-      return calculateSolutionProviderTotal(
-        previousCompanyRegistrants.length,
-        ticketQuantity
-      );
+      return calculateSolutionProviderPrice(previousCompanyRegistrants.length);
     } else if (formData.attendeeType === 'Sponsor') {
       return 799;
     } else {
       return 1015;
     }
-  }, [
-    formData.attendeeType,
-    formData.discountCode,
-    previousCompanyRegistrants.length,
-    ticketQuantity,
-  ]);
+  }, [formData.attendeeType, formData.discountCode, previousCompanyRegistrants.length]);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -266,7 +219,7 @@ const RegistrationForm = () => {
         body: JSON.stringify({
           amount: totalAmount,
           currency: 'usd',
-          quantity: ticketQuantity,
+          quantity: 1,
           description: `APS Registration ${formData.lastName} -- ${formData.attendeeType}`,
           metadata: {
             firstName: formData.firstName,
@@ -374,27 +327,6 @@ const RegistrationForm = () => {
                 activity: `${formData.attendeeType} Registration email sent to ${formData.email}`,
               }),
             ]);
-
-            if (additionalRegistrants.length > 0) {
-              for (const registrant of additionalRegistrants) {
-                const newId = await createAdditionalAPS25Registrant(registrant);
-                await Promise.all([
-                  createAPS25Notification({
-                    type: 'REGISTRATION_SENT',
-                    activity: `${registrant.attendeeType} Registration sent from ${registrant.firstName} ${registrant.lastName}`,
-                  }),
-                  sendAdditionalRegistrationConfirmation({
-                    formData: registrant,
-                    formDataId: newId.createAPSRegistrant2025.id,
-                  }),
-
-                  createAPS25Notification({
-                    type: 'REGISTRATION_EMAIL_SENT',
-                    activity: `${registrant.attendeeType} Registration email sent to ${registrant.email}`,
-                  }),
-                ]);
-              }
-            }
 
             console.log('Registration completed, moving to step 4');
             setStep(4);
@@ -1610,48 +1542,6 @@ const RegistrationForm = () => {
                           )}
                         </span>
                       </div>
-                      {/* ADDITIONAL SOLUTION PROVIDER TICKET ITEM */}
-                      {additionalRegistrants.length > 0 && (
-                        <div className='flex flex-col gap-2 mt-2'>
-                          <div className='text-sm font-bold w-full border-b border-gray-300 pb-2'>
-                            Additional Registrants:{' '}
-                            {additionalRegistrants.length}
-                          </div>
-                          {additionalRegistrants.map((registrant, index) => (
-                            <div
-                              key={index}
-                              className='flex justify-between px-2 border-b border-gray-300 pb-2'
-                            >
-                              <div className='flex items-center gap-1 w-[210px]'>
-                                <div
-                                  className='text-red-500 cursor-pointer'
-                                  onClick={() => {
-                                    setTicketQuantity((t) => t - 1);
-                                    setAdditionalRegistrants(
-                                      additionalRegistrants.filter(
-                                        (_, i) => i !== index
-                                      )
-                                    );
-                                  }}
-                                >
-                                  <XCircleIcon className='w-6 h-6' />
-                                </div>
-                                <span className='line-clamp-1 text-sm'>
-                                  General Admission - {registrant.lastName}
-                                </span>
-                              </div>
-                              <span className='text-sm'>1</span>
-                              <span className='text-sm'>
-                                $
-                                {calculateSolutionProviderPrice(
-                                  previousCompanyRegistrants.length + 1 + index
-                                )}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
                       <div className='flex flex-col gap-1'>
                         <div className='pl-6 font-bold text-sm'>Addons:</div>
                         {addOnsSelected.length > 0 ? (
@@ -1680,22 +1570,6 @@ const RegistrationForm = () => {
                           </div>
                         )}
                       </div>
-                      {previousCompanyRegistrants.length + ticketQuantity <
-                        3 && (
-                        <div
-                          className='flex w-full mt-3 bg-gray-400 py-2 px-4 rounded cursor-pointer hover:bg-gray-500 transition-colors'
-                          onClick={() => {
-                            setShowNewTicketForm(true);
-                          }}
-                        >
-                          <div className='flex gap-2 text-gray-100 text-sm font-semibold items-center '>
-                            <div className='bg-gray-100 rounded-full p-1 flex items-center justify-center'>
-                              <PlusIcon className='w-4 h-4 text-gray-800' />
-                            </div>
-                            <div>Add New Ticket</div>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   ) : (
                     <div className='flex flex-col gap-2'>
@@ -1931,7 +1805,7 @@ const RegistrationForm = () => {
                   <div className='flex flex-col gap-2'>
                     <div className='flex justify-between px-2 border-b border-gray-300 pb-2'>
                       <span>General Admission</span>
-                      <span>{ticketQuantity}</span>
+                      <span>1</span>
                       {formData.discountCode ? (
                         <div className='flex gap-2'>
                           <span className='line-through text-gray-500'>
@@ -2102,17 +1976,6 @@ const RegistrationForm = () => {
             </form>
           </div>
         </div>
-      )}
-      {showNewTicketForm && (
-        <NewTicketForm
-          setRegistrant={(registrant) => {
-            setAdditionalRegistrants([...additionalRegistrants, registrant]);
-            setTicketQuantity(ticketQuantity + 1);
-          }}
-          company={formData.companyName}
-          companyId={formData.aPSRegistrant2025CompanyNameId}
-          close={() => setShowNewTicketForm(false)}
-        />
       )}
     </div>
   );
