@@ -350,6 +350,8 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -1273,6 +1275,8 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -1423,6 +1427,8 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -1494,6 +1500,8 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -1664,6 +1672,8 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -2288,6 +2298,8 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -3211,6 +3223,8 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -3361,6 +3375,8 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -3432,6 +3448,8 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -3602,6 +3620,8 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -4226,6 +4246,8 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -5149,6 +5171,8 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -5299,6 +5323,8 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -5370,6 +5396,8 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -5540,6 +5568,8 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -5994,6 +6024,8 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -6065,6 +6097,8 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -6235,6 +6269,8 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -7115,6 +7151,8 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -7186,6 +7224,8 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -7356,6 +7396,8 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -8236,6 +8278,8 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -8307,6 +8351,8 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -8477,6 +8523,8 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -9357,6 +9405,8 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -9428,6 +9478,8 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -9598,6 +9650,8 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -9684,6 +9738,8 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -10359,6 +10415,8 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -10430,6 +10488,8 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -10600,6 +10660,8 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -10686,6 +10748,8 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -11361,6 +11425,8 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -11432,6 +11498,8 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -11602,6 +11670,8 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -11688,6 +11758,8 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -12363,6 +12435,8 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -12434,6 +12508,8 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -12604,6 +12680,8 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -13422,6 +13500,8 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -13493,6 +13573,8 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -13663,6 +13745,8 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -14481,6 +14565,8 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -14552,6 +14638,8 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -14722,6 +14810,8 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -15540,6 +15630,8 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -15611,6 +15703,8 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -15781,6 +15875,8 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -16433,6 +16529,8 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -16504,6 +16602,8 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -16674,6 +16774,8 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -17326,6 +17428,8 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -17397,6 +17501,8 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -17567,6 +17673,8 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -18219,6 +18327,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -18290,6 +18400,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -18460,6 +18572,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -18613,6 +18727,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -18684,6 +18800,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -18854,6 +18972,8 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -19391,6 +19511,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -19462,6 +19584,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -19632,6 +19756,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -19785,6 +19911,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -19856,6 +19984,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -20026,6 +20156,8 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -20563,6 +20695,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -20634,6 +20768,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -20804,6 +20940,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -20957,6 +21095,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -21028,6 +21168,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -21198,6 +21340,8 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -22463,6 +22607,8 @@ export const onCreateApsDmMessage = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -22865,6 +23011,8 @@ export const onUpdateApsDmMessage = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -23267,6 +23415,8 @@ export const onDeleteApsDmMessage = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -23868,6 +24018,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24314,6 +24466,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24388,6 +24542,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24457,6 +24613,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24526,6 +24684,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24598,6 +24758,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -24625,6 +24787,8 @@ export const onCreateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25098,6 +25262,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25544,6 +25710,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25618,6 +25786,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25687,6 +25857,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25756,6 +25928,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25828,6 +26002,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -25855,6 +26031,8 @@ export const onUpdateAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -26328,6 +26506,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -26774,6 +26954,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -26848,6 +27030,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -26917,6 +27101,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -26986,6 +27172,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -27058,6 +27246,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -27085,6 +27275,8 @@ export const onDeleteAPS = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -30869,6 +31061,8 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -31051,6 +31245,8 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -32326,6 +32522,8 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -32508,6 +32706,8 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -33783,6 +33983,8 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -33965,6 +34167,8 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -34423,6 +34627,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -34628,6 +34834,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -34768,6 +34976,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -34836,6 +35046,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -35001,6 +35213,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -35072,6 +35286,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -35242,6 +35458,8 @@ export const onCreateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -35701,6 +35919,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -35906,6 +36126,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -36046,6 +36268,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -36114,6 +36338,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -36279,6 +36505,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -36350,6 +36578,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -36520,6 +36750,8 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -36979,6 +37211,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -37184,6 +37418,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -37324,6 +37560,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -37392,6 +37630,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -37557,6 +37797,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -37628,6 +37870,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -37798,6 +38042,8 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -38133,6 +38379,8 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -38303,6 +38551,8 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -38374,6 +38624,8 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -38544,6 +38796,8 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -38881,6 +39135,8 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -39051,6 +39307,8 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -39122,6 +39380,8 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -39292,6 +39552,8 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -39629,6 +39891,8 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -39799,6 +40063,8 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -39870,6 +40136,8 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -40040,6 +40308,8 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -40377,6 +40647,8 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -40547,6 +40819,8 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -40618,6 +40892,8 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -40788,6 +41064,8 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -41125,6 +41403,8 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -41295,6 +41575,8 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -41366,6 +41648,8 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -41536,6 +41820,8 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -41873,6 +42159,8 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -42043,6 +42331,8 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42114,6 +42404,8 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -42284,6 +42576,8 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42621,6 +42915,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -42710,6 +43006,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42761,6 +43059,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42802,6 +43102,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42817,6 +43119,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
         __typename
       }
       resume
+      thinkificId
+      apcProgress
       contacts {
         items {
           id
@@ -42851,6 +43155,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42899,6 +43205,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -42939,6 +43247,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43013,6 +43323,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43082,6 +43394,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43151,6 +43465,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43223,6 +43539,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43250,6 +43568,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43307,6 +43627,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43334,6 +43656,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43491,6 +43815,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -43572,6 +43898,8 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -44045,6 +44373,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -44134,6 +44464,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44185,6 +44517,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44226,6 +44560,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44241,6 +44577,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
         __typename
       }
       resume
+      thinkificId
+      apcProgress
       contacts {
         items {
           id
@@ -44275,6 +44613,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44323,6 +44663,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44363,6 +44705,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44437,6 +44781,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44506,6 +44852,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44575,6 +44923,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44647,6 +44997,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44674,6 +45026,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44731,6 +45085,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44758,6 +45114,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44915,6 +45273,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -44996,6 +45356,8 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -45469,6 +45831,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -45558,6 +45922,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45609,6 +45975,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45650,6 +46018,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45665,6 +46035,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
         __typename
       }
       resume
+      thinkificId
+      apcProgress
       contacts {
         items {
           id
@@ -45699,6 +46071,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45747,6 +46121,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45787,6 +46163,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45861,6 +46239,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45930,6 +46310,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -45999,6 +46381,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46071,6 +46455,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46098,6 +46484,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46155,6 +46543,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46182,6 +46572,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46339,6 +46731,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46420,6 +46814,8 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -46723,6 +47119,8 @@ export const onCreateProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -46794,6 +47192,8 @@ export const onCreateProfileAffiliate = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -46964,6 +47364,8 @@ export const onCreateProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -47134,6 +47536,8 @@ export const onUpdateProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -47205,6 +47609,8 @@ export const onUpdateProfileAffiliate = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -47375,6 +47781,8 @@ export const onUpdateProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -47545,6 +47953,8 @@ export const onDeleteProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -47616,6 +48026,8 @@ export const onDeleteProfileAffiliate = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -47786,6 +48198,8 @@ export const onDeleteProfileAffiliate = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -47956,6 +48370,8 @@ export const onCreateProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -48027,6 +48443,8 @@ export const onCreateProfileEducation = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -48197,6 +48615,8 @@ export const onCreateProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -48366,6 +48786,8 @@ export const onUpdateProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -48437,6 +48859,8 @@ export const onUpdateProfileEducation = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -48607,6 +49031,8 @@ export const onUpdateProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -48776,6 +49202,8 @@ export const onDeleteProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -48847,6 +49275,8 @@ export const onDeleteProfileEducation = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -49017,6 +49447,8 @@ export const onDeleteProfileEducation = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -49186,6 +49618,8 @@ export const onCreateProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -49257,6 +49691,8 @@ export const onCreateProfileInterest = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -49427,6 +49863,8 @@ export const onCreateProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -49594,6 +50032,8 @@ export const onUpdateProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -49665,6 +50105,8 @@ export const onUpdateProfileInterest = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -49835,6 +50277,8 @@ export const onUpdateProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -50002,6 +50446,8 @@ export const onDeleteProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -50073,6 +50519,8 @@ export const onDeleteProfileInterest = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -50243,6 +50691,8 @@ export const onDeleteProfileInterest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -50580,6 +51030,8 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -51305,6 +51757,8 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -52030,6 +52484,8 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -52756,6 +53212,8 @@ export const onCreateApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -52890,6 +53348,8 @@ export const onCreateApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -53234,6 +53694,8 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -53368,6 +53830,8 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -53712,6 +54176,8 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -53846,6 +54312,8 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -54305,6 +54773,8 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -54774,6 +55244,8 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -55243,6 +55715,8 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -55428,6 +55902,8 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -55499,6 +55975,8 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -55669,6 +56147,8 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -56139,6 +56619,8 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -56311,6 +56793,8 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -56382,6 +56866,8 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -56552,6 +57038,8 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -57022,6 +57510,8 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -57194,6 +57684,8 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -57265,6 +57757,8 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
           __typename
         }
         resume
+        thinkificId
+        apcProgress
         contacts {
           items {
             id
@@ -57435,6 +57929,8 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -57905,6 +58401,8 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -59020,6 +59518,8 @@ export const onCreateApsSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -60137,6 +60637,8 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -61254,6 +61756,8 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -62252,6 +62756,8 @@ export const onCreateAPSCompany = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -63273,6 +63779,8 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -64294,6 +64802,8 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -66550,6 +67060,8 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -66610,6 +67122,8 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -67940,6 +68454,8 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -68000,6 +68516,8 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -69330,6 +69848,8 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -69390,6 +69910,8 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -72261,6 +72783,8 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -73329,6 +73853,8 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -74397,6 +74923,8 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -81046,6 +81574,8 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -81629,6 +82159,8 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -82212,6 +82744,8 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -83119,6 +83653,8 @@ export const onCreateApsSeatingChartRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -83612,6 +84148,8 @@ export const onUpdateApsSeatingChartRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -84105,6 +84643,8 @@ export const onDeleteApsSeatingChartRegistrant = /* GraphQL */ `
             website
             location
             resume
+            thinkificId
+            apcProgress
             speakerId
             createdAt
             updatedAt
@@ -86314,6 +86854,8 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -86665,6 +87207,8 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
@@ -87016,6 +87560,8 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
             __typename
           }
           resume
+          thinkificId
+          apcProgress
           contacts {
             nextToken
             __typename
