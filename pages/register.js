@@ -37,6 +37,7 @@ const DISCOUNT_ELIGIBLE_TYPES = [
   'Speaker',
   'Exhibitor',
 ];
+const STANDARD_SPONSOR_TICKET_SOLD_OUT = true;
 
 const APS_EVENT_ID = 'd00b35f5-c45b-42eb-b306-fa3dfeee0251';
 
@@ -399,6 +400,16 @@ const RegistrationForm = () => {
     return formData.attendeeType;
   }, [formData.attendeeType, sponsorTicketOption]);
 
+  useEffect(() => {
+    if (
+      STANDARD_SPONSOR_TICKET_SOLD_OUT &&
+      formData.attendeeType === 'Sponsor' &&
+      sponsorTicketOption !== 'exhibitor-staff'
+    ) {
+      setSponsorTicketOption('exhibitor-staff');
+    }
+  }, [formData.attendeeType, sponsorTicketOption]);
+
   const mapAttendeeTypeToEnum = (type) => {
     switch (type) {
       case 'OEM':
@@ -444,7 +455,7 @@ const RegistrationForm = () => {
     const newErrors = { ...errors };
 
     if (name === 'attendeeType') {
-      setSponsorTicketOption(null);
+      setSponsorTicketOption(value === 'Sponsor' ? 'exhibitor-staff' : null);
     }
 
     if (name === 'sameAsAttendee') {
@@ -1133,7 +1144,7 @@ const RegistrationForm = () => {
     if (stepToValidate === 3) {
       if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
         newErrors.sponsorTicketOption =
-          'Please select a ticket option (Standard Sponsor or Exhibitor Staff Only)';
+          'Please select a sponsor ticket option';
       }
       // Only require billing details when there is a non-zero total.
       // If a discount/code brings totalAmount to 0, billing can be skipped.
@@ -2040,7 +2051,9 @@ const RegistrationForm = () => {
                 <div className='space-y-3'>
                   <label
                     className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                      sponsorTicketOption === 'standard'
+                      STANDARD_SPONSOR_TICKET_SOLD_OUT
+                        ? 'border-red-200 bg-red-50/50 cursor-not-allowed'
+                        : sponsorTicketOption === 'standard'
                         ? 'border-ap-blue bg-ap-blue/5'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
@@ -2050,13 +2063,23 @@ const RegistrationForm = () => {
                       name='sponsorTicketOption'
                       value='standard'
                       checked={sponsorTicketOption === 'standard'}
-                      onChange={() => setSponsorTicketOption('standard')}
+                      onChange={() => {
+                        if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) {
+                          setSponsorTicketOption('standard');
+                        }
+                      }}
+                      disabled={STANDARD_SPONSOR_TICKET_SOLD_OUT}
                       className='mt-1'
                     />
-                    <div>
+                    <div className='w-full'>
                       <span className='font-medium text-gray-900'>
-                        Standard Sponsor ticket — $840
+                        Standard Sponsor ticket - $840
                       </span>
+                      {STANDARD_SPONSOR_TICKET_SOLD_OUT && (
+                        <p className='mt-2 rounded-md border border-red-200 bg-red-100 px-2.5 py-1.5 text-xs font-medium text-red-800'>
+                          This option is sold out.
+                        </p>
+                      )}
                       <p className='text-xs text-gray-600 mt-1'>
                         Full sponsor access and assigned seating.
                       </p>
