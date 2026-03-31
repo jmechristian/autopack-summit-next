@@ -11,11 +11,29 @@ if (process.env.AWSACCESSKEYID && process.env.AWSSECRETACCESSKEY) {
   };
 }
 const sesClient = new SESClient(sesConfig);
+const recentApprovalSends = new Map();
+const APPROVAL_SEND_COOLDOWN_MS = 5 * 60 * 1000;
 
 export default async function handler(req, res) {
   const query = req.query;
   if (!query?.email) {
     return res.status(400).json({ message: 'Missing required query param: email' });
+  }
+  const normalizedEmail = String(query.email).trim().toLowerCase();
+  const dedupeKey = [
+    normalizedEmail,
+    String(query.firstName || '').trim().toLowerCase(),
+    String(query.lastName || '').trim().toLowerCase(),
+    String(query.company || '').trim().toLowerCase(),
+  ].join('|');
+
+  const now = Date.now();
+  const lastSentAt = recentApprovalSends.get(dedupeKey);
+  if (lastSentAt && now - lastSentAt < APPROVAL_SEND_COOLDOWN_MS) {
+    return res.status(200).json({
+      message: 'Registration code already sent recently',
+      deduped: true,
+    });
   }
   const emailHtml = render(<CodeRequestEmail />);
 
@@ -68,6 +86,7 @@ export default async function handler(req, res) {
         'info@packagingschool.com',
       ),
     );
+    recentApprovalSends.set(dedupeKey, now);
     return res.status(200).json({ message: 'success' });
   } catch (error) {
     console.error('SES send-registration-code error:', error);
