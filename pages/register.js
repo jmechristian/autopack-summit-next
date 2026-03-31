@@ -20,6 +20,7 @@ import {
   getAPSCompanies,
   getAddOnsByEventId,
   createRegistrantAddOnRequestApi,
+  sendCodeRequest,
 } from '../util/api';
 const PRICING = {
   OEM: 1600,
@@ -224,6 +225,12 @@ const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [sponsorTicketOption, setSponsorTicketOption] = useState(null);
+  const [isRequestingCode, setIsRequestingCode] = useState(false);
+  const [codeRequestCooldownSeconds, setCodeRequestCooldownSeconds] = useState(0);
+  const [codeRequestStatus, setCodeRequestStatus] = useState({
+    type: '',
+    message: '',
+  });
 
   const dropdownRef = useRef(null);
   const emailCheckTimeout = useRef(null);
@@ -326,6 +333,14 @@ const RegistrationForm = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
+
+  useEffect(() => {
+    if (codeRequestCooldownSeconds <= 0) return;
+    const timer = setInterval(() => {
+      setCodeRequestCooldownSeconds((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [codeRequestCooldownSeconds]);
 
   const checkEmailExists = useCallback(async (email) => {
     const normalizedEmail = String(email || '')
@@ -441,6 +456,11 @@ const RegistrationForm = () => {
     const base = PRICING[effectiveAttendeeType] || 0;
     return base + addOnsTotal;
   }, [effectiveAttendeeType, discountApplied, addOnsTotal]);
+
+  const canRequestRegistrationCode = useMemo(
+    () => ['OEM', 'Tier1'].includes(formData.attendeeType),
+    [formData.attendeeType],
+  );
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -663,6 +683,53 @@ const RegistrationForm = () => {
     setDiscountApplied(true);
     setDiscountCodeError('');
     setFormData((prev) => ({ ...prev, discountCode: discountCode.trim() }));
+  };
+
+  const handleRequestRegistrationCode = async () => {
+    if (isRequestingCode) return;
+
+    const payload = {
+      email: formData.email.trim(),
+      company: formData.companyName.trim(),
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+    };
+
+    if (!payload.email || !payload.firstName || !payload.lastName || !payload.company) {
+      setCodeRequestStatus({
+        type: 'error',
+        message:
+          'Please complete your first name, last name, email, and company before requesting a code.',
+      });
+      return;
+    }
+
+    setIsRequestingCode(true);
+    setCodeRequestStatus({ type: '', message: '' });
+
+    try {
+      await sendCodeRequest(
+        payload.email,
+        payload.company,
+        payload.firstName,
+        payload.lastName,
+      );
+      setCodeRequestStatus({
+        type: 'success',
+        message:
+          'Request sent. Once approved, your registration code will be emailed to you.',
+      });
+      setCodeRequestCooldownSeconds(60);
+    } catch (err) {
+      console.error('Error requesting registration code:', err);
+      setCodeRequestStatus({
+        type: 'error',
+        message:
+          'Could not send your request right now. Please try again or contact info@packagingschool.com.',
+      });
+    } finally {
+      setIsRequestingCode(false);
+    }
   };
 
   const createAddOnRequestsForRegistrant = async (registrantId) => {
@@ -2171,10 +2238,37 @@ const RegistrationForm = () => {
                     </button>
                   )}
                 </div>
+                {canRequestRegistrationCode && (
+                  <div className='mt-2'>
+                    <button
+                      type='button'
+                      onClick={handleRequestRegistrationCode}
+                      disabled={isRequestingCode || codeRequestCooldownSeconds > 0}
+                      className='text-xs text-ap-blue underline hover:text-ap-darkblue disabled:text-gray-400 disabled:no-underline'
+                    >
+                      {isRequestingCode
+                        ? 'Sending request...'
+                        : codeRequestCooldownSeconds > 0
+                          ? `Request sent. Try again in ${codeRequestCooldownSeconds}s`
+                          : 'No code? Request one here'}
+                    </button>
+                  </div>
+                )}
                 {discountCodeError && (
                   <p className='text-red-500 text-xs mt-1 flex items-center gap-1'>
                     <ExclamationCircleIcon className='w-3.5 h-3.5' />
                     {discountCodeError}
+                  </p>
+                )}
+                {codeRequestStatus.message && (
+                  <p
+                    className={`text-xs mt-1 ${
+                      codeRequestStatus.type === 'success'
+                        ? 'text-green-600'
+                        : 'text-red-500'
+                    }`}
+                  >
+                    {codeRequestStatus.message}
                   </p>
                 )}
                 {discountApplied && (

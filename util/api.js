@@ -14,8 +14,6 @@ import {
   createAPSActivity2025,
   updateAPSRegistrant2025,
   updateAPSCode2025,
-  createAPSCodeRequest25,
-  updateAPSCodeRequest25,
 } from '../src/graphql/mutations';
 import {
   aPSRegistrantsByEmail,
@@ -26,7 +24,6 @@ import {
   listAPSAddOn2025s,
   getAPSRegistrant2025,
   listAPSCode2025s,
-  aPSCodeRequest25sByEmail,
   aPSRegistrant2025sByEmail,
   getAPSCompany,
   getAPSCode2025,
@@ -1085,18 +1082,6 @@ export const updateSpeakerProfile = async (id, data) => {
 
 export const sendCodeRequest = async (email, company, firstName, lastName) => {
   console.log('Sending code request to: ', email);
-  await API.graphql({
-    query: createAPSCodeRequest25,
-    variables: {
-      input: {
-        email: email,
-        company: company,
-        firstName: firstName,
-        lastName: lastName,
-      },
-    },
-  });
-
   const res = await fetch('/api/send-code-request', {
     method: 'POST',
     headers: {
@@ -1106,25 +1091,12 @@ export const sendCodeRequest = async (email, company, firstName, lastName) => {
     body: JSON.stringify({ email, company, firstName, lastName }),
   });
 
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data?.message || `Request failed with status ${res.status}`);
+  }
+
   return res.status;
-};
-
-export const updateSentRegistrantCode = async (email) => {
-  const id = await API.graphql({
-    query: aPSCodeRequest25sByEmail,
-    variables: { email: email },
-  });
-
-  const res = await API.graphql({
-    query: updateAPSCodeRequest25,
-    variables: {
-      input: {
-        id: id.data.aPSCodeRequest25sByEmail.items[0].id,
-        status: 'SENT',
-      },
-    },
-  });
-  return res.data;
 };
 
 export const checkForExistingRegistrant = async (email) => {

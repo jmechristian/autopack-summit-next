@@ -1,18 +1,22 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { render } from '@react-email/render';
 import { CodeRequestEmail } from '../../react-email-starter/emails/code-request-email';
-import { updateSentRegistrantCode } from '../../util/api';
+
 const REGION = 'us-east-1';
-const creds = {
-  accessKeyId: process.env.AWSACCESSKEYID,
-  secretAccessKey: process.env.AWSSECRETACCESSKEY,
-};
-// Create SES service object.
-const sesClient = new SESClient({ region: REGION, credentials: creds });
-export { sesClient };
+const sesConfig = { region: REGION };
+if (process.env.AWSACCESSKEYID && process.env.AWSSECRETACCESSKEY) {
+  sesConfig.credentials = {
+    accessKeyId: process.env.AWSACCESSKEYID,
+    secretAccessKey: process.env.AWSSECRETACCESSKEY,
+  };
+}
+const sesClient = new SESClient(sesConfig);
 
 export default async function handler(req, res) {
   const query = req.query;
+  if (!query?.email) {
+    return res.status(400).json({ message: 'Missing required query param: email' });
+  }
   const emailHtml = render(<CodeRequestEmail />);
 
   const createSendEmailCommand = (toAddress, fromAddress) => {
@@ -61,12 +65,15 @@ export default async function handler(req, res) {
     await sesClient.send(
       createSendEmailCommand(
         'jamie@packagingschool.com',
-        'info@packagingschool.com'
-      )
+        'info@packagingschool.com',
+      ),
     );
-    await updateSentRegistrantCode(query.email);
-    res.status(200).json({ message: 'success' });
+    return res.status(200).json({ message: 'success' });
   } catch (error) {
-    res.status(410).json({ message: 'error', error });
+    console.error('SES send-registration-code error:', error);
+    return res.status(500).json({
+      message: error?.message || 'Failed to send registration code email',
+      code: error?.name || 'SES_ERROR',
+    });
   }
 }
