@@ -419,11 +419,12 @@ const RegistrationForm = () => {
     if (
       STANDARD_SPONSOR_TICKET_SOLD_OUT &&
       formData.attendeeType === 'Sponsor' &&
+      !canSelectStandardSponsorTicket &&
       sponsorTicketOption !== 'exhibitor-staff'
     ) {
       setSponsorTicketOption('exhibitor-staff');
     }
-  }, [formData.attendeeType, sponsorTicketOption]);
+  }, [formData.attendeeType, sponsorTicketOption, canSelectStandardSponsorTicket]);
 
   const mapAttendeeTypeToEnum = (type) => {
     switch (type) {
@@ -456,6 +457,11 @@ const RegistrationForm = () => {
     const base = PRICING[effectiveAttendeeType] || 0;
     return base + addOnsTotal;
   }, [effectiveAttendeeType, discountApplied, addOnsTotal]);
+
+  const canSelectStandardSponsorTicket = useMemo(() => {
+    if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) return true;
+    return discountApplied;
+  }, [discountApplied]);
 
   const canRequestRegistrationCode = useMemo(
     () => ['OEM', 'Tier1'].includes(formData.attendeeType),
@@ -2118,7 +2124,8 @@ const RegistrationForm = () => {
                 <div className='space-y-3'>
                   <label
                     className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                      STANDARD_SPONSOR_TICKET_SOLD_OUT
+                      STANDARD_SPONSOR_TICKET_SOLD_OUT &&
+                      !canSelectStandardSponsorTicket
                         ? 'border-red-200 bg-red-50/50 cursor-not-allowed'
                         : sponsorTicketOption === 'standard'
                         ? 'border-ap-blue bg-ap-blue/5'
@@ -2131,11 +2138,11 @@ const RegistrationForm = () => {
                       value='standard'
                       checked={sponsorTicketOption === 'standard'}
                       onChange={() => {
-                        if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) {
+                        if (canSelectStandardSponsorTicket) {
                           setSponsorTicketOption('standard');
                         }
                       }}
-                      disabled={STANDARD_SPONSOR_TICKET_SOLD_OUT}
+                      disabled={!canSelectStandardSponsorTicket}
                       className='mt-1'
                     />
                     <div className='w-full'>
@@ -2144,7 +2151,8 @@ const RegistrationForm = () => {
                       </span>
                       {STANDARD_SPONSOR_TICKET_SOLD_OUT && (
                         <p className='mt-2 rounded-md border border-red-200 bg-red-100 px-2.5 py-1.5 text-xs font-medium text-red-800'>
-                          This option is sold out.
+                          This option is sold out. Enter a valid code to unlock
+                          this ticket type.
                         </p>
                       )}
                       <p className='text-xs text-gray-600 mt-1'>
