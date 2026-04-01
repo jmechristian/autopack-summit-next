@@ -415,6 +415,11 @@ const RegistrationForm = () => {
     return formData.attendeeType;
   }, [formData.attendeeType, sponsorTicketOption]);
 
+  const canSelectStandardSponsorTicket = useMemo(() => {
+    if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) return true;
+    return discountApplied;
+  }, [discountApplied]);
+
   useEffect(() => {
     if (
       STANDARD_SPONSOR_TICKET_SOLD_OUT &&
@@ -457,11 +462,6 @@ const RegistrationForm = () => {
     const base = PRICING[effectiveAttendeeType] || 0;
     return base + addOnsTotal;
   }, [effectiveAttendeeType, discountApplied, addOnsTotal]);
-
-  const canSelectStandardSponsorTicket = useMemo(() => {
-    if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) return true;
-    return discountApplied;
-  }, [discountApplied]);
 
   const canRequestRegistrationCode = useMemo(
     () => ['OEM', 'Tier1'].includes(formData.attendeeType),
