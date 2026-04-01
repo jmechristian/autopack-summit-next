@@ -69,19 +69,6 @@ const MobileMenu = ({ close, isOpen }) => {
                 </Link>
               </motion.div>
             ))}
-            <div className='flex gap-2 mt-12'>
-              <button
-                className='bg-ap-yellow rounded drop-shadow-md'
-                onClick={() => {
-                  dispatch(toggleRegistrationModal());
-                  close();
-                }}
-              >
-                <div className='py-4 px-5 font-bold text-4xl text-slate-800 text-left'>
-                  Register Now!
-                </div>
-              </button>
-            </div>
           </motion.div>
         </motion.div>
       </motion.div>

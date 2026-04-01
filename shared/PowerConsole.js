@@ -64,14 +64,14 @@ const PowerConsole = () => {
               </motion.div>
               <motion.div className='w-full px-3 py-2 flex flex-col gap-2 item-center'>
                 <ConsoleItem
-                  title={'Tickets are Sold Out'}
+                  title={'Register Now'}
                   color={'bg-ap-yellow'}
                   hoverColor={'hover:bg-amber-400'}
                   iconBack={'bg-black/70'}
                   icon={<MdConfirmationNumber color='white' size={'20px'} />}
                   fn={() => router.push('/register')}
                   disabled={false}
-                  callout={'Join the Waitlist!'}
+                  callout={'Spots are limited - secure your ticket today.'}
                 />
                 {/* <ConsoleItem
                   title={'Join the Ticket Waitlist'}
@@ -138,18 +138,12 @@ const PowerConsole = () => {
                   icon={<MdAirplanemodeActive color='black' size={'20px'} />}
                   fn={() =>
                     window.open(
-                      'https://www.hyatt.com/en-US/group-booking/GSPRG/G-PAC4',
-                      '_blank'
+                      'https://www.hyatt.com/events/en-US/group-booking/GSPRG/G-APSM',
+                      '_blank',
                     )
                   }
                 />
               </motion.div>
-              <div
-                className='mx-auto w-full md:px-3'
-                dangerouslySetInnerHTML={{
-                  __html: `<div style="line-height:1.4em;background-color:#f9f9f9;border:1px solid #ccc;padding:10px;width:100%;font-family:Helvetica;height:212px;text-align:center;" data-reactroot=""><div style="height:150px"><div style="text-align:center;font-size:16px"><span>Get our official<a href="https://whova.com/whova-event-app/" style="text-decoration:none;color:#333"> event </a>app,</span><div style="margin:10px 0px;text-align:center;"><img style="height:32px;margin:0px auto;" src="https://whova.com/xems/apis/get_whova_tracking_image/?event_id=autom_202510&amp;track_id=use_small_widget&amp;image_type=whova_logo" title="whova-logo"/></div></div><div style="margin-top:20px;clear:both;text-align:center;padding:0 0 5px 0"><a href="https://itunes.apple.com/app/apple-store/id716979741?pt=1944835&amp;ct=download_widget&amp;mt=8" target="_blank" rel="noreferrer" style="line-height:1.4em;font-size:14px;background-color:#2dacee;padding:10px;color:#fff;min-width:80px;display:inline-block;text-decoration:none;margin-right:5px">iOS</a><a href="https://play.google.com/store/apps/details?id=com.whova.event&amp;referrer=utm_source%3Ddownload_widget%26utm_medium%3Dwidget%26utm_content%3Dautom_202510" target="_blank" rel="noreferrer" style="line-height:1.4em;font-size:14px;background-color:#2dacee;padding:10px;color:#fff;min-width:80px;display:inline-block;text-decoration:none">Android</a></div><span style="font-size:13px">For Blackberry or Windows Phone,</span> <a target="_blank" rel="noreferrer" style="font-size:13px;text-decoration:none;color:#3c8dbc" href="https://whova.com/portal/webapp/AD72zg9OVsyw5vL4T5e4/">Click here</a></div><div><div style="text-align:center;font-size:13px">For feature details, visit<!-- --> <a target="_blank" rel="noreferrer" style="text-decoration:none;color:#3c8dbc" href="https://whova.com/">Whova</a></div></div></div>`,
-                }}
-              ></div>
             </motion.div>
           </motion.div>
         </motion.div>
