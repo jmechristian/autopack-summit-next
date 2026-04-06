@@ -226,7 +226,8 @@ const RegistrationForm = () => {
   const [submitError, setSubmitError] = useState(null);
   const [sponsorTicketOption, setSponsorTicketOption] = useState(null);
   const [isRequestingCode, setIsRequestingCode] = useState(false);
-  const [codeRequestCooldownSeconds, setCodeRequestCooldownSeconds] = useState(0);
+  const [codeRequestCooldownSeconds, setCodeRequestCooldownSeconds] =
+    useState(0);
   const [codeRequestStatus, setCodeRequestStatus] = useState({
     type: '',
     message: '',
@@ -429,7 +430,11 @@ const RegistrationForm = () => {
     ) {
       setSponsorTicketOption('exhibitor-staff');
     }
-  }, [formData.attendeeType, sponsorTicketOption, canSelectStandardSponsorTicket]);
+  }, [
+    formData.attendeeType,
+    sponsorTicketOption,
+    canSelectStandardSponsorTicket,
+  ]);
 
   const mapAttendeeTypeToEnum = (type) => {
     switch (type) {
@@ -701,7 +706,12 @@ const RegistrationForm = () => {
       lastName: formData.lastName.trim(),
     };
 
-    if (!payload.email || !payload.firstName || !payload.lastName || !payload.company) {
+    if (
+      !payload.email ||
+      !payload.firstName ||
+      !payload.lastName ||
+      !payload.company
+    ) {
       setCodeRequestStatus({
         type: 'error',
         message:
@@ -949,10 +959,9 @@ const RegistrationForm = () => {
               ? 'Sponsor Registration'
               : 'General Registration';
         const unitPrice = PRICING[effectiveAttendeeType] || 0;
-        const subtotal =
-          (PRICING[effectiveAttendeeType] || 0) + addOnsTotal;
+        const subtotal = (PRICING[effectiveAttendeeType] || 0) + addOnsTotal;
         const discountAmount = discountApplied
-          ? (PRICING[effectiveAttendeeType] || 0)
+          ? PRICING[effectiveAttendeeType] || 0
           : 0;
         const lineItems = [
           {
@@ -1216,8 +1225,7 @@ const RegistrationForm = () => {
 
     if (stepToValidate === 3) {
       if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
-        newErrors.sponsorTicketOption =
-          'Please select a sponsor ticket option';
+        newErrors.sponsorTicketOption = 'Please select a sponsor ticket option';
       }
       // Only require billing details when there is a non-zero total.
       // If a discount/code brings totalAmount to 0, billing can be skipped.
@@ -1717,8 +1725,8 @@ const RegistrationForm = () => {
           <div className='flex flex-col gap-2'>
             <label className={labelClass}>
               Would you be interested in completing a short post-event quiz to
-              qualify for a Certificate of Attendance (8 CEUs)? Indicate your
-              interest to receive more information.
+              qualify for a Certificate of Attendance (up to 3 CEUs)? Indicate
+              your interest to receive more information.
             </label>
             <div className='flex gap-4 mt-1'>
               <label className='inline-flex items-center gap-2 text-sm text-gray-700'>
@@ -2128,8 +2136,8 @@ const RegistrationForm = () => {
                       !canSelectStandardSponsorTicket
                         ? 'border-red-200 bg-red-50/50 cursor-not-allowed'
                         : sponsorTicketOption === 'standard'
-                        ? 'border-ap-blue bg-ap-blue/5'
-                        : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-ap-blue bg-ap-blue/5'
+                          : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     <input
@@ -2251,7 +2259,9 @@ const RegistrationForm = () => {
                     <button
                       type='button'
                       onClick={handleRequestRegistrationCode}
-                      disabled={isRequestingCode || codeRequestCooldownSeconds > 0}
+                      disabled={
+                        isRequestingCode || codeRequestCooldownSeconds > 0
+                      }
                       className='text-xs text-ap-blue underline hover:text-ap-darkblue disabled:text-gray-400 disabled:no-underline'
                     >
                       {isRequestingCode
@@ -2594,9 +2604,7 @@ const RegistrationForm = () => {
                       <span>Discount ({formData.discountCode})</span>
                       <span className='text-green-600'>
                         -$
-                        {(
-                          PRICING[effectiveAttendeeType] || 0
-                        ).toLocaleString()}
+                        {(PRICING[effectiveAttendeeType] || 0).toLocaleString()}
                       </span>
                     </div>
                   )}
