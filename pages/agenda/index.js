@@ -386,13 +386,7 @@ const AgendaDraft = ({ sessionData }) => {
               <button
                 type='button'
                 onClick={handlePrint}
-                disabled={!enabled}
-                className={classNames(
-                  enabled
-                    ? 'bg-ap-blue text-white hover:bg-ap-darkblue'
-                    : 'bg-gray-200 text-gray-500 cursor-not-allowed',
-                  'px-4 py-2 rounded-lg text-sm font-semibold transition-colors',
-                )}
+                className='px-4 py-2 rounded-lg text-sm font-semibold transition-colors bg-ap-blue text-white hover:bg-ap-darkblue'
               >
                 Download Compact PDF
               </button>

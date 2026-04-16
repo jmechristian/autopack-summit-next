@@ -39,6 +39,7 @@ export const RegistrantPage = ({ registrant }) => {
       registrant.billingAddressPhone ||
       registrant.billingAddressStreet ||
       registrant.billingAddressCity ||
+      registrant.billingAddressCountry ||
       registrant.billingAddressState ||
       registrant.billingAddressZip);
   console.log('registrant', registrant);
@@ -868,6 +869,9 @@ export const RegistrantPage = ({ registrant }) => {
                         {registrantData.billingAddressState}{' '}
                         {registrantData.billingAddressZip}
                       </div>
+                      {registrantData.billingAddressCountry ? (
+                        <div>{registrantData.billingAddressCountry}</div>
+                      ) : null}
                     </div>
                   )}
                 </div>

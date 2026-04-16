@@ -271,6 +271,11 @@ const InvoiceDocument = ({
                     {registrant.billingAddressState}{' '}
                     {registrant.billingAddressZip}
                   </Text>
+                  {registrant.billingAddressCountry ? (
+                    <Text style={styles.detailLine}>
+                      {registrant.billingAddressCountry}
+                    </Text>
+                  ) : null}
                 </>
               ) : null}
 

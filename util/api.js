@@ -809,6 +809,7 @@ const GET_APS_REGISTRANT_DASHBOARD = /* GraphQL */ `
       billingAddressPhone
       billingAddressStreet
       billingAddressCity
+      billingAddressCountry
       billingAddressState
       billingAddressZip
       sameAsAttendee

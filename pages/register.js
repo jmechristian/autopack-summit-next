@@ -62,6 +62,7 @@ const CREATE_APS_REGISTRANT_MINIMAL = /* GraphQL */ `
       billingAddressPhone
       billingAddressStreet
       billingAddressCity
+      billingAddressCountry
       billingAddressState
       billingAddressZip
       createdAt
@@ -122,59 +123,6 @@ const INTEREST_OPTIONS = [
   'Returnable and/or reusable Packaging',
   'Logistics and Supply Chain Solutions',
   'Others (please specify)',
-];
-
-const US_STATES = [
-  { value: 'AL', label: 'Alabama' },
-  { value: 'AK', label: 'Alaska' },
-  { value: 'AZ', label: 'Arizona' },
-  { value: 'AR', label: 'Arkansas' },
-  { value: 'CA', label: 'California' },
-  { value: 'CO', label: 'Colorado' },
-  { value: 'CT', label: 'Connecticut' },
-  { value: 'DE', label: 'Delaware' },
-  { value: 'FL', label: 'Florida' },
-  { value: 'GA', label: 'Georgia' },
-  { value: 'HI', label: 'Hawaii' },
-  { value: 'ID', label: 'Idaho' },
-  { value: 'IL', label: 'Illinois' },
-  { value: 'IN', label: 'Indiana' },
-  { value: 'IA', label: 'Iowa' },
-  { value: 'KS', label: 'Kansas' },
-  { value: 'KY', label: 'Kentucky' },
-  { value: 'LA', label: 'Louisiana' },
-  { value: 'ME', label: 'Maine' },
-  { value: 'MD', label: 'Maryland' },
-  { value: 'MA', label: 'Massachusetts' },
-  { value: 'MI', label: 'Michigan' },
-  { value: 'MN', label: 'Minnesota' },
-  { value: 'MS', label: 'Mississippi' },
-  { value: 'MO', label: 'Missouri' },
-  { value: 'MT', label: 'Montana' },
-  { value: 'NE', label: 'Nebraska' },
-  { value: 'NV', label: 'Nevada' },
-  { value: 'NH', label: 'New Hampshire' },
-  { value: 'NJ', label: 'New Jersey' },
-  { value: 'NM', label: 'New Mexico' },
-  { value: 'NY', label: 'New York' },
-  { value: 'NC', label: 'North Carolina' },
-  { value: 'ND', label: 'North Dakota' },
-  { value: 'OH', label: 'Ohio' },
-  { value: 'OK', label: 'Oklahoma' },
-  { value: 'OR', label: 'Oregon' },
-  { value: 'PA', label: 'Pennsylvania' },
-  { value: 'RI', label: 'Rhode Island' },
-  { value: 'SC', label: 'South Carolina' },
-  { value: 'SD', label: 'South Dakota' },
-  { value: 'TN', label: 'Tennessee' },
-  { value: 'TX', label: 'Texas' },
-  { value: 'UT', label: 'Utah' },
-  { value: 'VT', label: 'Vermont' },
-  { value: 'VA', label: 'Virginia' },
-  { value: 'WA', label: 'Washington' },
-  { value: 'WV', label: 'West Virginia' },
-  { value: 'WI', label: 'Wisconsin' },
-  { value: 'WY', label: 'Wyoming' },
 ];
 
 const STEP_LABELS = [
@@ -263,6 +211,7 @@ const RegistrationForm = () => {
       companyName: '',
       street: '',
       city: '',
+      country: '',
       state: '',
       zip: '',
     },
@@ -426,9 +375,9 @@ const RegistrationForm = () => {
       STANDARD_SPONSOR_TICKET_SOLD_OUT &&
       formData.attendeeType === 'Sponsor' &&
       !canSelectStandardSponsorTicket &&
-      sponsorTicketOption !== 'exhibitor-staff'
+      sponsorTicketOption === 'standard'
     ) {
-      setSponsorTicketOption('exhibitor-staff');
+      setSponsorTicketOption(null);
     }
   }, [
     formData.attendeeType,
@@ -486,7 +435,7 @@ const RegistrationForm = () => {
     const newErrors = { ...errors };
 
     if (name === 'attendeeType') {
-      setSponsorTicketOption(value === 'Sponsor' ? 'exhibitor-staff' : null);
+      setSponsorTicketOption(null);
     }
 
     if (name === 'sameAsAttendee') {
@@ -502,6 +451,7 @@ const RegistrationForm = () => {
               companyName: prev.companyName,
               street: '',
               city: '',
+              country: '',
               state: '',
               zip: '',
             }
@@ -513,6 +463,7 @@ const RegistrationForm = () => {
               companyName: '',
               street: '',
               city: '',
+              country: '',
               state: '',
               zip: '',
             },
@@ -899,6 +850,7 @@ const RegistrationForm = () => {
         billingAddressPhone: formData.billingAddress.phone || null,
         billingAddressStreet: formData.billingAddress.street || null,
         billingAddressCity: formData.billingAddress.city || null,
+        billingAddressCountry: formData.billingAddress.country || null,
         billingAddressState: formData.billingAddress.state || null,
         billingAddressZip: formData.billingAddress.zip || null,
         sameAsAttendee: formData.sameAsAttendee ?? null,
@@ -1002,6 +954,7 @@ const RegistrationForm = () => {
               billingAddressPhone: formData.billingAddress.phone,
               billingAddressStreet: formData.billingAddress.street,
               billingAddressCity: formData.billingAddress.city,
+              billingAddressCountry: formData.billingAddress.country,
               billingAddressState: formData.billingAddress.state,
               billingAddressZip: formData.billingAddress.zip,
             },
@@ -1224,9 +1177,6 @@ const RegistrationForm = () => {
     }
 
     if (stepToValidate === 3) {
-      if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
-        newErrors.sponsorTicketOption = 'Please select a sponsor ticket option';
-      }
       // Only require billing details when there is a non-zero total.
       // If a discount/code brings totalAmount to 0, billing can be skipped.
       if (totalAmount > 0) {
@@ -1241,8 +1191,8 @@ const RegistrationForm = () => {
           newErrors.billingCompanyName = 'Company name is required';
         if (!ba.street.trim()) newErrors.billingStreet = 'Street is required';
         if (!ba.city.trim()) newErrors.billingCity = 'City is required';
-        if (!ba.state) newErrors.billingState = 'State is required';
-        if (!ba.zip.trim()) newErrors.billingZip = 'Zip code is required';
+        if (!ba.country.trim()) newErrors.billingCountry = 'Country is required';
+        if (!ba.zip.trim()) newErrors.billingZip = 'Postal code is required';
       }
       if (!formData.termsAccepted)
         newErrors.termsAccepted = 'You must accept the terms';
@@ -1281,10 +1231,7 @@ const RegistrationForm = () => {
     }
     if (stepNumber === 3) {
       return errorKeys.some(
-        (k) =>
-          k.startsWith('billing') ||
-          k === 'termsAccepted' ||
-          k === 'sponsorTicketOption',
+        (k) => k.startsWith('billing') || k === 'termsAccepted',
       );
     }
     return false;
@@ -1302,9 +1249,6 @@ const RegistrationForm = () => {
 
   const canSubmit = () => {
     if (!formData.attendeeType) return false;
-    if (formData.attendeeType === 'Sponsor' && !sponsorTicketOption) {
-      return false;
-    }
     return true;
   };
 
@@ -1935,6 +1879,95 @@ const RegistrationForm = () => {
 
   const renderStep3 = () => {
     const basePrice = PRICING[effectiveAttendeeType] || 0;
+    const shouldShowDiscountCode =
+      DISCOUNT_ELIGIBLE_TYPES.includes(effectiveAttendeeType);
+    const isSponsorRegistrant = formData.attendeeType === 'Sponsor';
+
+    const renderDiscountCodeSection = () => (
+      <div className='bg-white rounded-lg border border-gray-200 p-4'>
+        <label className='text-sm font-semibold text-gray-900'>
+          Discount Code
+        </label>
+        <p className='text-xs text-gray-500 mt-0.5'>
+          Codes apply to ticket registration only, not add-ons.
+        </p>
+        <div className='flex gap-2 mt-2'>
+          <input
+            type='text'
+            value={discountCode}
+            onChange={(e) => {
+              setDiscountCode(e.target.value);
+              setDiscountCodeError('');
+              if (discountApplied) {
+                setDiscountApplied(false);
+                setFormData((prev) => ({ ...prev, discountCode: '' }));
+              }
+            }}
+            disabled={discountApplied}
+            placeholder='Enter code'
+            className='flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30 disabled:bg-gray-50 disabled:text-gray-500'
+          />
+          {discountApplied ? (
+            <button
+              onClick={() => {
+                setDiscountApplied(false);
+                setDiscountCode('');
+                setFormData((prev) => ({ ...prev, discountCode: '' }));
+              }}
+              className='px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-lg hover:bg-red-600 transition-colors'
+            >
+              Remove
+            </button>
+          ) : (
+            <button
+              onClick={handleApplyDiscount}
+              className='px-4 py-2 bg-ap-darkblue text-white text-sm font-medium rounded-lg hover:bg-ap-blue transition-colors'
+            >
+              Apply
+            </button>
+          )}
+        </div>
+        {canRequestRegistrationCode && (
+          <div className='mt-2'>
+            <button
+              type='button'
+              onClick={handleRequestRegistrationCode}
+              disabled={isRequestingCode || codeRequestCooldownSeconds > 0}
+              className='text-xs text-ap-blue underline hover:text-ap-darkblue disabled:text-gray-400 disabled:no-underline'
+            >
+              {isRequestingCode
+                ? 'Sending request...'
+                : codeRequestCooldownSeconds > 0
+                  ? `Request sent. Try again in ${codeRequestCooldownSeconds}s`
+                  : 'No code? Request one here'}
+            </button>
+          </div>
+        )}
+        {discountCodeError && (
+          <p className='text-red-500 text-xs mt-1 flex items-center gap-1'>
+            <ExclamationCircleIcon className='w-3.5 h-3.5' />
+            {discountCodeError}
+          </p>
+        )}
+        {codeRequestStatus.message && (
+          <p
+            className={`text-xs mt-1 ${
+              codeRequestStatus.type === 'success'
+                ? 'text-green-600'
+                : 'text-red-500'
+            }`}
+          >
+            {codeRequestStatus.message}
+          </p>
+        )}
+        {discountApplied && (
+          <p className='text-green-600 text-xs mt-1 flex items-center gap-1'>
+            <MdCheckCircle className='w-3.5 h-3.5' />
+            Coupon applied — registration is complimentary
+          </p>
+        )}
+      </div>
+    );
 
     return (
       <div className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'>
@@ -2043,26 +2076,32 @@ const RegistrationForm = () => {
               {renderFieldError('billingCity')}
             </div>
 
+            <div className='flex flex-col gap-1'>
+              <label className={labelClass}>Country</label>
+              <input
+                type='text'
+                name='billingAddress.country'
+                value={formData.billingAddress.country}
+                onChange={handleChange}
+                className={inputClass('billingCountry')}
+              />
+              {renderFieldError('billingCountry')}
+            </div>
+
             <div className='grid grid-cols-2 gap-4'>
               <div className='flex flex-col gap-1'>
-                <label className={labelClass}>State</label>
-                <select
+                <label className={labelClass}>State / Province / Region</label>
+                <input
+                  type='text'
                   name='billingAddress.state'
                   value={formData.billingAddress.state}
                   onChange={handleChange}
                   className={inputClass('billingState')}
-                >
-                  <option value=''>Select State</option>
-                  {US_STATES.map((s) => (
-                    <option key={s.value} value={s.value}>
-                      {s.label}
-                    </option>
-                  ))}
-                </select>
-                {renderFieldError('billingState')}
+                  placeholder='Optional'
+                />
               </div>
               <div className='flex flex-col gap-1'>
-                <label className={labelClass}>Zip Code</label>
+                <label className={labelClass}>Postal Code</label>
                 <input
                   type='text'
                   name='billingAddress.zip'
@@ -2120,8 +2159,13 @@ const RegistrationForm = () => {
               </div>
             </div>
 
+            {/* Discount Code */}
+            {isSponsorRegistrant &&
+              shouldShowDiscountCode &&
+              renderDiscountCodeSection()}
+
             {/* Sponsor ticket option - only when attendeeType is Sponsor */}
-            {formData.attendeeType === 'Sponsor' && (
+            {isSponsorRegistrant && (
               <div className='bg-white rounded-lg border border-gray-200 p-4'>
                 <h4 className='font-semibold text-sm text-gray-900 mb-3'>
                   Sponsor ticket option
@@ -2205,98 +2249,13 @@ const RegistrationForm = () => {
                     </div>
                   </label>
                 </div>
-                {renderFieldError('sponsorTicketOption')}
               </div>
             )}
 
             {/* Discount Code */}
-            {DISCOUNT_ELIGIBLE_TYPES.includes(effectiveAttendeeType) && (
-              <div className='bg-white rounded-lg border border-gray-200 p-4'>
-                <label className='text-sm font-semibold text-gray-900'>
-                  Discount Code
-                </label>
-                <p className='text-xs text-gray-500 mt-0.5'>
-                  Codes apply to ticket registration only, not add-ons.
-                </p>
-                <div className='flex gap-2 mt-2'>
-                  <input
-                    type='text'
-                    value={discountCode}
-                    onChange={(e) => {
-                      setDiscountCode(e.target.value);
-                      setDiscountCodeError('');
-                      if (discountApplied) {
-                        setDiscountApplied(false);
-                        setFormData((prev) => ({ ...prev, discountCode: '' }));
-                      }
-                    }}
-                    disabled={discountApplied}
-                    placeholder='Enter code'
-                    className='flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ap-blue/30 disabled:bg-gray-50 disabled:text-gray-500'
-                  />
-                  {discountApplied ? (
-                    <button
-                      onClick={() => {
-                        setDiscountApplied(false);
-                        setDiscountCode('');
-                        setFormData((prev) => ({ ...prev, discountCode: '' }));
-                      }}
-                      className='px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-lg hover:bg-red-600 transition-colors'
-                    >
-                      Remove
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handleApplyDiscount}
-                      className='px-4 py-2 bg-ap-darkblue text-white text-sm font-medium rounded-lg hover:bg-ap-blue transition-colors'
-                    >
-                      Apply
-                    </button>
-                  )}
-                </div>
-                {canRequestRegistrationCode && (
-                  <div className='mt-2'>
-                    <button
-                      type='button'
-                      onClick={handleRequestRegistrationCode}
-                      disabled={
-                        isRequestingCode || codeRequestCooldownSeconds > 0
-                      }
-                      className='text-xs text-ap-blue underline hover:text-ap-darkblue disabled:text-gray-400 disabled:no-underline'
-                    >
-                      {isRequestingCode
-                        ? 'Sending request...'
-                        : codeRequestCooldownSeconds > 0
-                          ? `Request sent. Try again in ${codeRequestCooldownSeconds}s`
-                          : 'No code? Request one here'}
-                    </button>
-                  </div>
-                )}
-                {discountCodeError && (
-                  <p className='text-red-500 text-xs mt-1 flex items-center gap-1'>
-                    <ExclamationCircleIcon className='w-3.5 h-3.5' />
-                    {discountCodeError}
-                  </p>
-                )}
-                {codeRequestStatus.message && (
-                  <p
-                    className={`text-xs mt-1 ${
-                      codeRequestStatus.type === 'success'
-                        ? 'text-green-600'
-                        : 'text-red-500'
-                    }`}
-                  >
-                    {codeRequestStatus.message}
-                  </p>
-                )}
-                {discountApplied && (
-                  <p className='text-green-600 text-xs mt-1 flex items-center gap-1'>
-                    <MdCheckCircle className='w-3.5 h-3.5' />
-                    Coupon applied — registration is complimentary
-                  </p>
-                )}
-              </div>
-            )}
+            {!isSponsorRegistrant &&
+              shouldShowDiscountCode &&
+              renderDiscountCodeSection()}
 
             {/* Order Summary */}
             <div className='bg-white rounded-lg border border-gray-200 p-4'>
