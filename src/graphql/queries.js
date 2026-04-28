@@ -116,6 +116,7 @@ export const getApsAppUserNote = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -370,6 +371,10 @@ export const getApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -557,6 +562,8 @@ export const getApsAppUserNote = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -626,6 +633,8 @@ export const getApsAppUserNote = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -732,6 +741,10 @@ export const getApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -810,6 +823,8 @@ export const getApsAppUserNote = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -843,6 +858,23 @@ export const getApsAppUserNote = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -939,6 +971,10 @@ export const getApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -996,6 +1032,8 @@ export const getApsAppUserNote = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -1032,6 +1070,7 @@ export const getApsAppUserNote = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -1098,6 +1137,7 @@ export const getApsAppUserNote = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -1178,6 +1218,7 @@ export const getApsAppUserNote = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -1330,6 +1371,7 @@ export const getApsAppUserNote = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -1612,6 +1654,23 @@ export const getApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -1751,6 +1810,7 @@ export const getApsAppUserNote = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -1836,6 +1896,8 @@ export const getApsAppUserNote = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -1931,6 +1993,8 @@ export const getApsAppUserNote = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -1939,6 +2003,10 @@ export const getApsAppUserNote = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -2030,6 +2098,7 @@ export const listApsAppUserNotes = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -2239,6 +2308,8 @@ export const listApsAppUserNotes = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -2247,6 +2318,10 @@ export const listApsAppUserNotes = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -2316,6 +2391,7 @@ export const listApsAppUserNotes = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -2458,6 +2534,10 @@ export const listApsAppUserNotes = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -2522,6 +2602,8 @@ export const listApsAppUserNotes = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -2552,9 +2634,9 @@ export const listApsAppUserNotes = /* GraphQL */ `
     }
   }
 `;
-export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
-  query GetApsAppUserFavoriteExhibitor($id: ID!) {
-    getApsAppUserFavoriteExhibitor(id: $id) {
+export const getApsAppUserPassportStamp = /* GraphQL */ `
+  query GetApsAppUserPassportStamp($id: ID!) {
+    getApsAppUserPassportStamp(id: $id) {
       id
       owner
       userProfileId
@@ -2588,6 +2670,7 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -2870,6 +2953,23 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -3004,6 +3104,8 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -3073,6 +3175,8 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -3179,6 +3283,10 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -3257,6 +3365,8 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -3290,6 +3400,23 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -3379,6 +3506,7 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -3483,6 +3611,8 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -3640,6 +3770,23 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -3668,21 +3815,22 @@ export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
         aPSAgendaId
         __typename
       }
-      favoriteKey
+      stampKey
+      scannedAt
       createdAt
       updatedAt
-      aPSFavoriteExhibitorsId
+      aPSPassportStampsId
       __typename
     }
   }
 `;
-export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
-  query ListApsAppUserFavoriteExhibitors(
-    $filter: ModelApsAppUserFavoriteExhibitorFilterInput
+export const listApsAppUserPassportStamps = /* GraphQL */ `
+  query ListApsAppUserPassportStamps(
+    $filter: ModelApsAppUserPassportStampFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listApsAppUserFavoriteExhibitors(
+    listApsAppUserPassportStamps(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -3763,6 +3911,10 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -3858,6 +4010,8 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -3866,6 +4020,10 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -3957,6 +4115,10 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -3966,10 +4128,11 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
           aPSAgendaId
           __typename
         }
-        favoriteKey
+        stampKey
+        scannedAt
         createdAt
         updatedAt
-        aPSFavoriteExhibitorsId
+        aPSPassportStampsId
         __typename
       }
       nextToken
@@ -3977,9 +4140,9 @@ export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
     }
   }
 `;
-export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
-  query GetApsAppUserFavoriteSpeaker($id: ID!) {
-    getApsAppUserFavoriteSpeaker(id: $id) {
+export const getApsAppUserFavoriteExhibitor = /* GraphQL */ `
+  query GetApsAppUserFavoriteExhibitor($id: ID!) {
+    getApsAppUserFavoriteExhibitor(id: $id) {
       id
       owner
       userProfileId
@@ -4013,6 +4176,7 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -4290,6 +4454,1527 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        qrCode
+        passportQrPayload
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      favoriteKey
+      createdAt
+      updatedAt
+      aPSFavoriteExhibitorsId
+      __typename
+    }
+  }
+`;
+export const listApsAppUserFavoriteExhibitors = /* GraphQL */ `
+  query ListApsAppUserFavoriteExhibitors(
+    $filter: ModelApsAppUserFavoriteExhibitorFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listApsAppUserFavoriteExhibitors(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        userProfileId
+        userProfile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          thinkificId
+          apcProgress
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        exhibitorId
+        exhibitor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          qrCode
+          passportQrPayload
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        favoriteKey
+        createdAt
+        updatedAt
+        aPSFavoriteExhibitorsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
+  query GetApsAppUserFavoriteSpeaker($id: ID!) {
+    getApsAppUserFavoriteSpeaker(id: $id) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        thinkificId
+        apcProgress
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -4463,6 +6148,10 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -4563,6 +6252,10 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -4687,6 +6380,7 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -4791,6 +6485,8 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -4948,6 +6644,23 @@ export const getApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -5071,6 +6784,10 @@ export const listApsAppUserFavoriteSpeakers = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -5241,6 +6958,10 @@ export const listApsAppUserFavoriteSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -5297,6 +7018,7 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -5574,6 +7296,23 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -5713,6 +7452,8 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -5816,6 +7557,10 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -5896,6 +7641,8 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -5904,6 +7651,10 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -6026,6 +7777,7 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -6130,6 +7882,8 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -6287,6 +8041,23 @@ export const getApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -6413,6 +8184,10 @@ export const listApsAppUserFavoriteSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -6482,6 +8257,8 @@ export const listApsAppUserFavoriteSponsors = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -6588,6 +8365,10 @@ export const listApsAppUserFavoriteSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -6644,6 +8425,7 @@ export const getApsAppUserFavoriteSession = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -6921,6 +8703,23 @@ export const getApsAppUserFavoriteSession = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -7207,6 +9006,7 @@ export const getApsAppUserFavoriteSession = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -7311,6 +9111,8 @@ export const getApsAppUserFavoriteSession = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -7468,6 +9270,23 @@ export const getApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -7591,6 +9410,10 @@ export const listApsAppUserFavoriteSessions = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -7739,6 +9562,10 @@ export const listApsAppUserFavoriteSessions = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -7795,6 +9622,7 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -8072,6 +9900,23 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -8195,6 +10040,7 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -8472,6 +10318,23 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -8643,6 +10506,7 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -8747,6 +10611,8 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -8904,6 +10770,23 @@ export const getApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -9030,6 +10913,10 @@ export const listApsAppUserFavoriteContacts = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -9123,6 +11010,10 @@ export const listApsAppUserFavoriteContacts = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -9226,6 +11117,10 @@ export const listApsAppUserFavoriteContacts = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -9666,6 +11561,7 @@ export const getApsDmMessage = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -9920,6 +11816,10 @@ export const getApsDmMessage = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -10013,6 +11913,7 @@ export const listApsDmMessages = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -10347,6 +12248,7 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -10556,6 +12458,8 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -10564,6 +12468,10 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -10633,6 +12541,7 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -10775,6 +12684,10 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -10839,6 +12752,8 @@ export const apsAppUserNotesByUserId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -10915,6 +12830,7 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -11124,6 +13040,8 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -11132,6 +13050,10 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -11201,6 +13123,7 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -11343,6 +13266,10 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -11407,6 +13334,8 @@ export const apsAppUserNotesBySessionId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -11483,6 +13412,7 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -11692,6 +13622,8 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -11700,6 +13632,10 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -11769,6 +13705,7 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -11911,6 +13848,10 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -11975,6 +13916,8 @@ export const apsAppUserNotesByExhibitorId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -12051,6 +13994,7 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -12260,6 +14204,8 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -12268,6 +14214,10 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -12337,6 +14287,7 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -12479,6 +14430,10 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -12543,6 +14498,8 @@ export const apsAppUserNotesByRegistrantId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -12619,6 +14576,7 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -12828,6 +14786,8 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -12836,6 +14796,10 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -12905,6 +14869,7 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -13047,6 +15012,10 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -13111,6 +15080,8 @@ export const apsAppUserNotesByProfileId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -13187,6 +15158,7 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -13396,6 +15368,8 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -13404,6 +15378,10 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -13473,6 +15451,7 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -13615,6 +15594,10 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -13679,6 +15662,8 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -13702,6 +15687,1292 @@ export const apsAppUserNotesByCompanyId = /* GraphQL */ `
         createdAt
         updatedAt
         apsAppUserNotesId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const apsAppUserPassportStampsByUserProfileIdAndCreatedAt = /* GraphQL */ `
+  query ApsAppUserPassportStampsByUserProfileIdAndCreatedAt(
+    $userProfileId: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelApsAppUserPassportStampFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    apsAppUserPassportStampsByUserProfileIdAndCreatedAt(
+      userProfileId: $userProfileId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        userProfileId
+        userProfile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          thinkificId
+          apcProgress
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        exhibitorId
+        exhibitor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          qrCode
+          passportQrPayload
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        stampKey
+        scannedAt
+        createdAt
+        updatedAt
+        aPSPassportStampsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const apsAppUserPassportStampsByExhibitorIdAndCreatedAt = /* GraphQL */ `
+  query ApsAppUserPassportStampsByExhibitorIdAndCreatedAt(
+    $exhibitorId: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelApsAppUserPassportStampFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    apsAppUserPassportStampsByExhibitorIdAndCreatedAt(
+      exhibitorId: $exhibitorId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        userProfileId
+        userProfile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          thinkificId
+          apcProgress
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        exhibitorId
+        exhibitor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          qrCode
+          passportQrPayload
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        stampKey
+        scannedAt
+        createdAt
+        updatedAt
+        aPSPassportStampsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const apsAppUserPassportStampsByEventIdAndCreatedAt = /* GraphQL */ `
+  query ApsAppUserPassportStampsByEventIdAndCreatedAt(
+    $eventId: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelApsAppUserPassportStampFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    apsAppUserPassportStampsByEventIdAndCreatedAt(
+      eventId: $eventId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        userProfileId
+        userProfile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          thinkificId
+          apcProgress
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        exhibitorId
+        exhibitor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          qrCode
+          passportQrPayload
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        stampKey
+        scannedAt
+        createdAt
+        updatedAt
+        aPSPassportStampsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const apsAppUserPassportStampsByStampKey = /* GraphQL */ `
+  query ApsAppUserPassportStampsByStampKey(
+    $stampKey: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelApsAppUserPassportStampFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    apsAppUserPassportStampsByStampKey(
+      stampKey: $stampKey
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        userProfileId
+        userProfile {
+          id
+          userId
+          user {
+            id
+            registrantId
+            profileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          firstName
+          lastName
+          email
+          phone
+          company
+          jobTitle
+          attendeeType
+          quickTools
+          affiliates {
+            nextToken
+            __typename
+          }
+          profilePicture
+          bio
+          linkedin
+          twitter
+          facebook
+          instagram
+          youtube
+          website
+          location
+          education {
+            nextToken
+            __typename
+          }
+          interests {
+            nextToken
+            __typename
+          }
+          resume
+          thinkificId
+          apcProgress
+          contacts {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          speakerId
+          speaker {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        exhibitorId
+        exhibitor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          deals {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          handouts {
+            nextToken
+            __typename
+          }
+          promotions {
+            nextToken
+            __typename
+          }
+          video
+          videoCaption
+          boothNumber
+          qrCode
+          passportQrPayload
+          visits
+          views
+          likes
+          notes {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSExhibitorsId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        stampKey
+        scannedAt
+        createdAt
+        updatedAt
+        aPSPassportStampsId
         __typename
       }
       nextToken
@@ -13805,6 +17076,10 @@ export const apsAppUserFavoriteExhibitorsByUserProfileIdAndCreatedAt = /* GraphQ
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -13897,6 +17172,8 @@ export const apsAppUserFavoriteExhibitorsByUserProfileIdAndCreatedAt = /* GraphQ
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -13905,6 +17182,10 @@ export const apsAppUserFavoriteExhibitorsByUserProfileIdAndCreatedAt = /* GraphQ
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -13993,6 +17274,10 @@ export const apsAppUserFavoriteExhibitorsByUserProfileIdAndCreatedAt = /* GraphQ
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14112,6 +17397,10 @@ export const apsAppUserFavoriteExhibitorsByExhibitorIdAndCreatedAt = /* GraphQL 
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -14204,6 +17493,8 @@ export const apsAppUserFavoriteExhibitorsByExhibitorIdAndCreatedAt = /* GraphQL 
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -14212,6 +17503,10 @@ export const apsAppUserFavoriteExhibitorsByExhibitorIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14300,6 +17595,10 @@ export const apsAppUserFavoriteExhibitorsByExhibitorIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14419,6 +17718,10 @@ export const apsAppUserFavoriteExhibitorsByEventIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -14511,6 +17814,8 @@ export const apsAppUserFavoriteExhibitorsByEventIdAndCreatedAt = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -14519,6 +17824,10 @@ export const apsAppUserFavoriteExhibitorsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14607,6 +17916,10 @@ export const apsAppUserFavoriteExhibitorsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14724,6 +18037,10 @@ export const apsAppUserFavoriteExhibitorsByFavoriteKey = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -14816,6 +18133,8 @@ export const apsAppUserFavoriteExhibitorsByFavoriteKey = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -14824,6 +18143,10 @@ export const apsAppUserFavoriteExhibitorsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -14912,6 +18235,10 @@ export const apsAppUserFavoriteExhibitorsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -15031,6 +18358,10 @@ export const apsAppUserFavoriteSpeakersByUserProfileIdAndCreatedAt = /* GraphQL 
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -15195,6 +18526,10 @@ export const apsAppUserFavoriteSpeakersByUserProfileIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -15314,6 +18649,10 @@ export const apsAppUserFavoriteSpeakersBySpeakerIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -15478,6 +18817,10 @@ export const apsAppUserFavoriteSpeakersBySpeakerIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -15597,6 +18940,10 @@ export const apsAppUserFavoriteSpeakersByEventIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -15761,6 +19108,10 @@ export const apsAppUserFavoriteSpeakersByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -15878,6 +19229,10 @@ export const apsAppUserFavoriteSpeakersByFavoriteKey = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16042,6 +19397,10 @@ export const apsAppUserFavoriteSpeakersByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -16161,6 +19520,10 @@ export const apsAppUserFavoriteSponsorsByUserProfileIdAndCreatedAt = /* GraphQL 
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16230,6 +19593,8 @@ export const apsAppUserFavoriteSponsorsByUserProfileIdAndCreatedAt = /* GraphQL 
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -16333,6 +19698,10 @@ export const apsAppUserFavoriteSponsorsByUserProfileIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -16452,6 +19821,10 @@ export const apsAppUserFavoriteSponsorsBySponsorIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16521,6 +19894,8 @@ export const apsAppUserFavoriteSponsorsBySponsorIdAndCreatedAt = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -16624,6 +19999,10 @@ export const apsAppUserFavoriteSponsorsBySponsorIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -16743,6 +20122,10 @@ export const apsAppUserFavoriteSponsorsByEventIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -16812,6 +20195,8 @@ export const apsAppUserFavoriteSponsorsByEventIdAndCreatedAt = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -16915,6 +20300,10 @@ export const apsAppUserFavoriteSponsorsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -17032,6 +20421,10 @@ export const apsAppUserFavoriteSponsorsByFavoriteKey = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17101,6 +20494,8 @@ export const apsAppUserFavoriteSponsorsByFavoriteKey = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -17204,6 +20599,10 @@ export const apsAppUserFavoriteSponsorsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -17323,6 +20722,10 @@ export const apsAppUserFavoriteSessionsByUserProfileIdAndCreatedAt = /* GraphQL 
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17465,6 +20868,10 @@ export const apsAppUserFavoriteSessionsByUserProfileIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -17584,6 +20991,10 @@ export const apsAppUserFavoriteSessionsBySessionIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17726,6 +21137,10 @@ export const apsAppUserFavoriteSessionsBySessionIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -17845,6 +21260,10 @@ export const apsAppUserFavoriteSessionsByEventIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -17987,6 +21406,10 @@ export const apsAppUserFavoriteSessionsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18104,6 +21527,10 @@ export const apsAppUserFavoriteSessionsByFavoriteKey = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -18246,6 +21673,10 @@ export const apsAppUserFavoriteSessionsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18365,6 +21796,10 @@ export const apsAppUserFavoriteContactsByUserProfileIdAndCreatedAt = /* GraphQL 
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -18458,6 +21893,10 @@ export const apsAppUserFavoriteContactsByUserProfileIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18561,6 +22000,10 @@ export const apsAppUserFavoriteContactsByUserProfileIdAndCreatedAt = /* GraphQL 
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18680,6 +22123,10 @@ export const apsAppUserFavoriteContactsByContactProfileIdAndCreatedAt = /* Graph
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -18773,6 +22220,10 @@ export const apsAppUserFavoriteContactsByContactProfileIdAndCreatedAt = /* Graph
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18876,6 +22327,10 @@ export const apsAppUserFavoriteContactsByContactProfileIdAndCreatedAt = /* Graph
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -18995,6 +22450,10 @@ export const apsAppUserFavoriteContactsByEventIdAndCreatedAt = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -19088,6 +22547,10 @@ export const apsAppUserFavoriteContactsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -19191,6 +22654,10 @@ export const apsAppUserFavoriteContactsByEventIdAndCreatedAt = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -19308,6 +22775,10 @@ export const apsAppUserFavoriteContactsByFavoriteKey = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -19401,6 +22872,10 @@ export const apsAppUserFavoriteContactsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -19504,6 +22979,10 @@ export const apsAppUserFavoriteContactsByFavoriteKey = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -19884,6 +23363,7 @@ export const apsDmMessagesByThreadIdAndCreatedAt = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -20060,6 +23540,7 @@ export const apsDmMessagesBySenderUserIdAndCreatedAt = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -20350,6 +23831,10 @@ export const getAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -20450,6 +23935,7 @@ export const getAPS = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -20568,6 +24054,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -20822,6 +24310,8 @@ export const getAPS = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -20830,6 +24320,10 @@ export const getAPS = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -20853,6 +24347,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -20901,6 +24397,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -20959,6 +24457,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -21008,6 +24508,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -21085,6 +24587,8 @@ export const getAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -21423,6 +24927,85 @@ export const getAPS = /* GraphQL */ `
         nextToken
         __typename
       }
+      passportStamps {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          stampKey
+          scannedAt
+          createdAt
+          updatedAt
+          aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       addOns {
         items {
           id
@@ -21554,6 +25137,7 @@ export const listAPS = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -21658,6 +25242,8 @@ export const listAPS = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -21810,6 +25396,23 @@ export const listAPS = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -21932,6 +25535,7 @@ export const getAPSCode = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -22036,6 +25640,8 @@ export const getAPSCode = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -22188,6 +25794,23 @@ export const getAPSCode = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -22323,6 +25946,10 @@ export const listAPSCodes = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -22442,6 +26069,10 @@ export const aPSCodesByEventId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -22591,6 +26222,7 @@ export const getApsAgenda = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -22695,6 +26327,8 @@ export const getApsAgenda = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -22847,6 +26481,23 @@ export const getApsAgenda = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -23023,6 +26674,10 @@ export const listApsAgenda = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -23159,6 +26814,10 @@ export const apsAgendaByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -23278,6 +26937,7 @@ export const getApsRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -23382,6 +27042,8 @@ export const getApsRegistrant = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -23539,6 +27201,23 @@ export const getApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -23623,6 +27302,7 @@ export const getApsRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -23708,6 +27388,8 @@ export const getApsRegistrant = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -23803,6 +27485,8 @@ export const getApsRegistrant = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -23811,6 +27495,10 @@ export const getApsRegistrant = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -23873,6 +27561,7 @@ export const getApsRegistrant = /* GraphQL */ `
       billingAddressCity
       billingAddressState
       billingAddressZip
+      billingAddressCountry
       sameAsAttendee
       speakerTopic
       learningObjectives
@@ -23979,6 +27668,7 @@ export const getApsRegistrant = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -24078,6 +27768,7 @@ export const getApsRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -24204,6 +27895,7 @@ export const getApsRegistrant = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -24458,6 +28150,10 @@ export const getApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -24520,6 +28216,8 @@ export const getApsRegistrant = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -24553,6 +28251,7 @@ export const getApsRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -24746,6 +28445,10 @@ export const listApsRegistrants = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -24803,6 +28506,8 @@ export const listApsRegistrants = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -24839,6 +28544,7 @@ export const listApsRegistrants = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -24905,6 +28611,7 @@ export const listApsRegistrants = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -24985,6 +28692,7 @@ export const listApsRegistrants = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -25211,6 +28919,10 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -25268,6 +28980,8 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -25304,6 +29018,7 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -25370,6 +29085,7 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -25450,6 +29166,7 @@ export const apsRegistrantsByApsID = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -25676,6 +29393,10 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -25733,6 +29454,8 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -25769,6 +29492,7 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -25835,6 +29559,7 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -25915,6 +29640,7 @@ export const apsRegistrantsByEmail = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -26141,6 +29867,10 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -26198,6 +29928,8 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -26234,6 +29966,7 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -26300,6 +30033,7 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -26380,6 +30114,7 @@ export const apsRegistrantsByCompanyId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -26596,6 +30331,10 @@ export const getApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -26653,6 +30392,8 @@ export const getApsAppUser = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -26689,6 +30430,7 @@ export const getApsAppUser = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -26755,6 +30497,7 @@ export const getApsAppUser = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -26835,6 +30578,7 @@ export const getApsAppUser = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -27045,6 +30789,8 @@ export const getApsAppUser = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -27179,6 +30925,8 @@ export const getApsAppUser = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -27212,6 +30960,7 @@ export const getApsAppUser = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -27421,6 +31170,7 @@ export const getApsAppUser = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -27698,6 +31448,23 @@ export const getApsAppUser = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -27866,6 +31633,7 @@ export const listApsAppUsers = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -28117,6 +31885,10 @@ export const listApsAppUsers = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -28227,6 +31999,7 @@ export const apsAppUsersByRegistrantId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -28478,6 +32251,10 @@ export const apsAppUsersByRegistrantId = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -28578,6 +32355,7 @@ export const getApsAppUserContact = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -28832,6 +32610,10 @@ export const getApsAppUserContact = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -28887,6 +32669,7 @@ export const getApsAppUserContact = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -29164,6 +32947,23 @@ export const getApsAppUserContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -29305,6 +33105,7 @@ export const listApsAppUserContacts = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -29472,6 +33273,10 @@ export const listApsAppUserContacts = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -29551,6 +33356,7 @@ export const apsAppUserContactsByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -29718,6 +33524,10 @@ export const apsAppUserContactsByUserId = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -29797,6 +33607,7 @@ export const apsAppUserContactsByContactId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -29964,6 +33775,10 @@ export const apsAppUserContactsByContactId = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -30066,6 +33881,7 @@ export const getApsAppUserLead = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -30320,6 +34136,10 @@ export const getApsAppUserLead = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -30375,6 +34195,7 @@ export const getApsAppUserLead = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -30657,6 +34478,23 @@ export const getApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -30789,6 +34627,7 @@ export const listApsAppUserLeads = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -30956,6 +34795,10 @@ export const listApsAppUserLeads = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -31035,6 +34878,7 @@ export const apsAppUserLeadsByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -31202,6 +35046,10 @@ export const apsAppUserLeadsByUserId = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -31281,6 +35129,7 @@ export const apsAppUserLeadsByContactId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -31448,6 +35297,10 @@ export const apsAppUserLeadsByContactId = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -31550,6 +35403,7 @@ export const getApsAppUserProfile = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -31801,6 +35655,10 @@ export const getApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           favoritedByProfiles {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -32118,6 +35976,8 @@ export const getApsAppUserProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -32544,6 +36404,85 @@ export const getApsAppUserProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      passportStamps {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          stampKey
+          scannedAt
+          createdAt
+          updatedAt
+          aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       notes {
         items {
           id
@@ -32582,6 +36521,8 @@ export const getApsAppUserProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -32615,6 +36556,7 @@ export const getApsAppUserProfile = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -32787,6 +36729,10 @@ export const getApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -32890,6 +36836,10 @@ export const getApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -32979,6 +36929,7 @@ export const listApsAppUserProfiles = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -33256,6 +37207,23 @@ export const listApsAppUserProfiles = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -33398,6 +37366,7 @@ export const apsAppUserProfilesByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -33675,6 +37644,23 @@ export const apsAppUserProfilesByUserId = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -33817,6 +37803,7 @@ export const apsAppUserProfilesBySpeakerId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -34094,6 +38081,23 @@ export const apsAppUserProfilesBySpeakerId = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -34226,6 +38230,7 @@ export const getProfileAffiliate = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -34503,6 +38508,23 @@ export const getProfileAffiliate = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -34695,6 +38717,10 @@ export const listProfileAffiliates = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -34822,6 +38848,10 @@ export const profileAffiliatesByProfileId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -34891,6 +38921,7 @@ export const getProfileEducation = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -35168,6 +39199,23 @@ export const getProfileEducation = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -35359,6 +39407,10 @@ export const listProfileEducations = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -35485,6 +39537,10 @@ export const profileEducationsByProfileId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -35553,6 +39609,7 @@ export const getProfileInterest = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -35835,6 +39892,23 @@ export const getProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -36019,6 +40093,10 @@ export const listProfileInterests = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -36143,6 +40221,10 @@ export const profileInterestsByProfileId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -36242,6 +40324,7 @@ export const getApsAppUserPhoto = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -36496,6 +40579,10 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -36602,6 +40689,7 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -36706,6 +40794,8 @@ export const getApsAppUserPhoto = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -36863,6 +40953,23 @@ export const getApsAppUserPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -36940,6 +41047,7 @@ export const listApsAppUserPhotos = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -37117,6 +41225,10 @@ export const listApsAppUserPhotos = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -37185,6 +41297,7 @@ export const apsAppUserPhotosByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -37362,6 +41475,10 @@ export const apsAppUserPhotosByUserId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -37430,6 +41547,7 @@ export const apsAppUserPhotosByEventId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -37607,6 +41725,10 @@ export const apsAppUserPhotosByEventId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -37726,6 +41848,10 @@ export const getApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -37831,6 +41957,8 @@ export const getApsAppSession = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -37864,6 +41992,7 @@ export const getApsAppSession = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -38554,6 +42683,7 @@ export const getApsAppSessionQuestion = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -38808,6 +42938,10 @@ export const getApsAppSessionQuestion = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -38923,6 +43057,7 @@ export const listApsAppSessionQuestions = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -39115,6 +43250,7 @@ export const apsAppSessionQuestionsBySessionId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -39307,6 +43443,7 @@ export const apsAppSessionQuestionsByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -39448,6 +43585,7 @@ export const getAPSSpeaker = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -39730,6 +43868,23 @@ export const getAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -39896,6 +44051,7 @@ export const getAPSSpeaker = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -40000,6 +44156,8 @@ export const getAPSSpeaker = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -40152,6 +44310,23 @@ export const getAPSSpeaker = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -40387,6 +44562,10 @@ export const listAPSSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -40487,6 +44666,10 @@ export const listAPSSpeakers = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -40634,6 +44817,10 @@ export const aPSSpeakersByProfileIdAndEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -40734,6 +44921,10 @@ export const aPSSpeakersByProfileIdAndEventId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -40879,6 +45070,10 @@ export const aPSSpeakersByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -40979,6 +45174,10 @@ export const aPSSpeakersByEventId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -41085,6 +45284,7 @@ export const getApsSponsor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -41170,6 +45370,8 @@ export const getApsSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -41265,6 +45467,8 @@ export const getApsSponsor = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -41273,6 +45477,10 @@ export const getApsSponsor = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -41398,6 +45606,7 @@ export const getApsSponsor = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -41502,6 +45711,8 @@ export const getApsSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -41659,6 +45870,23 @@ export const getApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -41733,6 +45961,8 @@ export const getApsSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -41802,6 +46032,8 @@ export const getApsSponsor = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -41908,6 +46140,10 @@ export const getApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -41986,6 +46222,8 @@ export const getApsSponsor = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -42019,6 +46257,23 @@ export const getApsSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -42199,6 +46454,8 @@ export const listApsSponsors = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -42302,6 +46559,10 @@ export const listApsSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -42382,6 +46643,8 @@ export const listApsSponsors = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -42390,6 +46653,10 @@ export const listApsSponsors = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -42499,6 +46766,8 @@ export const apsSponsorsByCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -42602,6 +46871,10 @@ export const apsSponsorsByCompanyId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -42682,6 +46955,8 @@ export const apsSponsorsByCompanyId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -42690,6 +46965,10 @@ export const apsSponsorsByCompanyId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -42799,6 +47078,8 @@ export const apsSponsorsByEventId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -42902,6 +47183,10 @@ export const apsSponsorsByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -42982,6 +47267,8 @@ export const apsSponsorsByEventId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -42990,6 +47277,10 @@ export const apsSponsorsByEventId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -43163,6 +47454,7 @@ export const getAPSCompany = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -43279,6 +47571,8 @@ export const getAPSCompany = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -43382,6 +47676,10 @@ export const getAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -43462,6 +47760,8 @@ export const getAPSCompany = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -43470,6 +47770,10 @@ export const getAPSCompany = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -43560,6 +47864,8 @@ export const getAPSCompany = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -43629,6 +47935,8 @@ export const getAPSCompany = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -43735,6 +48043,10 @@ export const getAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -43813,6 +48125,8 @@ export const getAPSCompany = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -43846,6 +48160,23 @@ export const getAPSCompany = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -43894,6 +48225,8 @@ export const getAPSCompany = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -43927,6 +48260,7 @@ export const getAPSCompany = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -44117,6 +48451,7 @@ export const listAPSCompanies = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -44202,6 +48537,8 @@ export const listAPSCompanies = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -44297,6 +48634,8 @@ export const listAPSCompanies = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -44305,6 +48644,10 @@ export const listAPSCompanies = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -44412,6 +48755,7 @@ export const getAPSCompanyContact = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -44497,6 +48841,8 @@ export const getAPSCompanyContact = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -44592,6 +48938,8 @@ export const getAPSCompanyContact = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -44600,6 +48948,10 @@ export const getAPSCompanyContact = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -44713,6 +49065,8 @@ export const listAPSCompanyContacts = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -44809,6 +49163,8 @@ export const aPSCompanyContactsByCompanyIdAndCreatedAt = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -44898,6 +49254,7 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -44983,6 +49340,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45078,6 +49437,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -45086,6 +49447,10 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -45179,6 +49544,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45282,6 +49649,10 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -45362,6 +49733,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -45370,6 +49743,10 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -45492,6 +49869,7 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -45596,6 +49974,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45753,6 +50133,23 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -45793,6 +50190,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45851,6 +50250,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45900,6 +50301,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45947,6 +50350,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -45986,6 +50391,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
       video
       videoCaption
       boothNumber
+      qrCode
+      passportQrPayload
       visits
       views
       likes
@@ -46027,6 +50434,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46060,6 +50469,7 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -46193,6 +50603,8 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46222,6 +50634,85 @@ export const getApsAppExhibitorProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSFavoriteExhibitorsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      passportStamps {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          stampKey
+          scannedAt
+          createdAt
+          updatedAt
+          aPSPassportStampsId
           __typename
         }
         nextToken
@@ -46291,6 +50782,8 @@ export const listApsAppExhibitorProfiles = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46360,6 +50853,8 @@ export const listApsAppExhibitorProfiles = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46466,6 +50961,10 @@ export const listApsAppExhibitorProfiles = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -46544,6 +51043,8 @@ export const listApsAppExhibitorProfiles = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -46577,6 +51078,23 @@ export const listApsAppExhibitorProfiles = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -46653,6 +51171,8 @@ export const apsAppExhibitorProfilesByCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46722,6 +51242,8 @@ export const apsAppExhibitorProfilesByCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -46828,6 +51350,10 @@ export const apsAppExhibitorProfilesByCompanyId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -46906,6 +51432,8 @@ export const apsAppExhibitorProfilesByCompanyId = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -46939,6 +51467,23 @@ export const apsAppExhibitorProfilesByCompanyId = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -47015,6 +51560,8 @@ export const apsAppExhibitorProfilesBySponsorId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47084,6 +51631,8 @@ export const apsAppExhibitorProfilesBySponsorId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47190,6 +51739,10 @@ export const apsAppExhibitorProfilesBySponsorId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -47268,6 +51821,8 @@ export const apsAppExhibitorProfilesBySponsorId = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -47301,6 +51856,23 @@ export const apsAppExhibitorProfilesBySponsorId = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -47377,6 +51949,8 @@ export const apsAppExhibitorProfilesByEventId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47446,6 +52020,8 @@ export const apsAppExhibitorProfilesByEventId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47552,6 +52128,10 @@ export const apsAppExhibitorProfilesByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -47630,6 +52210,8 @@ export const apsAppExhibitorProfilesByEventId = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -47663,6 +52245,412 @@ export const apsAppExhibitorProfilesByEventId = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const apsAppExhibitorProfilesByPassportQrPayload = /* GraphQL */ `
+  query ApsAppExhibitorProfilesByPassportQrPayload(
+    $passportQrPayload: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelApsAppExhibitorProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    apsAppExhibitorProfilesByPassportQrPayload(
+      passportQrPayload: $passportQrPayload
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        qrCode
+        passportQrPayload
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -47729,6 +52717,8 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47798,6 +52788,8 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -47904,6 +52896,10 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -47982,6 +52978,8 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -48015,6 +53013,23 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -48106,6 +53121,7 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -48210,6 +53226,8 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -48367,6 +53385,23 @@ export const getApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -48488,6 +53523,8 @@ export const listApsAppExhibitorPromotions = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -48496,6 +53533,10 @@ export const listApsAppExhibitorPromotions = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -48586,6 +53627,10 @@ export const listApsAppExhibitorPromotions = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -48698,6 +53743,8 @@ export const apsAppExhibitorPromotionsByExhibitorId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -48706,6 +53753,10 @@ export const apsAppExhibitorPromotionsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -48796,6 +53847,10 @@ export const apsAppExhibitorPromotionsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -48908,6 +53963,8 @@ export const apsAppExhibitorPromotionsByEventId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -48916,6 +53973,10 @@ export const apsAppExhibitorPromotionsByEventId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -49009,6 +54070,10 @@ export const apsAppExhibitorPromotionsByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -49080,6 +54145,8 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -49149,6 +54216,8 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -49255,6 +54324,10 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -49333,6 +54406,8 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -49366,6 +54441,23 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -49442,6 +54534,7 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -49696,6 +54789,10 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -49799,6 +54896,7 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -49903,6 +55001,8 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -50055,6 +55155,23 @@ export const getApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -50182,6 +55299,8 @@ export const listApsAppExhibitorDeals = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -50190,6 +55309,10 @@ export const listApsAppExhibitorDeals = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -50228,6 +55351,7 @@ export const listApsAppExhibitorDeals = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -50402,6 +55526,10 @@ export const listApsAppExhibitorDeals = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -50515,6 +55643,8 @@ export const apsAppExhibitorDealsByExhibitorId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -50523,6 +55653,10 @@ export const apsAppExhibitorDealsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -50561,6 +55695,7 @@ export const apsAppExhibitorDealsByExhibitorId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -50735,6 +55870,10 @@ export const apsAppExhibitorDealsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -50848,6 +55987,8 @@ export const apsAppExhibitorDealsByUserId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -50856,6 +55997,10 @@ export const apsAppExhibitorDealsByUserId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -50894,6 +56039,7 @@ export const apsAppExhibitorDealsByUserId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -51068,6 +56214,10 @@ export const apsAppExhibitorDealsByUserId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -51181,6 +56331,8 @@ export const apsAppExhibitorDealsByEventId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -51189,6 +56341,10 @@ export const apsAppExhibitorDealsByEventId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -51227,6 +56383,7 @@ export const apsAppExhibitorDealsByEventId = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -51404,6 +56561,10 @@ export const apsAppExhibitorDealsByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51476,6 +56637,8 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -51545,6 +56708,8 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -51651,6 +56816,10 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51729,6 +56898,8 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -51762,6 +56933,23 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -51854,6 +57042,7 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -51958,6 +57147,8 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -52110,6 +57301,23 @@ export const getApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -52236,6 +57444,8 @@ export const listApsAppExhibitorPhotos = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -52244,6 +57454,10 @@ export const listApsAppExhibitorPhotos = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -52335,6 +57549,10 @@ export const listApsAppExhibitorPhotos = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -52447,6 +57665,8 @@ export const apsAppExhibitorPhotosByExhibitorId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -52455,6 +57675,10 @@ export const apsAppExhibitorPhotosByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -52546,6 +57770,10 @@ export const apsAppExhibitorPhotosByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -52658,6 +57886,8 @@ export const apsAppExhibitorPhotosByEventId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -52666,6 +57896,10 @@ export const apsAppExhibitorPhotosByEventId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -52760,6 +57994,10 @@ export const apsAppExhibitorPhotosByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -52831,6 +58069,8 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -52900,6 +58140,8 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -53006,6 +58248,10 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -53084,6 +58330,8 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
         video
         videoCaption
         boothNumber
+        qrCode
+        passportQrPayload
         visits
         views
         likes
@@ -53117,6 +58365,23 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -53207,6 +58472,7 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -53311,6 +58577,8 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -53463,6 +58731,23 @@ export const getApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
             __typename
           }
           nextToken
@@ -53589,6 +58874,8 @@ export const listApsAppExhibitorHandouts = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -53597,6 +58884,10 @@ export const listApsAppExhibitorHandouts = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -53686,6 +58977,10 @@ export const listApsAppExhibitorHandouts = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -53798,6 +59093,8 @@ export const apsAppExhibitorHandoutsByExhibitorId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -53806,6 +59103,10 @@ export const apsAppExhibitorHandoutsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -53895,6 +59196,10 @@ export const apsAppExhibitorHandoutsByExhibitorId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -54007,6 +59312,8 @@ export const apsAppExhibitorHandoutsByEventId = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -54015,6 +59322,10 @@ export const apsAppExhibitorHandoutsByEventId = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -54104,6 +59415,10 @@ export const apsAppExhibitorHandoutsByEventId = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -54219,6 +59534,7 @@ export const getApsAddOn = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -54323,6 +59639,8 @@ export const getApsAddOn = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -54480,6 +59798,23 @@ export const getApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -54538,6 +59873,7 @@ export const getApsAddOn = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -54708,6 +60044,10 @@ export const listApsAddOns = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -54852,6 +60192,10 @@ export const apsAddOnsByEventId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -54977,6 +60321,10 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -55034,6 +60382,8 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -55070,6 +60420,7 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -55136,6 +60487,7 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -55216,6 +60568,7 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -55432,6 +60785,10 @@ export const getRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -55544,6 +60901,7 @@ export const listRegistrantAddOnRequests = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -55739,6 +61097,7 @@ export const registrantAddOnRequestsByRegistrantId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -55934,6 +61293,7 @@ export const registrantAddOnRequestsByAddOnId = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -56098,6 +61458,7 @@ export const getApsSeatingChart = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -56314,6 +61675,10 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -56371,6 +61736,8 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -56407,6 +61774,7 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
         billingAddressCity
         billingAddressState
         billingAddressZip
+        billingAddressCountry
         sameAsAttendee
         speakerTopic
         learningObjectives
@@ -56473,6 +61841,7 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -56553,6 +61922,7 @@ export const getApsSeatingChartRegistrant = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -56774,6 +62144,7 @@ export const listApsSeatingChartRegistrants = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -56947,6 +62318,7 @@ export const apsSeatingChartRegistrantsBySeatingChartID = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -57120,6 +62492,7 @@ export const apsSeatingChartRegistrantsByRegistrantID = /* GraphQL */ `
           billingAddressCity
           billingAddressState
           billingAddressZip
+          billingAddressCountry
           sameAsAttendee
           speakerTopic
           learningObjectives
@@ -57280,6 +62653,7 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -57384,6 +62758,8 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -57541,6 +62917,23 @@ export const getAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -57620,6 +63013,7 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             billingAddressCity
             billingAddressState
             billingAddressZip
+            billingAddressCountry
             sameAsAttendee
             speakerTopic
             learningObjectives
@@ -57705,6 +63099,8 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -57800,6 +63196,8 @@ export const getAPSCompanyEvents = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -57808,6 +63206,10 @@ export const getAPSCompanyEvents = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -57957,6 +63359,10 @@ export const listAPSCompanyEvents = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -58009,6 +63415,8 @@ export const listAPSCompanyEvents = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -58139,6 +63547,10 @@ export const aPSCompanyEventsByAPSId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -58191,6 +63603,8 @@ export const aPSCompanyEventsByAPSId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -58321,6 +63735,10 @@ export const aPSCompanyEventsByAPSCompanyId = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -58373,6 +63791,8 @@ export const aPSCompanyEventsByAPSCompanyId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -58602,6 +64022,10 @@ export const getSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -58702,6 +64126,10 @@ export const getSessionSpeakers = /* GraphQL */ `
             __typename
           }
           favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -59307,6 +64735,8 @@ export const getSessionSponsors = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -59410,6 +64840,10 @@ export const getSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          passportStamps {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -59490,6 +64924,8 @@ export const getSessionSponsors = /* GraphQL */ `
           video
           videoCaption
           boothNumber
+          qrCode
+          passportQrPayload
           visits
           views
           likes
@@ -59498,6 +64934,10 @@ export const getSessionSponsors = /* GraphQL */ `
             __typename
           }
           favoriteByUsers {
+            nextToken
+            __typename
+          }
+          passportStamps {
             nextToken
             __typename
           }
@@ -59647,6 +65087,8 @@ export const listSessionSponsors = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -59787,6 +65229,8 @@ export const sessionSponsorsByApsAppSessionId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
@@ -59927,6 +65371,8 @@ export const sessionSponsorsByApsSponsorId = /* GraphQL */ `
             video
             videoCaption
             boothNumber
+            qrCode
+            passportQrPayload
             visits
             views
             likes
