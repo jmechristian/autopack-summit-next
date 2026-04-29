@@ -233,7 +233,7 @@ const LatestEventSignupForm = () => {
                       </label>
                       <label className='flex flex-col gap-1'>
                         <span className='text-xs font-semibold uppercase text-neutral-700'>
-                          Company *
+                          Company **
                         </span>
                         <input
                           type='text'
