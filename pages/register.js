@@ -147,6 +147,13 @@ const isValidEmailFormat = (email = '') => {
   return true;
 };
 
+const normalizeDiscountCode = (code = '') =>
+  String(code)
+    .trim()
+    .replace(/[\u2010-\u2015\u2212]/g, '-')
+    .replace(/\s*-\s*/g, '-')
+    .toLowerCase();
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
@@ -234,22 +241,38 @@ const RegistrationForm = () => {
     };
     const loadEventCodes = async () => {
       try {
-        const res = await API.graphql({
-          query: /* GraphQL */ `
-            query APSCodesByEventId($eventId: ID!) {
-              aPSCodesByEventId(eventId: $eventId) {
-                items {
-                  code
-                  limit
-                  used
+        let nextToken = null;
+        const items = [];
+
+        do {
+          const res = await API.graphql({
+            query: /* GraphQL */ `
+              query APSCodesByEventId($eventId: ID!, $nextToken: String) {
+                aPSCodesByEventId(
+                  eventId: $eventId
+                  limit: 1000
+                  nextToken: $nextToken
+                ) {
+                  items {
+                    id
+                    code
+                    limit
+                    used
+                  }
+                  nextToken
                 }
               }
-            }
-          `,
-          authMode: 'API_KEY',
-          variables: { eventId: APS_EVENT_ID },
-        });
-        setEventCodes(res.data.aPSCodesByEventId.items || []);
+            `,
+            authMode: 'API_KEY',
+            variables: { eventId: APS_EVENT_ID, nextToken },
+          });
+
+          const page = res.data.aPSCodesByEventId;
+          items.push(...(page?.items || []));
+          nextToken = page?.nextToken || null;
+        } while (nextToken);
+
+        setEventCodes(items);
       } catch (err) {
         console.log('Error fetching event codes:', err);
       }
@@ -622,9 +645,9 @@ const RegistrationForm = () => {
       setDiscountCodeError('Please enter a discount code');
       return;
     }
-    const normalizedCode = discountCode.trim().toLowerCase();
+    const normalizedCode = normalizeDiscountCode(discountCode);
     const match = eventCodes.find(
-      (c) => c.code.toLowerCase() === normalizedCode,
+      (c) => normalizeDiscountCode(c.code) === normalizedCode,
     );
     if (!match) {
       setDiscountCodeError('Invalid discount code');
@@ -736,9 +759,9 @@ const RegistrationForm = () => {
     if (!discountApplied || !formData.discountCode) return;
     const unitsToConsume = 1;
 
-    const normalizedCode = formData.discountCode.trim().toLowerCase();
+    const normalizedCode = normalizeDiscountCode(formData.discountCode);
     const matchedCode = eventCodes.find(
-      (codeItem) => codeItem.code?.toLowerCase() === normalizedCode,
+      (codeItem) => normalizeDiscountCode(codeItem.code) === normalizedCode,
     );
     if (!matchedCode?.id) {
       console.warn(
