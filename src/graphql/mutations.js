@@ -3523,411 +3523,6 @@ export const createAPSCode = /* GraphQL */ `
     }
   }
 `;
-export const updateAPSCode = /* GraphQL */ `
-  mutation UpdateAPSCode(
-    $input: UpdateAPSCodeInput!
-    $condition: ModelAPSCodeConditionInput
-  ) {
-    updateAPSCode(input: $input, condition: $condition) {
-      id
-      code
-      eventId
-      event {
-        id
-        year
-        codes {
-          items {
-            id
-            code
-            eventId
-            limit
-            used
-            createdAt
-            updatedAt
-            aPSCodesId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        agenda {
-          id
-          eventId
-          event {
-            id
-            year
-            startDate
-            endDate
-            location
-            address
-            city
-            state
-            zip
-            website
-            createdAt
-            updatedAt
-            aPSAgendaId
-            __typename
-          }
-          items {
-            nextToken
-            __typename
-          }
-          createdAt
-          updatedAt
-          __typename
-        }
-        startDate
-        endDate
-        location
-        address
-        city
-        state
-        zip
-        website
-        Registrants {
-          items {
-            id
-            apsID
-            firstName
-            lastName
-            email
-            phone
-            companyId
-            jobTitle
-            attendeeType
-            termsAccepted
-            interests
-            otherInterest
-            buyerQuestion
-            packagingChallenge
-            certification
-            billingAddressFirstName
-            billingAddressLastName
-            billingAddressEmail
-            billingAddressPhone
-            billingAddressStreet
-            billingAddressCity
-            billingAddressState
-            billingAddressZip
-            billingAddressCountry
-            sameAsAttendee
-            speakerTopic
-            learningObjectives
-            totalAmount
-            discountCode
-            status
-            paymentConfirmation
-            registrationEmailSent
-            registrationEmailSentDate
-            registrationEmailReceived
-            registrationEmailReceivedDate
-            welcomeEmailSent
-            welcomeEmailSentDate
-            welcomeEmailReceived
-            welcomeEmailReceivedDate
-            paymentMethod
-            paymentLast4
-            approvedAt
-            headshot
-            presentation
-            presentationTitle
-            presentationSummary
-            bio
-            invoice
-            appUserId
-            qrCode
-            createdAt
-            updatedAt
-            aPSRegistrantsId
-            aPSCompanyRegistrantsId
-            apsRegistrantSeatingChartRegistrantId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Sponsors {
-          items {
-            id
-            companyId
-            eventId
-            type
-            createdAt
-            updatedAt
-            aPSSponsorsId
-            apsSponsorProfileId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        Speakers {
-          items {
-            id
-            presentationTitle
-            presentationSummary
-            profileId
-            eventId
-            createdAt
-            updatedAt
-            aPSSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        companies {
-          items {
-            id
-            aPSId
-            aPSCompanyId
-            createdAt
-            updatedAt
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        photos {
-          items {
-            id
-            userId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSPhotosId
-            apsAppUserPhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitors {
-          items {
-            id
-            companyId
-            sponsorId
-            eventId
-            video
-            videoCaption
-            boothNumber
-            qrCode
-            passportQrPayload
-            visits
-            views
-            likes
-            createdAt
-            updatedAt
-            aPSExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPromotions {
-          items {
-            id
-            exhibitorId
-            promotion
-            link
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPromotionsId
-            apsAppExhibitorProfilePromotionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorDeals {
-          items {
-            id
-            exhibitorId
-            deal
-            link
-            userId
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorDealsId
-            apsAppUserExhibitorDealsId
-            apsAppExhibitorProfileDealsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorPhotos {
-          items {
-            id
-            exhibitorId
-            photo
-            caption
-            approved
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorPhotosId
-            apsAppExhibitorProfilePhotosId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        exhibitorHandouts {
-          items {
-            id
-            exhibitorId
-            handout
-            eventId
-            createdAt
-            updatedAt
-            aPSExhibitorHandoutsId
-            apsAppExhibitorProfileHandoutsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        favoriteExhibitors {
-          items {
-            id
-            owner
-            userProfileId
-            exhibitorId
-            eventId
-            favoriteKey
-            createdAt
-            updatedAt
-            aPSFavoriteExhibitorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        favoriteSpeakers {
-          items {
-            id
-            owner
-            userProfileId
-            speakerId
-            eventId
-            favoriteKey
-            createdAt
-            updatedAt
-            aPSFavoriteSpeakersId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        favoriteSponsors {
-          items {
-            id
-            owner
-            userProfileId
-            sponsorId
-            eventId
-            favoriteKey
-            createdAt
-            updatedAt
-            aPSFavoriteSponsorsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        favoriteSessions {
-          items {
-            id
-            owner
-            userProfileId
-            sessionId
-            eventId
-            favoriteKey
-            createdAt
-            updatedAt
-            aPSFavoriteSessionsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        favoriteContacts {
-          items {
-            id
-            owner
-            userProfileId
-            contactProfileId
-            eventId
-            favoriteKey
-            createdAt
-            updatedAt
-            aPSFavoriteContactsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        passportStamps {
-          items {
-            id
-            owner
-            userProfileId
-            exhibitorId
-            eventId
-            stampKey
-            scannedAt
-            createdAt
-            updatedAt
-            aPSPassportStampsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        addOns {
-          items {
-            id
-            title
-            description
-            subheadline
-            location
-            date
-            time
-            altLink
-            type
-            limit
-            eventId
-            price
-            preferenceSchema
-            createdAt
-            updatedAt
-            aPSAddOnsId
-            __typename
-          }
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        aPSAgendaId
-        __typename
-      }
-      limit
-      used
-      createdAt
-      updatedAt
-      aPSCodesId
-      __typename
-    }
-  }
-`;
 export const deleteAPSCode = /* GraphQL */ `
   mutation DeleteAPSCode(
     $input: DeleteAPSCodeInput!
@@ -64243,6 +63838,9 @@ export const createApsContactRequest = /* GraphQL */ `
       owners
       requestedByUserId
       status
+      introMessage
+      introSentAt
+      introDeliveredAt
       acceptedAt
       declinedAt
       blockedAt
@@ -64266,6 +63864,9 @@ export const updateApsContactRequest = /* GraphQL */ `
       owners
       requestedByUserId
       status
+      introMessage
+      introSentAt
+      introDeliveredAt
       acceptedAt
       declinedAt
       blockedAt
@@ -64289,6 +63890,9 @@ export const deleteApsContactRequest = /* GraphQL */ `
       owners
       requestedByUserId
       status
+      introMessage
+      introSentAt
+      introDeliveredAt
       acceptedAt
       declinedAt
       blockedAt
@@ -70515,6 +70119,411 @@ export const createAPS = /* GraphQL */ `
       createdAt
       updatedAt
       aPSAgendaId
+      __typename
+    }
+  }
+`;
+export const updateAPSCode = /* GraphQL */ `
+  mutation UpdateAPSCode(
+    $input: UpdateAPSCodeInput!
+    $condition: ModelAPSCodeConditionInput
+  ) {
+    updateAPSCode(input: $input, condition: $condition) {
+      id
+      code
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      limit
+      used
+      createdAt
+      updatedAt
+      aPSCodesId
       __typename
     }
   }
