@@ -154,6 +154,8 @@ const normalizeDiscountCode = (code = '') =>
     .replace(/\s*-\s*/g, '-')
     .toLowerCase();
 
+const normalizeEmail = (email = '') => String(email).trim().toLowerCase();
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [companies, setCompanies] = useState([]);
@@ -316,14 +318,12 @@ const RegistrationForm = () => {
   }, [codeRequestCooldownSeconds]);
 
   const checkEmailExists = useCallback(async (email) => {
-    const normalizedEmail = String(email || '')
-      .trim()
-      .toLowerCase();
+    const normalizedEmail = normalizeEmail(email);
     if (!normalizedEmail || !isValidEmailFormat(normalizedEmail)) {
       setEmailExists(false);
       setEmailDomainValid(true);
       setEmailChecking(false);
-      return;
+      return false;
     }
     setEmailChecking(true);
     try {
@@ -338,24 +338,41 @@ const RegistrationForm = () => {
           ...prev,
           email: 'Please enter a valid email address',
         }));
-        return;
+        return true;
       }
 
       setEmailDomainValid(true);
-      const res = await API.graphql({
-        query: /* GraphQL */ `
-          query ApsRegistrantsByEmail($email: String!) {
-            apsRegistrantsByEmail(email: $email) {
-              items {
-                id
+      let nextToken = null;
+      let exists = false;
+
+      do {
+        const res = await API.graphql({
+          query: /* GraphQL */ `
+            query ApsRegistrantsByApsID($apsID: ID!, $nextToken: String) {
+              apsRegistrantsByApsID(
+                apsID: $apsID
+                limit: 1000
+                nextToken: $nextToken
+              ) {
+                items {
+                  id
+                  email
+                }
+                nextToken
               }
             }
-          }
-        `,
-        authMode: 'API_KEY',
-        variables: { email: normalizedEmail },
-      });
-      const exists = (res.data.apsRegistrantsByEmail.items?.length || 0) > 0;
+          `,
+          authMode: 'API_KEY',
+          variables: { apsID: APS_EVENT_ID, nextToken },
+        });
+
+        const page = res.data.apsRegistrantsByApsID;
+        exists = (page?.items || []).some(
+          (registrant) => normalizeEmail(registrant.email) === normalizedEmail,
+        );
+        nextToken = exists ? null : page?.nextToken || null;
+      } while (nextToken);
+
       setEmailExists(exists);
       if (exists) {
         setErrors((prev) => ({
@@ -363,8 +380,10 @@ const RegistrationForm = () => {
           email: 'This email is already registered',
         }));
       }
+      return exists;
     } catch (err) {
       console.log('Error checking email:', err);
+      return false;
     } finally {
       setEmailChecking(false);
     }
@@ -851,11 +870,17 @@ const RegistrationForm = () => {
     setSubmitError(null);
 
     try {
+      const normalizedRegistrantEmail = normalizeEmail(formData.email);
+      const emailUnavailable = await checkEmailExists(normalizedRegistrantEmail);
+      if (emailUnavailable) {
+        throw new Error('This email is already registered');
+      }
+
       const input = {
         apsID: APS_EVENT_ID,
         attendeeType: mapAttendeeTypeToEnum(effectiveAttendeeType),
         status: 'PENDING',
-        email: formData.email,
+        email: normalizedRegistrantEmail,
         firstName: formData.firstName || null,
         lastName: formData.lastName || null,
         phone: formData.phone || null,
@@ -898,7 +923,6 @@ const RegistrationForm = () => {
       const created = res.data?.createApsRegistrant;
       const mainRegistrantId = created?.id;
       if (mainRegistrantId) {
-        await incrementAppliedDiscountCodeUsage();
         setRegistrantId(mainRegistrantId);
         await createAddOnRequestsForRegistrant(mainRegistrantId);
       }
@@ -914,7 +938,10 @@ const RegistrationForm = () => {
         }));
         sendRegistrationConfirmationAndMarkSent({
           registrantRecordId: mainRegistrantId,
-          registrantFormData: formData,
+          registrantFormData: {
+            ...formData,
+            email: normalizedRegistrantEmail,
+          },
           registrantTotalAmount: totalAmount,
           registrantAddOnsSelected: emailAddOns,
         }).catch((emailErr) => {
@@ -922,6 +949,10 @@ const RegistrationForm = () => {
             'Failed to send registration confirmation email:',
             emailErr,
           );
+        });
+
+        incrementAppliedDiscountCodeUsage().catch((codeErr) => {
+          console.error('Failed to increment discount code usage:', codeErr);
         });
       }
 
@@ -967,7 +998,7 @@ const RegistrationForm = () => {
             registrant: {
               firstName: formData.firstName,
               lastName: formData.lastName,
-              email: formData.email,
+              email: normalizedRegistrantEmail,
               companyName: formData.companyName,
               jobTitle: formData.jobTitle,
               attendeeType: effectiveAttendeeType,
@@ -1038,6 +1069,12 @@ const RegistrationForm = () => {
     setProcessingPayment(true);
     setPaymentError(null);
     try {
+      const emailUnavailable = await checkEmailExists(formData.email);
+      if (emailUnavailable) {
+        setPaymentError('This email is already registered');
+        return;
+      }
+
       const response = await fetch('/api/handle-stripe-payment', {
         method: 'POST',
         headers: {
@@ -1052,7 +1089,7 @@ const RegistrationForm = () => {
             firstName: formData.firstName,
             lastName: formData.lastName,
             attendeeType: formData.attendeeType,
-            email: formData.email,
+            email: normalizeEmail(formData.email),
             phone: formData.phone,
             companyName: formData.companyName,
           },
@@ -1091,6 +1128,13 @@ const RegistrationForm = () => {
       setError(null);
 
       try {
+        const emailUnavailable = await checkEmailExists(formData.email);
+        if (emailUnavailable) {
+          setError('This email is already registered. Please use a different email.');
+          setIsSubmittingPayment(false);
+          return;
+        }
+
         const { error: submitError } = await elements.submit();
         if (submitError) {
           setError(submitError.message);
@@ -1103,7 +1147,7 @@ const RegistrationForm = () => {
           confirmParams: {
             payment_method_data: {
               billing_details: {
-                email: formData.email,
+                email: normalizeEmail(formData.email),
                 name: `${formData.firstName} ${formData.lastName}`,
               },
             },
@@ -1260,12 +1304,17 @@ const RegistrationForm = () => {
     return false;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const isValid = validateStep(step);
-    if (isValid) {
-      setCompletedSteps((prev) => ({ ...prev, [step]: true }));
-      setStep((s) => s + 1);
+    if (!isValid) return;
+
+    if (step === 1) {
+      const emailUnavailable = await checkEmailExists(formData.email);
+      if (emailUnavailable) return;
     }
+
+    setCompletedSteps((prev) => ({ ...prev, [step]: true }));
+    setStep((s) => s + 1);
   };
 
   const handlePrev = () => setStep((s) => s - 1);
