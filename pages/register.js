@@ -459,6 +459,14 @@ const RegistrationForm = () => {
     return base + addOnsTotal;
   }, [effectiveAttendeeType, discountApplied, addOnsTotal]);
 
+  const stripeElementsOptions = useMemo(() => {
+    if (!clientSecret) return undefined;
+    return {
+      clientSecret,
+      appearance: { theme: 'stripe' },
+    };
+  }, [clientSecret]);
+
   const canRequestRegistrationCode = useMemo(
     () => ['OEM', 'Tier1'].includes(formData.attendeeType),
     [formData.attendeeType],
@@ -1113,31 +1121,23 @@ const RegistrationForm = () => {
   const PaymentForm = () => {
     const stripe = useStripe();
     const elements = useElements();
-    const [error, setError] = useState(null);
     const [isSubmittingPayment, setIsSubmittingPayment] = useState(false);
 
     const handlePaymentSubmit = async (e) => {
       e.preventDefault();
 
       if (!stripe || !elements) {
-        setError('Payment system is not ready. Please try again.');
+        setPaymentError('Payment system is not ready. Please try again.');
         return;
       }
 
       setIsSubmittingPayment(true);
-      setError(null);
+      setPaymentError(null);
 
       try {
-        const emailUnavailable = await checkEmailExists(formData.email);
-        if (emailUnavailable) {
-          setError('This email is already registered. Please use a different email.');
-          setIsSubmittingPayment(false);
-          return;
-        }
-
         const { error: submitError } = await elements.submit();
         if (submitError) {
-          setError(submitError.message);
+          setPaymentError(submitError.message);
           setIsSubmittingPayment(false);
           return;
         }
@@ -1145,6 +1145,7 @@ const RegistrationForm = () => {
         const result = await stripe.confirmPayment({
           elements,
           confirmParams: {
+            return_url: `${window.location.origin}/register`,
             payment_method_data: {
               billing_details: {
                 email: normalizeEmail(formData.email),
@@ -1156,23 +1157,56 @@ const RegistrationForm = () => {
         });
 
         if (result.error) {
-          setError(result.error.message);
+          setPaymentError(result.error.message);
           setIsSubmittingPayment(false);
           return;
         }
 
-        if (result.paymentIntent) {
-          // Store payment confirmation on the formData for downstream usage.
-          setFormData((prev) => ({
-            ...prev,
-            paymentConfirmation: result.paymentIntent.id,
-          }));
-          setCompletedSteps((prev) => ({ ...prev, 3: true }));
-          await handleSubmitRegistration();
+        const paymentIntentStatus = result.paymentIntent?.status;
+        if (!paymentIntentStatus) {
+          setPaymentError(
+            'Payment could not be confirmed. Please try again or contact support.',
+          );
+          setIsSubmittingPayment(false);
+          return;
         }
+
+        const isPaymentComplete = [
+          'succeeded',
+          'processing',
+          'requires_capture',
+        ].includes(paymentIntentStatus);
+
+        if (!isPaymentComplete) {
+          if (paymentIntentStatus === 'requires_payment_method') {
+            setPaymentError(
+              'Payment was not completed. Please review your card details and try again.',
+            );
+          } else if (paymentIntentStatus === 'requires_action') {
+            setPaymentError(
+              'Additional authentication is required to complete payment. Please try again.',
+            );
+          } else if (paymentIntentStatus === 'canceled') {
+            setPaymentError('Payment was canceled. Please try again.');
+          } else {
+            setPaymentError(
+              `Payment is not complete yet (status: ${paymentIntentStatus}). Please try again.`,
+            );
+          }
+          setIsSubmittingPayment(false);
+          return;
+        }
+
+        // Store payment confirmation on the formData for downstream usage.
+        setFormData((prev) => ({
+          ...prev,
+          paymentConfirmation: result.paymentIntent.id,
+        }));
+        setCompletedSteps((prev) => ({ ...prev, 3: true }));
+        await handleSubmitRegistration();
       } catch (err) {
         console.error('Unexpected payment error:', err);
-        setError(
+        setPaymentError(
           'An unexpected error occurred. Please try again or contact support.',
         );
       } finally {
@@ -1183,8 +1217,10 @@ const RegistrationForm = () => {
     return (
       <form onSubmit={handlePaymentSubmit} className='space-y-3'>
         <PaymentElement />
-        {error && (
-          <div className='text-red-500 mt-2 p-2 bg-red-50 rounded'>{error}</div>
+        {paymentError && (
+          <div className='text-red-500 mt-2 p-2 bg-red-50 rounded'>
+            {paymentError}
+          </div>
         )}
         <button
           type='submit'
@@ -1981,6 +2017,7 @@ const RegistrationForm = () => {
           />
           {discountApplied ? (
             <button
+              type='button'
               onClick={() => {
                 setDiscountApplied(false);
                 setDiscountCode('');
@@ -1992,6 +2029,7 @@ const RegistrationForm = () => {
             </button>
           ) : (
             <button
+              type='button'
               onClick={handleApplyDiscount}
               className='px-4 py-2 bg-ap-darkblue text-white text-sm font-medium rounded-lg hover:bg-ap-blue transition-colors'
             >
@@ -2413,10 +2451,7 @@ const RegistrationForm = () => {
               {totalAmount > 0 && clientSecret && (
                 <Elements
                   stripe={stripePromise}
-                  options={{
-                    clientSecret,
-                    appearance: { theme: 'stripe' },
-                  }}
+                  options={stripeElementsOptions}
                 >
                   <PaymentForm />
                 </Elements>
