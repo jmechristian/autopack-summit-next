@@ -40,6 +40,7 @@ const APS_AGENDA_QUERY = `
           endTime
           id
           location
+          draft
           startTime
           title
           speakers {
@@ -138,7 +139,9 @@ const matchesAgendaDate = (value, targetDate) => {
 };
 
 const mapAgendaItems = (items) =>
-  items.map((item) => {
+  items
+    .filter((item) => !item?.draft)
+    .map((item) => {
     const mapSpeaker = (speakerItem) => {
       const sp = speakerItem?.aPSSpeaker;
       const profile = sp?.profile;
@@ -175,7 +178,7 @@ const mapAgendaItems = (items) =>
           logo: sponsorItem.apsSponsor?.company?.logo,
         })) || [],
     };
-  });
+    });
 
 const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
   return (

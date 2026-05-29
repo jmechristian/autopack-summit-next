@@ -73,6 +73,11 @@ const LogoItemsTop = () => (
       link={'https://www.magna.com/'}
     />
     <LogoItem
+      image={'https://packschool.s3.amazonaws.com/ferrari.png'}
+      name='Ferrari'
+      link={'https://www.ferrari.com/en-US'}
+    />
+    <LogoItem
       image={'https://packschool.s3.us-east-1.amazonaws.com/opmobility2.png'}
       name='OP Mobility'
       link={'https://www.plasticomnium.com/en/'}
@@ -113,6 +118,11 @@ const LogoItemsBottom = () => (
       }
       name='BMW'
       link={'https://www.bmwgroup.com/en.html'}
+    />
+    <LogoItem
+      image={'https://packschool.s3.amazonaws.com/mercedes.png'}
+      name='Mercedes-Benz'
+      link={'https://www.mercedes-benz.com/en/'}
     />
     <LogoItem
       image={'https://packschool.s3.amazonaws.com/nissan-new.jpeg'}

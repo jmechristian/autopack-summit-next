@@ -423,6 +423,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -524,6 +525,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -2439,6 +2441,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -2540,6 +2543,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -4455,6 +4459,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -4556,6 +4561,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -20209,6 +20215,7 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -20310,6 +20317,7 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -21146,6 +21154,7 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -21247,6 +21256,7 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -22083,6 +22093,7 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -22184,6 +22195,7 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -28341,7 +28353,9 @@ export const onCreateAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -29295,7 +29309,9 @@ export const onCreateAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -29687,7 +29703,9 @@ export const onUpdateAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -30641,7 +30659,9 @@ export const onUpdateAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -31033,7 +31053,9 @@ export const onDeleteAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -31987,7 +32009,9 @@ export const onDeleteAPS = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -33896,6 +33920,7 @@ export const onCreateApsAgenda = /* GraphQL */ `
           endTime
           location
           description
+          embedUrl
           agendaId
           agenda {
             id
@@ -33924,6 +33949,7 @@ export const onCreateApsAgenda = /* GraphQL */ `
             nextToken
             __typename
           }
+          draft
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -34341,6 +34367,7 @@ export const onUpdateApsAgenda = /* GraphQL */ `
           endTime
           location
           description
+          embedUrl
           agendaId
           agenda {
             id
@@ -34369,6 +34396,7 @@ export const onUpdateApsAgenda = /* GraphQL */ `
             nextToken
             __typename
           }
+          draft
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -34786,6 +34814,7 @@ export const onDeleteApsAgenda = /* GraphQL */ `
           endTime
           location
           description
+          embedUrl
           agendaId
           agenda {
             id
@@ -34814,6 +34843,7 @@ export const onDeleteApsAgenda = /* GraphQL */ `
             nextToken
             __typename
           }
+          draft
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -36177,7 +36207,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -37678,7 +37710,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -39179,7 +39213,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -39845,7 +39881,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -40002,7 +40040,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -41169,7 +41209,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -41326,7 +41368,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -42493,7 +42537,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -42650,7 +42696,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -48840,7 +48888,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -49150,7 +49200,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -50395,7 +50447,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -50705,7 +50759,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -51950,7 +52006,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -52260,7 +52318,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -58813,6 +58873,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
       endTime
       location
       description
+      embedUrl
       agendaId
       agenda {
         id
@@ -58921,7 +58982,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -58946,7 +59009,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -58993,7 +59058,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59148,7 +59215,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59185,7 +59254,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59251,7 +59322,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59283,6 +59356,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      draft
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -59302,6 +59376,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
       endTime
       location
       description
+      embedUrl
       agendaId
       agenda {
         id
@@ -59410,7 +59485,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59435,7 +59512,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59482,7 +59561,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59637,7 +59718,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59674,7 +59757,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59740,7 +59825,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59772,6 +59859,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      draft
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -59791,6 +59879,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
       endTime
       location
       description
+      embedUrl
       agendaId
       agenda {
         id
@@ -59899,7 +59988,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59924,7 +60015,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59971,7 +60064,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -60126,7 +60221,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -60163,7 +60260,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -60229,7 +60328,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -60261,6 +60362,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      draft
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -60283,6 +60385,7 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -60384,6 +60487,7 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -60759,6 +60863,7 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -60860,6 +60965,7 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -61235,6 +61341,7 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -61336,6 +61443,7 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -62523,7 +62631,9 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -63452,7 +63562,9 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -64381,7 +64493,9 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -65554,7 +65668,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -66729,7 +66845,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -67904,7 +68022,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68891,7 +69011,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69957,7 +70079,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -71023,7 +71147,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -73362,7 +73488,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -74891,7 +75019,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -76420,7 +76550,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             endTime
             location
             description
+            embedUrl
             agendaId
+            draft
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -94259,6 +94391,7 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -94360,6 +94493,7 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -94620,6 +94754,7 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -94721,6 +94856,7 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -94981,6 +95117,7 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -95082,6 +95219,7 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -95342,6 +95480,7 @@ export const onCreateSessionSponsors = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -95443,6 +95582,7 @@ export const onCreateSessionSponsors = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -95762,6 +95902,7 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -95863,6 +96004,7 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -96182,6 +96324,7 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
         endTime
         location
         description
+        embedUrl
         agendaId
         agenda {
           id
@@ -96283,6 +96426,7 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
           nextToken
           __typename
         }
+        draft
         createdAt
         updatedAt
         apsAgendaItemsId
