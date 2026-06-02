@@ -1027,6 +1027,7 @@ const RegistrationForm = () => {
             totalDue: totalAmount,
             discountCode: formData.discountCode || null,
             paymentConfirmation: formData.paymentConfirmation || null,
+            receiptCreatedAt: created?.createdAt || new Date().toISOString(),
           }),
         })
           .then(async (invoiceRes) => {

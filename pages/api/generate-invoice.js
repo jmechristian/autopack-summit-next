@@ -32,6 +32,16 @@ const s3 = new AWS.S3({
   }),
 });
 
+const formatReceiptDate = (value) => {
+  const parsed = value ? new Date(value) : new Date();
+  if (Number.isNaN(parsed.getTime())) return '';
+  return parsed.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
 const styles = StyleSheet.create({
   page: {
     padding: 28,
@@ -92,10 +102,18 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: '#555555',
   },
+  invoiceMetaBlock: {
+    alignItems: 'flex-end',
+    gap: 3,
+  },
   invoiceNo: {
     fontSize: 9,
     color: '#6b7280',
     fontFamily: 'Helvetica-Bold',
+  },
+  invoiceDate: {
+    fontSize: 9,
+    color: '#6b7280',
   },
   body: {
     padding: 14,
@@ -194,6 +212,7 @@ const InvoiceDocument = ({
   totalDue = 0,
   discountCode,
   paymentConfirmation,
+  receiptCreatedAt,
 }) => (
   <Document>
     <Page size='A4' style={styles.page}>
@@ -224,7 +243,12 @@ const InvoiceDocument = ({
               Automotive Packaging Summit 2026 · Sept 30 - Oct 2, 2026
             </Text>
           </View>
-          <Text style={styles.invoiceNo}>#{invoiceId}</Text>
+          <View style={styles.invoiceMetaBlock}>
+            <Text style={styles.invoiceNo}>#{invoiceId}</Text>
+            <Text style={styles.invoiceDate}>
+              Created: {formatReceiptDate(receiptCreatedAt)}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.body}>
@@ -355,6 +379,7 @@ export default async function handler(req, res) {
       totalDue,
       discountCode,
       paymentConfirmation,
+      receiptCreatedAt,
     } = req.body || {};
 
     if (!registrantId || !registrant) {
@@ -371,6 +396,7 @@ export default async function handler(req, res) {
         totalDue={totalDue}
         discountCode={discountCode}
         paymentConfirmation={paymentConfirmation}
+        receiptCreatedAt={receiptCreatedAt}
       />
     );
 
