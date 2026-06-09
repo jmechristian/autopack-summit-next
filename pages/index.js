@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { API } from 'aws-amplify';
 import { listTestimonials } from '../src/graphql/queries';
-import { createClient } from 'next-sanity';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -29,7 +28,7 @@ import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
 import LatestEventSignupForm from '../components/home/LatestEventSignupForm';
 
-const Page = ({ homepageData, speakers, sponsors }) => {
+const Page = ({ speakers, sponsors }) => {
   const dispatch = useDispatch();
   const { powerOpen } = useSelector((state) => state.layout);
   const router = useRouter();
@@ -233,12 +232,7 @@ const Page = ({ homepageData, speakers, sponsors }) => {
         testimonials={testimonials.listTestimonials.items}
       /> */}
       <div className='max-w-7xl mx-auto w-full'>
-        <NewSpeakersMain
-          headline={homepageData[0].speakersHeadline}
-          subheadline={homepageData[0].speakersSubheadline}
-          text={homepageData[0].speakersBodyContent}
-          speakers={speakers}
-        />
+        <NewSpeakersMain speakers={speakers} />
       </div>
       <div className='md:max-w-lg lg:max-w-7xl mx-auto w-full'>
         <NewSponsorsMain sponsors={sponsors} />
@@ -250,13 +244,6 @@ const Page = ({ homepageData, speakers, sponsors }) => {
 export default Page;
 
 import awsExports from '../src/aws-exports';
-
-const client = createClient({
-  projectId: 'h72r2zbr',
-  dataset: 'aps',
-  apiVersion: '2022-11-20',
-  useCdn: true,
-});
 
 const PUBLIC_SPEAKERS_QUERY = `
   query PublicListAPSSpeakers($limit: Int) {
@@ -352,12 +339,6 @@ const combineDateTime = (dateValue, timeValue) => {
 };
 
 export async function getStaticProps() {
-  const homepageData = await client.fetch(`*[_type == "homepage"]{
-    ..., speakers[]->, "sponsorList": *[_type == "sponsor"]{
-      logo { asset-> { url }}, name, teir, website
-    }
-  }`);
-
   let speakers = [];
   let sponsors = [];
 
@@ -520,7 +501,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      homepageData,
       speakers,
       sponsors,
     },

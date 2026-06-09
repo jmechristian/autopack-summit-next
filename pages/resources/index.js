@@ -1,5 +1,4 @@
 import React from 'react';
-import { createClient } from 'next-sanity';
 import { motion } from 'framer-motion';
 import AdvisoryBoard from '../../components/resources/AdvisoryBoard';
 import HeaderPadding from '../../shared/HeaderPadding';
@@ -81,8 +80,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Page = ({ resourceData }) => {
-  console.log(resourceData);
+const Page = ({ resourceData = [] }) => {
   return (
     <>
       <Head>
@@ -184,21 +182,10 @@ const Page = ({ resourceData }) => {
   );
 };
 
-const client = createClient({
-  projectId: 'h72r2zbr',
-  dataset: 'aps',
-  apiVersion: '2022-11-20',
-  useCdn: true,
-});
-
 export async function getStaticProps() {
-  const resourceData = await client.fetch(
-    `*[_type == "advisory_board"] | order(name asc)`
-  );
-
   return {
     props: {
-      resourceData,
+      resourceData: [],
     },
     revalidate: 10,
   };

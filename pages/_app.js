@@ -1,7 +1,6 @@
 import '../styles/globals.css';
 import Layout from '../features/layout/Layout';
 import { Amplify } from 'aws-amplify';
-import { createClient } from 'next-sanity';
 import { Provider } from 'react-redux';
 import { store } from '../features/store';
 import { DefaultSeo } from 'next-seo';
@@ -11,13 +10,6 @@ import awsExports from '../src/aws-exports';
 Amplify.configure(awsExports);
 
 function MyApp({ Component, pageProps }) {
-  const client = createClient({
-    projectId: 'h72r2zbr',
-    dataset: 'aps',
-    apiVersion: '2022-11-20',
-    useCdn: false,
-  });
-
   return (
     <>
       <DefaultSeo
@@ -41,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       />
       <CookiesProvider>
         <Provider store={store}>
-          <Layout client={client}>
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </Provider>

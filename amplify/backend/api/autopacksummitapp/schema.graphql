@@ -119,6 +119,11 @@ type AdminPublishDueAnnouncementsResult {
   publishedIds: [ID!]!
 }
 
+type DeleteMyAccountResult {
+  success: Boolean!
+  message: String
+}
+
 type Mutation {
   sendModeratedDmMessage(input: SendModeratedDmMessageInput!): ApsDmMessage
     @function(name: "apsPushFanout-${env}")
@@ -147,6 +152,9 @@ type Mutation {
     eventId: ID!
   ): AdminPublishDueAnnouncementsResult
     @function(name: "apsPushFanout-${env}")
+    @aws_cognito_user_pools
+  deleteMyAccount: DeleteMyAccountResult
+    @function(name: "adminRegistrantOps-${env}")
     @aws_cognito_user_pools
 }
 

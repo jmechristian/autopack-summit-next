@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openNavMenu, closeNavMenu } from '../../features/layout/layoutSlice';
 import RegisterModal from '../../shared/RegisterModal';
@@ -11,24 +11,11 @@ import CookieConsent from '../../shared/CookieConsent';
 import { motion, AnimatePresence } from 'framer-motion';
 import PowerConsole from '../../shared/PowerConsole';
 
-const Layout = ({ client, children }) => {
-  const [footerImages, setFooterImages] = useState(null);
+const Layout = ({ children }) => {
+  const [footerImages] = useState(null);
   const dispatch = useDispatch();
   const { navOpen, videoOpen, sponsorFormOpen, registrationOpen, powerOpen } =
     useSelector((state) => state.layout);
-
-  useEffect(() => {
-    const getData = async () => {
-      const footerImages =
-        await client.fetch(`*[_type == "footerImages" && name == "Footer Main"] {
-        footerGallery[]
-      }`);
-
-      setFooterImages(footerImages[0].footerGallery);
-    };
-
-    getData();
-  }, []);
 
   return (
     <div>
