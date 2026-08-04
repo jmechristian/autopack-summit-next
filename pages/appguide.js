@@ -236,7 +236,7 @@ const HowTo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>Hub</strong></td><td>🏠 Home</td><td>Your personalized home screen: countdown, live sessions, quick shortcuts, passport progress.</td></tr>
+                    <tr><td><strong>Hub</strong></td><td>🏠 Home</td><td>Your personalized home screen: your QR code, countdown, live sessions, quick shortcuts, and passport progress.</td></tr>
                     <tr><td><strong>Agenda</strong></td><td>📅 Calendar</td><td>The full event schedule, organized by day.</td></tr>
                     <tr><td><strong>Engage</strong></td><td>💬 Chat bubbles</td><td>Announcements, messages, contact requests, and directories. A <strong>red badge</strong> shows unread activity.</td></tr>
                     <tr><td><strong>Community</strong></td><td>👥 People</td><td>The attendee directory — find and connect with other people.</td></tr>
@@ -250,21 +250,38 @@ const HowTo = () => {
 
             <Section id='hub' title='3. The Hub (Home)'>
               <p>
-                The <strong>Hub</strong> is your personalized landing screen. It
-                greets you by name and shows your profile photo (or initials) in
-                the top-left.
+                The <strong>Hub</strong> is your personalized landing screen. Your
+                profile photo (or initials) sits in the top-left, and your name
+                appears under your QR code so others can easily connect with you.
               </p>
               <Shots items={['Full Hub screen.']} />
 
-              <h3>3.1 Countdown &amp; Live Sessions</h3>
+              <h3>3.1 Your QR Code (Always on the Hub)</h3>
+              <p>
+                Your personal <strong>QR code</strong> is a staple at the top of
+                the Hub — always visible so you can share your info and connect
+                with others in person without digging through menus.
+              </p>
+              <ul>
+                <li>Have someone open <strong>Scan Contact</strong> (or their camera scanner) and point it at your Hub QR code.</li>
+                <li>Your profile opens on their device so they can send a contact request.</li>
+                <li>Your name appears directly under the QR code so people know whose code they&rsquo;re scanning.</li>
+              </ul>
+              <Tip>
+                Flip to the Hub anytime you want to share your info — your QR
+                code is right there at the top.
+              </Tip>
+              <Shots items={['Hub header with your QR code and name.']} />
+
+              <h3>3.2 Countdown &amp; Live Sessions</h3>
               <ul>
                 <li>A <strong>countdown timer</strong> ticks down to the event in Greenville (Sept 30 – Oct 2, 2026).</li>
-                <li>When sessions are happening, a <strong>&ldquo;Live Now&rdquo;</strong> card appears; otherwise you&rsquo;ll see <strong>&ldquo;Coming Up&rdquo;</strong> with the next session.</li>
+                <li>When sessions are happening, a <strong>LIVE</strong> badge appears next to the timer; otherwise you&rsquo;ll see <strong>&ldquo;Coming Up&rdquo;</strong> with the next session.</li>
                 <li>Tap a session card to open its details. If a session is live and has a stream, a <strong>View Presentation</strong> button appears.</li>
               </ul>
               <Shots items={['Countdown strip and the Live Now / Coming Up session card.']} />
 
-              <h3>3.2 Quick Tools (Customize Your Shortcuts)</h3>
+              <h3>3.3 Quick Tools (Customize Your Shortcuts)</h3>
               <p>
                 The <strong>Quick Tools</strong> grid gives one-tap access to your
                 most-used features. You can pin up to <strong>8</strong> and
@@ -279,9 +296,8 @@ const HowTo = () => {
               </ol>
               <p>
                 Available shortcuts include: Contacts, Notes, Requests, Messages,
-                Announcements, My QR Code, Favorites, Exhibitors, Sponsors,
-                Speakers, and (for booth staff) Exhibitor Profile and Capture
-                Contact.
+                Announcements, Favorites, Exhibitors, Sponsors, Speakers, and
+                (for booth staff) Exhibitor Profile and Capture Contact.
               </p>
               <Shots
                 items={[
@@ -290,7 +306,7 @@ const HowTo = () => {
                 ]}
               />
 
-              <h3>3.3 Passport Challenge Card</h3>
+              <h3>3.4 Passport Challenge Card</h3>
               <p>
                 A blue <strong>Passport Challenge</strong> card shows your
                 completion percentage and how many exhibitor stamps you&rsquo;ve
@@ -299,13 +315,41 @@ const HowTo = () => {
               </p>
               <Shots items={['Passport Challenge progress card on the Hub.']} />
 
-              <h3>3.4 Notifications Bell</h3>
+              <h3>3.5 Help, Feedback &amp; Notifications</h3>
               <p>
-                Tap the <strong>bell icon</strong> in the top-right of the Hub to
-                open your <a href='#announcements'>Notifications</a>. A red badge
-                shows how many items are unread.
+                The top-right of the Hub has two icons you&rsquo;ll use often:
               </p>
-              <Shots items={['Hub top bar with the notifications bell and badge.']} />
+              <ul>
+                <li>
+                  <strong>Help (?)</strong> — opens a menu with two options:
+                  <ul>
+                    <li><strong>App Guide</strong> — opens this how-to page with instructions for every attendee feature.</li>
+                    <li><strong>Feedback</strong> — send comments, bug reports, or ideas straight to the organizers from inside the app.</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Bell</strong> — open your{' '}
+                  <a href='#announcements'>Notifications</a>. A red badge shows
+                  how many items are unread.
+                </li>
+              </ul>
+
+              <h4>Sending Feedback</h4>
+              <p>
+                From the Help menu, tap <strong>Feedback</strong> to open the
+                feedback form.
+              </p>
+              <ol>
+                <li>Type your message in <strong>Your feedback</strong> (up to 2,000 characters) — what&rsquo;s working, what&rsquo;s confusing, or what you&rsquo;d like improved.</li>
+                <li>Optionally attach up to <strong>6 images</strong> (screenshots help a lot) via the <strong>Add</strong> button.</li>
+                <li>Tap <strong>Submit feedback</strong>.</li>
+              </ol>
+              <Shots
+                items={[
+                  'Help menu with App Guide and Feedback.',
+                  'Feedback form with text box and optional images.',
+                ]}
+              />
             </Section>
 
             <Section id='profile' title='4. Your Profile'>
@@ -342,13 +386,18 @@ const HowTo = () => {
               />
 
               <h3>4.3 Your QR Code</h3>
-              <p>Your personal QR code lets other attendees scan you to open your profile and connect.</p>
+              <p>
+                Your personal QR code lets other attendees scan you to open your
+                profile and connect. The easiest place to find it is right at the
+                top of the <a href='#hub'>Hub</a>, where it&rsquo;s always on
+                display with your name underneath.
+              </p>
               <ul>
-                <li>From <strong>Profile</strong>, tap <strong>Show QR Code</strong>, <strong>or</strong></li>
-                <li>Use the <strong>My QR Code</strong> quick tool on the Hub.</li>
+                <li>Open the <strong>Hub</strong> tab — your QR code is the staple at the top, <strong>or</strong></li>
+                <li>From <strong>Profile</strong>, tap <strong>Show QR Code</strong>.</li>
               </ul>
               <p>Have others point their camera at it (via <strong>Scan Contact</strong>) to view your profile.</p>
-              <Shots items={['Your QR code displayed full-screen.']} />
+              <Shots items={['Your QR code on the Hub (and full-screen from Profile).']} />
 
               <h3>4.4 Settings: Notifications</h3>
               <p>From <strong>Profile → Settings</strong>, control push notifications.</p>
@@ -445,10 +494,13 @@ const HowTo = () => {
               <Shots items={['Favorite star on an attendee profile.']} />
 
               <h3>6.5 Scanning an Attendee&rsquo;s QR Code</h3>
-              <p>In person, you can scan someone&rsquo;s QR code to jump straight to their profile.</p>
+              <p>
+                In person, you can scan someone&rsquo;s QR code (usually shown at
+                the top of their Hub) to jump straight to their profile.
+              </p>
               <ol>
                 <li>From <strong>Profile</strong>, tap <strong>Scan Contact</strong> (or use the Scan tool).</li>
-                <li>Point your camera at the other person&rsquo;s QR code.</li>
+                <li>Point your camera at the other person&rsquo;s QR code on their Hub (or their full-screen QR).</li>
                 <li>Their profile opens so you can send a request.</li>
                 <li>Tap <strong>Scan again</strong> to scan another person.</li>
               </ol>
@@ -621,7 +673,7 @@ const HowTo = () => {
                     <tr><td>📷 / Scan icon</td><td>Open the camera to scan a QR code (attendee, passport, or lead capture).</td></tr>
                     <tr><td>🔔 Bell</td><td>Notifications (red badge = unread items).</td></tr>
                     <tr><td>📝 Note icon</td><td>This session or contact has a note attached.</td></tr>
-                    <tr><td>🏷️ QR code</td><td>Your personal QR code for others to scan.</td></tr>
+                    <tr><td>🏷️ QR code</td><td>Your personal QR code — always shown at the top of the Hub for others to scan.</td></tr>
                   </tbody>
                 </table>
               </div>

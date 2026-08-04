@@ -22,10 +22,11 @@
    - [1.4 Signing Out](#14-signing-out)
 2. [Getting Around the App](#2-getting-around-the-app)
 3. [The Hub (Home)](#3-the-hub-home)
-   - [3.1 Countdown & Live Sessions](#31-countdown--live-sessions)
-   - [3.2 Quick Tools (Customize Your Shortcuts)](#32-quick-tools-customize-your-shortcuts)
-   - [3.3 Passport Challenge Card](#33-passport-challenge-card)
-   - [3.4 Notifications Bell](#34-notifications-bell)
+   - [3.1 Your QR Code (Always on the Hub)](#31-your-qr-code-always-on-the-hub)
+   - [3.2 Countdown & Live Sessions](#32-countdown--live-sessions)
+   - [3.3 Quick Tools (Customize Your Shortcuts)](#33-quick-tools-customize-your-shortcuts)
+   - [3.4 Passport Challenge Card](#34-passport-challenge-card)
+   - [3.5 Help, Feedback & Notifications](#35-help-feedback--notifications)
 4. [Your Profile](#4-your-profile)
    - [4.1 Viewing Your Profile](#41-viewing-your-profile)
    - [4.2 Editing Your Profile](#42-editing-your-profile)
@@ -133,7 +134,7 @@ The app has **five main tabs** along the bottom of the screen:
 
 | Tab | Icon | What it’s for |
 | --- | --- | --- |
-| **Hub** | 🏠 Home | Your personalized home screen: countdown, live sessions, quick shortcuts, passport progress. |
+| **Hub** | 🏠 Home | Your personalized home screen: your QR code, countdown, live sessions, quick shortcuts, and passport progress. |
 | **Agenda** | 📅 Calendar | The full event schedule, organized by day. |
 | **Engage** | 💬 Chat bubbles | Announcements, messages, contact requests, and directories. A **red badge** shows unread activity. |
 | **Community** | 👥 People | The attendee directory — find and connect with other people. |
@@ -148,21 +149,34 @@ The app has **five main tabs** along the bottom of the screen:
 
 ## 3. The Hub (Home)
 
-The **Hub** is your personalized landing screen. It greets you by name and shows your profile photo (or initials) in the top‑left.
+The **Hub** is your personalized landing screen. Your profile photo (or initials) sits in the top‑left, and your name appears under your QR code so others can easily connect with you.
 
 📷 *Screenshot: Full Hub screen.*
 `![Hub](screenshots/08-hub.png)`
 
-### 3.1 Countdown & Live Sessions
+### 3.1 Your QR Code (Always on the Hub)
+
+Your personal **QR code** is a staple at the top of the Hub — always visible so you can share your info and connect with others in person without digging through menus.
+
+- Have someone open **Scan Contact** (or their camera scanner) and point it at your Hub QR code.
+- Your profile opens on their device so they can send a contact request.
+- Your name appears directly under the QR code so people know whose code they’re scanning.
+
+> **Tip:** Flip to the Hub anytime you want to share your info — your QR code is right there at the top.
+
+📷 *Screenshot: Hub header with your QR code and name.*
+`![Hub QR code](screenshots/08b-hub-qr.png)`
+
+### 3.2 Countdown & Live Sessions
 
 - A **countdown timer** ticks down to the event in Greenville (Sept 30 – Oct 2, 2026).
-- When sessions are happening, a **“Live Now”** card appears; otherwise you’ll see **“Coming Up”** with the next session.
+- When sessions are happening, a **LIVE** badge appears next to the timer; otherwise you’ll see **“Coming Up”** with the next session.
 - Tap a session card to open its details. If a session is live and has a stream, a **View Presentation** button appears.
 
 📷 *Screenshot: Countdown strip and the Live Now / Coming Up session card.*
 `![Countdown and session](screenshots/09-hub-session.png)`
 
-### 3.2 Quick Tools (Customize Your Shortcuts)
+### 3.3 Quick Tools (Customize Your Shortcuts)
 
 The **Quick Tools** grid gives one‑tap access to your most‑used features. You can pin up to **8** and arrange them in any order.
 
@@ -172,7 +186,7 @@ The **Quick Tools** grid gives one‑tap access to your most‑used features. Yo
 4. Tap **Reset** to return to the default set.
 5. Close the panel — your choices save automatically.
 
-Available shortcuts include: Contacts, Notes, Requests, Messages, Announcements, My QR Code, Favorites, Exhibitors, Sponsors, Speakers, and (for booth staff) Exhibitor Profile and Capture Contact.
+Available shortcuts include: Contacts, Notes, Requests, Messages, Announcements, Favorites, Exhibitors, Sponsors, Speakers, and (for booth staff) Exhibitor Profile and Capture Contact.
 
 📷 *Screenshot: Quick Tools grid with the Edit link.*
 `![Quick tools](screenshots/10-quick-tools.png)`
@@ -180,19 +194,35 @@ Available shortcuts include: Contacts, Notes, Requests, Messages, Announcements,
 📷 *Screenshot: "Customize quick tools" panel with add/remove and reorder controls.*
 `![Customize quick tools](screenshots/11-customize-tools.png)`
 
-### 3.3 Passport Challenge Card
+### 3.4 Passport Challenge Card
 
 A blue **Passport Challenge** card shows your completion percentage and how many exhibitor stamps you’ve collected. Tap it to open the full [Passport](#9-passport-challenge).
 
 📷 *Screenshot: Passport Challenge progress card on the Hub.*
 `![Passport card](screenshots/12-passport-card.png)`
 
-### 3.4 Notifications Bell
+### 3.5 Help, Feedback & Notifications
 
-Tap the **bell icon** in the top‑right of the Hub to open your [Notifications](#11-announcements--notifications). A red badge shows how many items are unread.
+The top‑right of the Hub has two icons you’ll use often:
 
-📷 *Screenshot: Hub top bar with the notifications bell and badge.*
-`![Notifications bell](screenshots/13-bell.png)`
+- **Help (?)** — opens a menu with two options:
+  - **App Guide** — opens this how-to page with instructions for every attendee feature.
+  - **Feedback** — send comments, bug reports, or ideas straight to the organizers from inside the app.
+- **Bell** — open your [Notifications](#11-announcements--notifications). A red badge shows how many items are unread.
+
+#### Sending Feedback
+
+From the Help menu, tap **Feedback** to open the feedback form.
+
+1. Type your message in **Your feedback** (up to 2,000 characters) — what’s working, what’s confusing, or what you’d like improved.
+2. Optionally attach up to **6 images** (screenshots help a lot) via the **Add** button.
+3. Tap **Submit feedback**.
+
+📷 *Screenshot: Help menu with App Guide and Feedback.*
+`![Help menu](screenshots/13-help-menu.png)`
+
+📷 *Screenshot: Feedback form with text box and optional images.*
+`![Feedback](screenshots/13b-feedback.png)`
 
 ---
 
@@ -230,14 +260,14 @@ You can update your details directly on the Profile screen and in the Edit view.
 
 ### 4.3 Your QR Code
 
-Your personal QR code lets other attendees scan you to open your profile and connect.
+Your personal QR code lets other attendees scan you to open your profile and connect. The easiest place to find it is right at the top of the [Hub](#3-the-hub-home), where it’s always on display with your name underneath.
 
-- From **Profile**, tap **Show QR Code**, **or**
-- Use the **My QR Code** quick tool on the Hub.
+- Open the **Hub** tab — your QR code is the staple at the top, **or**
+- From **Profile**, tap **Show QR Code**.
 
 Have others point their camera at it (via **Scan Contact**) to view your profile.
 
-📷 *Screenshot: Your QR code displayed full‑screen.*
+📷 *Screenshot: Your QR code on the Hub (and full-screen from Profile).*
 `![My QR code](screenshots/17-qr.png)`
 
 ### 4.4 Settings: Notifications
@@ -364,10 +394,10 @@ Tap the **star icon** on a person’s profile (or in the directory) to favorite 
 
 ### 6.5 Scanning an Attendee’s QR Code
 
-In person, you can scan someone’s QR code to jump straight to their profile.
+In person, you can scan someone’s QR code (usually shown at the top of their Hub) to jump straight to their profile.
 
 1. From **Profile**, tap **Scan Contact** (or use the Scan tool).
-2. Point your camera at the other person’s QR code.
+2. Point your camera at the other person’s QR code on their Hub (or their full-screen QR).
 3. Their profile opens so you can send a request.
 4. Tap **Scan again** to scan another person.
 
@@ -580,7 +610,7 @@ If your registration is tied to an exhibiting company, two extra tools become av
 | 📷 / Scan icon | Open the camera to scan a QR code (attendee, passport, or lead capture). |
 | 🔔 Bell | Notifications (red badge = unread items). |
 | 📝 Note icon | This session or contact has a note attached. |
-| 🏷️ QR code | Your personal QR code for others to scan. |
+| 🏷️ QR code | Your personal QR code — always shown at the top of the Hub for others to scan. |
 
 ---
 
