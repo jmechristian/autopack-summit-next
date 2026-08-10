@@ -21,19 +21,24 @@ const sections = [
   { id: 'glossary', title: '15. Icon Glossary' },
 ];
 
-// A single portrait phone-shaped screenshot placeholder. Drop the real image in
-// later by replacing the inner div with an <img> at the same size, e.g.
-// <img className='aspect-[9/19.5] w-full rounded-3xl object-cover' src="/screenshots/..." />.
-const Shot = ({ caption }) => (
+// Amplify Storage public folder for app-guide screenshots.
+const SHOTS_BASE =
+  'https://autopacksummitapp94b14feadba64f23aff0ed8deae77b99bc6-dev.s3.amazonaws.com/public/screenshots';
+
+const shot = (file, caption) => ({
+  src: `${SHOTS_BASE}/${encodeURIComponent(file)}`,
+  caption,
+});
+
+// Portrait phone screenshot. Pass { src, caption } from the shot() helper.
+const Shot = ({ src, caption }) => (
   <figure className='m-0 flex w-full max-w-[240px] flex-col'>
-    <div className='flex aspect-[9/19.5] w-full items-center justify-center rounded-3xl border-2 border-dashed border-gray-300 bg-gray-50 text-center'>
-      <div>
-        <div className='mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-ap-blue/10 text-xl'>
-          📷
-        </div>
-        <p className='text-sm font-medium text-gray-500'>Mobile screenshot</p>
-      </div>
-    </div>
+    <img
+      src={src}
+      alt={caption || 'App screenshot'}
+      className='aspect-[9/19.5] w-full rounded-3xl border border-gray-200 object-cover object-top shadow-sm'
+      loading='lazy'
+    />
     {caption && (
       <figcaption className='mt-3 text-center text-sm italic text-gray-500'>
         {caption}
@@ -42,15 +47,17 @@ const Shot = ({ caption }) => (
   </figure>
 );
 
-// Lays one or more screenshots out in a horizontal row that wraps to the next
-// line on narrower screens instead of stacking vertically.
-const Shots = ({ items }) => (
-  <div className='my-8 flex flex-wrap justify-center gap-6'>
-    {items.map((caption, i) => (
-      <Shot key={i} caption={caption} />
-    ))}
-  </div>
-);
+// Lays screenshots out in a horizontal row that wraps on narrower screens.
+const Shots = ({ items }) => {
+  if (!items?.length) return null;
+  return (
+    <div className='my-8 flex flex-wrap justify-center gap-6'>
+      {items.map((item, i) => (
+        <Shot key={item.src || i} src={item.src} caption={item.caption} />
+      ))}
+    </div>
+  );
+};
 
 const Section = ({ id, title, children }) => (
   <section id={id} className='scroll-mt-28 border-t border-gray-100 pt-12'>
@@ -169,12 +176,7 @@ const HowTo = () => {
                 <li>When prompted, enter a <strong>new password</strong>, then <strong>confirm it</strong>.</li>
                 <li>Tap <strong>Update Password</strong>. You&rsquo;ll be taken straight into the app.</li>
               </ol>
-              <Shots
-                items={[
-                  'Sign-in screen with email and password fields.',
-                  '“Set a new password” screen shown on first login.',
-                ]}
-              />
+              <Shots items={[shot('signin.png', 'Sign-in screen with email and password fields.')]} />
 
               <h3>1.2 Signing In</h3>
               <ol>
@@ -189,7 +191,6 @@ const HowTo = () => {
                 <em>&ldquo;No account found&hellip; please contact your
                 administrator.&rdquo;</em>
               </p>
-              <Shots items={['Sign-in screen with the show/hide password (eye) icon highlighted.']} />
 
               <h3>1.3 Forgot / Reset Password</h3>
               <p>
@@ -209,19 +210,14 @@ const HowTo = () => {
                 <li><strong>Use a different email</strong> — start over with another address.</li>
                 <li><strong>Back to sign in</strong> — return without resetting.</li>
               </ul>
-              <Shots
-                items={[
-                  'Forgot Password — email entry step.',
-                  'Reset Password — code + new password step.',
-                ]}
-              />
+              <Shots items={[shot('forgotpassword.png', 'Forgot Password — email entry step.')]} />
 
               <h3>1.4 Signing Out</h3>
               <ol>
                 <li>Go to the <strong>Profile</strong> tab.</li>
                 <li>Scroll to the bottom and tap <strong>Logout</strong>.</li>
               </ol>
-              <Shots items={['Profile screen with the Logout button at the bottom.']} />
+              <Shots items={[shot('logout.png', 'Profile screen with the Logout button at the bottom.')]} />
             </Section>
 
             <Section id='getting-around' title='2. Getting Around the App'>
@@ -244,7 +240,6 @@ const HowTo = () => {
                   </tbody>
                 </table>
               </div>
-              <Shots items={['The five bottom tabs, with the Engage badge visible.']} />
               <Tip>Tapping a tab you&rsquo;re already on returns you to the top of that section.</Tip>
             </Section>
 
@@ -254,7 +249,7 @@ const HowTo = () => {
                 profile photo (or initials) sits in the top-left, and your name
                 appears under your QR code so others can easily connect with you.
               </p>
-              <Shots items={['Full Hub screen.']} />
+              <Shots items={[shot('hub.png', 'Full Hub screen.')]} />
 
               <h3>3.1 Your QR Code (Always on the Hub)</h3>
               <p>
@@ -271,7 +266,7 @@ const HowTo = () => {
                 Flip to the Hub anytime you want to share your info — your QR
                 code is right there at the top.
               </Tip>
-              <Shots items={['Hub header with your QR code and name.']} />
+              <Shots items={[shot('qrcode.png', 'Hub header with your QR code and name.')]} />
 
               <h3>3.2 Countdown &amp; Live Sessions</h3>
               <ul>
@@ -279,7 +274,6 @@ const HowTo = () => {
                 <li>When sessions are happening, a <strong>LIVE</strong> badge appears next to the timer; otherwise you&rsquo;ll see <strong>&ldquo;Coming Up&rdquo;</strong> with the next session.</li>
                 <li>Tap a session card to open its details. If a session is live and has a stream, a <strong>View Presentation</strong> button appears.</li>
               </ul>
-              <Shots items={['Countdown strip and the Live Now / Coming Up session card.']} />
 
               <h3>3.3 Quick Tools (Customize Your Shortcuts)</h3>
               <p>
@@ -301,8 +295,8 @@ const HowTo = () => {
               </p>
               <Shots
                 items={[
-                  'Quick Tools grid with the Edit link.',
-                  '“Customize quick tools” panel with add/remove and reorder controls.',
+                  shot('quick tools.png', 'Quick Tools grid with the Edit link.'),
+                  shot('quick tools edit.png', 'Customize quick tools panel with add/remove and reorder controls.'),
                 ]}
               />
 
@@ -313,7 +307,6 @@ const HowTo = () => {
                 collected. Tap it to open the full{' '}
                 <a href='#passport'>Passport</a>.
               </p>
-              <Shots items={['Passport Challenge progress card on the Hub.']} />
 
               <h3>3.5 Help, Feedback &amp; Notifications</h3>
               <p>
@@ -344,12 +337,7 @@ const HowTo = () => {
                 <li>Optionally attach up to <strong>6 images</strong> (screenshots help a lot) via the <strong>Add</strong> button.</li>
                 <li>Tap <strong>Submit feedback</strong>.</li>
               </ol>
-              <Shots
-                items={[
-                  'Help menu with App Guide and Feedback.',
-                  'Feedback form with text box and optional images.',
-                ]}
-              />
+              <Shots items={[shot('feedback.png', 'Feedback form with text box and optional images.')]} />
             </Section>
 
             <Section id='profile' title='4. Your Profile'>
@@ -365,7 +353,7 @@ const HowTo = () => {
                 <strong>Contacts</strong>, <strong>Notes</strong>,{' '}
                 <strong>Favorites</strong>, and <strong>Settings</strong>.
               </p>
-              <Shots items={['Profile overview with the action tiles.']} />
+              <Shots items={[shot('Profile.png', 'Profile overview with the action tiles.')]} />
 
               <h3>4.2 Editing Your Profile</h3>
               <p>You can update your details directly on the Profile screen and in the Edit view.</p>
@@ -380,8 +368,8 @@ const HowTo = () => {
               <p><strong>Resume</strong> — Tap <strong>Edit</strong> in the Resume section and choose a <strong>PDF (max 10MB)</strong>. Once uploaded, tap <strong>View uploaded resume</strong> to open it.</p>
               <Shots
                 items={[
-                  'Editing the Bio field inline.',
-                  'Photo source chooser (Take Photo / Choose from Library).',
+                  shot('editingbio.png', 'Editing the Bio field inline.'),
+                  shot('updating profilepic.png', 'Updating your profile photo.'),
                 ]}
               />
 
@@ -397,7 +385,6 @@ const HowTo = () => {
                 <li>From <strong>Profile</strong>, tap <strong>Show QR Code</strong>.</li>
               </ul>
               <p>Have others point their camera at it (via <strong>Scan Contact</strong>) to view your profile.</p>
-              <Shots items={['Your QR code on the Hub (and full-screen from Profile).']} />
 
               <h3>4.4 Settings: Notifications</h3>
               <p>From <strong>Profile → Settings</strong>, control push notifications.</p>
@@ -406,7 +393,7 @@ const HowTo = () => {
                 <li>Notifications include <strong>announcements, messages, and contact requests</strong>.</li>
                 <li>If notifications were previously denied, the app shows an <strong>Open Settings</strong> button that takes you to your device settings to re-enable them.</li>
               </ul>
-              <Shots items={['Settings screen showing the notifications toggle.']} />
+              <Shots items={[shot('settings.png', 'Settings screen showing the notifications toggle.')]} />
 
               <h3>4.5 Settings: Delete Account</h3>
               <p>At the bottom of <strong>Settings</strong> is a <strong>Danger Zone</strong>.</p>
@@ -414,7 +401,6 @@ const HowTo = () => {
                 <li>Tapping <strong>Delete Account</strong> permanently removes your login, app profile, favorites, notes, contacts, and notification tokens. (Your event registration record is kept on file.)</li>
                 <li>You&rsquo;ll be asked to confirm twice because this <strong>cannot be undone</strong>.</li>
               </ul>
-              <Shots items={['Danger Zone with the Delete Account button.']} />
             </Section>
 
             <Section id='agenda' title='5. Agenda & Sessions'>
@@ -426,15 +412,15 @@ const HowTo = () => {
                 <li>Each card shows the time, title, location, description, and speakers/sponsors. A <strong>LIVE</strong> badge appears on sessions happening now.</li>
                 <li>Pull down to refresh.</li>
               </ul>
-              <Shots items={['Agenda list with day selector and search.']} />
+              <Shots items={[shot('agenda.png', 'Agenda list with day selector and search.')]} />
 
               <h3>5.2 Session Details</h3>
               <p>Tap any session to open its full details: time, title, location, full description, speakers, and sponsors.</p>
-              <Shots items={['Session detail screen.']} />
+              <Shots items={[shot('sessiondetails.png', 'Session detail screen.')]} />
 
               <h3>5.3 Favoriting a Session</h3>
               <p>Tap the <strong>star icon</strong> on a session card or on the session detail screen to add it to your <a href='#favorites'>Favorites</a>. Tap again to remove it.</p>
-              <Shots items={['Session card with the favorite star highlighted.']} />
+              <Shots items={[shot('favoritesession.png', 'Session card with the favorite star highlighted.')]} />
 
               <h3>5.4 Session Notes</h3>
               <p>On the session detail screen, scroll to <strong>Notes</strong> to jot down private notes for that session.</p>
@@ -443,11 +429,10 @@ const HowTo = () => {
                 <li><strong>Edit</strong> or <strong>Delete</strong> existing notes anytime.</li>
                 <li>Your notes are private to you. (See all notes in one place under <a href='#notes'>Notes</a>.)</li>
               </ul>
-              <Shots items={['Notes section on a session detail screen.']} />
+              <Shots items={[shot('sessionnotes.png', 'Notes section on a session detail screen.')]} />
 
               <h3>5.5 Watching a Live Presentation</h3>
               <p>When a session is <strong>live</strong> and has a stream attached, a <strong>View Presentation</strong> button appears on the Hub card and the session detail screen. Tap it to watch the presentation inside the app.</p>
-              <Shots items={['“View Presentation” button on a live session.']} />
             </Section>
 
             <Section id='community' title='6. Community & Networking'>
@@ -465,11 +450,11 @@ const HowTo = () => {
                 <li>Pull down to refresh.</li>
                 <li>Each row shows an icon indicating favorite status and whether a request is pending.</li>
               </ul>
-              <Shots items={['Community directory list with search.']} />
+              <Shots items={[shot('community.png', 'Community directory list with search.')]} />
 
               <h3>6.2 Viewing Someone&rsquo;s Profile</h3>
               <p>Tap any person to open their profile — bio, experience, education, and interests. Their <strong>email is hidden</strong> until you&rsquo;re connected (your request is accepted).</p>
-              <Shots items={['Another attendee’s profile.']} />
+              <Shots items={[shot('otherprofile.png', 'Another attendee’s profile.')]} />
 
               <h3>6.3 Sending a Contact Request</h3>
               <p>To connect with someone:</p>
@@ -483,15 +468,15 @@ const HowTo = () => {
               <Tip>This is the &ldquo;chat approval.&rdquo; You can&rsquo;t message someone until they accept your contact request.</Tip>
               <Shots
                 items={[
-                  'Profile with the “Send Request” tile.',
-                  'Intro message pop-up.',
-                  'Tile showing “Pending” after sending.',
+                  shot('sendrequest.png', 'Profile with the “Send Request” tile.'),
+                  shot('intromessage.png', 'Intro message pop-up.'),
+                  shot('requestpending.png', 'Tile showing “Pending” after sending.'),
                 ]}
               />
 
               <h3>6.4 Favoriting a Person</h3>
               <p>Tap the <strong>star icon</strong> on a person&rsquo;s profile (or in the directory) to favorite them for quick access later. Find them again under <a href='#favorites'>Favorites</a>.</p>
-              <Shots items={['Favorite star on an attendee profile.']} />
+              <Shots items={[shot('favoriteperson.png', 'Favorite star on an attendee profile.')]} />
 
               <h3>6.5 Scanning an Attendee&rsquo;s QR Code</h3>
               <p>
@@ -504,20 +489,19 @@ const HowTo = () => {
                 <li>Their profile opens so you can send a request.</li>
                 <li>Tap <strong>Scan again</strong> to scan another person.</li>
               </ol>
-              <Shots items={['QR scanner with on-screen guidance.']} />
 
               <h3>6.6 Saving a Contact to Your Phone</h3>
               <p><strong>Once a request is accepted</strong>, the <strong>Add to phone contacts</strong> tile unlocks on that person&rsquo;s profile. Tap it (allow Contacts access if asked) to save their name, company, title, email, phone, and website to your phone&rsquo;s address book.</p>
-              <Shots items={['“Add to phone contacts” tile after acceptance.']} />
+              <Shots items={[shot('savecontact.png', '“Add to phone contacts” tile after acceptance.')]} />
 
               <h3>6.7 Contact Notes</h3>
               <p>At the bottom of any person&rsquo;s profile is a <strong>Notes</strong> section where you can keep private notes about that person (e.g., where you met, follow-ups). Add, edit, and delete notes just like session notes.</p>
-              <Shots items={['Notes section on a contact’s profile.']} />
+              <Shots items={[shot('contactnote.png', 'Notes section on a contact’s profile.')]} />
             </Section>
 
             <Section id='requests' title='7. Requests & Chat Approvals'>
               <p>Manage all your connections from <strong>Engage → Requests</strong> (also on the Hub as the <strong>Requests</strong> quick tool). There are three tabs.</p>
-              <Shots items={['Requests screen with the Received / Sent / Accepted tabs.']} />
+              <Shots items={[shot('requestsent.png', 'Requests screen with the Received / Sent / Accepted tabs.')]} />
 
               <h3>7.1 Received Requests (Approve or Decline)</h3>
               <p>The <strong>Received</strong> tab lists people who want to connect with you, including their intro message.</p>
@@ -525,11 +509,11 @@ const HowTo = () => {
                 <li>Tap <strong>Accept</strong> to approve — this instantly opens a chat with them.</li>
                 <li>Tap <strong>Decline</strong> to dismiss the request.</li>
               </ul>
-              <Shots items={['A received request with Accept / Decline buttons.']} />
+              <Shots items={[shot('receivedrequest.png', 'A received request with Accept / Decline buttons.')]} />
 
               <h3>7.2 Sent Requests</h3>
               <p>The <strong>Sent</strong> tab shows requests you&rsquo;ve sent that are still pending. Tap <strong>Cancel request</strong> to withdraw one (you&rsquo;ll be asked to confirm).</p>
-              <Shots items={['Sent request with the Cancel option.']} />
+              <Shots items={[shot('sentrequest.png', 'Sent request with the Cancel option.')]} />
 
               <h3>7.3 Accepted Connections</h3>
               <p>The <strong>Accepted</strong> tab lists everyone you&rsquo;re now connected with. For each, you can:</p>
@@ -537,7 +521,7 @@ const HowTo = () => {
                 <li>Tap the <strong>person icon</strong> to open their profile.</li>
                 <li>Tap the <strong>chat icon</strong> to open your conversation.</li>
               </ul>
-              <Shots items={['Accepted connections list.']} />
+              <Shots items={[shot('acceptedrequests.png', 'Accepted connections list.')]} />
             </Section>
 
             <Section id='messaging' title='8. Messaging'>
@@ -545,7 +529,7 @@ const HowTo = () => {
 
               <h3>8.1 Messages Inbox</h3>
               <p>Open <strong>Engage → Messages</strong> (or the <strong>Messages</strong> quick tool) to see all your conversations. Unread conversations are indicated with a badge.</p>
-              <Shots items={['Messages inbox list.']} />
+              <Shots items={[shot('messages.png', 'Messages inbox list.')]} />
 
               <h3>8.2 Chatting in a Conversation</h3>
               <p>Tap a conversation to open it.</p>
@@ -554,7 +538,7 @@ const HowTo = () => {
                 <li>Your messages appear on the right; theirs on the left.</li>
                 <li>Messages update in real time, and a <strong>&ldquo;Sending&hellip;&rdquo;</strong> label shows briefly while a message is delivered.</li>
               </ul>
-              <Shots items={['A one-on-one chat thread.']} />
+              <Shots items={[shot('chat.png', 'A one-on-one chat thread.')]} />
             </Section>
 
             <Section id='passport' title='9. Passport Challenge'>
@@ -567,7 +551,7 @@ const HowTo = () => {
                 <li>Below is the <strong>list of exhibitors</strong>, each marked <strong>collected</strong> (green check) or <strong>not yet</strong> (red).</li>
                 <li>Pull down to refresh.</li>
               </ul>
-              <Shots items={['Passport screen with progress and exhibitor list.']} />
+              <Shots items={[shot('passport.png', 'Passport screen with progress and exhibitor list.')]} />
 
               <h3>9.2 Collecting Stamps by Scanning</h3>
               <ol>
@@ -576,12 +560,6 @@ const HowTo = () => {
                 <li>Point your camera at the exhibitor&rsquo;s <strong>passport QR code</strong>.</li>
                 <li>A success screen confirms the stamp was added. Already-collected booths are recognized automatically.</li>
               </ol>
-              <Shots
-                items={[
-                  'Passport QR scanner.',
-                  '“Stamp collected” success screen.',
-                ]}
-              />
             </Section>
 
             <Section id='directories' title='10. Exhibitors, Sponsors & Speakers'>
@@ -592,7 +570,10 @@ const HowTo = () => {
                 <li>Tap the <strong>star</strong> to add exhibitors, sponsors, or speakers to your <a href='#favorites'>Favorites</a>.</li>
               </ul>
               <Shots
-                items={['Exhibitors directory.', 'A speaker profile.']}
+                items={[
+                  shot('exhibitors.png', 'Exhibitors directory.'),
+                  shot('speakerprofile.png', 'A speaker profile.'),
+                ]}
               />
             </Section>
 
@@ -609,9 +590,7 @@ const HowTo = () => {
                 <li><strong>Contact request</strong> activity (received and accepted)</li>
               </ul>
               <p>Tap any notification to jump straight to the relevant screen.</p>
-              <Shots
-                items={['Announcements list.', 'Notifications center feed.']}
-              />
+              <Shots items={[shot('notifications.png', 'Notifications center feed.')]} />
             </Section>
 
             <Section id='favorites' title='12. Favorites'>
@@ -630,7 +609,7 @@ const HowTo = () => {
                 <li>Use <strong>Add</strong> on a category header to jump to that directory and favorite more.</li>
                 <li><strong>Search</strong> to filter across all favorites.</li>
               </ul>
-              <Shots items={['Favorites grouped by category.']} />
+              <Shots items={[shot('favorites.png', 'Favorites grouped by category.')]} />
             </Section>
 
             <Section id='notes' title='13. Notes'>
@@ -641,7 +620,6 @@ const HowTo = () => {
                 <li>Tap a note to jump to the session or person it belongs to.</li>
               </ul>
               <p>Notes are always private to you. You create and edit them from within a session or a person&rsquo;s profile (see <a href='#agenda'>5.4</a> and <a href='#community'>6.7</a>).</p>
-              <Shots items={['Notes screen with Sessions / Contacts tabs.']} />
             </Section>
 
             <Section id='exhibitor-tools' title='14. Exhibitor Tools (Booth Staff Only)'>
@@ -650,12 +628,6 @@ const HowTo = () => {
                 <li><strong>Exhibitor Profile</strong> — opens your company&rsquo;s booth profile so you can review/complete it. If none exists yet, ask an admin to create it.</li>
                 <li><strong>Capture Contact</strong> — a lead-capture scanner. Point your camera at an attendee&rsquo;s QR code to quickly pull up and capture their contact details at your booth.</li>
               </ul>
-              <Shots
-                items={[
-                  'Hub with the Exhibitor Profile and Capture Contact tools.',
-                  'Capture Contact scanner.',
-                ]}
-              />
             </Section>
 
             <Section id='glossary' title='15. Quick Reference: Icon Glossary'>
