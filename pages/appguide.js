@@ -97,7 +97,7 @@ const HowTo = () => {
 
       {/* Hero */}
       <div className='bg-ap-darkblue'>
-        <div className='mx-auto max-w-5xl px-6 py-16 lg:px-8'>
+        <div className='mx-auto max-w-7xl px-6 py-16 lg:px-8'>
           <p className='text-sm font-semibold uppercase tracking-widest text-ap-yellow'>
             Attendee How-To Guide
           </p>
@@ -108,6 +108,50 @@ const HowTo = () => {
             A complete, ordered walkthrough of every attendee-facing feature —
             from your first sign in to collecting passport stamps at the booth.
           </p>
+        </div>
+      </div>
+
+      {/* Download callout — app is invite-only, so share these direct links */}
+      <div className='border-b border-ap-yellow/30 bg-ap-yellow/10'>
+        <div className='mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-8 sm:flex-row sm:justify-between lg:px-8'>
+          <div className='text-center sm:text-left'>
+            <p className='text-lg font-bold text-ap-darkblue'>
+              Download the official event app
+            </p>
+            <p className='mt-1 max-w-xl text-sm text-gray-700'>
+              This app is for registered attendees and is not listed for public
+              search — use the links below to install it on your device, then
+              sign in with the credentials from your registration.
+            </p>
+          </div>
+          <div className='flex shrink-0 flex-wrap items-center justify-center gap-3'>
+            <a
+              href='https://apps.apple.com/us/app/automotive-packaging-summit/id6761734425'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-block transition-opacity hover:opacity-90'
+              aria-label='Download on the App Store'
+            >
+              <img
+                src='https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83'
+                alt='Download on the App Store'
+                className='h-12 w-auto'
+              />
+            </a>
+            <a
+              href='https://play.google.com/store/apps/details?id=com.packagingschool.autopacksummit'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-block transition-opacity hover:opacity-90'
+              aria-label='Get it on Google Play'
+            >
+              <img
+                src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+                alt='Get it on Google Play'
+                className='h-[72px] w-auto'
+              />
+            </a>
+          </div>
         </div>
       </div>
 
