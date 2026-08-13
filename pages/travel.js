@@ -110,13 +110,17 @@ const Travel = () => {
                 <div className='border-t border-t-neutral-500'>
                   <div className='flex flex-col gap-4 pt-6 text-lg leading-snug'>
                     <div className='flex gap-2 items-center'>
-                      {/* <div className='w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center'>
-                        <div className='-mt-1'>
-                          <MdDiversity3 color='white' size={'24px'} />
-                        </div>
-                      </div> */}
                       <div className='font-oswald uppercase font-medium '>
                         Rooms are limited, book today!
+                      </div>
+                    </div>
+                    <div className='text-base leading-snug'>
+                      <div>
+                        <span className='font-bold'>Group code:</span> G-APSM
+                      </div>
+                      <div>
+                        <span className='font-bold'>Room block cut-off:</span>{' '}
+                        September 8th, 2026
                       </div>
                     </div>
                     <button
@@ -232,6 +236,25 @@ const Travel = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className='w-full rounded-2xl mb-20 border-2 border-black bg-white p-6 shadow-[4px_6px_0_black] sm:p-8'>
+            <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
+              <div>
+                <div className='font-oswald text-2xl font-medium uppercase tracking-tight text-neutral-900'>
+                  Questions before registering?
+                </div>
+                <p className='mt-1 text-neutral-700'>
+                  For general inquiries or questions, email Bianca.
+                </p>
+              </div>
+              <a
+                href='mailto:bianca@packagingschool.com'
+                className='inline-flex w-fit items-center gap-2 rounded-xl bg-ap-darkblue px-5 py-3 font-bold text-white transition-opacity hover:opacity-90'
+              >
+                <MdEmail size={22} />
+                bianca@packagingschool.com
+              </a>
             </div>
           </div>
         </div>

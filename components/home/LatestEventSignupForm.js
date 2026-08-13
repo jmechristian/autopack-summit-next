@@ -5,8 +5,33 @@ import { sendCodeRequest } from '../../util/api';
 
 const TICKET_PRICE = 1600;
 const CODE_REQUEST_COOLDOWN_MS = 60 * 1000;
+const EVENT_START = new Date(2026, 8, 30, 0, 0, 0); // Sep 30, 2026
+
+const getCountdown = (target) => {
+  const diff = Math.max(0, target.getTime() - Date.now());
+  const totalSeconds = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+    done: diff === 0,
+  };
+};
+
+const CountdownUnit = ({ value, label }) => (
+  <div className='flex min-w-[3.25rem] flex-1 flex-col items-center rounded-lg bg-neutral-900 px-1.5 py-2 text-white'>
+    <span className='font-oswald text-xl font-semibold tabular-nums leading-none tracking-tight sm:text-2xl'>
+      {String(value).padStart(2, '0')}
+    </span>
+    <span className='mt-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-400'>
+      {label}
+    </span>
+  </div>
+);
 
 const LatestEventSignupForm = () => {
+  const [countdown, setCountdown] = useState(() => getCountdown(EVENT_START));
   const [codeModalOpen, setCodeModalOpen] = useState(false);
   const [codeForm, setCodeForm] = useState({
     email: '',
@@ -18,6 +43,13 @@ const LatestEventSignupForm = () => {
   const [codeError, setCodeError] = useState('');
   const [codeCooldownUntil, setCodeCooldownUntil] = useState(0);
   const [, setCooldownTick] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCountdown(getCountdown(EVENT_START));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (!codeCooldownUntil || Date.now() >= codeCooldownUntil) return;
@@ -121,6 +153,20 @@ const LatestEventSignupForm = () => {
           Register Now
         </button>
       </a>
+
+      {!countdown.done && (
+        <div className='mt-3'>
+          <p className='mb-2 text-center text-xs font-semibold uppercase tracking-wide text-ap-red'>
+            Summit starts in
+          </p>
+          <div className='flex gap-2'>
+            <CountdownUnit value={countdown.days} label='Days' />
+            <CountdownUnit value={countdown.hours} label='Hrs' />
+            <CountdownUnit value={countdown.minutes} label='Min' />
+            <CountdownUnit value={countdown.seconds} label='Sec' />
+          </div>
+        </div>
+      )}
 
       <div className='mt-6 border-t border-neutral-300 pt-4'>
         <button
