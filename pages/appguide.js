@@ -120,8 +120,9 @@ const HowTo = () => {
             </p>
             <p className='mt-1 max-w-xl text-sm text-gray-700'>
               This app is for registered attendees and is not listed for public
-              search — use the links below to install it on your device, then
-              sign in with the credentials from your registration.
+              search — use the links below to install it on your device or open
+              the web app, then sign in with the credentials from your
+              registration.
             </p>
           </div>
           <div className='flex shrink-0 flex-wrap items-center justify-center gap-3'>
@@ -150,6 +151,14 @@ const HowTo = () => {
                 alt='Get it on Google Play'
                 className='h-[72px] w-auto'
               />
+            </a>
+            <a
+              href='https://autopacksummit.expo.app/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex h-12 items-center justify-center rounded-lg bg-black px-4 text-sm font-semibold text-white transition-opacity hover:opacity-90'
+            >
+              Open Web App
             </a>
           </div>
         </div>

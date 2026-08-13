@@ -20,6 +20,10 @@ export const navMenu = [
     link: '/travel',
   },
   {
+    name: 'FAQ',
+    link: '/faq',
+  },
+  {
     name: '2025 Media',
     link: 'https://www.packagingschool.com/events/aps-2025',
   },
