@@ -27,6 +27,7 @@ import NewSponsorsMain from '../components/home/NewSponsorsMain';
 import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
 import LatestEventSignupForm from '../components/home/LatestEventSignupForm';
+import VideoTestimonials from '../components/home/VideoTestimonials';
 
 const Page = ({ speakers, sponsors }) => {
   const dispatch = useDispatch();
@@ -231,6 +232,7 @@ const Page = ({ speakers, sponsors }) => {
       {/* <ScrollingTestimonials
         testimonials={testimonials.listTestimonials.items}
       /> */}
+      <VideoTestimonials />
       <div className='max-w-7xl mx-auto w-full'>
         <NewSpeakersMain speakers={speakers} />
       </div>
