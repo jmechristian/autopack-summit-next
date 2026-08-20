@@ -109,38 +109,17 @@ const Travel = () => {
                 </div>
                 <div className='border-t border-t-neutral-500'>
                   <div className='flex flex-col gap-4 pt-6 text-lg leading-snug'>
-                    <div className='flex gap-2 items-center'>
-                      <div className='font-oswald uppercase font-medium '>
-                        Rooms are limited, book today!
-                      </div>
+                    <div className='font-oswald uppercase font-medium'>
+                      Room block at capacity
                     </div>
-                    <div className='text-base leading-snug'>
-                      <div>
-                        <span className='font-bold'>Group code:</span> G-APSM
-                      </div>
-                      <div>
-                        <span className='font-bold'>Room block cut-off:</span>{' '}
-                        September 8th, 2026
-                      </div>
-                    </div>
-                    <button
-                      className='bg-neutral-900 w-fit text-white text-base md:text-xl font-medium px-8 py-2 shadow-[4px_4px_0_white] hover:shadow-[1px_1px_0_white] hover:translate-x-[3px] hover:translate-y-[3px] transition-all'
-                      animate={{ opacity: 1 }}
-                      initial={{ opacity: 0 }}
-                      transition={{
-                        delay: 0.45,
-                        ease: 'easeIn',
-                        duration: 0.5,
-                      }}
-                      onClick={() =>
-                        window.open(
-                          'https://www.hyatt.com/events/en-US/group-booking/GSPRG/G-APSM',
-                          '_blank'
-                        )
-                      }
-                    >
-                      Book My Stay
-                    </button>
+                    <p className='text-base leading-snug'>
+                      Due to strong attendee response, the official AutoPack
+                      Summit 2026 discounted room block has reached capacity. If
+                      you still need accommodations, please contact the hotel
+                      directly to ask about availability outside the group block
+                      or explore nearby hotels. We will share any additional room
+                      availability here as it becomes available.
+                    </p>
                   </div>
                 </div>
               </div>
