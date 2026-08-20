@@ -1,31 +1,56 @@
 import React, { useState } from 'react';
 import {
-  MdDiversity3,
   MdPlayArrow,
-  MdPlayCircleFilled,
-  MdCelebration,
-  MdMapsUgc,
   MdLocationPin,
   MdPhone,
-  MdHandshake,
-  MdModelTraining,
   MdEmail,
   MdAirplanemodeActive,
   MdAirplaneTicket,
   MdLocalParking,
+  MdDirectionsWalk,
 } from 'react-icons/md';
-import { GiMuscleUp } from 'react-icons/gi';
-import { openSponsorForm } from '../features/layout/layoutSlice';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import { PowerIcon, ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
-import Callout from '../shared/Callout';
+import {
+  ArrowLeftCircleIcon,
+  ArrowTopRightOnSquareIcon,
+} from '@heroicons/react/24/solid';
 import Head from 'next/head';
 import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
+
+const nearbyHotels = [
+  {
+    name: 'Home2 Suites by Hilton Greenville Downtown',
+    walk: '2–5 min walk',
+    url: 'https://www.hilton.com/en/hotels/gspdoht-home2-suites-greenville-downtown/',
+  },
+  {
+    name: 'Holiday Inn Express & Suites Greenville–Downtown',
+    walk: '5–7 min walk',
+    url: 'https://www.ihg.com/holidayinnexpress/hotels/us/en/greenville/gspdt/hoteldetail',
+  },
+  {
+    name: 'Aloft Greenville Downtown',
+    walk: '6–8 min walk',
+    url: 'https://www.marriott.com/en-us/hotels/gspal-aloft-greenville-downtown/overview/',
+  },
+  {
+    name: 'SpringHill Suites Greenville Downtown',
+    walk: '7–9 min walk',
+    url: 'https://www.marriott.com/en-us/hotels/gspgs-springhill-suites-greenville-downtown/overview/',
+  },
+  {
+    name: 'Residence Inn Greenville Downtown',
+    walk: '7–9 min walk',
+    url: 'https://www.marriott.com/en-us/hotels/gspgr-residence-inn-greenville-downtown/overview/',
+  },
+  {
+    name: 'The Westin Poinsett, Greenville',
+    walk: '10–12 min walk',
+    url: 'https://www.marriott.com/en-us/hotels/gspwi-the-westin-poinsett-greenville/overview/',
+  },
+];
+
 const Travel = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,7 +101,7 @@ const Travel = () => {
               need to make the most of your stay in Greenville.
             </div>
           </div>
-          <div className='w-full grid lg:grid-cols-2 gap-6 max-w-7xl mx-auto pb-20 overflow-hidden'>
+          <div className='w-full grid lg:grid-cols-2 gap-6 max-w-7xl mx-auto overflow-hidden'>
             <div className='w-full rounded-2xl bg-amber-400 border-2 border-black shadow-[4px_6px_0_black]'>
               <div className='px-6 py-9 lg:px-9 flex-1 h-full flex flex-col gap-12 justify-between'>
                 <div className='flex flex-col gap-6 h-full'>
@@ -217,7 +242,45 @@ const Travel = () => {
               </div>
             </div>
           </div>
-          <div className='w-full rounded-2xl mb-20 border-2 border-black bg-white p-6 shadow-[4px_6px_0_black] sm:p-8'>
+
+          <div className='mt-10 mb-10 w-full max-w-7xl mx-auto'>
+            <div className='mb-5'>
+              <h2 className='font-oswald text-3xl font-medium uppercase tracking-tight text-neutral-900 md:text-4xl'>
+                Nearby Hotels
+              </h2>
+              <p className='mt-2 max-w-2xl text-neutral-700'>
+                Looking for a room near the venue? These downtown options are a
+                short walk from the Hyatt Regency.
+              </p>
+            </div>
+            <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+              {nearbyHotels.map((hotel) => (
+                <a
+                  key={hotel.name}
+                  href={hotel.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex flex-col justify-between rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition-colors hover:border-neutral-300 hover:bg-ap-darkblue/5'
+                >
+                  <div>
+                    <div className='font-oswald text-xl font-medium uppercase leading-tight tracking-tight text-neutral-900'>
+                      {hotel.name}
+                    </div>
+                    <div className='mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-600'>
+                      <MdDirectionsWalk size={18} />
+                      {hotel.walk}
+                    </div>
+                  </div>
+                  <div className='mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-ap-darkblue group-hover:underline'>
+                    View hotel
+                    <ArrowTopRightOnSquareIcon className='h-4 w-4' />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className='mb-20 w-full rounded-2xl bg-neutral-50 p-6 sm:p-8'>
             <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
               <div>
                 <div className='font-oswald text-2xl font-medium uppercase tracking-tight text-neutral-900'>
