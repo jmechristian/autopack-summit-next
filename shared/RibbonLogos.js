@@ -74,6 +74,23 @@ const LogoItemsTop = () => (
     />
     <LogoItem
       image={
+        'https://packschool.s3.us-east-1.amazonaws.com/500px-Scout_Mark_2025.svg.webp'
+      }
+      name='Scout'
+      link={'https://www.scoutmotors.com/'}
+    />
+    <LogoItem
+      image={'https://packschool.s3.us-east-1.amazonaws.com/sub.png'}
+      name='Subaru'
+      link={'https://www.subaru.com/'}
+    />
+    <LogoItem
+      image={'https://packschool.s3.us-east-1.amazonaws.com/textron.png'}
+      name='Textron'
+      link={'https://www.textron.com/'}
+    />
+    <LogoItem
+      image={
         'https://packschool.s3.amazonaws.com/bmw-logo-logo-png-transparent.png'
       }
       name='BMW'
@@ -95,6 +112,23 @@ const LogoItemsTop = () => (
       image={'https://packschool.s3.amazonaws.com/nissan-new.jpeg'}
       name='Nissan'
       link={'https://www.nissanusa.com/'}
+    />
+    <LogoItem
+      image={'https://packschool.s3.us-east-1.amazonaws.com/mazda-logo-755.png'}
+      name='Mazda'
+      link={'https://www.mazda.com/'}
+    />
+    <LogoItem
+      image={'https://packschool.s3.us-east-1.amazonaws.com/cat-1.png'}
+      name='Caterpillar'
+      link={'https://www.caterpillar.com/'}
+    />
+    <LogoItem
+      image={
+        'https://packschool.s3.us-east-1.amazonaws.com/500px-PACCAR-logo.svg.webp'
+      }
+      name='Paccar'
+      link={'https://www.paccar.com/'}
     />
     <LogoItem
       image={
