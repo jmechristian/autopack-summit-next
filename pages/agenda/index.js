@@ -7,6 +7,10 @@ import FullAgendaItem from '../../components/agenda/FullAgendaItem';
 import NewAgendaItem from '../../components/agenda/NewAgendaItem';
 import Logo from '../../shared/Logo';
 import awsExports from '../../src/aws-exports';
+import {
+  normalizeAgendaDate,
+  combineAgendaDateTime,
+} from '../../util/agendaTime';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -85,46 +89,6 @@ const APS_AGENDA_QUERY = `
   }
 `;
 
-const normalizeAgendaDate = (value) => {
-  if (!value) return null;
-
-  if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
-    return value.slice(0, 10);
-  }
-
-  const parts = value.split(/[-/]/);
-  if (parts.length === 3) {
-    const [month, day, year] = parts;
-    const fullYear = year.length === 2 ? `20${year}` : year;
-    const paddedMonth = month.padStart(2, '0');
-    const paddedDay = day.padStart(2, '0');
-    return `${fullYear}-${paddedMonth}-${paddedDay}`;
-  }
-
-  const parsed = new Date(value);
-  if (!Number.isNaN(parsed.getTime())) {
-    return parsed.toISOString().slice(0, 10);
-  }
-
-  return value;
-};
-
-const normalizeAgendaTime = (value) => {
-  if (!value) return null;
-  if (/^\d{2}:\d{2}:\d{2}$/.test(value)) return value;
-  if (/^\d{2}:\d{2}$/.test(value)) return `${value}:00`;
-  return value;
-};
-
-const combineDateTime = (dateValue, timeValue) => {
-  if (!dateValue || !timeValue) return null;
-  const normalizedDate = normalizeAgendaDate(dateValue);
-  const normalizedTime = normalizeAgendaTime(timeValue);
-  if (!normalizedDate || !normalizedTime) return null;
-  if (normalizedTime.includes('T')) return normalizedTime;
-  return `${normalizedDate}T${normalizedTime}`;
-};
-
 const matchesAgendaDate = (value, targetDate) => {
   if (!value || !targetDate) return false;
 
@@ -168,8 +132,8 @@ const mapAgendaItems = (items) =>
       title: item.title || item.description,
       description: item.description || 'No Description',
       type: 'session',
-      startTime: combineDateTime(item.date, item.startTime),
-      endTime: combineDateTime(item.date, item.endTime),
+      startTime: combineAgendaDateTime(item.date, item.startTime),
+      endTime: combineAgendaDateTime(item.date, item.endTime),
       speakers: item.speakers?.items?.map(mapSpeaker) || [],
       sponsors:
         item.sponsors?.items?.map((sponsorItem) => ({
@@ -326,6 +290,9 @@ const AgendaDraft = ({ sessionData }) => {
               </div>
             </div>
             <div className='flex items-center gap-6'>
+              <div className='text-xs font-semibold uppercase tracking-wide text-neutral-500'>
+                All times EST
+              </div>
               <div className='flex items-center gap-3'>
                 <div className='font-bold text-sm'>Compact</div>
                 <Switch
@@ -402,8 +369,13 @@ const AgendaDraft = ({ sessionData }) => {
                   <div className='w-28 md:w-32 lg:w-40 xl:w-48'>
                     <Logo />
                   </div>
-                  <div className='font-oswald uppercase font-medium text-3xl lg:text-5xl'>
-                    2026 Agenda
+                  <div className='text-right'>
+                    <div className='font-oswald uppercase font-medium text-3xl lg:text-5xl'>
+                      2026 Agenda
+                    </div>
+                    <div className='mt-1 text-xs font-semibold uppercase tracking-wide text-neutral-500'>
+                      All times EST
+                    </div>
                   </div>
                 </div>
                 <DraftCompactAgenda

@@ -23,6 +23,7 @@ import {
   MdEventNote,
 } from 'react-icons/md';
 import { useS3Url } from '../../../components/S3Image';
+import { formatEasternDisplayTime } from '../../../util/agendaTime';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -473,20 +474,23 @@ export const RegistrantPage = ({ registrant }) => {
                 <div className='text-sm font-bold text-ap-blue mt-4 mb-2'>
                   Agenda Snapshot
                 </div>
+                <div className='mb-3 text-xs font-semibold uppercase tracking-wide text-neutral-500'>
+                  All times EST
+                </div>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
                   <div className='rounded-lg border border-gray-200 bg-white p-3'>
                     <div className='text-sm font-semibold text-gray-900 mb-2'>Wed, Sep 30</div>
                     <div className='space-y-2 text-sm text-gray-800 leading-snug'>
                       <div>Optional Add on Tours</div>
-                      <div>6PM: Cocktail Hour at New Realm Brewery</div>
+                      <div>6:00 PM EST: Cocktail Hour at New Realm Brewery</div>
                     </div>
                   </div>
                   <div className='rounded-lg border border-gray-200 bg-white p-3'>
                     <div className='text-sm font-semibold text-gray-900 mb-2'>Thursday, Oct 1st</div>
                     <div className='space-y-2 text-sm text-gray-800 leading-snug'>
-                      <div>7:30AM: Doors Open and Registration</div>
-                      <div>8:30AM: All Day Conference</div>
-                      <div>5PM: Cocktail Reception and Hors d&apos;Oeuvres</div>
+                      <div>7:30 AM EST: Doors Open and Registration</div>
+                      <div>8:30 AM EST: All Day Conference</div>
+                      <div>5:00 PM EST: Cocktail Reception and Hors d&apos;Oeuvres</div>
                     </div>
                   </div>
                   <div className='rounded-lg border border-gray-200 bg-white p-3'>
@@ -533,7 +537,11 @@ export const RegistrantPage = ({ registrant }) => {
                             </div>
                             {addon && (
                               <div className='text-xs text-gray-500'>
-                                {[addon.date, addon.time, addon.location]
+                                {[
+                                  addon.date,
+                                  formatEasternDisplayTime(addon.time),
+                                  addon.location,
+                                ]
                                   .filter(Boolean)
                                   .join(' · ')}
                               </div>
@@ -651,7 +659,11 @@ export const RegistrantPage = ({ registrant }) => {
                                       {addOn.title}
                                     </div>
                                     <div className='text-xs text-gray-500 mt-0.5'>
-                                      {[addOn.date, addOn.time, addOn.location]
+                                      {[
+                                        addOn.date,
+                                        formatEasternDisplayTime(addOn.time),
+                                        addOn.location,
+                                      ]
                                         .filter(Boolean)
                                         .join(' • ')}
                                     </div>

@@ -1,22 +1,12 @@
 import React from 'react';
+import { formatAgendaTimeRange } from '../util/agendaTime';
 
 const BioSession = ({ startTime, endTime, title, location }) => {
-  const start =
-    startTime &&
-    new Date(startTime).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  const end =
-    endTime &&
-    new Date(endTime).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+  const timeLabel = formatAgendaTimeRange(startTime, endTime);
 
   return (
     <div className='flex flex-col py-6 gap-0.5'>
-      <div>{startTime ? `${start} - ${end}` : 'TBD'}</div>
+      <div>{timeLabel || 'TBD'}</div>
       <div className='text-lg font-bold leading-snug'>{title}</div>
       <div className='text-gray-600'>{location}</div>
     </div>

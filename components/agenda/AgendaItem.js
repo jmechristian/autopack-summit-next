@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { formatAgendaTimeRange } from '../../util/agendaTime';
 
 const AgendaItem = ({
   title,
@@ -10,18 +11,7 @@ const AgendaItem = ({
   sponsors,
   type,
 }) => {
-  const start =
-    startTime &&
-    new Date(startTime).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  const end =
-    endTime &&
-    new Date(endTime).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+  const timeLabel = formatAgendaTimeRange(startTime, endTime);
 
   return (
     <div className='py-3 border-t border-t-slate-200'>
@@ -41,7 +31,7 @@ const AgendaItem = ({
                 type === 'session' ? 'text-white' : 'text-slate-400'
               }`}
             >
-              {startTime ? `${start} - ${end}` : 'TBD'}
+              {timeLabel || 'TBD'}
             </div>
           </div>
           <div

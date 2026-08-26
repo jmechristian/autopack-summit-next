@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 import { S3Image, useS3Url } from '../S3Image';
+import { formatAgendaTimeRange } from '../../util/agendaTime';
 
 function SponsorLogo({ sponsor, whiteOverlay = false }) {
   const { url: logoUrl } = useS3Url(sponsor?.logo);
@@ -74,23 +75,7 @@ const FullAgendaItem = ({
   details,
   type,
 }) => {
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'America/New_York',
-    hour12: true,
-  });
-
-  const startDate = startTime ? new Date(startTime) : null;
-  const endDate = endTime ? new Date(endTime) : null;
-  const start =
-    startDate && !Number.isNaN(startDate.getTime())
-      ? formatter.format(startDate)
-      : null;
-  const end =
-    endDate && !Number.isNaN(endDate.getTime())
-      ? formatter.format(endDate)
-      : null;
+  const timeLabel = formatAgendaTimeRange(startTime, endTime);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -114,7 +99,7 @@ const FullAgendaItem = ({
                 type === 'session' ? 'text-white' : 'text-neutral-900'
               }`}
             >
-              {start && end ? `${start} - ${end}` : 'TBD'}
+              {timeLabel || 'TBD'}
             </div>
           </div>
           <div

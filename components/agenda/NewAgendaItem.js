@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { classNames } from '../../util/helpers';
+import { formatAgendaTimeRange } from '../../util/agendaTime';
 
 const NewAgendaItem = ({
   title,
@@ -12,21 +13,7 @@ const NewAgendaItem = ({
   sponsors,
   type,
 }) => {
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'America/New_York',
-    hour12: true,
-  });
-
-  const startDate = startTime ? new Date(startTime) : null;
-  const endDate = endTime ? new Date(endTime) : null;
-  const start =
-    startDate && !Number.isNaN(startDate.getTime())
-      ? formatter.format(startDate)
-      : null;
-  const end =
-    endDate && !Number.isNaN(endDate.getTime()) ? formatter.format(endDate) : null;
+  const timeLabel = formatAgendaTimeRange(startTime, endTime);
 
   return (
     <div
@@ -35,9 +22,9 @@ const NewAgendaItem = ({
         'w-full border-4 border-black rounded-2xl'
       )}
     >
-      <div className='w-3xl py-3 px-6 flex flex-col gap-2 lg:grid lg:gap-6 lg:grid-cols-[7rem,_1fr,_1fr] lg:items-center'>
-        <div className='font-bold tracking-tight text-sm lg:text-base'>
-          {start && end ? `${start} - ${end}` : 'TBD'}
+      <div className='w-3xl py-3 px-6 flex flex-col gap-2 lg:grid lg:gap-6 lg:grid-cols-[10.5rem,_1fr,_1fr] lg:items-center'>
+        <div className='font-bold tracking-tight text-sm lg:text-base leading-snug'>
+          {timeLabel || 'TBD'}
         </div>
         <div className='font-bold text-lg leading-tight'>{title}</div>
         <div className='font-medium text-neutral-600 leading-tight' dangerouslySetInnerHTML={{ __html: description }} />

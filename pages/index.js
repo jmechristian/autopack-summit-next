@@ -28,6 +28,7 @@ import VideoPlayer from '../shared/VideoPlayer';
 import Logo from '../shared/Logo';
 import LatestEventSignupForm from '../components/home/LatestEventSignupForm';
 import VideoTestimonials from '../components/home/VideoTestimonials';
+import { combineAgendaDateTime } from '../util/agendaTime';
 
 const Page = ({ speakers, sponsors }) => {
   const dispatch = useDispatch();
@@ -300,46 +301,6 @@ const PUBLIC_SPONSORS_QUERY = `
   }
 `;
 
-const normalizeAgendaDate = (value) => {
-  if (!value) return null;
-
-  if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
-    return value.slice(0, 10);
-  }
-
-  const parts = value.split(/[-/]/);
-  if (parts.length === 3) {
-    const [month, day, year] = parts;
-    const fullYear = year.length === 2 ? `20${year}` : year;
-    const paddedMonth = month.padStart(2, '0');
-    const paddedDay = day.padStart(2, '0');
-    return `${fullYear}-${paddedMonth}-${paddedDay}`;
-  }
-
-  const parsed = new Date(value);
-  if (!Number.isNaN(parsed.getTime())) {
-    return parsed.toISOString().slice(0, 10);
-  }
-
-  return value;
-};
-
-const normalizeAgendaTime = (value) => {
-  if (!value) return null;
-  if (/^\d{2}:\d{2}:\d{2}$/.test(value)) return value;
-  if (/^\d{2}:\d{2}$/.test(value)) return `${value}:00`;
-  return value;
-};
-
-const combineDateTime = (dateValue, timeValue) => {
-  if (!dateValue || !timeValue) return null;
-  const normalizedDate = normalizeAgendaDate(dateValue);
-  const normalizedTime = normalizeAgendaTime(timeValue);
-  if (!normalizedDate || !normalizedTime) return null;
-  if (normalizedTime.includes('T')) return normalizedTime;
-  return `${normalizedDate}T${normalizedTime}`;
-};
-
 export async function getStaticProps() {
   let speakers = [];
   let sponsors = [];
@@ -398,8 +359,8 @@ export async function getStaticProps() {
             return {
               name: s.title,
               location: s.location,
-              session_start: combineDateTime(s.date, s.startTime),
-              session_end: combineDateTime(s.date, s.endTime),
+              session_start: combineAgendaDateTime(s.date, s.startTime),
+              session_end: combineAgendaDateTime(s.date, s.endTime),
             };
           }) || [];
 
