@@ -4,14 +4,14 @@ import { useDispatch } from 'react-redux';
 import { toggleRegistrationModal } from '../layoutSlice';
 
 const HeaderNav = ({ show }) => {
-  const menuLinks = navMenu.slice(0, 8);
+  const menuLinks = navMenu;
   const dispatch = useDispatch();
 
   return (
     <div className='flex gap-8 justify-between items-center'>
-      <div className='flex gap-6'>
+      <div className='flex gap-4 xl:gap-6'>
         {menuLinks.map((item, i) => (
-          <div className='text-black font-bold' key={item.name}>
+          <div className='text-black font-bold whitespace-nowrap text-sm xl:text-base' key={item.name}>
             <a href={item.link}>{item.name}</a>
           </div>
         ))}

@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux';
 import { PowerIcon, ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
 
 import RibbonLogos from '../shared/RibbonLogos';
+import AlreadyRegisteredCallout from '../components/home/AlreadyRegisteredCallout';
 import NewSpeakersMain from '../components/home/NewSpeakersMain';
 import NewSponsorsMain from '../components/home/NewSponsorsMain';
 import VideoPlayer from '../shared/VideoPlayer';
@@ -66,54 +67,57 @@ const Page = ({ speakers, sponsors }) => {
           </div>
         </div>
       )}
-      <div className='w-full px-5 xl:px-0 grid gap-16 lg:gap-12 lg:grid-cols-2 max-w-7xl mx-auto relative overflow-hidden'>
-        <div className='flex flex-col justify-between'>
-          <div className='flex flex-col gap-6 lg:gap-10 max-w-xl md:mx-auto'>
-            <div>
-              <Reveal delay={0} bgColor={'white'}>
-                <h1 className='font-medium text-5xl xl:text-6xl tracking-tight font-oswald uppercase'>
-                  The premier open forum for{' '}
-                  <span className='text-ap-darkblue'>
-                    Automotive Packaging Professionals
-                  </span>
-                </h1>
+      <div className='flex w-full flex-col gap-10 lg:gap-12'>
+        <div className='w-full px-5 xl:px-0 grid gap-16 lg:gap-12 lg:grid-cols-2 max-w-7xl mx-auto relative overflow-hidden'>
+          <div className='flex flex-col justify-between'>
+            <div className='flex flex-col gap-6 lg:gap-10 max-w-xl md:mx-auto'>
+              <div>
+                <Reveal delay={0} bgColor={'white'}>
+                  <h1 className='font-medium text-5xl xl:text-6xl tracking-tight font-oswald uppercase'>
+                    The premier open forum for{' '}
+                    <span className='text-ap-darkblue'>
+                      Automotive Packaging Professionals
+                    </span>
+                  </h1>
+                </Reveal>
+              </div>
+              {/* <Reveal delay={0.25} bgColor={'white'}>
+                <div className='text-lg xl:text-xl'>
+                  Discover cutting-edge solutions at the Automotive Packaging
+                  Summit, where industry veterans and packaging experts unite to
+                  tackle the unique challenges in OEM and Tier 1 part supplier
+                  logistics.
+                </div>
+              </Reveal> */}
+              <Reveal delay={0.4} bgColor={'white'}>
+                <LatestEventSignupForm />
               </Reveal>
             </div>
-            {/* <Reveal delay={0.25} bgColor={'white'}>
-              <div className='text-lg xl:text-xl'>
-                Discover cutting-edge solutions at the Automotive Packaging
-                Summit, where industry veterans and packaging experts unite to
-                tackle the unique challenges in OEM and Tier 1 part supplier
-                logistics.
-              </div>
-            </Reveal> */}
-            <Reveal delay={0.4} bgColor={'white'}>
-              <LatestEventSignupForm />
-            </Reveal>
           </div>
-        </div>
 
-        <div
-          className='w-full bg-black rounded-xl overflow-hidden flex items-end bg-cover bg-center relative aspect-square md:aspect-auto'
-          style={{
-            backgroundImage: `url('https://packmedia54032-staging.s3.us-east-1.amazonaws.com/todd-bw.png')`,
-          }}
-        >
-          <div className='flex flex-col gap-1 w-full p-6 z-20 max-w-lg'>
-            <div className='text-white text-2xl font-medium font-oswald uppercase tracking-tight'>
-              Todd Chesna,{' '}
-              <span className='text-ap-yellow font-medium font-oswald uppercase tracking-tight'>
-                Ford
-              </span>
+          <div
+            className='w-full bg-black rounded-xl overflow-hidden flex items-end bg-cover bg-center relative aspect-square md:aspect-auto'
+            style={{
+              backgroundImage: `url('https://packmedia54032-staging.s3.us-east-1.amazonaws.com/todd-bw.png')`,
+            }}
+          >
+            <div className='flex flex-col gap-1 w-full p-6 z-20 max-w-lg'>
+              <div className='text-white text-2xl font-medium font-oswald uppercase tracking-tight'>
+                Todd Chesna,{' '}
+                <span className='text-ap-yellow font-medium font-oswald uppercase tracking-tight'>
+                  Ford
+                </span>
+              </div>
+              <div className='text-white text-sm font-medium'>
+                2025 APS Keynote Speaker Todd Chesna, Manager – Packaging
+                Engineering at Ford, shares strategies for integrating and
+                optimizing packaging in new vehicle programs.
+              </div>
             </div>
-            <div className='text-white text-sm font-medium'>
-              2025 APS Keynote Speaker Todd Chesna, Manager – Packaging
-              Engineering at Ford, shares strategies for integrating and
-              optimizing packaging in new vehicle programs.
-            </div>
+            <div className='flex flex-col gap-2 p-3 absolute bottom-0 left-0 right-0 w-full h-full bg-gradient-to-t from-black/60 to-transparent'></div>
           </div>
-          <div className='flex flex-col gap-2 p-3 absolute bottom-0 left-0 right-0 w-full h-full bg-gradient-to-t from-black/60 to-transparent'></div>
         </div>
+        <AlreadyRegisteredCallout />
       </div>
       <RibbonLogos />
       <div className='w-full grid px-5 xl:px-0 lg:grid-cols-2 gap-6 md:max-w-xl lg:max-w-7xl mx-auto'>
