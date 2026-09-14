@@ -15,6 +15,7 @@ enum RegistrantType {
   SPEAKER
   STAFF
   EXHIBITOR
+  WAITLIST
 }
 
 enum RegistrantStatus {
@@ -27,6 +28,13 @@ enum SponsorType {
   BOOTH
   TABLE
   NONE
+}
+
+enum PostEventSurveyIdentity {
+  SPONSOR
+  SOLUTION_PROVIDER
+  OEM
+  TIER_ONE
 }
 
 input SendModeratedDmMessageInput {
@@ -98,6 +106,20 @@ type AdminLatestTempCredentialResult {
   createdAt: AWSDateTime!
 }
 
+input AdminRegenerateAttendeeQrCodesInput {
+  eventId: ID
+  limit: Int
+  nextToken: String
+}
+
+type AdminRegenerateAttendeeQrCodesResult {
+  processed: Int!
+  updated: Int!
+  failed: Int!
+  nextToken: String
+  errors: [String!]
+}
+
 type AdminThinkificEnrollment {
   enrollmentId: Int
   courseId: Int
@@ -147,6 +169,11 @@ type Mutation {
     input: AdminCreateExhibitorInput!
   ): AdminCreateExhibitorResult
     @function(name: "apsPushFanout-${env}")
+    @aws_cognito_user_pools
+  adminRegenerateAttendeeQrCodes(
+    input: AdminRegenerateAttendeeQrCodesInput
+  ): AdminRegenerateAttendeeQrCodesResult
+    @function(name: "adminRegistrantOps-${env}")
     @aws_cognito_user_pools
   adminPublishDueAnnouncements(
     eventId: ID!
@@ -311,6 +338,10 @@ type ApsRegistrant
   welcomeEmailSentDate: String
   welcomeEmailReceived: Boolean
   welcomeEmailReceivedDate: String
+  appEmailSent: Boolean
+  appEmailSentDate: String
+  appEmailReceived: Boolean
+  appEmailReceivedDate: String
   paymentMethod: String
   paymentLast4: String
   approvedAt: String
@@ -329,6 +360,8 @@ type ApsRegistrant
   appUser: ApsAppUser @hasOne(fields: ["appUserId"])
 
   notes: [ApsAppUserNote] @hasMany(indexName: "byRegistrant", fields: ["id"])
+  postEventSurveys: [ApsPostEventSurvey]
+    @hasMany(indexName: "byRegistrant", fields: ["id"])
   qrCode: String
 }
 
@@ -458,6 +491,7 @@ type ApsAppUserProfile
   company: String
   jobTitle: String
   attendeeType: RegistrantType
+  expertise: [String]
   # User-scoped UI prefs (e.g., hub quick tools order)
   quickTools: [String]
   affiliates: [ProfileAffiliate] @hasMany(indexName: "byUser")
@@ -475,6 +509,11 @@ type ApsAppUserProfile
   resume: String
   thinkificId: Int
   apcProgress: Float
+
+  # Rising Star / Young Leader Award. risingStarKey is "STAR" when awarded
+  # so we can list honorees without scanning every profile.
+  risingStarKey: String @index(name: "byRisingStarKey")
+  risingStarYear: Int
 
   # Reverse relationships required for @belongsTo in Contact/Lead
   contacts: [ApsAppUserContact] @hasMany(indexName: "byContact", fields: ["id"])
@@ -1114,6 +1153,7 @@ type ApsContactRequest
         identityClaim: "sub"
         provider: userPools
       }
+      { allow: groups, groups: ["Admin"], provider: userPools }
     ]
   ) {
   id: ID!
@@ -1122,8 +1162,8 @@ type ApsContactRequest
   # unique: e:<eventId>|u:<a>|u:<b> where a/b are sorted Cognito subs
   requestKey: String! @index(name: "byRequestKey")
 
-  userAId: ID! # Cognito sub (sorted)
-  userBId: ID! # Cognito sub (sorted)
+  userAId: ID! @index(name: "byUserAId", sortKeyFields: ["createdAt"]) # Cognito sub (sorted)
+  userBId: ID! @index(name: "byUserBId", sortKeyFields: ["createdAt"]) # Cognito sub (sorted)
   owners: [String!]! # [userAId, userBId] for @auth multi-owner access
   # who initiated this request (must be either userAId or userBId)
   requestedByUserId: ID!
@@ -1252,9 +1292,116 @@ type ApsAdminAnnouncement
 
   title: String
   body: String!
-  deepLink: String # optional, e.g. "app://announcements/<id>"
+  deepLink: String # optional Expo Router path, e.g. "/(main)/agenda/<id>" or "/(main)/profile"
+  # Empty audienceTypes = all registration types (broadcast).
+  audienceTypes: [RegistrantType]
   scheduledAt: AWSDateTime # optional future publish time
   publishedAt: AWSDateTime # set when visible + push is sent
+  sentCount: Int
+  sentAt: AWSDateTime
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+# Unique announcement open per user. id should be o:<announcementId>|u:<userId>
+type ApsAnnouncementOpen
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        identityClaim: "sub"
+        operations: [create, read]
+        provider: userPools
+      }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  announcementId: ID!
+    @index(name: "byAnnouncement", sortKeyFields: ["createdAt"])
+  eventId: ID! @index(name: "byEventCreated", sortKeyFields: ["createdAt"])
+  userId: ID!
+  source: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum EmailCampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  FAILED
+  CANCELLED
+}
+
+enum EmailSendStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+# Admin email campaigns (mini ActiveCampaign). Templates live in code (React Email).
+# apiKey create/update/read allows the scheduled run-campaign route (no user JWT).
+type ApsEmailCampaign
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"], provider: userPools }
+      { allow: public, provider: apiKey, operations: [create, update, read] }
+    ]
+  ) {
+  id: ID!
+  eventId: ID!
+    @index(name: "byEventCreated", sortKeyFields: ["createdAt"])
+    @index(name: "byEventScheduled", sortKeyFields: ["scheduledAt"])
+
+  name: String!
+  templateKey: String!
+  subject: String!
+
+  # Empty audienceStatuses defaults to APPROVED at send time in app logic.
+  audienceStatuses: [RegistrantStatus]
+  # Empty audienceTypes = all attendee types.
+  audienceTypes: [RegistrantType]
+
+  status: EmailCampaignStatus!
+  scheduledAt: AWSDateTime
+  startedAt: AWSDateTime
+  completedAt: AWSDateTime
+
+  totalRecipients: Int
+  sentCount: Int
+  failedCount: Int
+
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ApsEmailSend
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"], provider: userPools }
+      { allow: public, provider: apiKey, operations: [create, update, read] }
+    ]
+  ) {
+  id: ID!
+  campaignId: ID! @index(name: "byCampaign", sortKeyFields: ["createdAt"])
+  eventId: ID!
+  registrantId: ID!
+  email: String!
+
+  status: EmailSendStatus!
+  sesMessageId: String
+  error: String
+  sentAt: AWSDateTime
+
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
@@ -1306,6 +1453,46 @@ type ApsPushToken
   createdAt: AWSDateTime!
 }
 
+# One completed post-event survey per registrant per event.
+# Uniqueness is the deterministic id/surveyKey: pes:<eventId>|r:<registrantId>
+# Owner may create+read only (no updates), so it cannot be submitted twice.
+type ApsPostEventSurvey
+  @model
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, provider: userPools, operations: [create, read] }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  owner: String
+  eventId: ID! @index(name: "byEvent", sortKeyFields: ["createdAt"])
+  registrantId: ID! @index(name: "byRegistrant")
+  registrant: ApsRegistrant! @belongsTo(fields: ["registrantId"])
+  userId: ID! @index(name: "byUser", sortKeyFields: ["createdAt"])
+  surveyKey: String! @index(name: "bySurveyKey")
+
+  identityType: PostEventSurveyIdentity
+  mostBeneficial: String
+  leastBeneficial: String
+  summitRating: Int
+  gainedValue: Boolean
+  gainedValueComments: String
+  favoritePresentation: String
+  sessionRatings: AWSJSON
+  networkGrowthRating: Int
+  improvementSuggestions: String
+  recommendName: String
+  recommendCompany: String
+  recommendEmail: String
+  recommendPhone: String
+
+  completedAt: AWSDateTime!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
 # In-app feedback submissions (text + optional screenshot/image keys).
 type ApsAppFeedback
   @model
@@ -1326,11 +1513,45 @@ type ApsAppFeedback
   updatedAt: AWSDateTime!
 }
 
+# Attendee summit-score leaderboard (computed from existing activity, then persisted).
+type ApsAppLeaderboardEntry
+  @model
+  @aws_api_key
+  @aws_cognito_user_pools
+  @auth(
+    rules: [
+      { allow: owner, provider: userPools, operations: [create, update] }
+      { allow: private, provider: userPools, operations: [read] }
+      { allow: public, provider: apiKey, operations: [read] }
+      { allow: groups, groups: ["Admin"], provider: userPools }
+    ]
+  ) {
+  id: ID!
+  owner: String
+  eventId: ID! @index(name: "byEvent", sortKeyFields: ["updatedAt"])
+  userProfileId: ID! @index(name: "byUserProfile")
+  displayName: String
+  company: String
+  jobTitle: String
+  profilePicture: String
+  points: Int!
+  breakdown: AWSJSON
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
 # --- Auth directive fix ---
 # Amplify Gen1 sometimes generates `ModelApsDmMessageConnection` with `@aws_api_key`
 # only, which breaks USER_POOLS callers when querying `items`.
 # We explicitly declare it here so it supports BOTH auth modes (API key + user pools).
 type ModelApsDmMessageConnection @aws_api_key @aws_cognito_user_pools {
   items: [ApsDmMessage]!
+  nextToken: String
+}
+
+type ModelApsAppLeaderboardEntryConnection
+  @aws_api_key
+  @aws_cognito_user_pools {
+  items: [ApsAppLeaderboardEntry]!
   nextToken: String
 }

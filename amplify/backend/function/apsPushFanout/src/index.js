@@ -106,6 +106,27 @@ function safeSlice(str, n) {
   return String(str ?? '').slice(0, n);
 }
 
+function htmlToPlainText(input) {
+  return String(input ?? '')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<\/div>/gi, '\n')
+    .replace(/<\/h[1-6]>/gi, '\n\n')
+    .replace(/<\/li>/gi, '\n')
+    .replace(/<li[^>]*>/gi, '• ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/[ \t]{2,}/g, ' ')
+    .trim();
+}
+
 function normalizePercentageToPercent(value) {
   const numeric = Number(value);
   if (Number.isNaN(numeric)) return 0;
@@ -383,7 +404,7 @@ function shouldSendAnnouncementPush(img, oldImg, eventName) {
 function buildAnnouncementPushMessages(announcement, tokens) {
   const announcementId = getString(announcement?.id);
   const title = getString(announcement?.title) || 'New announcement';
-  const body = getString(announcement?.body) || '';
+  const body = htmlToPlainText(getString(announcement?.body) || '') || title;
   const deepLink = getString(announcement?.deepLink);
   const defaultDeepLink = 'app://notifications';
 
@@ -400,11 +421,122 @@ function buildAnnouncementPushMessages(announcement, tokens) {
   }));
 }
 
+const APS_REGISTRANTS_BY_EVENT = /* GraphQL */ `
+  query ApsRegistrantsByApsID($apsID: ID!, $limit: Int, $nextToken: String) {
+    apsRegistrantsByApsID(apsID: $apsID, limit: $limit, nextToken: $nextToken) {
+      items {
+        attendeeType
+        appUserId
+      }
+      nextToken
+    }
+  }
+`;
+
+async function listAppUserIdsForEventTypes(eventId, audienceTypes) {
+  const typeSet = new Set(
+    (audienceTypes || []).map((type) => String(type || '').trim().toUpperCase()).filter(Boolean)
+  );
+  if (!eventId || !typeSet.size) return [];
+
+  const userIds = [];
+  let nextToken = null;
+  do {
+    const data = await appsyncRequest(APS_REGISTRANTS_BY_EVENT, {
+      apsID: eventId,
+      limit: 1000,
+      nextToken: nextToken || undefined,
+    });
+    const page = data?.apsRegistrantsByApsID;
+    for (const item of page?.items || []) {
+      const type = String(item?.attendeeType || '').trim().toUpperCase();
+      const userId = item?.appUserId;
+      if (!userId || !typeSet.has(type)) continue;
+      userIds.push(String(userId));
+    }
+    nextToken = page?.nextToken || null;
+  } while (nextToken);
+
+  return Array.from(new Set(userIds));
+}
+
+async function listTokensForUserIds(userIds) {
+  const tokens = [];
+  const concurrency = 8;
+  for (let i = 0; i < userIds.length; i += concurrency) {
+    const chunk = userIds.slice(i, i + concurrency);
+    const nested = await Promise.all(chunk.map((userId) => listTokensByUser(userId)));
+    for (const list of nested) tokens.push(...list);
+  }
+  return Array.from(new Set(tokens.filter(Boolean)));
+}
+
+async function listTokensForAnnouncement(announcement) {
+  const audienceTypes = getStringList(announcement?.audienceTypes);
+  if (!audienceTypes.length) {
+    return listAllTokens();
+  }
+
+  const eventId = getString(announcement?.eventId);
+  if (!eventId) {
+    console.log('announcement audience skipped: missing eventId', {
+      announcementId: getString(announcement?.id),
+      audienceTypes,
+    });
+    return [];
+  }
+
+  try {
+    const userIds = await listAppUserIdsForEventTypes(eventId, audienceTypes);
+    const tokens = await listTokensForUserIds(userIds);
+    console.log('announcement audience resolved', {
+      announcementId: getString(announcement?.id),
+      eventId,
+      audienceTypes,
+      userCount: userIds.length,
+      tokenCount: tokens.length,
+    });
+    return tokens;
+  } catch (error) {
+    console.log('announcement audience resolve failed; skipping push', {
+      announcementId: getString(announcement?.id),
+      eventId,
+      audienceTypes,
+      error: error?.message || String(error),
+    });
+    return [];
+  }
+}
+
 async function sendAnnouncementPush(announcement) {
-  const tokens = await listAllTokens();
+  const tokens = await listTokensForAnnouncement(announcement);
   const messages = buildAnnouncementPushMessages(announcement, tokens);
   await sendExpoPush(messages);
+  await recordAnnouncementSendStats(getString(announcement?.id), tokens.length);
   return messages.length;
+}
+
+async function recordAnnouncementSendStats(announcementId, sentCount) {
+  if (!ANNOUNCEMENT_TABLE_NAME || !announcementId) return;
+  try {
+    await ddb.send(
+      new UpdateCommand({
+        TableName: ANNOUNCEMENT_TABLE_NAME,
+        Key: { id: announcementId },
+        UpdateExpression: 'SET sentCount = :sent, sentAt = :sentAt',
+        ExpressionAttributeValues: {
+          ':sent': Number(sentCount) || 0,
+          ':sentAt': new Date().toISOString(),
+        },
+      })
+    );
+  } catch (error) {
+    console.log('recordAnnouncementSendStats failed', {
+      announcementId,
+      sentCount,
+      error: error?.message || String(error),
+    });
+  }
 }
 
 function announcementScheduleName(announcementId) {
@@ -1634,7 +1766,11 @@ async function handleStreamFanout(event) {
       announcementId &&
       shouldSendAnnouncementPush(img, unmarshallOldImage(r), r.eventName)
     ) {
-      const tokens = await listAllTokens();
+      const tokens = await listTokensForAnnouncement({
+        id: announcementId,
+        eventId,
+        audienceTypes: getStringList(img.audienceTypes),
+      });
       for (const msg of buildAnnouncementPushMessages(
         {
           id: announcementId,
@@ -1646,6 +1782,7 @@ async function handleStreamFanout(event) {
       )) {
         expoMessages.push(msg);
       }
+      await recordAnnouncementSendStats(announcementId, tokens.length);
       continue;
     }
   }

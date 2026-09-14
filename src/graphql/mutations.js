@@ -132,6 +132,10 @@ export const sendModeratedDmMessage = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -172,6 +176,10 @@ export const sendModeratedDmMessage = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -314,6 +322,7 @@ export const sendModeratedDmMessage = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -339,6 +348,8 @@ export const sendModeratedDmMessage = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -372,6 +383,10 @@ export const sendModeratedDmMessage = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -452,6 +467,24 @@ export const adminCreateExhibitor = /* GraphQL */ `
       boothNumber
       passportQrPayload
       qrCode
+      __typename
+    }
+  }
+`;
+export const adminPublishDueAnnouncements = /* GraphQL */ `
+  mutation AdminPublishDueAnnouncements($eventId: ID!) {
+    adminPublishDueAnnouncements(eventId: $eventId) {
+      publishedCount
+      publishedIds
+      __typename
+    }
+  }
+`;
+export const deleteMyAccount = /* GraphQL */ `
+  mutation DeleteMyAccount {
+    deleteMyAccount {
+      success
+      message
       __typename
     }
   }
@@ -584,6 +617,10 @@ export const updateAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -702,6 +739,10 @@ export const updateAPS = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -742,6 +783,10 @@ export const updateAPS = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -849,6 +894,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -862,6 +908,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1075,6 +1123,10 @@ export const updateAPS = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -1311,6 +1363,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1324,6 +1377,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1389,6 +1444,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1402,6 +1458,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1460,6 +1518,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1473,6 +1532,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1531,6 +1592,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1544,6 +1606,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1607,6 +1671,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1620,6 +1685,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1636,6 +1703,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1649,6 +1717,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1695,6 +1765,7 @@ export const updateAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -1708,6 +1779,8 @@ export const updateAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -1754,6 +1827,87 @@ export const updateAPS = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -1937,6 +2091,10 @@ export const deleteAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -2055,6 +2213,10 @@ export const deleteAPS = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -2095,6 +2257,10 @@ export const deleteAPS = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -2202,6 +2368,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2215,6 +2382,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2428,6 +2597,10 @@ export const deleteAPS = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -2664,6 +2837,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2677,6 +2851,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2742,6 +2918,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2755,6 +2932,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2813,6 +2992,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2826,6 +3006,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2884,6 +3066,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2897,6 +3080,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2960,6 +3145,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -2973,6 +3159,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -2989,6 +3177,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -3002,6 +3191,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -3048,6 +3239,7 @@ export const deleteAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -3061,6 +3253,8 @@ export const deleteAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -3107,6 +3301,87 @@ export const deleteAPS = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -3265,6 +3540,10 @@ export const createAPSCode = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -3525,6 +3804,22 @@ export const createAPSCode = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -3670,6 +3965,10 @@ export const deleteAPSCode = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -3930,6 +4229,22 @@ export const deleteAPSCode = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -4074,6 +4389,10 @@ export const createApsAgenda = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -4334,6 +4653,22 @@ export const createApsAgenda = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -4522,6 +4857,10 @@ export const updateApsAgenda = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -4782,6 +5121,22 @@ export const updateApsAgenda = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -4970,6 +5325,10 @@ export const deleteApsAgenda = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -5230,6 +5589,22 @@ export const deleteApsAgenda = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -5418,6 +5793,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -5683,6 +6062,22 @@ export const deleteApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -5783,6 +6178,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -5967,6 +6366,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -6042,6 +6445,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
       welcomeEmailSentDate
       welcomeEmailReceived
       welcomeEmailReceivedDate
+      appEmailSent
+      appEmailSentDate
+      appEmailReceived
+      appEmailReceivedDate
       paymentMethod
       paymentLast4
       approvedAt
@@ -6149,6 +6556,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -6189,6 +6600,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -6249,6 +6664,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -6376,6 +6795,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -6416,6 +6839,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -6558,6 +6985,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -6583,6 +7011,8 @@ export const deleteApsRegistrant = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -6616,6 +7046,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -6734,6 +7168,10 @@ export const deleteApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -6763,6 +7201,7 @@ export const deleteApsRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -6776,6 +7215,8 @@ export const deleteApsRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -6805,6 +7246,98 @@ export const deleteApsRegistrant = /* GraphQL */ `
           createdAt
           updatedAt
           apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      postEventSurveys {
+        items {
+          id
+          owner
+          eventId
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          userId
+          surveyKey
+          identityType
+          mostBeneficial
+          leastBeneficial
+          summitRating
+          gainedValue
+          gainedValueComments
+          favoritePresentation
+          sessionRatings
+          networkGrowthRating
+          improvementSuggestions
+          recommendName
+          recommendCompany
+          recommendEmail
+          recommendPhone
+          completedAt
+          createdAt
+          updatedAt
           __typename
         }
         nextToken
@@ -6977,6 +7510,10 @@ export const createApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -7088,6 +7625,10 @@ export const createApsAppUser = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -7155,6 +7696,10 @@ export const createApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -7236,6 +7781,10 @@ export const createApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -7293,6 +7842,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -7306,6 +7856,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -7329,6 +7881,36 @@ export const createApsAppUser = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -7504,6 +8086,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -7517,6 +8100,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -7622,6 +8207,10 @@ export const createApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -7651,6 +8240,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -7664,6 +8254,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -7721,6 +8313,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -7734,6 +8327,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -7832,6 +8427,10 @@ export const createApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -7889,6 +8488,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -7902,6 +8502,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -7918,6 +8520,7 @@ export const createApsAppUser = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -7975,6 +8578,8 @@ export const createApsAppUser = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -8116,6 +8721,22 @@ export const createApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -8151,6 +8772,7 @@ export const createApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -8164,6 +8786,8 @@ export const createApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -8306,6 +8930,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -8417,6 +9045,10 @@ export const deleteApsAppUser = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -8484,6 +9116,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -8565,6 +9201,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -8622,6 +9262,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -8635,6 +9276,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -8658,6 +9301,36 @@ export const deleteApsAppUser = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -8833,6 +9506,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -8846,6 +9520,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -8951,6 +9627,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -8980,6 +9660,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -8993,6 +9674,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -9050,6 +9733,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -9063,6 +9747,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -9161,6 +9847,10 @@ export const deleteApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -9218,6 +9908,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -9231,6 +9922,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -9247,6 +9940,7 @@ export const deleteApsAppUser = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -9304,6 +9998,8 @@ export const deleteApsAppUser = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -9445,6 +10141,22 @@ export const deleteApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -9480,6 +10192,7 @@ export const deleteApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -9493,6 +10206,8 @@ export const deleteApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -9625,6 +10340,10 @@ export const createApsAppUserContact = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -9665,6 +10384,10 @@ export const createApsAppUserContact = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -9807,6 +10530,7 @@ export const createApsAppUserContact = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -9832,6 +10556,8 @@ export const createApsAppUserContact = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -9865,6 +10591,10 @@ export const createApsAppUserContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -9939,6 +10669,10 @@ export const createApsAppUserContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -9996,6 +10730,7 @@ export const createApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -10009,6 +10744,8 @@ export const createApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -10025,6 +10762,7 @@ export const createApsAppUserContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -10082,6 +10820,8 @@ export const createApsAppUserContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -10223,6 +10963,22 @@ export const createApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -10258,6 +11014,7 @@ export const createApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -10271,6 +11028,8 @@ export const createApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -10405,6 +11164,10 @@ export const updateApsAppUserContact = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -10445,6 +11208,10 @@ export const updateApsAppUserContact = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -10587,6 +11354,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -10612,6 +11380,8 @@ export const updateApsAppUserContact = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -10645,6 +11415,10 @@ export const updateApsAppUserContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -10719,6 +11493,10 @@ export const updateApsAppUserContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -10776,6 +11554,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -10789,6 +11568,8 @@ export const updateApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -10805,6 +11586,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -10862,6 +11644,8 @@ export const updateApsAppUserContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -11003,6 +11787,22 @@ export const updateApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -11038,6 +11838,7 @@ export const updateApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -11051,6 +11852,8 @@ export const updateApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -11185,6 +11988,10 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -11225,6 +12032,10 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -11367,6 +12178,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -11392,6 +12204,8 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -11425,6 +12239,10 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -11499,6 +12317,10 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -11556,6 +12378,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -11569,6 +12392,8 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -11585,6 +12410,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -11642,6 +12468,8 @@ export const deleteApsAppUserContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -11783,6 +12611,22 @@ export const deleteApsAppUserContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -11818,6 +12662,7 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -11831,6 +12676,8 @@ export const deleteApsAppUserContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -11966,6 +12813,10 @@ export const createApsAppUserNote = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -12006,6 +12857,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -12148,6 +13003,7 @@ export const createApsAppUserNote = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -12173,6 +13029,8 @@ export const createApsAppUserNote = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -12206,6 +13064,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -12581,6 +13443,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -12716,6 +13582,22 @@ export const createApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -12808,6 +13690,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -12922,6 +13808,10 @@ export const createApsAppUserNote = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -12989,6 +13879,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -13070,6 +13964,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -13127,6 +14025,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -13140,6 +14039,8 @@ export const createApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -13163,6 +14064,36 @@ export const createApsAppUserNote = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -13223,6 +14154,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -13280,6 +14215,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -13293,6 +14229,8 @@ export const createApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -13309,6 +14247,7 @@ export const createApsAppUserNote = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -13366,6 +14305,8 @@ export const createApsAppUserNote = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -13507,6 +14448,22 @@ export const createApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -13542,6 +14499,7 @@ export const createApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -13555,6 +14513,8 @@ export const createApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -13662,6 +14622,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -13843,6 +14807,10 @@ export const createApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -13984,6 +14952,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -14024,6 +14996,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -14166,6 +15142,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -14191,6 +15168,8 @@ export const updateApsAppUserNote = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -14224,6 +15203,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -14599,6 +15582,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -14734,6 +15721,22 @@ export const updateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -14826,6 +15829,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -14940,6 +15947,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -15007,6 +16018,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -15088,6 +16103,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -15145,6 +16164,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -15158,6 +16178,8 @@ export const updateApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -15181,6 +16203,36 @@ export const updateApsAppUserNote = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -15241,6 +16293,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -15298,6 +16354,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -15311,6 +16368,8 @@ export const updateApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -15327,6 +16386,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -15384,6 +16444,8 @@ export const updateApsAppUserNote = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -15525,6 +16587,22 @@ export const updateApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -15560,6 +16638,7 @@ export const updateApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -15573,6 +16652,8 @@ export const updateApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -15680,6 +16761,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -15861,6 +16946,10 @@ export const updateApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -16002,6 +17091,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -16042,6 +17135,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -16184,6 +17281,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -16209,6 +17307,8 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -16242,6 +17342,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -16617,6 +17721,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -16752,6 +17860,22 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -16844,6 +17968,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -16958,6 +18086,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -17025,6 +18157,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -17106,6 +18242,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -17163,6 +18303,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -17176,6 +18317,8 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -17199,6 +18342,36 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -17259,6 +18432,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -17316,6 +18493,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -17329,6 +18507,8 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -17345,6 +18525,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -17402,6 +18583,8 @@ export const deleteApsAppUserNote = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -17543,6 +18726,22 @@ export const deleteApsAppUserNote = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -17578,6 +18777,7 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -17591,6 +18791,8 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -17698,6 +18900,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -17882,6 +19088,10 @@ export const deleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -18019,6 +19229,10 @@ export const createApsAppUserLead = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -18059,6 +19273,10 @@ export const createApsAppUserLead = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -18201,6 +19419,7 @@ export const createApsAppUserLead = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -18226,6 +19445,8 @@ export const createApsAppUserLead = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -18259,6 +19480,10 @@ export const createApsAppUserLead = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -18333,6 +19558,10 @@ export const createApsAppUserLead = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -18390,6 +19619,7 @@ export const createApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -18403,6 +19633,8 @@ export const createApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -18419,6 +19651,7 @@ export const createApsAppUserLead = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -18476,6 +19709,8 @@ export const createApsAppUserLead = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -18617,6 +19852,22 @@ export const createApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -18652,6 +19903,7 @@ export const createApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -18665,6 +19917,8 @@ export const createApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -18799,6 +20053,10 @@ export const updateApsAppUserLead = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -18839,6 +20097,10 @@ export const updateApsAppUserLead = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -18981,6 +20243,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -19006,6 +20269,8 @@ export const updateApsAppUserLead = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -19039,6 +20304,10 @@ export const updateApsAppUserLead = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -19113,6 +20382,10 @@ export const updateApsAppUserLead = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -19170,6 +20443,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -19183,6 +20457,8 @@ export const updateApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -19199,6 +20475,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -19256,6 +20533,8 @@ export const updateApsAppUserLead = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -19397,6 +20676,22 @@ export const updateApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -19432,6 +20727,7 @@ export const updateApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -19445,6 +20741,8 @@ export const updateApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -19579,6 +20877,10 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -19619,6 +20921,10 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -19761,6 +21067,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -19786,6 +21093,8 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -19819,6 +21128,10 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -19893,6 +21206,10 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -19950,6 +21267,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -19963,6 +21281,8 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -19979,6 +21299,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -20036,6 +21357,8 @@ export const deleteApsAppUserLead = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -20177,6 +21500,22 @@ export const deleteApsAppUserLead = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -20212,6 +21551,7 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20225,6 +21565,8 @@ export const deleteApsAppUserLead = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20359,6 +21701,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -20399,6 +21745,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -20541,6 +21891,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -20566,6 +21917,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -20602,6 +21955,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -20633,6 +21990,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
       company
       jobTitle
       attendeeType
+      expertise
       quickTools
       affiliates {
         items {
@@ -20648,6 +22006,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20661,6 +22020,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20701,6 +22062,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20714,6 +22076,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20744,6 +22108,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20757,6 +22122,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20774,6 +22141,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
       resume
       thinkificId
       apcProgress
+      risingStarKey
+      risingStarYear
       contacts {
         items {
           id
@@ -20797,6 +22166,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20810,6 +22180,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20847,6 +22219,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20860,6 +22233,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20889,6 +22264,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20902,6 +22278,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -20967,6 +22345,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -20980,6 +22359,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21038,6 +22419,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21051,6 +22433,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21109,6 +22493,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21122,6 +22507,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21185,6 +22572,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21198,6 +22586,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21214,6 +22604,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21227,6 +22618,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21273,6 +22666,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21286,6 +22680,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21302,6 +22698,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21315,6 +22712,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21361,6 +22760,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21374,6 +22774,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21420,6 +22822,87 @@ export const createApsAppUserProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -21516,6 +22999,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -21545,6 +23032,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -21558,6 +23046,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -21616,6 +23106,7 @@ export const createApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -21641,6 +23132,8 @@ export const createApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -21674,6 +23167,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -21781,6 +23278,10 @@ export const createApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -21919,6 +23420,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -21959,6 +23464,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -22101,6 +23610,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -22126,6 +23636,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -22162,6 +23674,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -22193,6 +23709,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
       company
       jobTitle
       attendeeType
+      expertise
       quickTools
       affiliates {
         items {
@@ -22208,6 +23725,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22221,6 +23739,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22261,6 +23781,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22274,6 +23795,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22304,6 +23827,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22317,6 +23841,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22334,6 +23860,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
       resume
       thinkificId
       apcProgress
+      risingStarKey
+      risingStarYear
       contacts {
         items {
           id
@@ -22357,6 +23885,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22370,6 +23899,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22407,6 +23938,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22420,6 +23952,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22449,6 +23983,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22462,6 +23997,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22527,6 +24064,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22540,6 +24078,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22598,6 +24138,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22611,6 +24152,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22669,6 +24212,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22682,6 +24226,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22745,6 +24291,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22758,6 +24305,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22774,6 +24323,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22787,6 +24337,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22833,6 +24385,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22846,6 +24399,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22862,6 +24417,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22875,6 +24431,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22921,6 +24479,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -22934,6 +24493,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -22980,6 +24541,87 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -23076,6 +24718,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -23105,6 +24751,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -23118,6 +24765,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -23176,6 +24825,7 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -23201,6 +24851,8 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -23234,6 +24886,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -23341,6 +24997,10 @@ export const deleteApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -23479,6 +25139,10 @@ export const createApsAppUserPhoto = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -23519,6 +25183,10 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -23661,6 +25329,7 @@ export const createApsAppUserPhoto = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -23686,6 +25355,8 @@ export const createApsAppUserPhoto = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -23719,6 +25390,10 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -23844,6 +25519,10 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -24104,6 +25783,22 @@ export const createApsAppUserPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -24232,6 +25927,10 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -24272,6 +25971,10 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -24414,6 +26117,7 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -24439,6 +26143,8 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -24472,6 +26178,10 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -24597,6 +26307,10 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -24857,6 +26571,22 @@ export const deleteApsAppUserPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -25002,6 +26732,10 @@ export const createApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -25164,6 +26898,10 @@ export const createApsAppSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -25193,6 +26931,7 @@ export const createApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -25206,6 +26945,8 @@ export const createApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -25333,6 +27074,7 @@ export const createApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -25346,6 +27088,8 @@ export const createApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -25506,6 +27250,10 @@ export const updateApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -25668,6 +27416,10 @@ export const updateApsAppSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -25697,6 +27449,7 @@ export const updateApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -25710,6 +27463,8 @@ export const updateApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -25837,6 +27592,7 @@ export const updateApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -25850,6 +27606,8 @@ export const updateApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -26010,6 +27768,10 @@ export const deleteApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -26172,6 +27934,10 @@ export const deleteApsAppSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -26201,6 +27967,7 @@ export const deleteApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -26214,6 +27981,8 @@ export const deleteApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -26341,6 +28110,7 @@ export const deleteApsAppSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -26354,6 +28124,8 @@ export const deleteApsAppSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -26615,6 +28387,10 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -26655,6 +28431,10 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -26797,6 +28577,7 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -26822,6 +28603,8 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -26855,6 +28638,10 @@ export const createApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -27094,6 +28881,10 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -27134,6 +28925,10 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -27276,6 +29071,7 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -27301,6 +29097,8 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -27334,6 +29132,10 @@ export const updateApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -27573,6 +29375,10 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -27613,6 +29419,10 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -27755,6 +29565,7 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -27780,6 +29591,8 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -27813,6 +29626,10 @@ export const deleteApsAppSessionQuestion = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -27903,6 +29720,10 @@ export const createAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -27960,6 +29781,7 @@ export const createAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -27973,6 +29795,8 @@ export const createAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -27989,6 +29813,7 @@ export const createAPSSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -28046,6 +29871,8 @@ export const createAPSSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -28187,6 +30014,22 @@ export const createAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -28222,6 +30065,7 @@ export const createAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -28235,6 +30079,8 @@ export const createAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -28369,6 +30215,10 @@ export const createAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -28634,6 +30484,22 @@ export const createAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -28716,6 +30582,7 @@ export const createAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -28729,6 +30596,8 @@ export const createAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -28835,6 +30704,10 @@ export const updateAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -28892,6 +30765,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -28905,6 +30779,8 @@ export const updateAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -28921,6 +30797,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -28978,6 +30855,8 @@ export const updateAPSSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -29119,6 +30998,22 @@ export const updateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -29154,6 +31049,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -29167,6 +31063,8 @@ export const updateAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -29301,6 +31199,10 @@ export const updateAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -29566,6 +31468,22 @@ export const updateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -29648,6 +31566,7 @@ export const updateAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -29661,6 +31580,8 @@ export const updateAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -29767,6 +31688,10 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -29824,6 +31749,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -29837,6 +31763,8 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -29853,6 +31781,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -29910,6 +31839,8 @@ export const deleteAPSSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -30051,6 +31982,22 @@ export const deleteAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -30086,6 +32033,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -30099,6 +32047,8 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -30233,6 +32183,10 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -30498,6 +32452,22 @@ export const deleteAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -30580,6 +32550,7 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -30593,6 +32564,8 @@ export const deleteAPSSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -30718,6 +32691,10 @@ export const createApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -30902,6 +32879,10 @@ export const createApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -31040,6 +33021,10 @@ export const createApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -31300,6 +33285,22 @@ export const createApsSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -31562,6 +33563,10 @@ export const createApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -31697,6 +33702,22 @@ export const createApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -31756,6 +33777,7 @@ export const createApsSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -31769,6 +33791,8 @@ export const createApsSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -31896,6 +33920,10 @@ export const updateApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -32080,6 +34108,10 @@ export const updateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -32218,6 +34250,10 @@ export const updateApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -32483,6 +34519,22 @@ export const updateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -32740,6 +34792,10 @@ export const updateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -32875,6 +34931,22 @@ export const updateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -32934,6 +35006,7 @@ export const updateApsSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -32947,6 +35020,8 @@ export const updateApsSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -33074,6 +35149,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -33258,6 +35337,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -33396,6 +35479,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -33661,6 +35748,22 @@ export const deleteApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -33918,6 +36021,10 @@ export const deleteApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -34053,6 +36160,22 @@ export const deleteApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -34112,6 +36235,7 @@ export const deleteApsSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -34125,6 +36249,8 @@ export const deleteApsSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -34321,6 +36447,10 @@ export const deleteAPSCompany = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -34361,6 +36491,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -34531,6 +36665,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -34625,6 +36763,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -34898,6 +37040,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -35033,6 +37179,22 @@ export const deleteAPSCompany = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -35129,6 +37291,10 @@ export const deleteAPSCompany = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -35158,6 +37324,7 @@ export const deleteAPSCompany = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -35171,6 +37338,8 @@ export const deleteAPSCompany = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -35321,6 +37490,10 @@ export const createAPSCompanyContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -35502,6 +37675,10 @@ export const createAPSCompanyContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -35633,6 +37810,10 @@ export const updateAPSCompanyContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -35814,6 +37995,10 @@ export const updateAPSCompanyContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -35945,6 +38130,10 @@ export const deleteAPSCompanyContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -36126,6 +38315,10 @@ export const deleteAPSCompanyContact = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -36257,6 +38450,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -36438,6 +38635,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -36640,6 +38841,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -36734,6 +38939,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -36872,6 +39081,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -37132,6 +39345,22 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -37474,6 +39703,10 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -37503,6 +39736,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -37516,6 +39750,8 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -37565,6 +39801,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -37578,6 +39815,8 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -37643,6 +39882,7 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -37656,6 +39896,8 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -37702,6 +39944,87 @@ export const createApsAppExhibitorProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      viewedByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -37789,6 +40112,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -37970,6 +40297,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -38172,6 +40503,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -38266,6 +40601,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -38404,6 +40743,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -38664,6 +41007,22 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -39006,6 +41365,10 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -39035,6 +41398,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -39048,6 +41412,8 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -39097,6 +41463,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -39110,6 +41477,8 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -39175,6 +41544,7 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -39188,6 +41558,8 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -39239,6 +41611,87 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
         nextToken
         __typename
       }
+      viewedByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       aPSExhibitorsId
@@ -39246,12 +41699,12 @@ export const deleteApsAppExhibitorProfile = /* GraphQL */ `
     }
   }
 `;
-export const createApsAppUserPassportStamp = /* GraphQL */ `
-  mutation CreateApsAppUserPassportStamp(
-    $input: CreateApsAppUserPassportStampInput!
-    $condition: ModelApsAppUserPassportStampConditionInput
+export const createApsAppUserExhibitorView = /* GraphQL */ `
+  mutation CreateApsAppUserExhibitorView(
+    $input: CreateApsAppUserExhibitorViewInput!
+    $condition: ModelApsAppUserExhibitorViewConditionInput
   ) {
-    createApsAppUserPassportStamp(input: $input, condition: $condition) {
+    createApsAppUserExhibitorView(input: $input, condition: $condition) {
       id
       owner
       userProfileId
@@ -39301,6 +41754,10 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -39358,6 +41815,7 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -39371,6 +41829,8 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -39387,6 +41847,7 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -39444,6 +41905,8 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -39585,6 +42048,22 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -39620,6 +42099,7 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -39633,6 +42113,8 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -39902,6 +42384,10 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -40037,6 +42523,22 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -40137,6 +42639,10 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -40397,6 +42903,3805 @@ export const createApsAppUserPassportStamp = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      viewKey
+      createdAt
+      updatedAt
+      aPSExhibitorViewsId
+      __typename
+    }
+  }
+`;
+export const updateApsAppUserExhibitorView = /* GraphQL */ `
+  mutation UpdateApsAppUserExhibitorView(
+    $input: UpdateApsAppUserExhibitorViewInput!
+    $condition: ModelApsAppUserExhibitorViewConditionInput
+  ) {
+    updateApsAppUserExhibitorView(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        expertise
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        thinkificId
+        apcProgress
+        risingStarKey
+        risingStarYear
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        qrCode
+        passportQrPayload
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      viewKey
+      createdAt
+      updatedAt
+      aPSExhibitorViewsId
+      __typename
+    }
+  }
+`;
+export const deleteApsAppUserExhibitorView = /* GraphQL */ `
+  mutation DeleteApsAppUserExhibitorView(
+    $input: DeleteApsAppUserExhibitorViewInput!
+    $condition: ModelApsAppUserExhibitorViewConditionInput
+  ) {
+    deleteApsAppUserExhibitorView(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        expertise
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        thinkificId
+        apcProgress
+        risingStarKey
+        risingStarYear
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        qrCode
+        passportQrPayload
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        addOns {
+          items {
+            id
+            title
+            description
+            subheadline
+            location
+            date
+            time
+            altLink
+            type
+            limit
+            eventId
+            price
+            preferenceSchema
+            createdAt
+            updatedAt
+            aPSAddOnsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSAgendaId
+        __typename
+      }
+      viewKey
+      createdAt
+      updatedAt
+      aPSExhibitorViewsId
+      __typename
+    }
+  }
+`;
+export const createApsAppUserPassportStamp = /* GraphQL */ `
+  mutation CreateApsAppUserPassportStamp(
+    $input: CreateApsAppUserPassportStampInput!
+    $condition: ModelApsAppUserPassportStampConditionInput
+  ) {
+    createApsAppUserPassportStamp(input: $input, condition: $condition) {
+      id
+      owner
+      userProfileId
+      userProfile {
+        id
+        userId
+        user {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        company
+        jobTitle
+        attendeeType
+        expertise
+        quickTools
+        affiliates {
+          items {
+            id
+            profileId
+            affiliate
+            role
+            startDate
+            endDate
+            createdAt
+            updatedAt
+            apsAppUserProfileAffiliatesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        profilePicture
+        bio
+        linkedin
+        twitter
+        facebook
+        instagram
+        youtube
+        website
+        location
+        education {
+          items {
+            id
+            profileId
+            school
+            degree
+            fieldOfStudy
+            createdAt
+            updatedAt
+            apsAppUserProfileEducationId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        interests {
+          items {
+            id
+            profileId
+            interest
+            createdAt
+            updatedAt
+            apsAppUserProfileInterestsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        resume
+        thinkificId
+        apcProgress
+        risingStarKey
+        risingStarYear
+        contacts {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        leads {
+          items {
+            id
+            userId
+            favorite
+            contactId
+            createdAt
+            updatedAt
+            apsAppUserLeadsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoritedByProfiles {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        speakerId
+        speaker {
+          id
+          presentationTitle
+          presentationSummary
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSSpeakersId
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      exhibitorId
+      exhibitor {
+        id
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        sponsorId
+        sponsor {
+          id
+          companyId
+          company {
+            id
+            name
+            email
+            type
+            description
+            website
+            phone
+            address
+            city
+            state
+            zip
+            country
+            logo
+            sponsorId
+            exhibitorProfileId
+            createdAt
+            updatedAt
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          profile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          sessions {
+            nextToken
+            __typename
+          }
+          favoriteByUsers {
+            nextToken
+            __typename
+          }
+          type
+          createdAt
+          updatedAt
+          aPSSponsorsId
+          apsSponsorProfileId
+          __typename
+        }
+        eventId
+        event {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        deals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        handouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        promotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        video
+        videoCaption
+        boothNumber
+        qrCode
+        passportQrPayload
+        visits
+        views
+        likes
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        aPSExhibitorsId
+        __typename
+      }
+      eventId
+      event {
+        id
+        year
+        codes {
+          items {
+            id
+            code
+            eventId
+            limit
+            used
+            createdAt
+            updatedAt
+            aPSCodesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        agenda {
+          id
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          items {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        startDate
+        endDate
+        location
+        address
+        city
+        state
+        zip
+        website
+        Registrants {
+          items {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Sponsors {
+          items {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        Speakers {
+          items {
+            id
+            presentationTitle
+            presentationSummary
+            profileId
+            eventId
+            createdAt
+            updatedAt
+            aPSSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        companies {
+          items {
+            id
+            aPSId
+            aPSCompanyId
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        photos {
+          items {
+            id
+            userId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSPhotosId
+            apsAppUserPhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitors {
+          items {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPromotions {
+          items {
+            id
+            exhibitorId
+            promotion
+            link
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPromotionsId
+            apsAppExhibitorProfilePromotionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorDeals {
+          items {
+            id
+            exhibitorId
+            deal
+            link
+            userId
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorDealsId
+            apsAppUserExhibitorDealsId
+            apsAppExhibitorProfileDealsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorPhotos {
+          items {
+            id
+            exhibitorId
+            photo
+            caption
+            approved
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorPhotosId
+            apsAppExhibitorProfilePhotosId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorHandouts {
+          items {
+            id
+            exhibitorId
+            handout
+            eventId
+            createdAt
+            updatedAt
+            aPSExhibitorHandoutsId
+            apsAppExhibitorProfileHandoutsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteExhibitors {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteExhibitorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSpeakers {
+          items {
+            id
+            owner
+            userProfileId
+            speakerId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSpeakersId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSponsors {
+          items {
+            id
+            owner
+            userProfileId
+            sponsorId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSponsorsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteSessions {
+          items {
+            id
+            owner
+            userProfileId
+            sessionId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteSessionsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        favoriteContacts {
+          items {
+            id
+            owner
+            userProfileId
+            contactProfileId
+            eventId
+            favoriteKey
+            createdAt
+            updatedAt
+            aPSFavoriteContactsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        passportStamps {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            stampKey
+            scannedAt
+            createdAt
+            updatedAt
+            aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -40494,6 +46799,10 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -40551,6 +46860,7 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -40564,6 +46874,8 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -40580,6 +46892,7 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -40637,6 +46950,8 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -40778,6 +47093,22 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -40813,6 +47144,7 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -40826,6 +47158,8 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -41095,6 +47429,10 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -41230,6 +47568,22 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -41330,6 +47684,10 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -41590,6 +47948,22 @@ export const updateApsAppUserPassportStamp = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -41687,6 +48061,10 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -41744,6 +48122,7 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -41757,6 +48136,8 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -41773,6 +48154,7 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -41830,6 +48212,8 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -41971,6 +48355,22 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -42006,6 +48406,7 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -42019,6 +48420,8 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -42288,6 +48691,10 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -42423,6 +48830,22 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -42523,6 +48946,10 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -42783,6 +49210,22 @@ export const deleteApsAppUserPassportStamp = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -42880,6 +49323,10 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -42937,6 +49384,7 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -42950,6 +49398,8 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -42966,6 +49416,7 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -43023,6 +49474,8 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -43164,6 +49617,22 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -43199,6 +49668,7 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -43212,6 +49682,8 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -43481,6 +49953,10 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -43616,6 +50092,22 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -43716,6 +50208,10 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -43976,6 +50472,22 @@ export const createApsAppUserFavoriteExhibitor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -44072,6 +50584,10 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -44129,6 +50645,7 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -44142,6 +50659,8 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -44158,6 +50677,7 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -44215,6 +50735,8 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -44356,6 +50878,22 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -44391,6 +50929,7 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -44404,6 +50943,8 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -44673,6 +51214,10 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -44808,6 +51353,22 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -44908,6 +51469,10 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -45168,6 +51733,22 @@ export const updateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -45264,6 +51845,10 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -45321,6 +51906,7 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -45334,6 +51920,8 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -45350,6 +51938,7 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -45407,6 +51996,8 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -45548,6 +52139,22 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -45583,6 +52190,7 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -45596,6 +52204,8 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -45865,6 +52475,10 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -46000,6 +52614,22 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -46100,6 +52730,10 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -46360,6 +52994,22 @@ export const deleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -46456,6 +53106,10 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -46513,6 +53167,7 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -46526,6 +53181,8 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -46542,6 +53199,7 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -46599,6 +53257,8 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -46740,6 +53400,22 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -46775,6 +53451,7 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -46788,6 +53465,8 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -46851,6 +53530,7 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -46876,6 +53556,8 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -46909,6 +53591,10 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -47016,6 +53702,10 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -47156,6 +53846,10 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -47416,6 +54110,22 @@ export const createApsAppUserFavoriteSpeaker = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -47512,6 +54222,10 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -47569,6 +54283,7 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -47582,6 +54297,8 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -47598,6 +54315,7 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -47655,6 +54373,8 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -47796,6 +54516,22 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -47831,6 +54567,7 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -47844,6 +54581,8 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -47907,6 +54646,7 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -47932,6 +54672,8 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -47965,6 +54707,10 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -48072,6 +54818,10 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -48212,6 +54962,10 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -48472,6 +55226,22 @@ export const updateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -48568,6 +55338,10 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -48625,6 +55399,7 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -48638,6 +55413,8 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -48654,6 +55431,7 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -48711,6 +55489,8 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -48852,6 +55632,22 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -48887,6 +55683,7 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -48900,6 +55697,8 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -48963,6 +55762,7 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -48988,6 +55788,8 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -49021,6 +55823,10 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -49128,6 +55934,10 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -49268,6 +56078,10 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -49528,6 +56342,22 @@ export const deleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -49624,6 +56454,10 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -49681,6 +56515,7 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -49694,6 +56529,8 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -49710,6 +56547,7 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -49767,6 +56605,8 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -49908,6 +56748,22 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -49943,6 +56799,7 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -49956,6 +56813,8 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -50151,6 +57010,10 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -50245,6 +57108,10 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -50383,6 +57250,10 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -50643,6 +57514,22 @@ export const createApsAppUserFavoriteSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -50739,6 +57626,10 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -50796,6 +57687,7 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -50809,6 +57701,8 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -50825,6 +57719,7 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -50882,6 +57777,8 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -51023,6 +57920,22 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -51058,6 +57971,7 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -51071,6 +57985,8 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -51266,6 +58182,10 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -51360,6 +58280,10 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -51498,6 +58422,10 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -51758,6 +58686,22 @@ export const updateApsAppUserFavoriteSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -51854,6 +58798,10 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -51911,6 +58859,7 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -51924,6 +58873,8 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -51940,6 +58891,7 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -51997,6 +58949,8 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -52138,6 +59092,22 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -52173,6 +59143,7 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -52186,6 +59157,8 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -52381,6 +59354,10 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -52475,6 +59452,10 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -52613,6 +59594,10 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -52873,6 +59858,22 @@ export const deleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -52969,6 +59970,10 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -53026,6 +60031,7 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -53039,6 +60045,8 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -53055,6 +60063,7 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -53112,6 +60121,8 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -53253,6 +60264,22 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -53288,6 +60315,7 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -53301,6 +60329,8 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -53552,6 +60582,10 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -53812,6 +60846,22 @@ export const createApsAppUserFavoriteSession = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -53908,6 +60958,10 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -53965,6 +61019,7 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -53978,6 +61033,8 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -53994,6 +61051,7 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -54051,6 +61109,8 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -54192,6 +61252,22 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -54227,6 +61303,7 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -54240,6 +61317,8 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -54491,6 +61570,10 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -54751,6 +61834,22 @@ export const updateApsAppUserFavoriteSession = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -54847,6 +61946,10 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -54904,6 +62007,7 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -54917,6 +62021,8 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -54933,6 +62039,7 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -54990,6 +62097,8 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -55131,6 +62240,22 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -55166,6 +62291,7 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -55179,6 +62305,8 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -55430,6 +62558,10 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -55690,6 +62822,22 @@ export const deleteApsAppUserFavoriteSession = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -55786,6 +62934,10 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -55843,6 +62995,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -55856,6 +63009,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -55872,6 +63027,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -55929,6 +63085,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -56070,6 +63228,22 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -56105,6 +63279,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -56118,6 +63293,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -56204,6 +63381,10 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -56261,6 +63442,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -56274,6 +63456,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -56290,6 +63474,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -56347,6 +63532,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -56488,6 +63675,22 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -56523,6 +63726,7 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -56536,6 +63740,8 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -56670,6 +63876,10 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -56930,6 +64140,22 @@ export const createApsAppUserFavoriteContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -57026,6 +64252,10 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -57083,6 +64313,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -57096,6 +64327,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -57112,6 +64345,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -57169,6 +64403,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -57310,6 +64546,22 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -57345,6 +64597,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -57358,6 +64611,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -57444,6 +64699,10 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -57501,6 +64760,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -57514,6 +64774,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -57530,6 +64792,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -57587,6 +64850,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -57728,6 +64993,22 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -57763,6 +65044,7 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -57776,6 +65058,8 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -57910,6 +65194,10 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -58170,6 +65458,22 @@ export const updateApsAppUserFavoriteContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -58266,6 +65570,10 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -58323,6 +65631,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -58336,6 +65645,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -58352,6 +65663,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -58409,6 +65721,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -58550,6 +65864,22 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -58585,6 +65915,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -58598,6 +65929,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -58684,6 +66017,10 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -58741,6 +66078,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -58754,6 +66092,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -58770,6 +66110,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -58827,6 +66168,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -58968,6 +66311,22 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -59003,6 +66362,7 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -59016,6 +66376,8 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -59150,6 +66512,10 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -59410,6 +66776,22 @@ export const deleteApsAppUserFavoriteContact = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -59562,6 +66944,10 @@ export const createApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -59827,6 +67213,22 @@ export const createApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -59901,6 +67303,10 @@ export const createApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -60066,6 +67472,10 @@ export const updateApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -60331,6 +67741,22 @@ export const updateApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -60405,6 +67831,10 @@ export const updateApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -60570,6 +68000,10 @@ export const deleteApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -60835,6 +68269,22 @@ export const deleteApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -60909,6 +68359,10 @@ export const deleteApsAddOn = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -61060,6 +68514,10 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -61171,6 +68629,10 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -61238,6 +68700,10 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -61319,6 +68785,10 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -61376,6 +68846,7 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -61389,6 +68860,8 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -61412,6 +68885,36 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -61521,6 +69024,10 @@ export const updateRegistrantAddOnRequest = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -61659,6 +69166,10 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -61770,6 +69281,10 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -61837,6 +69352,10 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -61918,6 +69437,10 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -61975,6 +69498,7 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -61988,6 +69512,8 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -62011,6 +69537,36 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -62123,6 +69679,10 @@ export const deleteRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -62227,6 +69787,10 @@ export const createApsSeatingChart = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -62325,6 +69889,10 @@ export const updateApsSeatingChart = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -62423,6 +69991,10 @@ export const deleteApsSeatingChart = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -62588,6 +70160,10 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -62699,6 +70275,10 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -62766,6 +70346,10 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -62847,6 +70431,10 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -62904,6 +70492,7 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -62917,6 +70506,8 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -62940,6 +70531,36 @@ export const createApsSeatingChartRegistrant = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -63093,6 +70714,10 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -63204,6 +70829,10 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -63271,6 +70900,10 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -63352,6 +70985,10 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -63409,6 +71046,7 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -63422,6 +71060,8 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -63445,6 +71085,36 @@ export const updateApsSeatingChartRegistrant = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -63598,6 +71268,10 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -63709,6 +71383,10 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -63776,6 +71454,10 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -63857,6 +71539,10 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -63914,6 +71600,7 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -63927,6 +71614,8 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -63950,6 +71639,36 @@ export const deleteApsSeatingChartRegistrant = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -64632,6 +72351,10 @@ export const createApsDmMessage = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -64672,6 +72395,10 @@ export const createApsDmMessage = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -64814,6 +72541,7 @@ export const createApsDmMessage = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -64839,6 +72567,8 @@ export const createApsDmMessage = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -64872,6 +72602,10 @@ export const createApsDmMessage = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -65042,6 +72776,10 @@ export const updateApsDmMessage = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -65082,6 +72820,10 @@ export const updateApsDmMessage = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -65224,6 +72966,7 @@ export const updateApsDmMessage = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -65249,6 +72992,8 @@ export const updateApsDmMessage = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -65282,6 +73027,10 @@ export const updateApsDmMessage = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -65452,6 +73201,10 @@ export const deleteApsDmMessage = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -65492,6 +73245,10 @@ export const deleteApsDmMessage = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -65634,6 +73391,7 @@ export const deleteApsDmMessage = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -65659,6 +73417,8 @@ export const deleteApsDmMessage = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -65692,6 +73452,10 @@ export const deleteApsDmMessage = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -65739,6 +73503,11 @@ export const createApsAdminAnnouncement = /* GraphQL */ `
       title
       body
       deepLink
+      audienceTypes
+      scheduledAt
+      publishedAt
+      sentCount
+      sentAt
       createdAt
       updatedAt
       __typename
@@ -65756,6 +73525,11 @@ export const updateApsAdminAnnouncement = /* GraphQL */ `
       title
       body
       deepLink
+      audienceTypes
+      scheduledAt
+      publishedAt
+      sentCount
+      sentAt
       createdAt
       updatedAt
       __typename
@@ -65773,6 +73547,109 @@ export const deleteApsAdminAnnouncement = /* GraphQL */ `
       title
       body
       deepLink
+      audienceTypes
+      scheduledAt
+      publishedAt
+      sentCount
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createApsAnnouncementOpen = /* GraphQL */ `
+  mutation CreateApsAnnouncementOpen(
+    $input: CreateApsAnnouncementOpenInput!
+    $condition: ModelApsAnnouncementOpenConditionInput
+  ) {
+    createApsAnnouncementOpen(input: $input, condition: $condition) {
+      id
+      announcementId
+      eventId
+      userId
+      source
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsAnnouncementOpen = /* GraphQL */ `
+  mutation UpdateApsAnnouncementOpen(
+    $input: UpdateApsAnnouncementOpenInput!
+    $condition: ModelApsAnnouncementOpenConditionInput
+  ) {
+    updateApsAnnouncementOpen(input: $input, condition: $condition) {
+      id
+      announcementId
+      eventId
+      userId
+      source
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsAnnouncementOpen = /* GraphQL */ `
+  mutation DeleteApsAnnouncementOpen(
+    $input: DeleteApsAnnouncementOpenInput!
+    $condition: ModelApsAnnouncementOpenConditionInput
+  ) {
+    deleteApsAnnouncementOpen(input: $input, condition: $condition) {
+      id
+      announcementId
+      eventId
+      userId
+      source
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsEmailCampaign = /* GraphQL */ `
+  mutation DeleteApsEmailCampaign(
+    $input: DeleteApsEmailCampaignInput!
+    $condition: ModelApsEmailCampaignConditionInput
+  ) {
+    deleteApsEmailCampaign(input: $input, condition: $condition) {
+      id
+      eventId
+      name
+      templateKey
+      subject
+      audienceStatuses
+      audienceTypes
+      status
+      scheduledAt
+      startedAt
+      completedAt
+      totalRecipients
+      sentCount
+      failedCount
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsEmailSend = /* GraphQL */ `
+  mutation DeleteApsEmailSend(
+    $input: DeleteApsEmailSendInput!
+    $condition: ModelApsEmailSendConditionInput
+  ) {
+    deleteApsEmailSend(input: $input, condition: $condition) {
+      id
+      campaignId
+      eventId
+      registrantId
+      email
+      status
+      sesMessageId
+      error
+      sentAt
       createdAt
       updatedAt
       __typename
@@ -65871,6 +73748,1734 @@ export const deleteApsPushToken = /* GraphQL */ `
       platform
       updatedAt
       createdAt
+      __typename
+    }
+  }
+`;
+export const createApsPostEventSurvey = /* GraphQL */ `
+  mutation CreateApsPostEventSurvey(
+    $input: CreateApsPostEventSurveyInput!
+    $condition: ModelApsPostEventSurveyConditionInput
+  ) {
+    createApsPostEventSurvey(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      registrantId
+      registrant {
+        id
+        apsID
+        aps {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        jobTitle
+        attendeeType
+        termsAccepted
+        interests
+        otherInterest
+        buyerQuestion
+        packagingChallenge
+        certification
+        billingAddressFirstName
+        billingAddressLastName
+        billingAddressEmail
+        billingAddressPhone
+        billingAddressStreet
+        billingAddressCity
+        billingAddressState
+        billingAddressZip
+        billingAddressCountry
+        sameAsAttendee
+        speakerTopic
+        learningObjectives
+        totalAmount
+        discountCode
+        status
+        paymentConfirmation
+        registrationEmailSent
+        registrationEmailSentDate
+        registrationEmailReceived
+        registrationEmailReceivedDate
+        welcomeEmailSent
+        welcomeEmailSentDate
+        welcomeEmailReceived
+        welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
+        paymentMethod
+        paymentLast4
+        approvedAt
+        headshot
+        presentation
+        presentationTitle
+        presentationSummary
+        bio
+        invoice
+        seatingChartRegistrant {
+          id
+          category
+          firstName
+          lastName
+          company
+          email
+          role
+          tableNumber
+          notes
+          seatingChartID
+          seatingChart {
+            id
+            createdAt
+            updatedAt
+            __typename
+          }
+          registrantID
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsSeatingChartRegistrantsId
+          __typename
+        }
+        addOnRequests {
+          items {
+            id
+            registrantId
+            addOnId
+            status
+            preferences
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        appUserId
+        appUser {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        qrCode
+        createdAt
+        updatedAt
+        aPSRegistrantsId
+        aPSCompanyRegistrantsId
+        apsRegistrantSeatingChartRegistrantId
+        __typename
+      }
+      userId
+      surveyKey
+      identityType
+      mostBeneficial
+      leastBeneficial
+      summitRating
+      gainedValue
+      gainedValueComments
+      favoritePresentation
+      sessionRatings
+      networkGrowthRating
+      improvementSuggestions
+      recommendName
+      recommendCompany
+      recommendEmail
+      recommendPhone
+      completedAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsPostEventSurvey = /* GraphQL */ `
+  mutation UpdateApsPostEventSurvey(
+    $input: UpdateApsPostEventSurveyInput!
+    $condition: ModelApsPostEventSurveyConditionInput
+  ) {
+    updateApsPostEventSurvey(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      registrantId
+      registrant {
+        id
+        apsID
+        aps {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        jobTitle
+        attendeeType
+        termsAccepted
+        interests
+        otherInterest
+        buyerQuestion
+        packagingChallenge
+        certification
+        billingAddressFirstName
+        billingAddressLastName
+        billingAddressEmail
+        billingAddressPhone
+        billingAddressStreet
+        billingAddressCity
+        billingAddressState
+        billingAddressZip
+        billingAddressCountry
+        sameAsAttendee
+        speakerTopic
+        learningObjectives
+        totalAmount
+        discountCode
+        status
+        paymentConfirmation
+        registrationEmailSent
+        registrationEmailSentDate
+        registrationEmailReceived
+        registrationEmailReceivedDate
+        welcomeEmailSent
+        welcomeEmailSentDate
+        welcomeEmailReceived
+        welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
+        paymentMethod
+        paymentLast4
+        approvedAt
+        headshot
+        presentation
+        presentationTitle
+        presentationSummary
+        bio
+        invoice
+        seatingChartRegistrant {
+          id
+          category
+          firstName
+          lastName
+          company
+          email
+          role
+          tableNumber
+          notes
+          seatingChartID
+          seatingChart {
+            id
+            createdAt
+            updatedAt
+            __typename
+          }
+          registrantID
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsSeatingChartRegistrantsId
+          __typename
+        }
+        addOnRequests {
+          items {
+            id
+            registrantId
+            addOnId
+            status
+            preferences
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        appUserId
+        appUser {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        qrCode
+        createdAt
+        updatedAt
+        aPSRegistrantsId
+        aPSCompanyRegistrantsId
+        apsRegistrantSeatingChartRegistrantId
+        __typename
+      }
+      userId
+      surveyKey
+      identityType
+      mostBeneficial
+      leastBeneficial
+      summitRating
+      gainedValue
+      gainedValueComments
+      favoritePresentation
+      sessionRatings
+      networkGrowthRating
+      improvementSuggestions
+      recommendName
+      recommendCompany
+      recommendEmail
+      recommendPhone
+      completedAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsPostEventSurvey = /* GraphQL */ `
+  mutation DeleteApsPostEventSurvey(
+    $input: DeleteApsPostEventSurveyInput!
+    $condition: ModelApsPostEventSurveyConditionInput
+  ) {
+    deleteApsPostEventSurvey(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      registrantId
+      registrant {
+        id
+        apsID
+        aps {
+          id
+          year
+          codes {
+            nextToken
+            __typename
+          }
+          agenda {
+            id
+            eventId
+            createdAt
+            updatedAt
+            __typename
+          }
+          startDate
+          endDate
+          location
+          address
+          city
+          state
+          zip
+          website
+          Registrants {
+            nextToken
+            __typename
+          }
+          Sponsors {
+            nextToken
+            __typename
+          }
+          Speakers {
+            nextToken
+            __typename
+          }
+          companies {
+            nextToken
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          exhibitors {
+            nextToken
+            __typename
+          }
+          exhibitorPromotions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          exhibitorPhotos {
+            nextToken
+            __typename
+          }
+          exhibitorHandouts {
+            nextToken
+            __typename
+          }
+          favoriteExhibitors {
+            nextToken
+            __typename
+          }
+          favoriteSpeakers {
+            nextToken
+            __typename
+          }
+          favoriteSponsors {
+            nextToken
+            __typename
+          }
+          favoriteSessions {
+            nextToken
+            __typename
+          }
+          favoriteContacts {
+            nextToken
+            __typename
+          }
+          passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
+          addOns {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          aPSAgendaId
+          __typename
+        }
+        firstName
+        lastName
+        email
+        phone
+        companyId
+        company {
+          id
+          name
+          email
+          type
+          description
+          website
+          phone
+          address
+          city
+          state
+          zip
+          country
+          logo
+          events {
+            nextToken
+            __typename
+          }
+          registrants {
+            nextToken
+            __typename
+          }
+          sponsorId
+          sponsor {
+            id
+            companyId
+            eventId
+            type
+            createdAt
+            updatedAt
+            aPSSponsorsId
+            apsSponsorProfileId
+            __typename
+          }
+          exhibitorProfileId
+          exhibitorProfile {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        jobTitle
+        attendeeType
+        termsAccepted
+        interests
+        otherInterest
+        buyerQuestion
+        packagingChallenge
+        certification
+        billingAddressFirstName
+        billingAddressLastName
+        billingAddressEmail
+        billingAddressPhone
+        billingAddressStreet
+        billingAddressCity
+        billingAddressState
+        billingAddressZip
+        billingAddressCountry
+        sameAsAttendee
+        speakerTopic
+        learningObjectives
+        totalAmount
+        discountCode
+        status
+        paymentConfirmation
+        registrationEmailSent
+        registrationEmailSentDate
+        registrationEmailReceived
+        registrationEmailReceivedDate
+        welcomeEmailSent
+        welcomeEmailSentDate
+        welcomeEmailReceived
+        welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
+        paymentMethod
+        paymentLast4
+        approvedAt
+        headshot
+        presentation
+        presentationTitle
+        presentationSummary
+        bio
+        invoice
+        seatingChartRegistrant {
+          id
+          category
+          firstName
+          lastName
+          company
+          email
+          role
+          tableNumber
+          notes
+          seatingChartID
+          seatingChart {
+            id
+            createdAt
+            updatedAt
+            __typename
+          }
+          registrantID
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          createdAt
+          updatedAt
+          apsSeatingChartRegistrantsId
+          __typename
+        }
+        addOnRequests {
+          items {
+            id
+            registrantId
+            addOnId
+            status
+            preferences
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        appUserId
+        appUser {
+          id
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          photos {
+            nextToken
+            __typename
+          }
+          sessionQuestions {
+            nextToken
+            __typename
+          }
+          exhibitorDeals {
+            nextToken
+            __typename
+          }
+          contacts {
+            nextToken
+            __typename
+          }
+          notes {
+            nextToken
+            __typename
+          }
+          leads {
+            nextToken
+            __typename
+          }
+          sentDmMessages {
+            nextToken
+            __typename
+          }
+          profileId
+          profile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          createdAt
+          updatedAt
+          __typename
+        }
+        notes {
+          items {
+            id
+            owner
+            userId
+            note
+            sessionId
+            exhibitorId
+            registrantId
+            profileId
+            companyId
+            createdAt
+            updatedAt
+            apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        qrCode
+        createdAt
+        updatedAt
+        aPSRegistrantsId
+        aPSCompanyRegistrantsId
+        apsRegistrantSeatingChartRegistrantId
+        __typename
+      }
+      userId
+      surveyKey
+      identityType
+      mostBeneficial
+      leastBeneficial
+      summitRating
+      gainedValue
+      gainedValueComments
+      favoritePresentation
+      sessionRatings
+      networkGrowthRating
+      improvementSuggestions
+      recommendName
+      recommendCompany
+      recommendEmail
+      recommendPhone
+      completedAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createApsAppFeedback = /* GraphQL */ `
+  mutation CreateApsAppFeedback(
+    $input: CreateApsAppFeedbackInput!
+    $condition: ModelApsAppFeedbackConditionInput
+  ) {
+    createApsAppFeedback(input: $input, condition: $condition) {
+      id
+      owner
+      userId
+      eventId
+      message
+      imageKeys
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsAppFeedback = /* GraphQL */ `
+  mutation UpdateApsAppFeedback(
+    $input: UpdateApsAppFeedbackInput!
+    $condition: ModelApsAppFeedbackConditionInput
+  ) {
+    updateApsAppFeedback(input: $input, condition: $condition) {
+      id
+      owner
+      userId
+      eventId
+      message
+      imageKeys
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsAppFeedback = /* GraphQL */ `
+  mutation DeleteApsAppFeedback(
+    $input: DeleteApsAppFeedbackInput!
+    $condition: ModelApsAppFeedbackConditionInput
+  ) {
+    deleteApsAppFeedback(input: $input, condition: $condition) {
+      id
+      owner
+      userId
+      eventId
+      message
+      imageKeys
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createApsAppLeaderboardEntry = /* GraphQL */ `
+  mutation CreateApsAppLeaderboardEntry(
+    $input: CreateApsAppLeaderboardEntryInput!
+    $condition: ModelApsAppLeaderboardEntryConditionInput
+  ) {
+    createApsAppLeaderboardEntry(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      userProfileId
+      displayName
+      company
+      jobTitle
+      profilePicture
+      points
+      breakdown
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsAppLeaderboardEntry = /* GraphQL */ `
+  mutation UpdateApsAppLeaderboardEntry(
+    $input: UpdateApsAppLeaderboardEntryInput!
+    $condition: ModelApsAppLeaderboardEntryConditionInput
+  ) {
+    updateApsAppLeaderboardEntry(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      userProfileId
+      displayName
+      company
+      jobTitle
+      profilePicture
+      points
+      breakdown
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteApsAppLeaderboardEntry = /* GraphQL */ `
+  mutation DeleteApsAppLeaderboardEntry(
+    $input: DeleteApsAppLeaderboardEntryInput!
+    $condition: ModelApsAppLeaderboardEntryConditionInput
+  ) {
+    deleteApsAppLeaderboardEntry(input: $input, condition: $condition) {
+      id
+      owner
+      eventId
+      userProfileId
+      displayName
+      company
+      jobTitle
+      profilePicture
+      points
+      breakdown
+      createdAt
+      updatedAt
       __typename
     }
   }
@@ -65978,6 +75583,10 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -66243,6 +75852,22 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -66338,6 +75963,10 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -66519,6 +76148,10 @@ export const deleteAPSCompanyEvents = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -66719,6 +76352,7 @@ export const createSessionSpeakers = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -66744,6 +76378,8 @@ export const createSessionSpeakers = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -66777,6 +76413,10 @@ export const createSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -66884,6 +76524,10 @@ export const createSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -67083,6 +76727,7 @@ export const updateSessionSpeakers = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -67108,6 +76753,8 @@ export const updateSessionSpeakers = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -67141,6 +76788,10 @@ export const updateSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -67248,6 +76899,10 @@ export const updateSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -67447,6 +77102,7 @@ export const deleteSessionSpeakers = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -67472,6 +77128,8 @@ export const deleteSessionSpeakers = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -67505,6 +77163,10 @@ export const deleteSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -67612,6 +77274,10 @@ export const deleteSessionSpeakers = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -67943,6 +77609,10 @@ export const createSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -68037,6 +77707,10 @@ export const createSessionSponsors = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -68366,6 +78040,10 @@ export const updateSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -68460,6 +78138,10 @@ export const updateSessionSponsors = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -68789,6 +78471,10 @@ export const deleteSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -68883,6 +78569,10 @@ export const deleteSessionSponsors = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -69060,6 +78750,10 @@ export const createAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -69178,6 +78872,10 @@ export const createAPS = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -69218,6 +78916,10 @@ export const createAPS = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -69325,6 +79027,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -69338,6 +79041,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -69551,6 +79256,10 @@ export const createAPS = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -69787,6 +79496,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -69800,6 +79510,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -69865,6 +79577,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -69878,6 +79591,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -69936,6 +79651,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -69949,6 +79665,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -70007,6 +79725,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -70020,6 +79739,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -70083,6 +79804,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -70096,6 +79818,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -70112,6 +79836,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -70125,6 +79850,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -70171,6 +79898,7 @@ export const createAPS = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -70184,6 +79912,8 @@ export const createAPS = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -70230,6 +79960,87 @@ export const createAPS = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -70388,6 +80199,10 @@ export const updateAPSCode = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -70648,6 +80463,22 @@ export const updateAPSCode = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -70852,6 +80683,10 @@ export const createApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -71117,6 +80952,22 @@ export const createApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -71217,6 +81068,10 @@ export const createApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -71401,6 +81256,10 @@ export const createApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -71476,6 +81335,10 @@ export const createApsRegistrant = /* GraphQL */ `
       welcomeEmailSentDate
       welcomeEmailReceived
       welcomeEmailReceivedDate
+      appEmailSent
+      appEmailSentDate
+      appEmailReceived
+      appEmailReceivedDate
       paymentMethod
       paymentLast4
       approvedAt
@@ -71583,6 +81446,10 @@ export const createApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -71623,6 +81490,10 @@ export const createApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -71683,6 +81554,10 @@ export const createApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -71810,6 +81685,10 @@ export const createApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -71850,6 +81729,10 @@ export const createApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -71992,6 +81875,7 @@ export const createApsRegistrant = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -72017,6 +81901,8 @@ export const createApsRegistrant = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -72050,6 +81936,10 @@ export const createApsRegistrant = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -72168,6 +82058,10 @@ export const createApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -72197,6 +82091,7 @@ export const createApsRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -72210,6 +82105,8 @@ export const createApsRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -72239,6 +82136,98 @@ export const createApsRegistrant = /* GraphQL */ `
           createdAt
           updatedAt
           apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      postEventSurveys {
+        items {
+          id
+          owner
+          eventId
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          userId
+          surveyKey
+          identityType
+          mostBeneficial
+          leastBeneficial
+          summitRating
+          gainedValue
+          gainedValueComments
+          favoritePresentation
+          sessionRatings
+          networkGrowthRating
+          improvementSuggestions
+          recommendName
+          recommendCompany
+          recommendEmail
+          recommendPhone
+          completedAt
+          createdAt
+          updatedAt
           __typename
         }
         nextToken
@@ -72356,6 +82345,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -72621,6 +82614,22 @@ export const updateApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -72721,6 +82730,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -72905,6 +82918,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          viewedByUsers {
+            nextToken
+            __typename
+          }
           createdAt
           updatedAt
           aPSExhibitorsId
@@ -72980,6 +82997,10 @@ export const updateApsRegistrant = /* GraphQL */ `
       welcomeEmailSentDate
       welcomeEmailReceived
       welcomeEmailReceivedDate
+      appEmailSent
+      appEmailSentDate
+      appEmailReceived
+      appEmailReceivedDate
       paymentMethod
       paymentLast4
       approvedAt
@@ -73087,6 +83108,10 @@ export const updateApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -73127,6 +83152,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -73187,6 +83216,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -73314,6 +83347,10 @@ export const updateApsRegistrant = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -73354,6 +83391,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -73496,6 +83537,7 @@ export const updateApsRegistrant = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -73521,6 +83563,8 @@ export const updateApsRegistrant = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -73554,6 +83598,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -73672,6 +83720,10 @@ export const updateApsRegistrant = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -73701,6 +83753,7 @@ export const updateApsRegistrant = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -73714,6 +83767,8 @@ export const updateApsRegistrant = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -73743,6 +83798,98 @@ export const updateApsRegistrant = /* GraphQL */ `
           createdAt
           updatedAt
           apsAppUserNotesId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      postEventSurveys {
+        items {
+          id
+          owner
+          eventId
+          registrantId
+          registrant {
+            id
+            apsID
+            firstName
+            lastName
+            email
+            phone
+            companyId
+            jobTitle
+            attendeeType
+            termsAccepted
+            interests
+            otherInterest
+            buyerQuestion
+            packagingChallenge
+            certification
+            billingAddressFirstName
+            billingAddressLastName
+            billingAddressEmail
+            billingAddressPhone
+            billingAddressStreet
+            billingAddressCity
+            billingAddressState
+            billingAddressZip
+            billingAddressCountry
+            sameAsAttendee
+            speakerTopic
+            learningObjectives
+            totalAmount
+            discountCode
+            status
+            paymentConfirmation
+            registrationEmailSent
+            registrationEmailSentDate
+            registrationEmailReceived
+            registrationEmailReceivedDate
+            welcomeEmailSent
+            welcomeEmailSentDate
+            welcomeEmailReceived
+            welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
+            paymentMethod
+            paymentLast4
+            approvedAt
+            headshot
+            presentation
+            presentationTitle
+            presentationSummary
+            bio
+            invoice
+            appUserId
+            qrCode
+            createdAt
+            updatedAt
+            aPSRegistrantsId
+            aPSCompanyRegistrantsId
+            apsRegistrantSeatingChartRegistrantId
+            __typename
+          }
+          userId
+          surveyKey
+          identityType
+          mostBeneficial
+          leastBeneficial
+          summitRating
+          gainedValue
+          gainedValueComments
+          favoritePresentation
+          sessionRatings
+          networkGrowthRating
+          improvementSuggestions
+          recommendName
+          recommendCompany
+          recommendEmail
+          recommendPhone
+          completedAt
+          createdAt
+          updatedAt
           __typename
         }
         nextToken
@@ -73852,6 +83999,10 @@ export const updateApsAppUser = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -73966,6 +84117,10 @@ export const updateApsAppUser = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -74033,6 +84188,10 @@ export const updateApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -74114,6 +84273,10 @@ export const updateApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -74171,6 +84334,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -74184,6 +84348,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -74207,6 +84373,36 @@ export const updateApsAppUser = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -74382,6 +84578,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -74395,6 +84592,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -74500,6 +84699,10 @@ export const updateApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -74529,6 +84732,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -74542,6 +84746,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -74599,6 +84805,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -74612,6 +84819,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -74710,6 +84919,10 @@ export const updateApsAppUser = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -74767,6 +84980,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -74780,6 +84994,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -74796,6 +85012,7 @@ export const updateApsAppUser = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -74853,6 +85070,8 @@ export const updateApsAppUser = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -74994,6 +85213,22 @@ export const updateApsAppUser = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -75029,6 +85264,7 @@ export const updateApsAppUser = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75042,6 +85278,8 @@ export const updateApsAppUser = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75174,6 +85412,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -75214,6 +85456,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -75356,6 +85602,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -75381,6 +85628,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -75417,6 +85666,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           notes {
             nextToken
             __typename
@@ -75448,6 +85701,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
       company
       jobTitle
       attendeeType
+      expertise
       quickTools
       affiliates {
         items {
@@ -75463,6 +85717,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75476,6 +85731,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75516,6 +85773,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75529,6 +85787,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75559,6 +85819,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75572,6 +85833,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75589,6 +85852,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
       resume
       thinkificId
       apcProgress
+      risingStarKey
+      risingStarYear
       contacts {
         items {
           id
@@ -75612,6 +85877,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75625,6 +85891,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75662,6 +85930,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75675,6 +85944,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75704,6 +85975,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75717,6 +85989,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75782,6 +86056,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75795,6 +86070,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75853,6 +86130,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75866,6 +86144,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -75924,6 +86204,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -75937,6 +86218,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76000,6 +86283,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76013,6 +86297,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76029,6 +86315,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76042,6 +86329,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76088,6 +86377,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76101,6 +86391,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76117,6 +86409,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76130,6 +86423,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76176,6 +86471,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76189,6 +86485,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76235,6 +86533,87 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      exhibitorViews {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -76331,6 +86710,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -76360,6 +86743,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76373,6 +86757,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76431,6 +86817,7 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -76456,6 +86843,8 @@ export const updateApsAppUserProfile = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -76489,6 +86878,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -76599,6 +86992,10 @@ export const updateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -76701,6 +87098,10 @@ export const createProfileAffiliate = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -76758,6 +87159,7 @@ export const createProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -76771,6 +87173,8 @@ export const createProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -76787,6 +87191,7 @@ export const createProfileAffiliate = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -76844,6 +87249,8 @@ export const createProfileAffiliate = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -76985,6 +87392,22 @@ export const createProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -77020,6 +87443,7 @@ export const createProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -77033,6 +87457,8 @@ export const createProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -77137,6 +87563,10 @@ export const updateProfileAffiliate = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -77194,6 +87624,7 @@ export const updateProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -77207,6 +87638,8 @@ export const updateProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -77223,6 +87656,7 @@ export const updateProfileAffiliate = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -77280,6 +87714,8 @@ export const updateProfileAffiliate = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -77421,6 +87857,22 @@ export const updateProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -77456,6 +87908,7 @@ export const updateProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -77469,6 +87922,8 @@ export const updateProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -77573,6 +88028,10 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -77630,6 +88089,7 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -77643,6 +88103,8 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -77659,6 +88121,7 @@ export const deleteProfileAffiliate = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -77716,6 +88179,8 @@ export const deleteProfileAffiliate = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -77857,6 +88322,22 @@ export const deleteProfileAffiliate = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -77892,6 +88373,7 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -77905,6 +88387,8 @@ export const deleteProfileAffiliate = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78009,6 +88493,10 @@ export const createProfileEducation = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -78066,6 +88554,7 @@ export const createProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -78079,6 +88568,8 @@ export const createProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78095,6 +88586,7 @@ export const createProfileEducation = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -78152,6 +88644,8 @@ export const createProfileEducation = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -78293,6 +88787,22 @@ export const createProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -78328,6 +88838,7 @@ export const createProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -78341,6 +88852,8 @@ export const createProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78444,6 +88957,10 @@ export const updateProfileEducation = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -78501,6 +89018,7 @@ export const updateProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -78514,6 +89032,8 @@ export const updateProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78530,6 +89050,7 @@ export const updateProfileEducation = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -78587,6 +89108,8 @@ export const updateProfileEducation = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -78728,6 +89251,22 @@ export const updateProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -78763,6 +89302,7 @@ export const updateProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -78776,6 +89316,8 @@ export const updateProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78879,6 +89421,10 @@ export const deleteProfileEducation = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -78936,6 +89482,7 @@ export const deleteProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -78949,6 +89496,8 @@ export const deleteProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -78965,6 +89514,7 @@ export const deleteProfileEducation = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -79022,6 +89572,8 @@ export const deleteProfileEducation = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -79163,6 +89715,22 @@ export const deleteProfileEducation = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -79198,6 +89766,7 @@ export const deleteProfileEducation = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -79211,6 +89780,8 @@ export const deleteProfileEducation = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -79314,6 +89885,10 @@ export const createProfileInterest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -79371,6 +89946,7 @@ export const createProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -79384,6 +89960,8 @@ export const createProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -79400,6 +89978,7 @@ export const createProfileInterest = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -79457,6 +90036,8 @@ export const createProfileInterest = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -79598,6 +90179,22 @@ export const createProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -79633,6 +90230,7 @@ export const createProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -79646,6 +90244,8 @@ export const createProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -79747,6 +90347,10 @@ export const updateProfileInterest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -79804,6 +90408,7 @@ export const updateProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -79817,6 +90422,8 @@ export const updateProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -79833,6 +90440,7 @@ export const updateProfileInterest = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -79890,6 +90498,8 @@ export const updateProfileInterest = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -80031,6 +90641,22 @@ export const updateProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -80066,6 +90692,7 @@ export const updateProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -80079,6 +90706,8 @@ export const updateProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -80180,6 +90809,10 @@ export const deleteProfileInterest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -80237,6 +90870,7 @@ export const deleteProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -80250,6 +90884,8 @@ export const deleteProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -80266,6 +90902,7 @@ export const deleteProfileInterest = /* GraphQL */ `
         company
         jobTitle
         attendeeType
+        expertise
         quickTools
         affiliates {
           items {
@@ -80323,6 +90960,8 @@ export const deleteProfileInterest = /* GraphQL */ `
         resume
         thinkificId
         apcProgress
+        risingStarKey
+        risingStarYear
         contacts {
           items {
             id
@@ -80464,6 +91103,22 @@ export const deleteProfileInterest = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         notes {
           items {
             id
@@ -80499,6 +91154,7 @@ export const deleteProfileInterest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -80512,6 +91168,8 @@ export const deleteProfileInterest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -80646,6 +91304,10 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -80686,6 +91348,10 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -80828,6 +91494,7 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -80853,6 +91520,8 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -80886,6 +91555,10 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -81011,6 +91684,10 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -81271,6 +91948,22 @@ export const updateApsAppUserPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -81456,6 +92149,10 @@ export const createAPSCompany = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -81496,6 +92193,10 @@ export const createAPSCompany = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -81666,6 +92367,10 @@ export const createAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -81760,6 +92465,10 @@ export const createAPSCompany = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -82033,6 +92742,10 @@ export const createAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -82168,6 +92881,22 @@ export const createAPSCompany = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -82264,6 +92993,10 @@ export const createAPSCompany = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -82293,6 +93026,7 @@ export const createAPSCompany = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -82306,6 +93040,8 @@ export const createAPSCompany = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -82525,6 +93261,10 @@ export const updateAPSCompany = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -82565,6 +93305,10 @@ export const updateAPSCompany = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -82735,6 +93479,10 @@ export const updateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -82829,6 +93577,10 @@ export const updateAPSCompany = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -83102,6 +93854,10 @@ export const updateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -83237,6 +93993,22 @@ export const updateAPSCompany = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -83333,6 +94105,10 @@ export const updateAPSCompany = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -83362,6 +94138,7 @@ export const updateAPSCompany = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -83375,6 +94152,8 @@ export const updateAPSCompany = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -83525,6 +94304,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -83706,6 +94489,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -83908,6 +94695,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -84002,6 +94793,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -84140,6 +94935,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -84400,6 +95199,22 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -84742,6 +95557,10 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -84771,6 +95590,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -84784,6 +95604,8 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -84833,6 +95655,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -84846,6 +95669,8 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -84911,6 +95736,7 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -84924,6 +95750,8 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -84970,6 +95798,87 @@ export const updateApsAppExhibitorProfile = /* GraphQL */ `
           createdAt
           updatedAt
           aPSPassportStampsId
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      viewedByUsers {
+        items {
+          id
+          owner
+          userProfileId
+          userProfile {
+            id
+            userId
+            firstName
+            lastName
+            email
+            phone
+            company
+            jobTitle
+            attendeeType
+            expertise
+            quickTools
+            profilePicture
+            bio
+            linkedin
+            twitter
+            facebook
+            instagram
+            youtube
+            website
+            location
+            resume
+            thinkificId
+            apcProgress
+            risingStarKey
+            risingStarYear
+            speakerId
+            createdAt
+            updatedAt
+            __typename
+          }
+          exhibitorId
+          exhibitor {
+            id
+            companyId
+            sponsorId
+            eventId
+            video
+            videoCaption
+            boothNumber
+            qrCode
+            passportQrPayload
+            visits
+            views
+            likes
+            createdAt
+            updatedAt
+            aPSExhibitorsId
+            __typename
+          }
+          eventId
+          event {
+            id
+            year
+            startDate
+            endDate
+            location
+            address
+            city
+            state
+            zip
+            website
+            createdAt
+            updatedAt
+            aPSAgendaId
+            __typename
+          }
+          viewKey
+          createdAt
+          updatedAt
+          aPSExhibitorViewsId
           __typename
         }
         nextToken
@@ -85219,6 +96128,10 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -85354,6 +96267,22 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -85456,6 +96385,10 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -85716,6 +96649,22 @@ export const createApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -85994,6 +96943,10 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -86129,6 +97082,22 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -86231,6 +97200,10 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -86491,6 +97464,22 @@ export const updateApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -86769,6 +97758,10 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -86904,6 +97897,22 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -87006,6 +98015,10 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -87266,6 +98279,22 @@ export const deleteApsAppExhibitorPromotion = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -87544,6 +98573,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -87679,6 +98712,22 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -87766,6 +98815,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -87806,6 +98859,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -87948,6 +99005,7 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -87973,6 +99031,8 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -88006,6 +99066,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -88128,6 +99192,10 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -88388,6 +99456,22 @@ export const createApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -88667,6 +99751,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -88802,6 +99890,22 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -88889,6 +99993,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -88929,6 +100037,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -89071,6 +100183,7 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -89096,6 +100209,8 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -89129,6 +100244,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -89251,6 +100370,10 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -89511,6 +100634,22 @@ export const updateApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -89790,6 +100929,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -89925,6 +101068,22 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -90012,6 +101171,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           welcomeEmailSentDate
           welcomeEmailReceived
           welcomeEmailReceivedDate
+          appEmailSent
+          appEmailSentDate
+          appEmailReceived
+          appEmailReceivedDate
           paymentMethod
           paymentLast4
           approvedAt
@@ -90052,6 +101215,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           notes {
+            nextToken
+            __typename
+          }
+          postEventSurveys {
             nextToken
             __typename
           }
@@ -90194,6 +101361,7 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           company
           jobTitle
           attendeeType
+          expertise
           quickTools
           affiliates {
             nextToken
@@ -90219,6 +101387,8 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
           resume
           thinkificId
           apcProgress
+          risingStarKey
+          risingStarYear
           contacts {
             nextToken
             __typename
@@ -90252,6 +101422,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          exhibitorViews {
             nextToken
             __typename
           }
@@ -90374,6 +101548,10 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -90634,6 +101812,22 @@ export const deleteApsAppExhibitorDeal = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -90913,6 +102107,10 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -91048,6 +102246,22 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -91151,6 +102365,10 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -91411,6 +102629,22 @@ export const createApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -91689,6 +102923,10 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -91824,6 +103062,22 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -91927,6 +103181,10 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -92187,6 +103445,22 @@ export const updateApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -92465,6 +103739,10 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -92600,6 +103878,22 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -92703,6 +103997,10 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -92963,6 +104261,22 @@ export const deleteApsAppExhibitorPhoto = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -93241,6 +104555,10 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -93376,6 +104694,22 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -93477,6 +104811,10 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -93737,6 +105075,22 @@ export const createApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -94015,6 +105369,10 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -94150,6 +105508,22 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -94251,6 +105625,10 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -94511,6 +105889,22 @@ export const updateApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -94789,6 +106183,10 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -94924,6 +106322,22 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        viewedByUsers {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         aPSExhibitorsId
@@ -95025,6 +106439,10 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -95285,6 +106703,22 @@ export const deleteApsAppExhibitorHandout = /* GraphQL */ `
             createdAt
             updatedAt
             aPSPassportStampsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
             __typename
           }
           nextToken
@@ -95423,6 +106857,10 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -95534,6 +106972,10 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
         welcomeEmailSentDate
         welcomeEmailReceived
         welcomeEmailReceivedDate
+        appEmailSent
+        appEmailSentDate
+        appEmailReceived
+        appEmailReceivedDate
         paymentMethod
         paymentLast4
         approvedAt
@@ -95601,6 +107043,10 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -95682,6 +107128,10 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -95739,6 +107189,7 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             company
             jobTitle
             attendeeType
+            expertise
             quickTools
             profilePicture
             bio
@@ -95752,6 +107203,8 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             resume
             thinkificId
             apcProgress
+            risingStarKey
+            risingStarYear
             speakerId
             createdAt
             updatedAt
@@ -95775,6 +107228,36 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             createdAt
             updatedAt
             apsAppUserNotesId
+            __typename
+          }
+          nextToken
+          __typename
+        }
+        postEventSurveys {
+          items {
+            id
+            owner
+            eventId
+            registrantId
+            userId
+            surveyKey
+            identityType
+            mostBeneficial
+            leastBeneficial
+            summitRating
+            gainedValue
+            gainedValueComments
+            favoritePresentation
+            sessionRatings
+            networkGrowthRating
+            improvementSuggestions
+            recommendName
+            recommendCompany
+            recommendEmail
+            recommendPhone
+            completedAt
+            createdAt
+            updatedAt
             __typename
           }
           nextToken
@@ -95887,6 +107370,10 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          exhibitorViews {
+            nextToken
+            __typename
+          }
           addOns {
             nextToken
             __typename
@@ -95919,6 +107406,100 @@ export const createRegistrantAddOnRequest = /* GraphQL */ `
       }
       status
       preferences
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createApsEmailCampaign = /* GraphQL */ `
+  mutation CreateApsEmailCampaign(
+    $input: CreateApsEmailCampaignInput!
+    $condition: ModelApsEmailCampaignConditionInput
+  ) {
+    createApsEmailCampaign(input: $input, condition: $condition) {
+      id
+      eventId
+      name
+      templateKey
+      subject
+      audienceStatuses
+      audienceTypes
+      status
+      scheduledAt
+      startedAt
+      completedAt
+      totalRecipients
+      sentCount
+      failedCount
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsEmailCampaign = /* GraphQL */ `
+  mutation UpdateApsEmailCampaign(
+    $input: UpdateApsEmailCampaignInput!
+    $condition: ModelApsEmailCampaignConditionInput
+  ) {
+    updateApsEmailCampaign(input: $input, condition: $condition) {
+      id
+      eventId
+      name
+      templateKey
+      subject
+      audienceStatuses
+      audienceTypes
+      status
+      scheduledAt
+      startedAt
+      completedAt
+      totalRecipients
+      sentCount
+      failedCount
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createApsEmailSend = /* GraphQL */ `
+  mutation CreateApsEmailSend(
+    $input: CreateApsEmailSendInput!
+    $condition: ModelApsEmailSendConditionInput
+  ) {
+    createApsEmailSend(input: $input, condition: $condition) {
+      id
+      campaignId
+      eventId
+      registrantId
+      email
+      status
+      sesMessageId
+      error
+      sentAt
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateApsEmailSend = /* GraphQL */ `
+  mutation UpdateApsEmailSend(
+    $input: UpdateApsEmailSendInput!
+    $condition: ModelApsEmailSendConditionInput
+  ) {
+    updateApsEmailSend(input: $input, condition: $condition) {
+      id
+      campaignId
+      eventId
+      registrantId
+      email
+      status
+      sesMessageId
+      error
+      sentAt
       createdAt
       updatedAt
       __typename
@@ -96028,6 +107609,10 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -96293,6 +107878,22 @@ export const createAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -96388,6 +107989,10 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -96569,6 +108174,10 @@ export const createAPSCompanyEvents = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }
@@ -96724,6 +108333,10 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -96989,6 +108602,22 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        exhibitorViews {
+          items {
+            id
+            owner
+            userProfileId
+            exhibitorId
+            eventId
+            viewKey
+            createdAt
+            updatedAt
+            aPSExhibitorViewsId
+            __typename
+          }
+          nextToken
+          __typename
+        }
         addOns {
           items {
             id
@@ -97084,6 +108713,10 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             welcomeEmailSentDate
             welcomeEmailReceived
             welcomeEmailReceivedDate
+            appEmailSent
+            appEmailSentDate
+            appEmailReceived
+            appEmailReceivedDate
             paymentMethod
             paymentLast4
             approvedAt
@@ -97265,6 +108898,10 @@ export const updateAPSCompanyEvents = /* GraphQL */ `
             __typename
           }
           passportStamps {
+            nextToken
+            __typename
+          }
+          viewedByUsers {
             nextToken
             __typename
           }

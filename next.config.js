@@ -24,6 +24,11 @@ const nextConfig = {
         destination: '/register',
         permanent: true,
       },
+      {
+        source: '/waitlist',
+        destination: '/register',
+        permanent: false,
+      },
     ];
   },
 };
