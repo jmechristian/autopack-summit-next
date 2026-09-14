@@ -471,6 +471,20 @@ export const adminCreateExhibitor = /* GraphQL */ `
     }
   }
 `;
+export const adminRegenerateAttendeeQrCodes = /* GraphQL */ `
+  mutation AdminRegenerateAttendeeQrCodes(
+    $input: AdminRegenerateAttendeeQrCodesInput
+  ) {
+    adminRegenerateAttendeeQrCodes(input: $input) {
+      processed
+      updated
+      failed
+      nextToken
+      errors
+      __typename
+    }
+  }
+`;
 export const adminPublishDueAnnouncements = /* GraphQL */ `
   mutation AdminPublishDueAnnouncements($eventId: ID!) {
     adminPublishDueAnnouncements(eventId: $eventId) {
