@@ -718,9 +718,13 @@ const generateVCard = (registrantData) => {
   }
 
   if (phone) {
-    // Remove any non-digit characters for phone number
-    const cleanPhone = phone.replace(/\D/g, '');
     vcard += `TEL;TYPE=WORK:${phone}\n`;
+  }
+
+  if (registrantData.registrantId) {
+    vcard += `UID:${registrantData.registrantId}\n`;
+    vcard += `X-APS-REGISTRANTID:${registrantData.registrantId}\n`;
+    vcard += `URL:https://autopacksummit.com/app/c/${registrantData.registrantId}\n`;
   }
 
   vcard += 'END:VCARD';
@@ -738,7 +742,7 @@ const generateVCard = (registrantData) => {
 const generateAndUploadQRCode = async (registrantData, registrantId) => {
   try {
     // Generate vCard format string (standard contact format)
-    const vcardData = generateVCard(registrantData);
+    const vcardData = generateVCard({ ...registrantData, registrantId });
 
     // Generate QR code as data URL (PNG) with vCard data
     const qrDataUrl = await QRCode.toDataURL(vcardData, {
