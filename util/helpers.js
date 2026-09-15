@@ -2,6 +2,12 @@ export function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
+/** Turn CMS **bold** markers into HTML so mixed rich-text descriptions render. */
+export function formatAgendaHtml(html) {
+  if (!html || typeof html !== 'string') return html || '';
+  return html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+}
+
 /**
  * Resolves relative S3 image paths to full URLs.
  * Uses NEXT_PUBLIC_S3_PUBLIC_URL or constructs from aws-exports bucket/region.

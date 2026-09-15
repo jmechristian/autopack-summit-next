@@ -106,42 +106,42 @@ const mapAgendaItems = (items) =>
   items
     .filter((item) => !item?.draft)
     .map((item) => {
-    const mapSpeaker = (speakerItem) => {
-      const sp = speakerItem?.aPSSpeaker;
-      const profile = sp?.profile;
-      const registrantCompany = profile?.user?.registrant?.company;
-      const companyName = registrantCompany?.name || profile?.company || '';
-      const companyLogo = registrantCompany?.logo || null;
-      const name =
-        [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') ||
-        'Speaker';
-      return {
-        id: sp?.id,
-        name,
-        company: companyName,
-        title: profile?.jobTitle || '',
-        profilePicture: profile?.profilePicture,
-        companyLogo,
-        linkedin: profile?.linkedin,
+      const mapSpeaker = (speakerItem) => {
+        const sp = speakerItem?.aPSSpeaker;
+        const profile = sp?.profile;
+        const registrantCompany = profile?.user?.registrant?.company;
+        const companyName = registrantCompany?.name || profile?.company || '';
+        const companyLogo = registrantCompany?.logo || null;
+        const name =
+          [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') ||
+          'Speaker';
+        return {
+          id: sp?.id,
+          name,
+          company: companyName,
+          title: profile?.jobTitle || '',
+          profilePicture: profile?.profilePicture,
+          companyLogo,
+          linkedin: profile?.linkedin,
+        };
       };
-    };
-    return {
-      _id: item.id,
-      date: normalizeAgendaDate(item.date),
-      location: item.location,
-      title: item.title || item.description,
-      description: item.description || 'No Description',
-      type: 'session',
-      startTime: combineAgendaDateTime(item.date, item.startTime),
-      endTime: combineAgendaDateTime(item.date, item.endTime),
-      speakers: item.speakers?.items?.map(mapSpeaker) || [],
-      sponsors:
-        item.sponsors?.items?.map((sponsorItem) => ({
-          id: sponsorItem.apsSponsor?.id,
-          name: sponsorItem.apsSponsor?.company?.name,
-          logo: sponsorItem.apsSponsor?.company?.logo,
-        })) || [],
-    };
+      return {
+        _id: item.id,
+        date: normalizeAgendaDate(item.date),
+        location: item.location,
+        title: item.title || item.description,
+        description: item.description || 'No Description',
+        type: 'session',
+        startTime: combineAgendaDateTime(item.date, item.startTime),
+        endTime: combineAgendaDateTime(item.date, item.endTime),
+        speakers: item.speakers?.items?.map(mapSpeaker) || [],
+        sponsors:
+          item.sponsors?.items?.map((sponsorItem) => ({
+            id: sponsorItem.apsSponsor?.id,
+            name: sponsorItem.apsSponsor?.company?.name,
+            logo: sponsorItem.apsSponsor?.company?.logo,
+          })) || [],
+      };
     });
 
 const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
@@ -218,6 +218,7 @@ const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
 };
 
 const AgendaDraft = ({ sessionData }) => {
+  console.log('sessionData', sessionData);
   const [enabled, setEnabled] = useState(false);
   const [isDay, setDay] = useState(1);
 

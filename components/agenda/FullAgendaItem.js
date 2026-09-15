@@ -3,6 +3,7 @@ import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 import { S3Image, useS3Url } from '../S3Image';
 import { formatAgendaTimeRange } from '../../util/agendaTime';
+import { formatAgendaHtml } from '../../util/helpers';
 
 function SponsorLogo({ sponsor, whiteOverlay = false }) {
   const { url: logoUrl } = useS3Url(sponsor?.logo);
@@ -125,14 +126,18 @@ const FullAgendaItem = ({
                 {location}
               </div>
               <div
-                className={`mt-5 pb-3 text-sm ${
+                className={`mt-5 pb-3 text-sm rich-html ${
                   type === 'session'
-                    ? 'text-white [&_*]:!text-white [&_a]:!text-white'
-                    : 'text-black [&_*]:!text-black [&_a]:!text-black'
+                    ? 'text-white rich-html--on-dark'
+                    : 'text-black'
                 }`}
               >
                 {!isOpen && (
-                  <div dangerouslySetInnerHTML={{ __html: description }} />
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: formatAgendaHtml(description),
+                    }}
+                  />
                 )}
               </div>
               {sponsors && sponsors.length > 0 && (

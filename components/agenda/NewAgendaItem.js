@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { classNames } from '../../util/helpers';
+import { classNames, formatAgendaHtml } from '../../util/helpers';
 import { formatAgendaTimeRange } from '../../util/agendaTime';
 
 const NewAgendaItem = ({
@@ -27,7 +27,10 @@ const NewAgendaItem = ({
           {timeLabel || 'TBD'}
         </div>
         <div className='font-bold text-lg leading-tight'>{title}</div>
-        <div className='font-medium text-neutral-600 leading-tight' dangerouslySetInnerHTML={{ __html: description }} />
+        <div
+          className='font-medium text-neutral-600 leading-snug rich-html'
+          dangerouslySetInnerHTML={{ __html: formatAgendaHtml(description) }}
+        />
         <div className='font-medium text-neutral-600 leading-tight'>{location}</div>
       </div>
     </div>
