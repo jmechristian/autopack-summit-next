@@ -23,8 +23,12 @@ export default async function handler(req, res) {
       totalAmount={body.totalAmount}
       formDataId={body.formDataId}
       addOnsSelected={body.addOnsSelected}
+      isWaitlist={Boolean(body.isWaitlist)}
     />,
   );
+
+  const isWaitlist = Boolean(body.isWaitlist);
+  const dashboardUrl = `https://www.autopacksummit.com/registrants/${body.formDataId}`;
 
   const createSendEmailCommand = (toAddress, fromAddress) => {
     return new SendEmailCommand({
@@ -39,12 +43,16 @@ export default async function handler(req, res) {
           },
           Text: {
             Charset: 'UTF-8',
-            Data: `Thank you for registering for the Automotive Packaging Summit 2026. View your dashboard: https://www.autopacksummit.com/registrants/${body.formDataId}`,
+            Data: isWaitlist
+              ? `You're on the waitlist for the Automotive Packaging Summit 2026. If a ticket becomes available, we will email you to complete payment and approve your registration. View your dashboard: ${dashboardUrl}`
+              : `Thank you for registering for the Automotive Packaging Summit 2026. View your dashboard: ${dashboardUrl}`,
           },
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: 'Automotive Packaging Summit 2026 – Registration Received',
+          Data: isWaitlist
+            ? 'Automotive Packaging Summit 2026 – Waitlist Confirmation'
+            : 'Automotive Packaging Summit 2026 – Registration Received',
         },
       },
       Source: fromAddress,

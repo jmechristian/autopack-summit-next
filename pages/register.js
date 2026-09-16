@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
+import Head from 'next/head';
 import { QRCodeSVG } from 'qrcode.react';
 import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { loadStripe } from '@stripe/stripe-js';
@@ -125,10 +126,17 @@ const INTEREST_OPTIONS = [
   'Others (please specify)',
 ];
 
-const STEP_LABELS = [
+const REGISTRATION_STEP_LABELS = [
   'Basic Information',
   'Interests & Preferences',
   'Payment',
+  'Confirmation',
+];
+
+const WAITLIST_STEP_LABELS = [
+  'Basic Information',
+  'Interests & Preferences',
+  'Review',
   'Confirmation',
 ];
 
@@ -406,6 +414,11 @@ const RegistrationForm = () => {
     }
     return formData.attendeeType;
   }, [formData.attendeeType, sponsorTicketOption]);
+
+  const isWaitlistMode = true;
+  const stepLabels = isWaitlistMode
+    ? WAITLIST_STEP_LABELS
+    : REGISTRATION_STEP_LABELS;
 
   const canSelectStandardSponsorTicket = useMemo(() => {
     if (!STANDARD_SPONSOR_TICKET_SOLD_OUT) return true;
@@ -838,6 +851,7 @@ const RegistrationForm = () => {
     registrantFormData,
     registrantTotalAmount,
     registrantAddOnsSelected = [],
+    isWaitlist = false,
   }) => {
     const emailRes = await fetch('/api/send-registration-confirmation', {
       method: 'POST',
@@ -849,6 +863,7 @@ const RegistrationForm = () => {
         totalAmount: registrantTotalAmount,
         formDataId: registrantRecordId,
         addOnsSelected: registrantAddOnsSelected,
+        isWaitlist,
       }),
     });
 
@@ -887,7 +902,7 @@ const RegistrationForm = () => {
       const input = {
         apsID: APS_EVENT_ID,
         attendeeType: mapAttendeeTypeToEnum(effectiveAttendeeType),
-        status: 'PENDING',
+        status: isWaitlistMode ? 'WAITLIST' : 'PENDING',
         email: normalizedRegistrantEmail,
         firstName: formData.firstName || null,
         lastName: formData.lastName || null,
@@ -918,7 +933,7 @@ const RegistrationForm = () => {
           formData.attendeeType === 'Speaker'
             ? formData.learningObjectives || null
             : null,
-        totalAmount: totalAmount ?? null,
+        totalAmount: isWaitlistMode ? 0 : totalAmount ?? null,
         discountCode: formData.discountCode || null,
       };
 
@@ -950,8 +965,9 @@ const RegistrationForm = () => {
             ...formData,
             email: normalizedRegistrantEmail,
           },
-          registrantTotalAmount: totalAmount,
+          registrantTotalAmount: isWaitlistMode ? 0 : totalAmount,
           registrantAddOnsSelected: emailAddOns,
+          isWaitlist: isWaitlistMode,
         }).catch((emailErr) => {
           console.error(
             'Failed to send registration confirmation email:',
@@ -959,13 +975,15 @@ const RegistrationForm = () => {
           );
         });
 
-        incrementAppliedDiscountCodeUsage().catch((codeErr) => {
-          console.error('Failed to increment discount code usage:', codeErr);
-        });
+        if (!isWaitlistMode) {
+          incrementAppliedDiscountCodeUsage().catch((codeErr) => {
+            console.error('Failed to increment discount code usage:', codeErr);
+          });
+        }
       }
 
       // Fire-and-forget: generate and attach invoice PDF (including zero-balance with coupon).
-      if (mainRegistrantId) {
+      if (mainRegistrantId && !isWaitlistMode) {
         const registrationLabel =
           effectiveAttendeeType === 'Exhibitor'
             ? 'Exhibitor Staff Only'
@@ -1059,6 +1077,13 @@ const RegistrationForm = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleWaitlistSubmit = async () => {
+    const isValid = validateStep(3);
+    if (!isValid) return;
+    setCompletedSteps((prev) => ({ ...prev, 3: true }));
+    await handleSubmitRegistration();
   };
 
   const initializePayment = async () => {
@@ -1282,8 +1307,8 @@ const RegistrationForm = () => {
 
     if (stepToValidate === 3) {
       // Only require billing details when there is a non-zero total.
-      // If a discount/code brings totalAmount to 0, billing can be skipped.
-      if (totalAmount > 0) {
+      // Waitlist (solution providers) and fully discounted tickets skip billing.
+      if (totalAmount > 0 && !isWaitlistMode) {
         const ba = formData.billingAddress;
         if (!ba.firstName.trim())
           newErrors.billingFirstName = 'First name is required';
@@ -1387,7 +1412,7 @@ const RegistrationForm = () => {
 
   const renderProgress = () => (
     <div className='flex items-start justify-center gap-0 mb-8 max-w-2xl mx-auto'>
-      {STEP_LABELS.map((label, index) => {
+      {stepLabels.map((label, index) => {
         const stepNumber = index + 1;
         const isActive = step === stepNumber;
         const isCompleted = completedSteps[stepNumber];
@@ -1651,6 +1676,12 @@ const RegistrationForm = () => {
             <option value='Speaker'>Speaker</option>
           </select>
           {renderFieldError('attendeeType')}
+          {isWaitlistMode && (
+            <p className='text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2'>
+              Solution provider tickets are currently waitlist only. No payment
+              is due now — we will contact you if a seat opens.
+            </p>
+          )}
         </div>
 
         {formData.attendeeType === 'Speaker' && (
@@ -1987,6 +2018,97 @@ const RegistrationForm = () => {
   );
 
   const renderStep3 = () => {
+    if (isWaitlistMode) {
+      return (
+        <div className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'>
+          <div className='grid grid-cols-1 lg:grid-cols-5 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-gray-200'>
+            <div className='flex flex-col gap-5 col-span-3 p-6 lg:p-10'>
+              <div>
+                <h3 className='text-xl font-bold text-gray-900'>
+                  Join the waitlist
+                </h3>
+                <p className='text-sm text-gray-600 mt-2'>
+                  Solution provider tickets are sold out. Submit this form to
+                  join the waitlist. If a seat becomes available, we will
+                  contact you to complete payment and confirm your registration.
+                </p>
+              </div>
+
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <label className='flex items-start gap-2 text-sm cursor-pointer'>
+                  <input
+                    type='checkbox'
+                    name='termsAccepted'
+                    checked={formData.termsAccepted}
+                    onChange={handleChange}
+                    className='mt-0.5 rounded border-gray-300 text-ap-blue focus:ring-ap-blue'
+                  />
+                  <span className='text-gray-700'>
+                    I acknowledge and accept the{' '}
+                    <a
+                      href='/policies'
+                      className='text-ap-blue underline hover:text-ap-darkblue'
+                    >
+                      Event Terms and Conditions
+                    </a>
+                    .
+                  </span>
+                </label>
+                {renderFieldError('termsAccepted')}
+              </div>
+            </div>
+
+            <div className='flex flex-col gap-4 col-span-2 bg-gray-50 p-6 lg:p-8'>
+              <h3 className='text-xl font-bold text-gray-900'>Your details</h3>
+              <div className='bg-white rounded-lg border border-gray-200 p-4'>
+                <div className='text-sm text-gray-600 space-y-1'>
+                  <p>
+                    {formData.firstName} {formData.lastName}
+                  </p>
+                  <p>{formData.email}</p>
+                  <p>{formData.companyName}</p>
+                  <p>{formData.jobTitle}</p>
+                  <p>{formData.phone}</p>
+                  <p>
+                    <span className='font-semibold text-gray-800'>
+                      Attendee type:
+                    </span>{' '}
+                    {formData.attendeeType}
+                  </p>
+                </div>
+              </div>
+
+              {addOnsSelected.length > 0 && (
+                <div className='bg-white rounded-lg border border-gray-200 p-4'>
+                  <h4 className='font-semibold text-sm text-gray-900 mb-2'>
+                    Requested add-ons
+                  </h4>
+                  <div className='space-y-1 text-sm text-gray-600'>
+                    {addOnsSelected.map((sel, i) => (
+                      <p key={i}>{sel.addOn?.title}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className='mt-2 space-y-3'>
+                <button
+                  onClick={handleWaitlistSubmit}
+                  disabled={!canSubmit() || isSubmitting}
+                  className='w-full px-4 py-3 bg-ap-blue text-white font-bold rounded-lg hover:bg-ap-darkblue transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+                >
+                  {isSubmitting ? 'Submitting…' : getSubmitLabel()}
+                </button>
+                {submitError && (
+                  <p className='text-sm text-red-500'>{submitError}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const basePrice = PRICING[effectiveAttendeeType] || 0;
     const shouldShowDiscountCode =
       DISCOUNT_ELIGIBLE_TYPES.includes(effectiveAttendeeType);
@@ -2491,6 +2613,75 @@ const RegistrationForm = () => {
   };
 
   const renderStep4 = () => {
+    if (isWaitlistMode) {
+      return (
+        <div className='space-y-6'>
+          <div className='bg-ap-darkblue text-white rounded-xl px-6 md:px-10 py-8 md:py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
+            <div className='space-y-3'>
+              <h3 className='text-2xl md:text-3xl font-bold'>
+                You&apos;re on the waitlist
+              </h3>
+              <p className='text-xs md:text-sm text-ap-yellow font-semibold tracking-wide uppercase'>
+                Automotive Packaging Summit 2026 · Sept 30 – Oct 2, 2026
+              </p>
+              <p className='text-sm md:text-base text-white/80 max-w-xl'>
+                Thank you for joining the waitlist. If a ticket becomes
+                available, we will email you to complete payment and approve
+                your registration.
+              </p>
+            </div>
+            {registrantId && (
+              <a
+                href={`/registrants/${registrantId}`}
+                className='inline-flex w-full max-w-xs items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-ap-yellow text-white hover:brightness-95 transition-colors shadow-sm'
+              >
+                View waitlist dashboard
+              </a>
+            )}
+          </div>
+
+          <div className='bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden'>
+            <div className='px-6 md:px-10 py-4 border-b border-gray-200'>
+              <h4 className='text-lg font-semibold text-gray-900'>
+                Waitlist details
+              </h4>
+              <p className='text-xs text-gray-500'>
+                Automotive Packaging Summit 2026 · Sept 30 – Oct 2, 2026
+              </p>
+            </div>
+            <div className='px-6 md:px-10 py-6 md:py-8 space-y-4 text-sm text-gray-700'>
+              <p className='text-gray-600'>
+                A confirmation email is on the way. There is nothing else you
+                need to do right now. If a seat opens, we will contact you with
+                next steps to complete payment and approve your registration.
+              </p>
+              <div className='pt-2 border-t border-gray-100 space-y-1'>
+                <p>
+                  <span className='font-medium'>
+                    {formData.firstName} {formData.lastName}
+                  </span>
+                </p>
+                <p>{formData.email}</p>
+                <p>{formData.companyName}</p>
+                <p>{formData.jobTitle}</p>
+                <p>{formData.phone}</p>
+                {addOnsSelected.length > 0 && (
+                  <div className='pt-2 border-t border-gray-100'>
+                    <p className='font-semibold text-gray-900 mb-1'>
+                      Requested add-ons
+                    </p>
+                    {addOnsSelected.map((sel, i) => (
+                      <p key={i}>{sel.addOn?.title}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const invoiceId = registrantId || formDataId;
 
     return (
@@ -2708,13 +2899,38 @@ const RegistrationForm = () => {
 
   return (
     <div className='max-w-6xl mx-auto px-4 py-10 flex flex-col gap-6'>
+      <Head>
+        <title>
+          {isWaitlistMode
+            ? 'Automotive Packaging Summit | Waitlist'
+            : 'Automotive Packaging Summit | Register'}
+        </title>
+      </Head>
       <header>
-        <h1 className='text-3xl font-bold text-gray-900 text-center mb-2'>
-          Registration
-        </h1>
-        <p className='text-gray-500 text-center mb-8'>
-          Automotive Packaging Summit 2026
-        </p>
+        {isWaitlistMode ? (
+          <>
+            <div className='mx-auto mb-4 w-fit rounded-full bg-red-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white'>
+              Sold Out
+            </div>
+            <h1 className='text-3xl font-bold text-gray-900 text-center mb-2'>
+              Join the Waitlist
+            </h1>
+            <p className='text-gray-500 text-center mb-2 max-w-2xl mx-auto'>
+              Solution provider tickets for the 2026 Automotive Packaging Summit
+              are sold out. Join the waitlist and we will reach out if a seat
+              becomes available.
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className='text-3xl font-bold text-gray-900 text-center mb-2'>
+              Registration
+            </h1>
+            <p className='text-gray-500 text-center mb-8'>
+              Automotive Packaging Summit 2026
+            </p>
+          </>
+        )}
         {renderProgress()}
       </header>
 

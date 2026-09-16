@@ -36,6 +36,7 @@ interface RegConfirmEmailProps {
   formDataId: string;
   totalAmount: number;
   addOnsSelected: Array<{ id: string; title: string }>;
+  isWaitlist?: boolean;
 }
 
 const APS_BLUE = '#005a94';
@@ -70,6 +71,7 @@ export const RegConfirmEmail = ({
   formDataId,
   totalAmount,
   addOnsSelected,
+  isWaitlist = false,
 }: RegConfirmEmailProps) => {
   const dashboardUrl = `https://www.autopacksummit.com/registrants/${formDataId}`;
 
@@ -78,8 +80,9 @@ export const RegConfirmEmail = ({
       <Tailwind>
         <Head />
         <Preview>
-          Your registration for the Automotive Packaging Summit 2026 has been
-          received
+          {isWaitlist
+            ? "You're on the waitlist for the Automotive Packaging Summit 2026"
+            : 'Your registration for the Automotive Packaging Summit 2026 has been received'}
         </Preview>
         <Body
           style={{
@@ -133,8 +136,9 @@ export const RegConfirmEmail = ({
                   ...font,
                 }}
               >
-                {formData.firstName}, your registration has been received and is
-                PENDING.
+                {isWaitlist
+                  ? `${formData.firstName}, you're on the waitlist.`
+                  : `${formData.firstName}, your registration has been received and is PENDING.`}
               </Text>
               <Text
                 style={{
@@ -145,8 +149,9 @@ export const RegConfirmEmail = ({
                   ...font,
                 }}
               >
-                View your dashboard to check the status of your registration and
-                add-ons
+                {isWaitlist
+                  ? 'If a ticket becomes available, we will email you to complete payment and approve your registration.'
+                  : 'View your dashboard to check the status of your registration and add-ons'}
               </Text>
               <Button
                 href={dashboardUrl}
@@ -264,7 +269,7 @@ export const RegConfirmEmail = ({
                       ...font,
                     }}
                   >
-                    Billing Address
+                    {isWaitlist ? 'Next steps' : 'Billing Address'}
                   </Text>
                   <Text
                     style={{
@@ -275,7 +280,9 @@ export const RegConfirmEmail = ({
                       ...font,
                     }}
                   >
-                    {formData.billingAddress.street}
+                    {isWaitlist
+                      ? 'Payment is not required to join the waitlist.'
+                      : formData.billingAddress.street}
                   </Text>
                   <Text
                     style={{
@@ -286,9 +293,9 @@ export const RegConfirmEmail = ({
                       ...font,
                     }}
                   >
-                    {formData.billingAddress.city},{' '}
-                    {formData.billingAddress.state}{' '}
-                    {formData.billingAddress.zip}
+                    {isWaitlist
+                      ? 'If a ticket opens, we will follow up to complete payment and approve your registration.'
+                      : `${formData.billingAddress.city}, ${formData.billingAddress.state} ${formData.billingAddress.zip}`}
                   </Text>
                 </Column>
               </Row>
@@ -364,7 +371,9 @@ export const RegConfirmEmail = ({
                           ...font,
                         }}
                       >
-                        General Admission ({formData.attendeeType})
+                        {isWaitlist
+                          ? `Waitlist (${formData.attendeeType})`
+                          : `General Admission (${formData.attendeeType})`}
                       </Text>
                     </Column>
                     <Column
@@ -392,7 +401,7 @@ export const RegConfirmEmail = ({
                           ...font,
                         }}
                       >
-                        ${totalAmount}
+                        {isWaitlist ? 'No charge' : `$${totalAmount}`}
                       </Text>
                     </Column>
                   </Row>
@@ -518,7 +527,7 @@ export const RegConfirmEmail = ({
                           ...font,
                         }}
                       >
-                        Paid
+                        {isWaitlist ? 'Waitlist' : 'Paid'}
                       </Text>
                     </Column>
                     <Column
@@ -533,7 +542,7 @@ export const RegConfirmEmail = ({
                           ...font,
                         }}
                       >
-                        ${totalAmount}
+                        {isWaitlist ? 'No payment due' : `$${totalAmount}`}
                       </Text>
                     </Column>
                   </Row>
@@ -557,7 +566,7 @@ export const RegConfirmEmail = ({
                     ...font,
                   }}
                 >
-                  Download Receipt
+                  {isWaitlist ? 'View Your Dashboard' : 'Download Receipt'}
                 </Button>
               </Section>
             </Section>

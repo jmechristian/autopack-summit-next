@@ -73,6 +73,10 @@ export const RegistrantPage = ({ registrant }) => {
     String(registrantData?.status || '').toUpperCase() === 'APPROVED' &&
     !!registrantData?.appUser?.profile?.id;
   const initials = `${registrantData?.firstName?.[0] || ''}${registrantData?.lastName?.[0] || ''}`.toUpperCase();
+  const isWaitlisted =
+    String(registrantData?.status || '').toUpperCase() === 'WAITLIST' ||
+    String(registrantData?.attendeeType || '').toUpperCase() === 'WAITLIST';
+  const statusLabel = isWaitlisted ? 'WAITLIST' : registrantData?.status;
 
   const paidAddOnsTotal = useMemo(
     () =>
@@ -388,19 +392,19 @@ export const RegistrantPage = ({ registrant }) => {
               <div className='mt-2'>
                 <span
                   className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full ${
-                    registrantData.status === 'PENDING'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : registrantData.status === 'WAITLIST'
+                    isWaitlisted
                       ? 'bg-orange-100 text-orange-800'
+                      : registrantData.status === 'PENDING'
+                      ? 'bg-yellow-100 text-yellow-800'
                       : 'bg-green-100 text-green-800'
                   }`}
                 >
-                  {registrantData.status === 'PENDING' ? (
-                    <MdAccessTime size={14} />
-                  ) : (
+                  {registrantData.status === 'APPROVED' ? (
                     <MdCheckCircle size={14} />
+                  ) : (
+                    <MdAccessTime size={14} />
                   )}
-                  {registrantData.status}
+                  {statusLabel}
                 </span>
               </div>
 
@@ -839,7 +843,7 @@ export const RegistrantPage = ({ registrant }) => {
                   </div>
                   <div>
                     <span className='font-semibold'>Status:</span>{' '}
-                    {registrantData.status}
+                    {statusLabel}
                   </div>
                   {registrantData.discountCode && (
                     <div>
