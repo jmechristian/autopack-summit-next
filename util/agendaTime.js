@@ -141,4 +141,43 @@ export const formatEasternDisplayTime = (value) => {
   return `${trimmed} EST`;
 };
 
+const AGENDA_DAY_SLUGS = ['wednesday', 'thursday', 'friday'];
+
+const AGENDA_DAY_ALIASES = {
+  wednesday: 0,
+  wed: 0,
+  'day-1': 0,
+  day1: 0,
+  'sep-30': 0,
+  'sept-30': 0,
+  '2026-09-30': 0,
+  thursday: 1,
+  thu: 1,
+  thurs: 1,
+  'day-2': 1,
+  day2: 1,
+  'oct-1': 1,
+  '2026-10-01': 1,
+  friday: 2,
+  fri: 2,
+  'day-3': 2,
+  day3: 2,
+  'oct-2': 2,
+  '2026-10-02': 2,
+  3: 2,
+};
+
+export const agendaDaySlug = (index) =>
+  AGENDA_DAY_SLUGS[index] ?? AGENDA_DAY_SLUGS[1];
+
+export const parseAgendaDayQuery = (value, fallback = 1) => {
+  if (value == null || value === '') return fallback;
+  const raw = String(Array.isArray(value) ? value[0] : value)
+    .trim()
+    .toLowerCase();
+  return Object.prototype.hasOwnProperty.call(AGENDA_DAY_ALIASES, raw)
+    ? AGENDA_DAY_ALIASES[raw]
+    : fallback;
+};
+
 export { EASTERN_TZ };

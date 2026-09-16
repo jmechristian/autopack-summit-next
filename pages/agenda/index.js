@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Switch } from '@headlessui/react';
@@ -10,6 +11,8 @@ import awsExports from '../../src/aws-exports';
 import {
   normalizeAgendaDate,
   combineAgendaDateTime,
+  parseAgendaDayQuery,
+  agendaDaySlug,
 } from '../../util/agendaTime';
 
 function classNames(...classes) {
@@ -217,10 +220,27 @@ const DraftCompactAgenda = ({ dayOne, dayTwo, dayThree, enabled }) => {
   );
 };
 
-const AgendaDraft = ({ sessionData }) => {
+const AgendaDraft = ({ sessionData, initialDay = 1 }) => {
   console.log('sessionData', sessionData);
+  const router = useRouter();
   const [enabled, setEnabled] = useState(false);
-  const [isDay, setDay] = useState(1);
+  const [isDay, setDay] = useState(initialDay);
+
+  const selectDay = useCallback(
+    (dayIndex) => {
+      setDay(dayIndex);
+      const query = { ...router.query, day: agendaDaySlug(dayIndex) };
+      router.replace({ pathname: router.pathname, query }, undefined, {
+        shallow: true,
+      });
+    },
+    [router],
+  );
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    setDay(parseAgendaDayQuery(router.query.day, 1));
+  }, [router.isReady, router.query.day]);
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -403,7 +423,7 @@ const AgendaDraft = ({ sessionData }) => {
                           : 'bg-gray-300 text-neutral-400',
                         'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
-                      onClick={() => setDay(0)}
+                      onClick={() => selectDay(0)}
                     >
                       <div>WED SEP 30</div>
                     </div>
@@ -414,7 +434,7 @@ const AgendaDraft = ({ sessionData }) => {
                           : 'bg-gray-300 text-neutral-400',
                         'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
-                      onClick={() => setDay(1)}
+                      onClick={() => selectDay(1)}
                     >
                       <div>THU OCT 1</div>
                     </div>
@@ -425,7 +445,7 @@ const AgendaDraft = ({ sessionData }) => {
                           : 'bg-gray-300 text-neutral-400',
                         'font-oswald text-lg  font-medium w-28 h-9 flex justify-center items-center cursor-pointer hover:bg-amber-300 hover:text-white/80 transition-all ease-in',
                       )}
-                      onClick={() => setDay(2)}
+                      onClick={() => selectDay(2)}
                     >
                       <div>FRI OCT 2</div>
                     </div>
@@ -485,8 +505,9 @@ const AgendaDraft = ({ sessionData }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   let sessionData = [];
+  const initialDay = parseAgendaDayQuery(context.query?.day, 1);
 
   try {
     const endpoint =
@@ -534,6 +555,7 @@ export async function getServerSideProps() {
   return {
     props: {
       sessionData,
+      initialDay,
     },
   };
 }
