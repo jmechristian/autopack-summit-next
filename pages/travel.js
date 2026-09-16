@@ -284,7 +284,7 @@ const Travel = () => {
             <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
               <div>
                 <div className='font-oswald text-2xl font-medium uppercase tracking-tight text-neutral-900'>
-                  Questions before registering?
+                  Questions about the waitlist?
                 </div>
                 <p className='mt-1 text-neutral-700'>
                   For general inquiries or questions, email Bianca.

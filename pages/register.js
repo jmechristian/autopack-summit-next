@@ -415,7 +415,7 @@ const RegistrationForm = () => {
     return formData.attendeeType;
   }, [formData.attendeeType, sponsorTicketOption]);
 
-  const isWaitlistMode = true;
+  const isWaitlistMode = formData.attendeeType === 'Solution-Provider';
   const stepLabels = isWaitlistMode
     ? WAITLIST_STEP_LABELS
     : REGISTRATION_STEP_LABELS;
@@ -1387,9 +1387,8 @@ const RegistrationForm = () => {
   };
 
   const getSubmitLabel = () => {
-    const type = formData.attendeeType;
+    if (isWaitlistMode) return 'Join Waitlist';
     if (discountApplied) return 'Register with Code';
-    if (type === 'Solution-Provider') return 'Join Waitlist';
     return 'Register';
   };
 
@@ -1678,8 +1677,8 @@ const RegistrationForm = () => {
           {renderFieldError('attendeeType')}
           {isWaitlistMode && (
             <p className='text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2'>
-              Solution provider tickets are currently waitlist only. No payment
-              is due now — we will contact you if a seat opens.
+              Tickets are sold out. No payment is due now — we will contact you
+              if a seat opens.
             </p>
           )}
         </div>
@@ -2028,9 +2027,9 @@ const RegistrationForm = () => {
                   Join the waitlist
                 </h3>
                 <p className='text-sm text-gray-600 mt-2'>
-                  Solution provider tickets are sold out. Submit this form to
-                  join the waitlist. If a seat becomes available, we will
-                  contact you to complete payment and confirm your registration.
+                  Tickets are sold out. Submit this form to join the waitlist.
+                  If a seat becomes available, we will contact you to complete
+                  payment and confirm your registration.
                 </p>
               </div>
 
@@ -2916,9 +2915,9 @@ const RegistrationForm = () => {
               Join the Waitlist
             </h1>
             <p className='text-gray-500 text-center mb-2 max-w-2xl mx-auto'>
-              Solution provider tickets for the 2026 Automotive Packaging Summit
-              are sold out. Join the waitlist and we will reach out if a seat
-              becomes available.
+              Tickets for the 2026 Automotive Packaging Summit are sold out.
+              Join the waitlist and we will reach out if a seat becomes
+              available.
             </p>
           </>
         ) : (

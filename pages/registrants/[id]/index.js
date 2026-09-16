@@ -74,8 +74,7 @@ export const RegistrantPage = ({ registrant }) => {
     !!registrantData?.appUser?.profile?.id;
   const initials = `${registrantData?.firstName?.[0] || ''}${registrantData?.lastName?.[0] || ''}`.toUpperCase();
   const isWaitlisted =
-    String(registrantData?.status || '').toUpperCase() === 'WAITLIST' ||
-    String(registrantData?.attendeeType || '').toUpperCase() === 'WAITLIST';
+    String(registrantData?.status || '').toUpperCase() === 'WAITLIST';
   const statusLabel = isWaitlisted ? 'WAITLIST' : registrantData?.status;
 
   const paidAddOnsTotal = useMemo(

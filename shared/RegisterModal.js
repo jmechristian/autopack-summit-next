@@ -8,8 +8,8 @@ const RegisterModal = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const regHandler = (route) => {
-    router.push(`/${route}`);
+  const joinWaitlist = () => {
+    router.push('/register');
     dispatch(toggleRegistrationModal());
   };
 
@@ -20,26 +20,18 @@ const RegisterModal = () => {
           <div className='flex flex-col gap-6 px-6 py-8 md:p-8 xl:gap-8 text-center'>
             <div className='flex flex-col gap-2'>
               <div className='blue_headline text-2xl lg:text-5xl'>
-                I Am A...
+                Tickets Are Sold Out
               </div>
+              <p className='text-slate-600 text-sm md:text-base'>
+                Join the waitlist and we will notify you if a spot opens.
+              </p>
             </div>
             <button
               className='flex mt-6 bg-ap-darkblue hover:bg-ap-blue rounded-md items-center justify-between px-6'
-              onClick={() => regHandler('register')}
+              onClick={joinWaitlist}
             >
               <div className='blue_headline text-xl lg:text-2xl text-white py-5'>
-                OEM/ Tier 1
-              </div>
-              <div>
-                <ArrowLongRightIcon className='w-7 h-7 fill-white' />
-              </div>
-            </button>
-            <button
-              className='flex w-full bg-ap-darkblue hover:bg-ap-blue rounded-md items-center justify-between px-6'
-              onClick={() => regHandler('registerprovider')}
-            >
-              <div className='blue_headline text-xl lg:text-2xl text-white py-5 w-full text-left'>
-                Solution Provider
+                Join the Waitlist
               </div>
               <div>
                 <ArrowLongRightIcon className='w-7 h-7 fill-white' />

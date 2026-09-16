@@ -8,6 +8,22 @@ import {
 
 const faqs = [
   {
+    id: 'tickets-sold-out',
+    category: 'Registration',
+    question: 'Are tickets still available?',
+    answer: (
+      <p>
+        Tickets for the 2026 Automotive Packaging Summit are sold out. You can{' '}
+        <a href='/register' className='font-semibold text-ap-blue underline'>
+          join the waitlist
+        </a>{' '}
+        and we will notify you if a spot opens.
+      </p>
+    ),
+    searchText:
+      'Are tickets still available? Tickets sold out waitlist join the waitlist notify if a spot opens registration',
+  },
+  {
     id: 'whats-included',
     category: 'Registration',
     question: "What's included in my registration?",
@@ -28,7 +44,9 @@ const faqs = [
     question: 'How much does registration cost?',
     answer: (
       <p>
-        $1,600 per attendee, limited to 2 per company for solution providers.
+        Registration is $1,600 per attendee when tickets are available, limited
+        to 2 per company for solution providers. Tickets are currently sold out
+        — join the waitlist at no charge and we will follow up if a spot opens.
       </p>
     ),
     searchText:
@@ -41,15 +59,16 @@ const faqs = [
       "I'm an OEM or Tier 1 supplier — do I qualify for a discount code?",
     answer: (
       <p>
-        Yes. OEMs and Tier 1 Part Suppliers can request a code on the{' '}
+        Discount codes are not being issued while tickets are sold out. OEMs and
+        Tier 1 Part Suppliers can still{' '}
         <a href='/register' className='font-semibold text-ap-blue underline'>
-          registration page
+          join the waitlist
         </a>
-        . Each request is reviewed for approval before it&apos;s issued.
+        . If a seat opens, we will follow up with next steps.
       </p>
     ),
     searchText:
-      "I'm an OEM or Tier 1 supplier do I qualify for a discount code? Yes OEMs and Tier 1 Part Suppliers can request a code on the registration page. Each request is reviewed for approval before it's issued.",
+      "I'm an OEM or Tier 1 supplier do I qualify for a discount code? Tickets sold out join the waitlist OEMs and Tier 1 Part Suppliers.",
   },
   {
     id: 'exhibitor-staff',
@@ -58,10 +77,11 @@ const faqs = [
     answer: (
       <p>
         Exhibitor staff tickets can be added by booth sponsors only, at $699 per
-        ticket. These include full access to networking, sessions, food and
-        drinks (opening cocktail hour, breakfast, lunch, and cocktail
-        reception), but do not include an assigned seat at the main-stage round
-        tables.
+        ticket, when tickets are available. These include full access to
+        networking, sessions, food and drinks (opening cocktail hour, breakfast,
+        lunch, and cocktail reception), but do not include an assigned seat at
+        the main-stage round tables. Additional tickets are currently sold out
+        — please join the waitlist.
       </p>
     ),
     searchText:

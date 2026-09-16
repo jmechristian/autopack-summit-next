@@ -1033,6 +1033,7 @@ enum RegistrantStatus {
   APPROVED
   PENDING
   REJECTED
+  WAITLIST
 }
 
 enum RegistrantType {
