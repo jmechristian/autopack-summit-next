@@ -14,6 +14,7 @@ import {
   parseAgendaDayQuery,
   agendaDaySlug,
 } from '../../util/agendaTime';
+import { orderByIds } from '../../util/helpers';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -50,6 +51,7 @@ const APS_AGENDA_QUERY = `
           draft
           startTime
           title
+          speakerOrder
           speakers {
             items {
               aPSSpeaker {
@@ -137,7 +139,11 @@ const mapAgendaItems = (items) =>
         type: 'session',
         startTime: combineAgendaDateTime(item.date, item.startTime),
         endTime: combineAgendaDateTime(item.date, item.endTime),
-        speakers: item.speakers?.items?.map(mapSpeaker) || [],
+        speakers: orderByIds(
+          item.speakers?.items?.map(mapSpeaker) || [],
+          (sp) => sp.id,
+          item.speakerOrder,
+        ),
         sponsors:
           item.sponsors?.items?.map((sponsorItem) => ({
             id: sponsorItem.apsSponsor?.id,

@@ -8,6 +8,24 @@ export function formatAgendaHtml(html) {
   return html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 }
 
+export function orderByIds(items, getId, order) {
+  if (!Array.isArray(items) || !items.length) return items || [];
+  const normalizedOrder = (order || [])
+    .map((id) => (id || '').trim())
+    .filter(Boolean);
+  if (!normalizedOrder.length) return items;
+
+  const rank = new Map(normalizedOrder.map((id, index) => [id, index]));
+  return [...items].sort((a, b) => {
+    const aRank = rank.get(getId(a) || '');
+    const bRank = rank.get(getId(b) || '');
+    if (aRank == null && bRank == null) return 0;
+    if (aRank == null) return 1;
+    if (bRank == null) return -1;
+    return aRank - bRank;
+  });
+}
+
 /**
  * Resolves relative S3 image paths to full URLs.
  * Uses NEXT_PUBLIC_S3_PUBLIC_URL or constructs from aws-exports bucket/region.

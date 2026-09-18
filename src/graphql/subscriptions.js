@@ -541,6 +541,7 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -2680,6 +2681,7 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -4819,6 +4821,7 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -25258,6 +25261,7 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -26246,6 +26250,7 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -27234,6 +27239,7 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -35425,6 +35431,7 @@ export const onCreateAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -36408,6 +36415,7 @@ export const onCreateAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -36896,6 +36904,7 @@ export const onUpdateAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -37879,6 +37888,7 @@ export const onUpdateAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -38367,6 +38377,7 @@ export const onDeleteAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -39350,6 +39361,7 @@ export const onDeleteAPS = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -41458,6 +41470,7 @@ export const onCreateApsAgenda = /* GraphQL */ `
             __typename
           }
           draft
+          speakerOrder
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -41925,6 +41938,7 @@ export const onUpdateApsAgenda = /* GraphQL */ `
             __typename
           }
           draft
+          speakerOrder
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -42392,6 +42406,7 @@ export const onDeleteApsAgenda = /* GraphQL */ `
             __typename
           }
           draft
+          speakerOrder
           createdAt
           updatedAt
           apsAgendaItemsId
@@ -43817,6 +43832,7 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -45478,6 +45494,7 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -47139,6 +47156,7 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -47955,6 +47973,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -48117,6 +48136,7 @@ export const onCreateApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -49374,6 +49394,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -49536,6 +49557,7 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -50793,6 +50815,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -50955,6 +50978,7 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -57495,6 +57519,7 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -57903,6 +57928,7 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59213,6 +59239,7 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -59621,6 +59648,7 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -60931,6 +60959,7 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -61339,6 +61368,7 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68391,6 +68421,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68418,6 +68449,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68467,6 +68499,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68631,6 +68664,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68670,6 +68704,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68741,6 +68776,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68773,6 +68809,7 @@ export const onCreateApsAppSession = /* GraphQL */ `
         __typename
       }
       draft
+      speakerOrder
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -68908,6 +68945,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68935,6 +68973,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -68984,6 +69023,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69148,6 +69188,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69187,6 +69228,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69258,6 +69300,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69290,6 +69333,7 @@ export const onUpdateApsAppSession = /* GraphQL */ `
         __typename
       }
       draft
+      speakerOrder
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -69425,6 +69469,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69452,6 +69497,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69501,6 +69547,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69665,6 +69712,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69704,6 +69752,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69775,6 +69824,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -69807,6 +69857,7 @@ export const onDeleteApsAppSession = /* GraphQL */ `
         __typename
       }
       draft
+      speakerOrder
       createdAt
       updatedAt
       apsAgendaItemsId
@@ -69932,6 +69983,7 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -70425,6 +70477,7 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -70918,6 +70971,7 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -72172,6 +72226,7 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -73155,6 +73210,7 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -74138,6 +74194,7 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -75364,6 +75421,7 @@ export const onCreateApsSponsor = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -76592,6 +76650,7 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -77820,6 +77879,7 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -78848,6 +78908,7 @@ export const onCreateAPSCompany = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -79959,6 +80020,7 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -81070,6 +81132,7 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -83478,6 +83541,7 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -85139,6 +85203,7 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -86800,6 +86865,7 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             embedUrl
             agendaId
             draft
+            speakerOrder
             createdAt
             updatedAt
             apsAgendaItemsId
@@ -103635,6 +103701,11 @@ export const onCreateApsEmailSend = /* GraphQL */ `
       sesMessageId
       error
       sentAt
+      openedAt
+      openCount
+      clickedAt
+      clickCount
+      lastClickedUrl
       createdAt
       updatedAt
       __typename
@@ -103655,6 +103726,11 @@ export const onUpdateApsEmailSend = /* GraphQL */ `
       sesMessageId
       error
       sentAt
+      openedAt
+      openCount
+      clickedAt
+      clickCount
+      lastClickedUrl
       createdAt
       updatedAt
       __typename
@@ -103675,6 +103751,11 @@ export const onDeleteApsEmailSend = /* GraphQL */ `
       sesMessageId
       error
       sentAt
+      openedAt
+      openCount
+      clickedAt
+      clickCount
+      lastClickedUrl
       createdAt
       updatedAt
       __typename
@@ -106032,6 +106113,7 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -106406,6 +106488,7 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -106780,6 +106863,7 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -107154,6 +107238,7 @@ export const onCreateSessionSponsors = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -107584,6 +107669,7 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
@@ -108014,6 +108100,7 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
           __typename
         }
         draft
+        speakerOrder
         createdAt
         updatedAt
         apsAgendaItemsId
