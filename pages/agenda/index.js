@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import React, {
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useRouter } from 'next/router';
 import Head from 'next/head';

@@ -236,6 +236,12 @@ type APS
   passportStamps: [ApsAppUserPassportStamp] @hasMany(indexName: "byEvent")
   exhibitorViews: [ApsAppUserExhibitorView] @hasMany(indexName: "byEvent")
   addOns: [ApsAddOn] @hasMany(indexName: "byEvent")
+  # Null or false keeps the in-app post-event survey locked.
+  # Admins flip this from the Post-Event Survey admin screen.
+  postEventSurveyOpen: Boolean
+  # Null or false keeps the certificate card locked. Url is the external test page.
+  certificateOfCompletionOpen: Boolean
+  certificateOfCompletionUrl: String
 }
 
 type APSCode

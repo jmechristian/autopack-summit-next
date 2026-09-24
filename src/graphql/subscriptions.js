@@ -84,6 +84,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -454,6 +457,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -652,6 +658,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -785,6 +794,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -1035,6 +1047,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -1866,6 +1881,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2017,6 +2035,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2103,6 +2124,9 @@ export const onCreateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2224,6 +2248,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2594,6 +2621,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2792,6 +2822,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -2925,6 +2958,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -3175,6 +3211,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -4006,6 +4045,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -4157,6 +4199,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -4243,6 +4288,9 @@ export const onUpdateApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -4364,6 +4412,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -4734,6 +4785,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -4932,6 +4986,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -5065,6 +5122,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -5315,6 +5375,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -6146,6 +6209,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -6297,6 +6363,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -6383,6 +6452,9 @@ export const onDeleteApsAppUserNote = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -6911,6 +6983,9 @@ export const onCreateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -7038,6 +7113,9 @@ export const onCreateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -7171,6 +7249,9 @@ export const onCreateApsAppUserExhibitorView = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -7356,6 +7437,9 @@ export const onCreateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -7726,6 +7810,9 @@ export const onCreateApsAppUserExhibitorView = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -8172,6 +8259,9 @@ export const onUpdateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -8299,6 +8389,9 @@ export const onUpdateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -8432,6 +8525,9 @@ export const onUpdateApsAppUserExhibitorView = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -8617,6 +8713,9 @@ export const onUpdateApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -8987,6 +9086,9 @@ export const onUpdateApsAppUserExhibitorView = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -9433,6 +9535,9 @@ export const onDeleteApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -9560,6 +9665,9 @@ export const onDeleteApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -9693,6 +9801,9 @@ export const onDeleteApsAppUserExhibitorView = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -9878,6 +9989,9 @@ export const onDeleteApsAppUserExhibitorView = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -10248,6 +10362,9 @@ export const onDeleteApsAppUserExhibitorView = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -10694,6 +10811,9 @@ export const onCreateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -10821,6 +10941,9 @@ export const onCreateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -10954,6 +11077,9 @@ export const onCreateApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -11139,6 +11265,9 @@ export const onCreateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -11509,6 +11638,9 @@ export const onCreateApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -11956,6 +12088,9 @@ export const onUpdateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -12083,6 +12218,9 @@ export const onUpdateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -12216,6 +12354,9 @@ export const onUpdateApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -12401,6 +12542,9 @@ export const onUpdateApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -12771,6 +12915,9 @@ export const onUpdateApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -13218,6 +13365,9 @@ export const onDeleteApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -13345,6 +13495,9 @@ export const onDeleteApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -13478,6 +13631,9 @@ export const onDeleteApsAppUserPassportStamp = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -13663,6 +13819,9 @@ export const onDeleteApsAppUserPassportStamp = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -14033,6 +14192,9 @@ export const onDeleteApsAppUserPassportStamp = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -14480,6 +14642,9 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -14607,6 +14772,9 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -14740,6 +14908,9 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -14925,6 +15096,9 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -15295,6 +15469,9 @@ export const onCreateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -15741,6 +15918,9 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -15868,6 +16048,9 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -16001,6 +16184,9 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -16186,6 +16372,9 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -16556,6 +16745,9 @@ export const onUpdateApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -17002,6 +17194,9 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -17129,6 +17324,9 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -17262,6 +17460,9 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -17447,6 +17648,9 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -17817,6 +18021,9 @@ export const onDeleteApsAppUserFavoriteExhibitor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -18263,6 +18470,9 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -18492,6 +18702,9 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -18563,6 +18776,9 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -18933,6 +19149,9 @@ export const onCreateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -19379,6 +19598,9 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -19608,6 +19830,9 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -19679,6 +19904,9 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -20049,6 +20277,9 @@ export const onUpdateApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -20495,6 +20726,9 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -20724,6 +20958,9 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -20795,6 +21032,9 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -21165,6 +21405,9 @@ export const onDeleteApsAppUserFavoriteSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -21611,6 +21854,9 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -21797,6 +22043,9 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -21849,6 +22098,9 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -21967,6 +22219,9 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -22337,6 +22592,9 @@ export const onCreateApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -22783,6 +23041,9 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -22969,6 +23230,9 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -23021,6 +23285,9 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -23139,6 +23406,9 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -23509,6 +23779,9 @@ export const onUpdateApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -23955,6 +24228,9 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -24141,6 +24417,9 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -24193,6 +24472,9 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -24311,6 +24593,9 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -24681,6 +24966,9 @@ export const onDeleteApsAppUserFavoriteSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -25127,6 +25415,9 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -25174,6 +25465,9 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -25300,6 +25594,9 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -25670,6 +25967,9 @@ export const onCreateApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -26116,6 +26416,9 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -26163,6 +26466,9 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -26289,6 +26595,9 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -26659,6 +26968,9 @@ export const onUpdateApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -27105,6 +27417,9 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -27152,6 +27467,9 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -27278,6 +27596,9 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -27648,6 +27969,9 @@ export const onDeleteApsAppUserFavoriteSession = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -28094,6 +28418,9 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -28541,6 +28868,9 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -28596,6 +28926,9 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -28966,6 +29299,9 @@ export const onCreateApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -29412,6 +29748,9 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -29859,6 +30198,9 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -29914,6 +30256,9 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -30284,6 +30629,9 @@ export const onUpdateApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -30730,6 +31078,9 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -31177,6 +31528,9 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -31232,6 +31586,9 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -31602,6 +31959,9 @@ export const onDeleteApsAppUserFavoriteContact = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -32208,6 +32568,9 @@ export const onCreateApsDmMessage = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -32632,6 +32995,9 @@ export const onUpdateApsDmMessage = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -33056,6 +33422,9 @@ export const onDeleteApsDmMessage = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -33726,6 +34095,9 @@ export const onCreateApsPostEventSurvey = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -34262,6 +34634,9 @@ export const onUpdateApsPostEventSurvey = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -34798,6 +35173,9 @@ export const onDeleteApsPostEventSurvey = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -35302,6 +35680,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35414,6 +35795,9 @@ export const onCreateAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -35467,6 +35851,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35627,6 +36014,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35717,6 +36107,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35754,6 +36147,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35813,6 +36209,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35875,6 +36274,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -35964,6 +36366,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36023,6 +36428,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36075,6 +36483,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36124,6 +36535,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36205,6 +36619,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36279,6 +36696,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36353,6 +36773,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36433,6 +36856,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36527,6 +36953,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36608,6 +37037,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36690,6 +37122,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36728,6 +37163,9 @@ export const onCreateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36747,6 +37185,9 @@ export const onCreateAPS = /* GraphQL */ `
         nextToken
         __typename
       }
+      postEventSurveyOpen
+      certificateOfCompletionOpen
+      certificateOfCompletionUrl
       createdAt
       updatedAt
       aPSAgendaId
@@ -36775,6 +37216,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -36887,6 +37331,9 @@ export const onUpdateAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -36940,6 +37387,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37100,6 +37550,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37190,6 +37643,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37227,6 +37683,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37286,6 +37745,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37348,6 +37810,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37437,6 +37902,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37496,6 +37964,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37548,6 +38019,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37597,6 +38071,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37678,6 +38155,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37752,6 +38232,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37826,6 +38309,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -37906,6 +38392,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38000,6 +38489,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38081,6 +38573,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38163,6 +38658,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38201,6 +38699,9 @@ export const onUpdateAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38220,6 +38721,9 @@ export const onUpdateAPS = /* GraphQL */ `
         nextToken
         __typename
       }
+      postEventSurveyOpen
+      certificateOfCompletionOpen
+      certificateOfCompletionUrl
       createdAt
       updatedAt
       aPSAgendaId
@@ -38248,6 +38752,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38360,6 +38867,9 @@ export const onDeleteAPS = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -38413,6 +38923,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38573,6 +39086,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38663,6 +39179,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38700,6 +39219,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38759,6 +39281,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38821,6 +39346,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38910,6 +39438,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -38969,6 +39500,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39021,6 +39555,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39070,6 +39607,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39151,6 +39691,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39225,6 +39768,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39299,6 +39845,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39379,6 +39928,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39473,6 +40025,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39554,6 +40109,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39636,6 +40194,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39674,6 +40235,9 @@ export const onDeleteAPS = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -39693,6 +40257,9 @@ export const onDeleteAPS = /* GraphQL */ `
         nextToken
         __typename
       }
+      postEventSurveyOpen
+      certificateOfCompletionOpen
+      certificateOfCompletionUrl
       createdAt
       updatedAt
       aPSAgendaId
@@ -39738,6 +40305,9 @@ export const onCreateAPSCode = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -40108,6 +40678,9 @@ export const onCreateAPSCode = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -40160,6 +40733,9 @@ export const onUpdateAPSCode = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -40530,6 +41106,9 @@ export const onUpdateAPSCode = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -40582,6 +41161,9 @@ export const onDeleteAPSCode = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -40952,6 +41534,9 @@ export const onDeleteAPSCode = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -41056,6 +41641,9 @@ export const onCreateApsAgenda = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -41426,6 +42014,9 @@ export const onCreateApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -41524,6 +42115,9 @@ export const onUpdateApsAgenda = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -41894,6 +42488,9 @@ export const onUpdateApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -41992,6 +42589,9 @@ export const onDeleteApsAgenda = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -42362,6 +42962,9 @@ export const onDeleteApsAgenda = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -42460,6 +43063,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -42830,6 +43436,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -42968,6 +43577,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -43054,6 +43666,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -43223,6 +43838,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -43462,6 +44080,9 @@ export const onCreateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -44122,6 +44743,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -44492,6 +45116,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -44630,6 +45257,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -44716,6 +45346,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -44885,6 +45518,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -45124,6 +45760,9 @@ export const onUpdateApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -45784,6 +46423,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -46154,6 +46796,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -46292,6 +46937,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -46378,6 +47026,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -46547,6 +47198,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -46786,6 +47440,9 @@ export const onDeleteApsRegistrant = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -47511,6 +48168,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -47944,6 +48604,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -48042,6 +48705,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -48800,6 +49466,9 @@ export const onCreateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -48932,6 +49601,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -49365,6 +50037,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -49463,6 +50138,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -50221,6 +50899,9 @@ export const onUpdateApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -50353,6 +51034,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -50786,6 +51470,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -50884,6 +51571,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -51642,6 +52332,9 @@ export const onDeleteApsAppUser = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -51694,6 +52387,9 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -52463,6 +53159,9 @@ export const onCreateApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -52517,6 +53216,9 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -53286,6 +53988,9 @@ export const onUpdateApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -53340,6 +54045,9 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -54109,6 +54817,9 @@ export const onDeleteApsAppUserContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -54163,6 +54874,9 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -54932,6 +55646,9 @@ export const onCreateApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -54986,6 +55703,9 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -55755,6 +56475,9 @@ export const onUpdateApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -55809,6 +56532,9 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -56578,6 +57304,9 @@ export const onDeleteApsAppUserLead = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -56632,6 +57361,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57309,6 +58041,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57383,6 +58118,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57457,6 +58195,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57537,6 +58278,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57631,6 +58375,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57725,6 +58472,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57806,6 +58556,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -57888,6 +58641,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -58284,6 +59040,9 @@ export const onCreateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -58352,6 +59111,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59029,6 +59791,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59103,6 +59868,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59177,6 +59945,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59257,6 +60028,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59351,6 +60125,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59445,6 +60222,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59526,6 +60306,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -59608,6 +60391,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -60004,6 +60790,9 @@ export const onUpdateApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -60072,6 +60861,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -60749,6 +61541,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -60823,6 +61618,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -60897,6 +61695,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -60977,6 +61778,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -61071,6 +61875,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -61165,6 +61972,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -61246,6 +62056,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -61328,6 +62141,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -61724,6 +62540,9 @@ export const onDeleteApsAppUserProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -62199,6 +63018,9 @@ export const onCreateProfileAffiliate = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -62663,6 +63485,9 @@ export const onUpdateProfileAffiliate = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -63127,6 +63952,9 @@ export const onDeleteProfileAffiliate = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -63591,6 +64419,9 @@ export const onCreateProfileEducation = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -64054,6 +64885,9 @@ export const onUpdateProfileEducation = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -64517,6 +65351,9 @@ export const onDeleteProfileEducation = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -64980,6 +65817,9 @@ export const onCreateProfileInterest = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -65441,6 +66281,9 @@ export const onUpdateProfileInterest = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -65902,6 +66745,9 @@ export const onDeleteProfileInterest = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -65956,6 +66802,9 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -66336,6 +67185,9 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -66706,6 +67558,9 @@ export const onCreateApsAppUserPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -66743,6 +67598,9 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -67123,6 +67981,9 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -67493,6 +68354,9 @@ export const onUpdateApsAppUserPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -67530,6 +68394,9 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -67910,6 +68777,9 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -68280,6 +69150,9 @@ export const onDeleteApsAppUserPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -68404,6 +69277,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -68794,6 +69670,9 @@ export const onCreateApsAppSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -68928,6 +69807,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -69318,6 +70200,9 @@ export const onUpdateApsAppSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -69452,6 +70337,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -69842,6 +70730,9 @@ export const onDeleteApsAppSession = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -69896,6 +70787,9 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -70008,6 +70902,9 @@ export const onCreateApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -70390,6 +71287,9 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -70502,6 +71402,9 @@ export const onUpdateApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -70884,6 +71787,9 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -70996,6 +71902,9 @@ export const onDeleteApsAppSessionQuestion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -71780,6 +72689,9 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -71835,6 +72747,9 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -72205,6 +73120,9 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -72310,6 +73228,9 @@ export const onCreateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -72764,6 +73685,9 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -72819,6 +73743,9 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -73189,6 +74116,9 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -73294,6 +74224,9 @@ export const onUpdateAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -73748,6 +74681,9 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -73803,6 +74739,9 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -74173,6 +75112,9 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -74278,6 +75220,9 @@ export const onDeleteAPSSpeaker = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -74434,6 +75379,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -74520,6 +75468,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -74641,6 +75592,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -75011,6 +75965,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -75120,6 +76077,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -75253,6 +76213,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -75505,6 +76468,9 @@ export const onCreateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -75663,6 +76629,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -75749,6 +76718,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -75870,6 +76842,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -76240,6 +77215,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -76349,6 +77327,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -76482,6 +77463,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -76734,6 +77718,9 @@ export const onUpdateApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -76892,6 +77879,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -76978,6 +77968,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -77099,6 +78092,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -77469,6 +78465,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -77578,6 +78577,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -77711,6 +78713,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -77963,6 +78968,9 @@ export const onDeleteApsSponsor = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -78020,6 +79028,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -78067,6 +79078,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -78355,6 +79369,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -78407,6 +79424,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -78597,6 +79617,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -78730,6 +79753,9 @@ export const onCreateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -79132,6 +80158,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -79179,6 +80208,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -79467,6 +80499,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -79519,6 +80554,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -79709,6 +80747,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -79842,6 +80883,9 @@ export const onUpdateAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -80244,6 +81288,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -80291,6 +81338,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -80579,6 +81629,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -80631,6 +81684,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -80821,6 +81877,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -80954,6 +82013,9 @@ export const onDeleteAPSCompany = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -81457,6 +82519,9 @@ export const onCreateAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -81543,6 +82608,9 @@ export const onCreateAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -81776,6 +82844,9 @@ export const onUpdateAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -81862,6 +82933,9 @@ export const onUpdateAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82095,6 +83169,9 @@ export const onDeleteAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82181,6 +83258,9 @@ export const onDeleteAPSCompanyContact = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82414,6 +83494,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82500,6 +83583,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82752,6 +83838,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -82804,6 +83893,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -82922,6 +84014,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83292,6 +84387,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -83342,6 +84440,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83394,6 +84495,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83443,6 +84547,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83493,6 +84600,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83757,6 +84867,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83838,6 +84951,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -83920,6 +85036,9 @@ export const onCreateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -84076,6 +85195,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -84162,6 +85284,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -84414,6 +85539,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -84466,6 +85594,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -84584,6 +85715,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -84954,6 +86088,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -85004,6 +86141,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85056,6 +86196,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85105,6 +86248,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85155,6 +86301,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85419,6 +86568,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85500,6 +86652,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85582,6 +86737,9 @@ export const onUpdateApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85738,6 +86896,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -85824,6 +86985,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86076,6 +87240,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -86128,6 +87295,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86246,6 +87416,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86616,6 +87789,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -86666,6 +87842,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86718,6 +87897,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86767,6 +87949,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -86817,6 +88002,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -87081,6 +88269,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -87162,6 +88353,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -87244,6 +88438,9 @@ export const onDeleteApsAppExhibitorProfile = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -87376,6 +88573,9 @@ export const onCreateApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -87509,6 +88709,9 @@ export const onCreateApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -87696,6 +88899,9 @@ export const onCreateApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -88066,6 +89272,9 @@ export const onCreateApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -88190,6 +89399,9 @@ export const onUpdateApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -88323,6 +89535,9 @@ export const onUpdateApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -88510,6 +89725,9 @@ export const onUpdateApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -88880,6 +90098,9 @@ export const onUpdateApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -89004,6 +90225,9 @@ export const onDeleteApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -89137,6 +90361,9 @@ export const onDeleteApsAppExhibitorPromotion = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -89324,6 +90551,9 @@ export const onDeleteApsAppExhibitorPromotion = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -89694,6 +90924,9 @@ export const onDeleteApsAppExhibitorPromotion = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -89818,6 +91051,9 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -89951,6 +91187,9 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -90123,6 +91362,9 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -90500,6 +91742,9 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -90870,6 +92115,9 @@ export const onCreateApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -90995,6 +92243,9 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -91128,6 +92379,9 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -91300,6 +92554,9 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -91677,6 +92934,9 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -92047,6 +93307,9 @@ export const onUpdateApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -92172,6 +93435,9 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -92305,6 +93571,9 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -92477,6 +93746,9 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -92854,6 +94126,9 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -93224,6 +94499,9 @@ export const onDeleteApsAppExhibitorDeal = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -93349,6 +94627,9 @@ export const onCreateApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -93482,6 +94763,9 @@ export const onCreateApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -93670,6 +94954,9 @@ export const onCreateApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -94040,6 +95327,9 @@ export const onCreateApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -94164,6 +95454,9 @@ export const onUpdateApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -94297,6 +95590,9 @@ export const onUpdateApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -94485,6 +95781,9 @@ export const onUpdateApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -94855,6 +96154,9 @@ export const onUpdateApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -94979,6 +96281,9 @@ export const onDeleteApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -95112,6 +96417,9 @@ export const onDeleteApsAppExhibitorPhoto = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -95300,6 +96608,9 @@ export const onDeleteApsAppExhibitorPhoto = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -95670,6 +96981,9 @@ export const onDeleteApsAppExhibitorPhoto = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -95794,6 +97108,9 @@ export const onCreateApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -95927,6 +97244,9 @@ export const onCreateApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -96113,6 +97433,9 @@ export const onCreateApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -96483,6 +97806,9 @@ export const onCreateApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -96607,6 +97933,9 @@ export const onUpdateApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -96740,6 +98069,9 @@ export const onUpdateApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -96926,6 +98258,9 @@ export const onUpdateApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -97296,6 +98631,9 @@ export const onUpdateApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -97420,6 +98758,9 @@ export const onDeleteApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -97553,6 +98894,9 @@ export const onDeleteApsAppExhibitorHandout = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -97739,6 +99083,9 @@ export const onDeleteApsAppExhibitorHandout = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -98109,6 +99456,9 @@ export const onDeleteApsAppExhibitorHandout = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -98168,6 +99518,9 @@ export const onCreateApsAddOn = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -98538,6 +99891,9 @@ export const onCreateApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -98693,6 +100049,9 @@ export const onUpdateApsAddOn = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -99063,6 +100422,9 @@ export const onUpdateApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -99218,6 +100580,9 @@ export const onDeleteApsAddOn = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -99588,6 +100953,9 @@ export const onDeleteApsAddOn = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -99801,6 +101169,9 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -100314,6 +101685,9 @@ export const onCreateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -100452,6 +101826,9 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -100965,6 +102342,9 @@ export const onUpdateRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -101103,6 +102483,9 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -101616,6 +102999,9 @@ export const onDeleteRegistrantAddOnRequest = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -102093,6 +103479,9 @@ export const onCreateApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -102646,6 +104035,9 @@ export const onUpdateApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -103199,6 +104591,9 @@ export const onDeleteApsSeatingChartRegistrant = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -103865,6 +105260,9 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -104235,6 +105633,9 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -104368,6 +105769,9 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -104454,6 +105858,9 @@ export const onCreateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -104588,6 +105995,9 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -104958,6 +106368,9 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -105091,6 +106504,9 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -105177,6 +106593,9 @@ export const onUpdateAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -105311,6 +106730,9 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -105681,6 +107103,9 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
           nextToken
           __typename
         }
+        postEventSurveyOpen
+        certificateOfCompletionOpen
+        certificateOfCompletionUrl
         createdAt
         updatedAt
         aPSAgendaId
@@ -105814,6 +107239,9 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -105900,6 +107328,9 @@ export const onDeleteAPSCompanyEvents = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -106026,6 +107457,9 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -106325,6 +107759,9 @@ export const onCreateSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -106401,6 +107838,9 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -106700,6 +108140,9 @@ export const onUpdateSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -106776,6 +108219,9 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -107075,6 +108521,9 @@ export const onDeleteSessionSpeakers = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -107151,6 +108600,9 @@ export const onCreateSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -107407,6 +108859,9 @@ export const onCreateSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -107459,6 +108914,9 @@ export const onCreateSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -107582,6 +109040,9 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -107838,6 +109299,9 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -107890,6 +109354,9 @@ export const onUpdateSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -108013,6 +109480,9 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
@@ -108269,6 +109739,9 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
             nextToken
             __typename
           }
+          postEventSurveyOpen
+          certificateOfCompletionOpen
+          certificateOfCompletionUrl
           createdAt
           updatedAt
           aPSAgendaId
@@ -108321,6 +109794,9 @@ export const onDeleteSessionSponsors = /* GraphQL */ `
             state
             zip
             website
+            postEventSurveyOpen
+            certificateOfCompletionOpen
+            certificateOfCompletionUrl
             createdAt
             updatedAt
             aPSAgendaId
