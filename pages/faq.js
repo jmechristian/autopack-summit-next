@@ -10,18 +10,16 @@ const faqs = [
   {
     id: 'tickets-sold-out',
     category: 'Registration',
-    question: 'Are tickets still available?',
+    question: 'When does 2027 registration open?',
     answer: (
       <p>
-        Tickets for the 2026 Automotive Packaging Summit are sold out. You can{' '}
-        <a href='/register' className='font-semibold text-ap-blue underline'>
-          join the waitlist
-        </a>{' '}
-        and we will notify you if a spot opens.
+        Registration for the 2027 Automotive Packaging Summit is not open yet.
+        Save the date for October 18–20, 2027 at the Hyatt Regency in
+        Greenville, SC. We will announce when tickets go on sale.
       </p>
     ),
     searchText:
-      'Are tickets still available? Tickets sold out waitlist join the waitlist notify if a spot opens registration',
+      'When does 2027 registration open? Tickets not open yet save the date October 18 20 2027 Hyatt Regency Greenville',
   },
   {
     id: 'whats-included',
@@ -44,13 +42,13 @@ const faqs = [
     question: 'How much does registration cost?',
     answer: (
       <p>
-        Registration is $1,600 per attendee when tickets are available, limited
-        to 2 per company for solution providers. Tickets are currently sold out
-        — join the waitlist at no charge and we will follow up if a spot opens.
+        2027 pricing will be announced when registration opens. In 2026,
+        registration was $1,600 per attendee, limited to 2 per company for
+        solution providers.
       </p>
     ),
     searchText:
-      'How much does registration cost? $1600 1600 per attendee limited to 2 per company solution providers',
+      'How much does registration cost? $1600 1600 per attendee limited to 2 per company solution providers 2027 pricing',
   },
   {
     id: 'oem-discount',
@@ -59,16 +57,12 @@ const faqs = [
       "I'm an OEM or Tier 1 supplier — do I qualify for a discount code?",
     answer: (
       <p>
-        Discount codes are not being issued while tickets are sold out. OEMs and
-        Tier 1 Part Suppliers can still{' '}
-        <a href='/register' className='font-semibold text-ap-blue underline'>
-          join the waitlist
-        </a>
-        . If a seat opens, we will follow up with next steps.
+        Yes. OEMs and Tier 1 Part Suppliers typically receive a discount code
+        when registration opens. Details for 2027 will be shared at that time.
       </p>
     ),
     searchText:
-      "I'm an OEM or Tier 1 supplier do I qualify for a discount code? Tickets sold out join the waitlist OEMs and Tier 1 Part Suppliers.",
+      "I'm an OEM or Tier 1 supplier do I qualify for a discount code? OEMs and Tier 1 Part Suppliers 2027 registration",
   },
   {
     id: 'exhibitor-staff',
@@ -76,12 +70,11 @@ const faqs = [
     question: 'Can I add exhibitor staff tickets?',
     answer: (
       <p>
-        Exhibitor staff tickets can be added by booth sponsors only, at $699 per
-        ticket, when tickets are available. These include full access to
-        networking, sessions, food and drinks (opening cocktail hour, breakfast,
-        lunch, and cocktail reception), but do not include an assigned seat at
-        the main-stage round tables. Additional tickets are currently sold out
-        — please join the waitlist.
+        Exhibitor staff tickets can be added by booth sponsors only when
+        registration is open. In 2026 these were $699 per ticket and included
+        full access to networking, sessions, food and drinks (opening cocktail
+        hour, breakfast, lunch, and cocktail reception), but did not include an
+        assigned seat at the main-stage round tables.
       </p>
     ),
     searchText:
@@ -95,10 +88,10 @@ const faqs = [
       <>
         <p>
           Yes, open to all attendees on a first-come, first-served basis — spots
-          are limited. Two Clemson University tours are included as part of the
-          main summit agenda (Sep 30 and Oct 2). Attendees must register for
-          tours either during event registration or via their registration
-          profile page, linked in the welcome email. Some tours have a fee.
+          are limited. Tour details for 2027 will be announced closer to the
+          event. Attendees typically register for tours during event
+          registration or via their registration profile page. Some tours have a
+          fee.
         </p>
         <p className='mt-4 rounded-r-lg border-l-4 border-ap-yellow bg-ap-yellow/10 px-4 py-3 text-sm text-gray-700'>
           A BMW plant tour is still under discussion and may be added closer to
@@ -107,7 +100,7 @@ const faqs = [
       </>
     ),
     searchText:
-      'Are the plant campus tours open to all attendees? Yes first-come first-served limited spots Clemson University Sep 30 Oct 2 register during registration or profile page welcome email fee BMW plant tour under discussion non-competitive',
+      'Are the plant campus tours open to all attendees? Yes first-come first-served limited spots 2027 tours register during registration or profile page fee BMW plant tour',
   },
   {
     id: 'event-app',
@@ -190,33 +183,13 @@ const faqs = [
     answer: (
       <>
         <p>
-          Hyatt Regency, Greenville SC, September 30 – October 2, 2026.
+          Hyatt Regency, Greenville SC, October 18–20, 2027. Hotel block details
+          for 2027 will be announced closer to the event.
         </p>
-        <ul className='mt-4 space-y-2'>
-          <li>
-            <span className='font-semibold text-gray-900'>Room block:</span>{' '}
-            <a
-              href='https://www.hyatt.com/events/en-US/group-booking/GSPRG/G-APSM'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='font-semibold text-ap-blue underline'
-            >
-              Book your room
-            </a>
-          </li>
-          <li>
-            <span className='font-semibold text-gray-900'>Group code:</span>{' '}
-            G-APSM
-          </li>
-          <li>
-            <span className='font-semibold text-gray-900'>Cut-off date:</span>{' '}
-            September 8, 2026
-          </li>
-        </ul>
       </>
     ),
     searchText:
-      'Where is the event and is there a hotel block? Hyatt Regency Greenville SC September 30 October 2 2026 room block group code G-APSM cut-off September 8 2026',
+      'Where is the event and is there a hotel block? Hyatt Regency Greenville SC October 18 20 2027 room block coming soon',
   },
   {
     id: 'what-to-wear',
@@ -224,12 +197,12 @@ const faqs = [
     question: 'What should I wear / bring?',
     answer: (
       <p>
-        Business casual is typical for the sessions; the Oct 2 Clemson tour
-        recommends comfortable clothing and walking shoes.
+        Business casual is typical for the sessions; plant and campus tours
+        usually call for comfortable clothing and walking shoes.
       </p>
     ),
     searchText:
-      'What should I wear bring? Business casual sessions Oct 2 Clemson tour comfortable clothing walking shoes',
+      'What should I wear bring? Business casual sessions tours comfortable clothing walking shoes',
   },
   {
     id: 'contact-questions',
@@ -368,7 +341,7 @@ const FAQ = () => {
           </h1>
           <p className='mt-4 max-w-2xl text-lg text-blue-100'>
             Everything you need to know about registration, tours, the event
-            app, lodging, and more for APS 2026.
+            app, lodging, and more for APS 2027.
           </p>
         </div>
       </div>

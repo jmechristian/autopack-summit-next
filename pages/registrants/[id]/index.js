@@ -18,7 +18,6 @@ import {
   MdAccessTime,
   MdCheckCircle,
   MdEdit,
-  MdAddCircleOutline,
   MdHotel,
   MdEventNote,
 } from 'react-icons/md';
@@ -409,13 +408,6 @@ export const RegistrantPage = ({ registrant }) => {
 
               <div className='mt-5 pt-4 border-t border-gray-200 text-sm lg:flex-1'>
                 <div className='rounded-md border border-gray-200 divide-y divide-gray-200'>
-                  <a
-                    href='/register'
-                    className='flex items-center gap-2 px-3 py-2.5 font-medium hover:bg-gray-50'
-                  >
-                    <MdAddCircleOutline size={16} />
-                    <span>Add Tickets</span>
-                  </a>
                   <a
                     href='https://www.hyatt.com/en-US/group-booking/GSPRG/G-APSM'
                     target='_blank'

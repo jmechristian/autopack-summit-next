@@ -14,19 +14,38 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        // this will match `/english(default)/something` being requested
+        source: '/register',
+        destination: '/',
+        permanent: false,
+      },
+      {
         source: '/oem-registration',
-        destination: '/register',
-        permanent: true,
+        destination: '/',
+        permanent: false,
       },
       {
         source: '/tickets',
-        destination: '/register',
-        permanent: true,
+        destination: '/',
+        permanent: false,
       },
       {
         source: '/waitlist',
-        destination: '/register',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/registerprovider',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/sponsor-register',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/add-ons',
+        destination: '/',
         permanent: false,
       },
     ];

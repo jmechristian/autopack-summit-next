@@ -135,15 +135,12 @@ const Travel = () => {
                 <div className='border-t border-t-neutral-500'>
                   <div className='flex flex-col gap-4 pt-6 text-lg leading-snug'>
                     <div className='font-oswald uppercase font-medium'>
-                      Room block at capacity
+                      2027 hotel details coming soon
                     </div>
                     <p className='text-base leading-snug'>
-                      Due to strong attendee response, the official AutoPack
-                      Summit 2026 discounted room block has reached capacity. If
-                      you still need accommodations, please contact the hotel
-                      directly to ask about availability outside the group block
-                      or explore nearby hotels. We will share any additional room
-                      availability here as it becomes available.
+                      AutoPack Summit returns to the Hyatt Regency Greenville,
+                      October 18–20, 2027. We will share the official room block
+                      and booking details here as soon as they are available.
                     </p>
                   </div>
                 </div>
@@ -284,7 +281,7 @@ const Travel = () => {
             <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
               <div>
                 <div className='font-oswald text-2xl font-medium uppercase tracking-tight text-neutral-900'>
-                  Questions about the waitlist?
+                  Questions about 2027?
                 </div>
                 <p className='mt-1 text-neutral-700'>
                   For general inquiries or questions, email Bianca.

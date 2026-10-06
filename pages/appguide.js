@@ -323,7 +323,7 @@ const HowTo = () => {
 
               <h3>3.2 Countdown &amp; Live Sessions</h3>
               <ul>
-                <li>A <strong>countdown timer</strong> ticks down to the event in Greenville (Sept 30 – Oct 2, 2026).</li>
+                <li>A <strong>countdown timer</strong> ticks down to the event in Greenville (Oct 18 – Oct 20, 2027).</li>
                 <li>When sessions are happening, a <strong>LIVE</strong> badge appears next to the timer; otherwise you&rsquo;ll see <strong>&ldquo;Coming Up&rdquo;</strong> with the next session.</li>
                 <li>Tap a session card to open its details. If a session is live and has a stream, a <strong>View Presentation</strong> button appears.</li>
               </ul>

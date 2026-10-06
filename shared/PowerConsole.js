@@ -6,17 +6,12 @@ import {
   MdCelebration,
   MdMapsUgc,
   MdAirplanemodeActive,
-  MdVideoCameraFront,
-  MdConfirmationNumber,
   MdChevronRight,
-  MdDiversity1,
-  MdAccessAlarm,
 } from 'react-icons/md';
 import ConsoleItem from './ConsoleItem';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   closePowerConsole,
-  openPowerConsole,
   openSponsorForm,
 } from '../features/layout/layoutSlice';
 import { useSelector } from 'react-redux';
@@ -64,43 +59,6 @@ const PowerConsole = () => {
               </motion.div>
               <motion.div className='w-full px-3 py-2 flex flex-col gap-2 item-center'>
                 <ConsoleItem
-                  title={'Join the Waitlist'}
-                  color={'bg-ap-yellow'}
-                  hoverColor={'hover:bg-amber-400'}
-                  iconBack={'bg-black/70'}
-                  icon={<MdConfirmationNumber color='white' size={'20px'} />}
-                  fn={() => router.push('/register')}
-                  disabled={false}
-                  soldOut={true}
-                  callout={'Tickets are sold out — join the waitlist.'}
-                />
-                {/* <ConsoleItem
-                  title={'Join the Ticket Waitlist'}
-                  color={'bg-white'}
-                  hoverColor={'hover:bg-amber-400'}
-                  iconBack={'bg-black'}
-                  icon={<MdAccessAlarm color='white' size={'20px'} />}
-                  fn={() =>
-                    window.open('https://forms.gle/k4KFagWajT7WACBx5', '_blank')
-                  }
-                /> */}
-                {/* <ConsoleItem
-                  title={'OEM/ Tier 1 Registration'}
-                  color={'bg-white'}
-                  hoverColor={'hover:bg-amber-400'}
-                  iconBack={'bg-black'}
-                  icon={<MdConfirmationNumber color='white' size={'20px'} />}
-                  fn={() => router.push('/register')}
-                />
-                <ConsoleItem
-                  title={'Registration Add-Ons'}
-                  color={'bg-white'}
-                  hoverColor={'hover:bg-amber-400'}
-                  iconBack={'bg-black'}
-                  icon={<MdConfirmationNumber color='white' size={'20px'} />}
-                  fn={() => router.push('/add-ons')}
-                /> */}
-                <ConsoleItem
                   title={"I'd like to Speak"}
                   iconBack={'bg-black/30'}
                   color={'bg-amber-300'}
@@ -137,12 +95,7 @@ const PowerConsole = () => {
                   color={'bg-ap-blue'}
                   hoverColor={'hover:bg-amber-400'}
                   icon={<MdAirplanemodeActive color='black' size={'20px'} />}
-                  fn={() =>
-                    window.open(
-                      'https://www.hyatt.com/events/en-US/group-booking/GSPRG/G-APSM',
-                      '_blank',
-                    )
-                  }
+                  fn={() => router.push('/travel')}
                 />
               </motion.div>
             </motion.div>

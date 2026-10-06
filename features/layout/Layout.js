@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
             transition={{ delay: 1.5, ease: 'easeInOut', duration: 1 }}
           >
             <motion.div className='font-medium text-ap-yellow text-lg leading-none uppercase font-oswald'>
-              Sep 30 - Oct 2, 2026
+              Oct 18 - Oct 20, 2027
             </motion.div>
             <motion.div className='text-white/80 text-lg font-oswald'>
               Hyatt Regency, Greenville SC

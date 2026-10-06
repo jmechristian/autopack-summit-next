@@ -1,9 +1,5 @@
 export const navMenu = [
   {
-    name: 'Register',
-    link: '/register',
-  },
-  {
     name: 'Agenda',
     link: '/agenda',
   },
