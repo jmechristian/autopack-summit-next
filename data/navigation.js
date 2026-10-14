@@ -24,8 +24,17 @@ export const navMenu = [
     link: '/appguide',
   },
   {
-    name: '2025 Media',
-    link: 'https://www.packagingschool.com/events/aps-2025',
+    name: 'Media',
+    children: [
+      {
+        name: '2025',
+        link: 'https://www.packagingschool.com/events/aps-2025',
+      },
+      {
+        name: '2026',
+        link: 'https://packagingschool.com/events/aps-2026',
+      },
+    ],
   },
   {
     name: 'Board',
